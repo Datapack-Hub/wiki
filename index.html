@@ -275,16 +275,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lorem" class="md-nav__link">
-    Lorem
+  <a href="#introduction" class="md-nav__link">
+    Introduction
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lorem-2" class="md-nav__link">
-    Lorem 2
+  <a href="#installation" class="md-nav__link">
+    Installation
   </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client-installation" class="md-nav__link">
+    Client Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Client Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-in-game" class="md-nav__link">
+    Method 1: In-game
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-files" class="md-nav__link">
+    Method 2: Files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#server-installation" class="md-nav__link">
+    Server Installation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -312,11 +352,71 @@
 
 
 <h1 id="welcome-to-the-datapack-hub-dev-docs">Welcome to the Datapack Hub Dev docs!<a class="headerlink" href="#welcome-to-the-datapack-hub-dev-docs" title="Permanent link">#</a></h1>
-<p>Nostrud esse amet adipisicing sint elit mollit minim aliqua. Incididunt qui aliqua velit duis ullamco aute commodo. Anim qui commodo irure aute labore tempor minim culpa. Ullamco ut proident ex esse magna aliqua velit deserunt commodo velit pariatur aliqua. Nisi irure est aute excepteur veniam commodo et nostrud minim. Ullamco non veniam laboris Lorem eu et. Do mollit pariatur laborum sit aliquip laboris est aliquip consequat minim laboris magna.</p>
-<h2 id="lorem">Lorem<a class="headerlink" href="#lorem" title="Permanent link">#</a></h2>
-<p>Reprehenderit nostrud occaecat deserunt velit. Nisi velit labore esse anim esse tempor et nulla adipisicing. Nisi duis aliquip non tempor sit Lorem voluptate. Tempor amet ea nulla anim quis irure ea occaecat. Est fugiat consectetur anim pariatur excepteur reprehenderit duis do sit.</p>
-<h2 id="lorem-2">Lorem 2<a class="headerlink" href="#lorem-2" title="Permanent link">#</a></h2>
-<p>Excepteur laboris deserunt nostrud ea culpa nulla commodo aute est occaecat. Do tempor velit ea cupidatat est ullamco. Commodo enim eu quis commodo enim elit ex. Consectetur amet deserunt exercitation pariatur.</p>
+<p>This wiki is the starting point to datapacks.</p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">#</a></h2>
+<p><a href="https://minecraft.fandom.com/wiki/Data_pack">Datapacks</a> are an official "modding" API for creating modifications to the vanilla game using existing Minecraft features. Datapacks were introduced in <a href="https://minecraft.fandom.com/wiki/Java_Edition_1.13">Minecraft 1.13</a>. Since then, they have continued to get more and more powerful.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">#</a></h2>
+<p>Installing Datapacks is easy if you know where to install them. Follow these steps below for a rough guide on how to install them.</p>
+<h3 id="client-installation">Client Installation<a class="headerlink" href="#client-installation" title="Permanent link">#</a></h3>
+<p>There are a few ways to install datapacks on the client</p>
+<h4 id="method-1-in-game">Method 1: In-game<a class="headerlink" href="#method-1-in-game" title="Permanent link">#</a></h4>
+<ol>
+<li>Go to the "Singleplayer" tab</li>
+<li>Select/Create the world you want to get the datapack<ul>
+<li>If the world has already been created, click <code>Edit World &gt; Open World Folder</code> and continue at step 3 in Method 2</li>
+<li>If not, continue with Method 1</li>
+</ul>
+</li>
+<li>Press "Datapacks"<ul>
+<li>&lt;1.19.4 this is in the "More" tab</li>
+<li>1.19.3 and below, TODO: FILL THIS IN</li>
+</ul>
+</li>
+<li>Drag in your datapack<ul>
+<li>You can also copy it to the folder, click "Open Pack Folder" to get to the folder</li>
+</ul>
+</li>
+<li>Save, create and go! You have now installed your datapack</li>
+</ol>
+<h4 id="method-2-files">Method 2: Files<a class="headerlink" href="#method-2-files" title="Permanent link">#</a></h4>
+<ol>
+<li>Go to your file manager</li>
+<li>Locate your <code>.minecraft</code> folder<ul>
+<li>For Windows, this is usually in <code>%appdata%/.minecraft</code>. </li>
+<li>For MacOS (and maybe Linux), this is usually <code>~/Library/Application Support/minecraft</code></li>
+<li>If you use MultiMC, PolyMC, Prism Launcher, have your Minecraft <code>Game Directory</code> in a different folder or use any other launcher, this may differ.</li>
+</ul>
+</li>
+<li>Find the world to install your datapack to<ul>
+<li>The folder is called <code>saves</code></li>
+</ul>
+</li>
+<li>Put your datapack file into the <code>datapacks</code> folder</li>
+<li>And your done!</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Server Installation</p>
+<p>For Server Installation see <a href="#server-installation">this</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">World Generation</p>
+<p>Datapacks that affect world generation (structures, biomes, etc.) will not apply to chunks that have already been generated or to worlds that have already been made</p>
+</div>
+<h3 id="server-installation">Server Installation<a class="headerlink" href="#server-installation" title="Permanent link">#</a></h3>
+<ol>
+<li>Go to your file manager</li>
+<li>Locate your world folder<ul>
+<li>If you use Multiverse-Core or other similar plugins/mods on your server, there may be multiple, but the default should be called <code>world</code></li>
+</ul>
+</li>
+<li>Find the world to install your datapack to</li>
+<li>Put your datapack file into the <code>datapacks</code> folder</li>
+<li>And your done!</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">File Manager</p>
+<p>Some server hosts may not have a dedicated file manager, but usually these hosts will include other ways to install datapacks, ask your support team for information</p>
+</div>
 
 
 
