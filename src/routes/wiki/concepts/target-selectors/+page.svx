@@ -177,12 +177,16 @@ The generated cuboid does not snap to the block grid
 :::info 
 The base cuboid that gets generated with
 dx/dz/dz=0 will always stretch from the command origin to positive x/y/z
+::: 
+:::info 
+You can use fractional numbers but they will be scaled to the next biggest full number.
+For example: `dx=1.3` --> `dx=2`
 :::
 
 **Examples**:
 
 - `@e[x=10,y=13,z=87,dx=10,dy=20,dz=5]`: Selects any entities if any part of their hit box is within the cuboid
-  `w=11,h=21,l=6` starting from the position `x=10,y=13,z=87`
+  `w=11,h=21,l=6` starting from the position `x=10,y=13,z-87`
 - `@e[x=7,y=3,z=9,dx=0,dy=0,dz=0]`: Selects any entities if their hit box overlaps with the block at `x=7,y=3,z=9`
 
 ### `tag` argument
