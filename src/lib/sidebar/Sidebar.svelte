@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SearchBox from './SearchBox.svelte';
+  import SearchBox from "./SearchBox.svelte";
 
   // ! IMPORTANT: If you want to add pages or categories, this is not the place to do it!
 

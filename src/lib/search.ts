@@ -1,4 +1,4 @@
-import FlexSearch from "flexsearch";
+import FlexSearch from "flexsearch"; // types are borked rn
 import { stripHtml } from "string-strip-html";
 
 let index: FlexSearch.Index;

@@ -19,11 +19,6 @@ const matchingFiles = fileGlob.scan("./src/routes");
 
 // read all routes
 for await (const file of matchingFiles) {
-  // ignore the error page
-  if (file.includes("+error.svx")) {
-    log.warn("Skipping error page");
-    continue;
-  }
 
   log.info("Transforming", file);
   const rawContent = await defineFile(`./src/routes/${file}`).text();

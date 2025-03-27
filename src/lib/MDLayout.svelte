@@ -21,7 +21,7 @@
 </script>
 
 <Seo
-  title="{title ? title + " - " : ""} Datapack Wiki"
+  title="{title ? title + ' - ' : ''} Datapack Wiki"
   {description}
   author="Datapack Wiki"
   siteName="Datapack Wiki"
@@ -40,7 +40,7 @@
 
 <main class="md px-4 md:px-8 lg:px-16 prose-headings:text-stone-200">
   {#if version}
-  <Version version={version} />
+    <Version {version} />
   {/if}
   {@render children()}
   {#if tags}

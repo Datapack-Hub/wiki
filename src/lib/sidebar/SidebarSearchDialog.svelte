@@ -14,8 +14,8 @@
   let searchState: "waiting" | "done" = $state("waiting");
 
   export async function showModalWithEvent(e: KeyboardEvent) {
-    if(!keyActivated) {
-      return
+    if (!keyActivated) {
+      return;
     }
     e.preventDefault();
     await showModal();
@@ -41,7 +41,7 @@
 
 <dialog
   bind:this={dialog}
-  class="w-[90%] md:w-3/4 lg:w-1/2 xl:w-1/3 bg-transparent backdrop:bg-black/50 backdrop:backdrop-blur-sm m-auto">
+  class="w-[90%] md:w-3/4 lg:w-1/2 xl:w-1/3 bg-transparent backdrop:bg-black/50 backdrop:backdrop-blur-sm mx-auto top-1/3 not-prose">
   <div class="bg-stone-800 w-full p-4 gap-1 rounded-md">
     <input
       class="bg-stone-900 w-full rounded-sm focus:outline-0 text-white p-2 placeholder:text-stone-500 disabled:cursor-not-allowed disabled:bg-stone-900/50"
@@ -70,10 +70,9 @@
             <p class="text-stone-400 line-clamp-2">{@html result.content}</p>
           </div>
         </a>
-      {:else}
-        <p class="text-stone-400 mt-2">{searchState === "waiting" ? "Loading..." : "No results"}</p>
       {/each}
     </div>
+    <p class="text-stone-400 mt-2">{searchState === "waiting" ? "Loading data..." : results.length === 0 ? "No results" : results.length + " result(s) found!"}</p>
 
     <button class="bg-stone-700 w-full rounded-sm p-2 mt-2 text-white" onclick={() => dialog.close()}>Close</button>
   </div>
