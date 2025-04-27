@@ -48,7 +48,7 @@
   <SidebarPage label="Target Selectors" icon={IconAt} page="/wiki/concepts/target-selectors" />
   <SidebarPage label="Coordinates" icon={IconTilde} page="/wiki/concepts/coordinates" />
   <SidebarPage label="Item Components" icon={IconComponents} page="/wiki/concepts/item-components" />
-  <SidebarPage label="JSON Text" icon={IconBraces} page="/wiki/concepts/json-text" />
+  <SidebarPage label="JSON Text" icon={IconBraces} page="/wiki/concepts/text" />
   <SidebarPage label="Resource Locations" icon={IconResourceLocation} page="/wiki/concepts/resource-locations" />
   <SidebarPage label="Ranges" icon={IconRange} page="/wiki/concepts/ranges" />
 </SidebarCategory>

@@ -1,7 +1,7 @@
 ---
 title: Predicates
 description: Predicates are a type of file which can be called to check if a certain condition is true.
-version: 1.21.4
+version: 1.21.5
 ---
 
 # Predicates
@@ -124,6 +124,8 @@ These are all the possible conditions that can be used in a predicate.
     - `movement`: An object which matches the movement of the entity.
     - `periodic_tick`: Returns true once every `x` ticks of the entity's lifetime.
     - `movement_affected_by`: Following the same structure as `location`, this matches what affects the movement of the entity.
+    - `components` - Matches entity components exactly (the component must be exactly equal to what is being checked).
+    - `predicates` - Matches entity components ignoring any other data in the component (the component must contain what is being checked).
 
 ### `entity_scores`
 `entity_scores` checks if the entity's score on an object matches a specified value or range. 

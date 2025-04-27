@@ -80,7 +80,7 @@ this:
 ```md
 title: "Site Development"
 description: "This page is meant to be an introduction to formatting a page for the wiki. In it is multiple examples which you can examine raw in the [site source code](https://github.com/Datapack-Hub/wiki)."
-version: 1.21.4
+version: 1.21.5
 ```
 
 Front matter is denoted with triple hyphens (`---`) at the top of the page and the end of the front matter.

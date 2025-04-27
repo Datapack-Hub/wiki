@@ -1,7 +1,7 @@
 ---
 title: NBT
 description: NBT is Minecraft's way of storing internal data, such as item data, entity data, and block data. In datapacks, we can use it to store data in custom data storages.
-version: 1.21.4
+version: 1.21.5
 ---
 
 <script lang="ts">
@@ -91,7 +91,7 @@ string, text, booleans, and more.
 Strings can store any text value, or more technically, any sequence of unicode characters.
 
 **Format**: Strings are stored within either double or single quotes. For strings containing standard characters
-(`A-Z, a-z, 0-9, -,_,+,.`), the quotes are optional, but recommended. `"<text>"` or `'<text>'` or `<text>`
+(`A-Z, a-z, 0-9, -,_,+,.`), the quotes are optional (as long as the text starfts with a letter), but recommended. `"<text>"` or `'<text>'` or `<text>`
 
 **Example**: `name:"Silabear"`, `name:'Cobblestone'`, `name:Aandeel`
 
@@ -99,14 +99,17 @@ Strings can store any text value, or more technically, any sequence of unicode c
 
 **Short**, **Int**, and **Long** data types all represent integers (whole numbers).
 
-- **Byte** is an unsigned 8 bit integers, it can be any value from `0` to `255`
-- **Short** is a signed 16 bit integer, it can be any value from `-32,768` to `32,767`
-- **Int** is a signed 32 bit integer, it can be any value from `-2,147,483,648` to `2,147,483,647`
-- **Long** is a signed 64 bit integer, it can be any value from `-9,223,372,036,854,775,808` to
+- **Byte** is an 8 bit integer, it can be any value from `0` to `255`
+- **Short** is a 16 bit integer, it can be any value from `-32,768` to `32,767`
+- **Int** is a 32 bit integer, it can be any value from `-2,147,483,648` to `2,147,483,647`
+- **Long** is a 64 bit integer, it can be any value from `-9,223,372,036,854,775,808` to
   `9,223,372,036,854,775,807`
 
-**Format**: By default, numbers are stored as integers. To store a number in the other formats, you need to use the appropriate suffix.
-For shorts, ints, and longs, the prefix is `s`, `i`, and `l` respectively.
+**Format**: By default, numbers are stored as integers. To store a number in the other formats, you need to use the appropriate suffix. For shorts, ints, and longs, the prefix is `s`, `i`, and `l` respectively. 
+
+The suffix can be extended with `u` or `s` to say whether it is unsigned (only a positive number) or signed (can be positive or negative) - for example, `402ub`.
+
+It is also possible to write using E notation (e.g `1.2E3` would be `1200`), hexadecimals (e.g `0xBC` would be `188`), and binary (e.g `0b110` would be `6`)
 
 **Example**: `count:1234s`, `bigNumber:1200000`, `reallyBigNumber:12123023687234L`, `byte:112b`
 
@@ -125,23 +128,16 @@ appropriate suffix. For floats, the suffix is `f`. For doubles, the suffix is `d
 
 ### Bytes or Booleans
 
-In older versions of Minecraft, booleans were stored as bytes with `0b` representing 
-`false` and `1b` representing `true`. In newer versions, booleans were introduced.
-Essentially, booleans represent the old `0b` and `1b` with a more descriptive name.
-It's recommended to use booleans instead of bytes whenever possible, as they are more readable.
+In older versions of Minecraft, booleans were stored as bytes with `0b` representing `false` and `1b` representing `true`. In newer versions, booleans were introduced. Essentially, booleans represent the old `0b` and `1b` with a more descriptive name. It's recommended to use booleans instead of bytes whenever possible, as they are more readable.
 
-### Arrays
 
-Arrays are used to store multiple values of the same type. There are currently 3 types of arrays:
 
-- **Byte Array**: Used to store multiple bytes
-- **Int Array**: Used to store multiple integers
-- **Long Array**: Used to store multiple longs
+### Lists/Arrays
+Lists, or number arrays are used to store multiple values. Lists can store different types of values, whereas number arrays can only store the same type of number. In practicality, you often do not need to think about the difference
 
-**Format**: Arrays are defined using square brackets (`[]`), followed by the type of the array, a semicolon, and then your data. 
-The data still has to have prefixes if it needs it.
+**Format**: Theyu are defined using square brackets (`[]`), with the values separated by commas. Number arrays can be prefixed with the type of numbr the array is going to store and a semicolon (for instance, a list starting with `[B;` will only store bytes)
 
-**Example**: `[B;1b,2B,true,false]`, `[I;1,2,3,4,5]`, `[L;1l,2l,3l,4l,5l]`
+**Example**: `["Silabear", 15, true, 242]`, `[B;1b,2B,true,false]`, `["Kanokarob", "LadyEternal", "lionlance", "thederdiscohund", "theblackswitch"]`, `[L;1l,2l,3l,4l,5l]`
 
 ## Validator
 
