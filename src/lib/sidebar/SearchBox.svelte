@@ -14,7 +14,7 @@
 
 <button
   aria-label="Open Search Modal"
-  class="bg-black/45 px-2 py-1 rounded-lg flex justify-between items-center mt-1 mb-2 w-full focus-visible:outline-2 focus-visible:outline-dph-orange"
+  class="bg-black/45 px-3 py-1 rounded-lg flex justify-between items-center mt-1 mb-2 w-full focus-visible:outline-2 focus-visible:outline-dph-orange cursor-text"
   onclick={async () => await dialog.showModal()}>
   <div class="flex items-center gap-2">
     <IconSearch />

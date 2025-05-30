@@ -78,7 +78,7 @@
       <span class="hidden sm:block">Edit</span>
     </a>
     <button
-      class="bg-black/45 p-2 rounded-lg py-1 flex items-center gap-2 hover:text-stone-100 aspect-square sm:aspect-auto focus-visible:outline-2 focus-visible:outline-dph-orange"
+      class="bg-black/45 p-2 rounded-lg py-1 flex items-center gap-2 hover:text-stone-100 aspect-square sm:aspect-auto focus-visible:outline-2 focus-visible:outline-dph-orange cursor-pointer"
       aria-label="Copy URL"
       onclick={copyUrl}>
       <IconShare />

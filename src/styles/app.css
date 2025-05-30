@@ -16,6 +16,14 @@
   --color-dph-orange: oklch(69.27% 0.2042 40.82);
 }
 
+#content a {
+  color: var(--color-orange-400);
+}
+
+#content a:hover, #content a:focus {
+  color: var(--color-orange-300);
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
