@@ -44,7 +44,7 @@ These commands can be run by any player, no matter their permission level.
 
 ### Permission level 1
 
-There are currently no commands with the permission level 1 in Java Edition.
+There are currently no commands with the permission level 0 in Java Edition.
 
 ### Permission level 2
 
