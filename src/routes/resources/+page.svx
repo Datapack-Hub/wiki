@@ -37,6 +37,7 @@ This wiki is run by Datapack Hub. We aren't responsible for the content on exter
 ## Tools
 - <Highlight color="#C44500">Tool</Highlight> <a href="https://github.com/StickyPiston-Hosting/Easy-Map-Updater">Easy Map Updater</a> - A toolset for automatically updating Minecraft maps (including datapacks) to the latest version.
 - <Highlight color="#C44500">Tool</Highlight> <a href="https://weld.smithed.dev/">Weld</a> - The fastest data and resource pack merger in the west.
+- <Highlight color="#C44500">Tool</Highlight> <a href="https://github.com/hugeBlack/McfDebugger_Mod">~~(<=1.17.1) Minecraft Function Debugger~~</a> - Provides debugger functionality in vscode (requires fabric mod)
 
 ## Templates/Reference
 - <Highlight color="#DC2626">Website</Highlight> <a href="https://minecraft.wiki/">Minecraft Wiki</a> - A detailed technical wiki covering all Minecraft mechanics.
@@ -71,3 +72,4 @@ This wiki is run by Datapack Hub. We aren't responsible for the content on exter
 - <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/datapack-debugger">Datapack debugger</a> - Set breakpoints in the functions to "freeze" the game when the breakpoint is reached.
 - <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/better-suggestions">Better Suggestions</a> - Provides more/better suggestions for Minecraft commands.
 - <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/nbt-autocomplete">NBT Autocomplete</a> - Adds suggestions for NBT tags in commands.
+- <Highlight color="#832161">Mod/Tool</Highlight> <a href="https://marketplace.visualstudio.com/items?itemName=vanilla-technologies.mcfunction-debugger">~~(<=1.19.4) Mcfunction-Debugger~~</a> - Provides debugger functionality in vscode
