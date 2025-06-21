@@ -12,7 +12,7 @@ player is looking at and do something to it, such as spawning an explosion.
 This tutorial uses a neat thing called a **_recursive function_**. A recursive function is a function that runs itself over and over again.
 :::
 
-This method works due to a special behaviour of Minecraft functions - functions are always run at a position and rotation. THis means that we can run a function at a postition, move it forward in the direction, and run it again, over and over again. This is how we can make a raycast.
+This method works due to a special behaviour of Minecraft functions - functions are always run at a position and rotation. This means that we can run a function at a postition, move it forward in the direction, and run it again, over and over again. This is how we can make a raycast.
 
 ## Method
 This method will show you how to find what entity that a player is looking at. This is useful for many reasons - if you wanted to make a gun datapack, you'd need to damage the entity that a player is looking at in order to damage them.
