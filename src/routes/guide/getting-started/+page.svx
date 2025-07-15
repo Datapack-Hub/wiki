@@ -62,7 +62,7 @@ as well as holding the basic information of the pack. **Create `pack.mcmeta`, an
 {
   "pack": {
     "description": "DATAPACK NAME HERE",
-    "pack_format": 80
+    "pack_format": 81
   }
 }
 ```
@@ -71,7 +71,7 @@ If you're interested, here's what this file means:
 
 - `pack` is an object containing the metadata of the file.
   - `description` is the name of your datapack, usually along with a short description of what your pack does.
-  - `pack_format` tells Minecraft what versions this datapack works in. `80` is the latest for 1.21.6
+  - `pack_format` tells Minecraft what versions this datapack works in. `81` is the latest for 1.21.7
 
 ## Writing your first function
 
