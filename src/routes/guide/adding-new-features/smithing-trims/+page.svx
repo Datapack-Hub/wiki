@@ -225,7 +225,7 @@ And next, we are going to modify `assets/minecraft/atlases/blocks.json`:
 Here, the key-value pair under `permutations` should be the same as the `asset_name` field from the datapack file we created before.
 
 Now, we will need to create the actual material color palette texture. Since we are using Vanilla's default `palette_key`, this image needs to have a width of 8 and a height of 1. You can see an example palette below.
-This image should be saved in `assets/<namespace>/textures/trims/color_palettes/` as `matexample.png`
+This image should be saved in `assets/<namespace>/textures/trims/color_palettes/` as `matexample.png`.
 
 <img src="https://i.postimg.cc/Yqyvq7vt/pallete.png" alt="Example color palette" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 
@@ -369,7 +369,7 @@ This example will make the `diamond_pickaxe` a smithable item. This time, the da
 
 ### Finishing up with the resourcepack - Smithable Item
 
-In the resourcepack, we'll need to customize the diamond pickaxe's item model definition. This is located inside of `assets/minecraft/items/`
+In the resourcepack, we'll need to customize the diamond pickaxe's item model definition. This is located inside of `assets/minecraft/items/`.
 
 ```json:diamond_pickaxe.json
 {

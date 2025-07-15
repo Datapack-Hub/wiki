@@ -41,7 +41,7 @@ Finally, we need to make this function run when a player first joins the world. 
 ```
 
 ## Find the player/entity with a specific ID
-We can use a predicate to check if the player has the same ID as the specified ID (stored in a fake player on a scoreboard). In this case, this predicate will only trigger if the player's `playerid` score is equal to the `playerid` score of the fake player (`#this`)
+We can use a predicate to check if the player has the same ID as the specified ID (stored in a fake player on a scoreboard). In this case, this predicate will only trigger if the player's `playerid` score is equal to the `playerid` score of the fake player (`#this`).
 
 ```json:namespace:match_id.json
 { 

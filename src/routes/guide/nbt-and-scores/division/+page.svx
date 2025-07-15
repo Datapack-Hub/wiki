@@ -6,8 +6,8 @@ version: 1.21.7
 
 # Division with floating points
 Typically, we can use `scoreboard players operation` to divide two numbers in Minecraft. However, this command will only output an integer. If the result of the division is a decimal number, it is always rounded down. To divide numbers with decimal points, we need to use a workaround:
-1. Multiply the dividend by a large factor of 10 (e.g `1000000`)
-2. Divide the numbers using `scoreboard players operation`
+1. Multiply the dividend by a large factor of 10 (e.g `1000000`).
+2. Divide the numbers using `scoreboard players operation`.
 3. Store the result to a data storage, scaling it down by the same factor of 10.
 
 Here is an example of how to divide two arbitrary integer numbers:

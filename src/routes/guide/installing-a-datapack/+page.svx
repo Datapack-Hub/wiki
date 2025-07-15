@@ -33,7 +33,7 @@ how to install a datapack onto a world which exists, a new world.
    > If it doesn't show up, then it's likely that the zip file contains a folder which contains the datapack, and not
    > the zip file just containing the datapack. You need to take the folder out of the datapack, and put it in the
    > datapacks folder (click the "Open Packs Folder" button to open it.)
-4. Click on the datapack icon to apply it to the world
+4. Click on the datapack icon to apply it to the world.
    ![The Data Packs screen after I clicked the icon](https://dph.tixte.co/r/install_guide_9.png)
 5. Create the world, and then run `/reload` in chat.
    ![Reload command in chat](https://dph.tixte.co/r/install_guide_5.png)
@@ -43,5 +43,5 @@ how to install a datapack onto a world which exists, a new world.
 To install a datapack to a realm, you need to basically do this:
 
 1. Download the world from the realm into your singleplayer worlds.
-2. Follow the steps in "**Installing a datapack to an existing world**" to install a datapack on that world
+2. Follow the steps in "**Installing a datapack to an existing world**" to install a datapack on that world.
 3. Upload that world to your realm.

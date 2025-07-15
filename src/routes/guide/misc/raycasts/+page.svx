@@ -24,7 +24,7 @@ something to it.
 Firstly, we'll make the function which, when you run it, will **start** the raycast. In this function, we'll want to:
 
 - set the **maximum distance** for the raycast, so it won't go on forever if it never hits an entity.
-- run the function at the eyes of the player
+- run the function at the eyes of the player.
 
 To set a maximum distance, we store the maximum amount of times we want the function to run in a scoreboard. Every time the recursive function runs, we want to subtract one from that scoreboard, and only continue if the score is more than 0.
 
