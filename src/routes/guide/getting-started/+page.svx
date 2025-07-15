@@ -2,7 +2,7 @@
 title: How to Make a Minecraft Datapack - Beginner's Guide
 tags: guide, beginner, Minecraft, datapack, tutorial, step-by-step
 description: Learn how to create a Minecraft datapack with our beginner's guide. This step-by-step tutorial will help you understand the basics of datapack creation, even if you have little coding knowledge. Start enhancing your Minecraft experience today!
-version: 1.21.6
+version: 1.21.7
 ---
 
 <script lang="ts">

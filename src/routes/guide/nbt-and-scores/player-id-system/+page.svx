@@ -1,7 +1,7 @@
 ---
 title: Player ID System
 description: Create a player ID system in a Minecraft datapack for linking players to entities.
-version: 1.21.6
+version: 1.21.7
 ---
 
 # Player ID System

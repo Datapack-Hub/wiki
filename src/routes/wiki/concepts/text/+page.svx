@@ -1,7 +1,7 @@
 ---
 title: Styled Text
 description: Styled text in Minecraft commands is done through an NBT text format.
-version: 1.21.6
+version: 1.21.7
 ---
 
 # Styled Text

@@ -1,7 +1,7 @@
 ---
 title: Using the Consumable component for RC detection
 description: "Using the minecraft:consumable component to detect when the user right clicks an item in a datapack."
-version: 1.21.6
+version: 1.21.7
 ---
 
 # Consumable Component Right Click Detection

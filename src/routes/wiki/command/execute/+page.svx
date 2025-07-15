@@ -1,7 +1,7 @@
 ---
 title: /execute
 description: "The execute command is used to execute other commands conditionally, or in a different context. The execute command is made up of multiple subcommands, which can be chained repeatedly and in any order to modify context in various ways."
-version: 1.21.6
+version: 1.21.7
 ---
 
 # /execute command

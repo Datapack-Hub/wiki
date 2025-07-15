@@ -1,7 +1,7 @@
 ---
 title: Using an Interaction Entity for RC detection
 description: Interaction entities can be used to detect when a player rightclicks or leftclicks in a specific area of the world.
-version: 1.21.6
+version: 1.21.7
 ---
 
 # Interaction Right (and left) Click Detection
