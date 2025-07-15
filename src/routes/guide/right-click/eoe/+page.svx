@@ -29,7 +29,7 @@ To detect when an eye of ender is being used, you must create a `using_item` adv
           ],
           "predicates": {
             "minecraft:custom_data": {"custom_id": "your_custom_item_id"}
-            
+          }
         }
       }
     }
