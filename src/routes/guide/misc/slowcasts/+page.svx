@@ -29,10 +29,10 @@ example.
 
 To make a slowcast, you need:
 
-- set up a projectile with all the data it needs
-- a duration function to manage the travel distance
-- a step function that teleports the projectile and checks if it hit something
-- a temporary loop that calls the step function for all active projectiles.
+- To set up a projectile with all the data it needs.
+- A duration function to manage the travel distance.
+- A step function that teleports the projectile and checks if it hit something.
+- A temporary loop that calls the step function for all active projectiles.
 
 Let's start by creating all the necessary scoreboards in the load function.
 
@@ -78,10 +78,10 @@ Now the actual slowcast logic which handles the movement, travel distance, and h
 In the looping function the duration function is called, let's make this one first. This function is responsible for the
 slowcasts travel distance and calling the step function for the actual movement.
 
-1. decrease the duration score
-2. stores the projectile step count in a temporary scoreboard
-3. calls the step function 0.2 blocks further in the facing direction
-4. kill the projectile should it have a distance score of below 1 at the end of the function
+1. Decrease the duration score.
+2. Store the projectile step count in a temporary scoreboard.
+3. Call the step function 0.2 blocks further in the facing direction.
+4. Kill the projectile should it have a distance score of below 1 at the end of the function.
 
 ```mcfunction:duration.mcfunction
 scoreboard players remove @s slowcast.duration 1
@@ -95,17 +95,17 @@ execute unless score @s slowcast.duration matches 1.. run kill
 In the called step function we handle the teleportation between the current and target position and check if the
 projectile has hit something on its way there.
 
-1. decrement the step score in the temporary scoreboard _(we still need the step score stored in the projectile for the
-   next time we call the step function)_
-2. make some particles for the visuals (you could replace the particle command with another function call that does more
-   complex stuff)
-3. execute a command as every entity _(excluding entities with the slowcast tag and players)_ whose hit box intersects
+1. Decrement the step score in the temporary scoreboard _(we still need the step score stored in the projectile for the
+   next time we call the step function)_.
+2. Make some particles for the visuals (you could replace the particle command with another function call that does more
+   complex stuff).
+3. Execute a command as every entity _(excluding entities with the slowcast tag and players)_ whose hit box intersects
    with both [virtual volumes](https://datapack.wiki/wiki/concepts/target-selectors#dxdydz-arguments) run the hit
    function and kill the projectile.
-4. tp the projectile to the current position _(until now it only executed the command at this position but is still 0.1
-   block further back)_
-5. execute this function again one 0.1 block step forward should the temporary step counter still be over 1
-   _(recursion)_
+4. Tp the projectile to the current position _(until now it only executed the command at this position but is still 0.1
+   block further back)_.
+5. Execute this function again one 0.1 block step forward should the temporary step counter still be over 1
+   _(recursion)_.
 
 ```mcfunction:step.mcfunction
 scoreboard players remove steps temp 1
