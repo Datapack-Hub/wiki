@@ -93,7 +93,7 @@ trick here!
 :::
 
 To get the music disc, you need to get an item which has the `minecraft:jukebox_playable` component. This can be any
-item - it doesn't have to necessarily be an already existing music disc (but you can if you want)
+item - it doesn't have to necessarily be an already existing music disc (but you can if you want).
 
 ```mcfunction
 give @s minecraft:YOUR_ITEM[minecraft:jukebox_playable={song:"<datapack namespace>:example_jukebox_song"}]
