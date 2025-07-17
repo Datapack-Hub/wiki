@@ -4,7 +4,7 @@ description:
   "Functions are files essentially containing a list of Minecraft commands. Function files end in `.mcfunction`, and are
   located in the `data/<namespace>/function` folder. Functions can be called (ran) using the `function` command. (See
   [`/function`](/wiki/command/function) for more information)"
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Functions

@@ -1,7 +1,7 @@
 ---
 title: Coordinates
 description: "Coordinates in Minecraft are represented by an `x`, `y`, and `z` value. They are used to represent positions of entities, blocks, particles, sounds and more. In commands, they are represented as simply `x y z`, where `x`, `y`, and `z` are decimal numbers representing the coordinates on each axis."
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Coordinates

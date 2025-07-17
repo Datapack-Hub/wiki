@@ -1,7 +1,7 @@
 ---
 title: Adding Jukebox Songs
 description: "Learn how to create custom music discs and custom jukebox songs with Minecraft datapacks"
-version: 1.21.7
+version: 1.21.8
 ---
 
 # How to add custom jukebox songs

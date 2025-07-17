@@ -1,7 +1,7 @@
 ---
 title: /function
 description: "This command runs any `.mcfunction` file when called. You can also pass in a NBT compound or NBT source path if the function is a macro function. All functions are run independently and one after another - for example, if you run `function1` and then `function2`, then `function2` will only run once `function1` has finished."
-version: 1.21.7
+version: 1.21.8
 ---
 
 # /function command

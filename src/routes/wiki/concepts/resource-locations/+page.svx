@@ -2,7 +2,7 @@
 title: Resource Locations
 description:
   "A resource location is a kind of identified used in Minecraft to point to a certain piece of data, such as a function, item, or storage."
-version: 1.21.5
+version: 1.21.8
 ---
 
 # Resource Locations

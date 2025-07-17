@@ -1,7 +1,7 @@
 ---
 title: Ranges
 description: A range specifies a set of values between two numbers.
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Ranges
