@@ -1,7 +1,7 @@
 ---
 title: Generating Random Numbers
 description: Generate a random number in a datapack using the /random command, or alternatively, a loot table.
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Generating Random Numbers using Datapacks!

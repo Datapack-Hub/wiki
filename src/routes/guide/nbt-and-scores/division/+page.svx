@@ -1,7 +1,7 @@
 ---
 title: Floating Point Division
 description: Learn how to divide numbers in Minecraft which have decimal points.
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Division with floating points

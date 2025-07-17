@@ -1,7 +1,7 @@
 ---
 title: Right Click Detection Summary
 description: This section goes over the various ways of detecting right clicks with a Minecraft datapack.
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Right Click Detection

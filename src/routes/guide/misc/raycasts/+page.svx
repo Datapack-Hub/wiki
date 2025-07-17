@@ -1,7 +1,7 @@
 ---
 title: Raycasts
 description: "Raycasting is when we shoot a line from the player's eyes in the direction they are looking. We use this to get what the player is looking at, and do something to it, such as spawning an explosion."
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Raycasting

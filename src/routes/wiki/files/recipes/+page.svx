@@ -1,7 +1,7 @@
 ---
 title: Recipes
 description: "Recipes are files which define crafting recipes in-game."
-version: 1.21.7
+version: 1.21.8
 ---
 
 # Recipes
