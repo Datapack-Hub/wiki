@@ -1,0 +1,157 @@
+---
+title: Write optimized code
+description: "Learn how to write optimized code"
+version: 1.21.8
+---
+
+# Write optimized code
+
+Poorly written code can cause major lag, and bad user experience. To provide
+seamless user experience, without constant lagging, you need to write optimized
+code.
+
+## Identify the bottlenecks
+
+First step to writing optimized code is to identify the bottlenecks. A
+bottleneck is a specific part of your code that hinders performance.
+Then, you need to replace performance heavy implementations with faster
+variations.
+Below - we will identify and address every major performance bottleneck.
+
+## Forking
+
+:::info
+The concept of forking is explained on [the execute page](/wiki/command/execute#forking) itself.
+:::
+
+Forking - is the *biggest* performance bottleneck.
+Some execute subcommands like `execute as` fork the command execution into
+multiple branches, executing every branch one by one.
+
+### Minimize the amount of forking
+
+If you want to run multiple commands using the same selector and condition,
+you should avoid writing code in the following way:
+
+```mcfunction:tick.mcfunction
+execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run say I acquired my first apple
+execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run give @s diamond[item_name="Reward"]
+execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run tag @s add already_acquired_apple
+```
+
+This code above **forks multiple times** for the same selector and condition.
+This is very inefficient. Instead, you should fork once, and call a function. Like this:
+
+```mcfunction:tick.mcfunction
+execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run function acquired_apple
+```
+
+```mcfunction:acquired_apple.mcfunction
+say I acquired my first apple
+give @s diamond[item_name="Rewards"]
+tag @s add already_acquired_apple
+```
+
+### Minimize the amount of branches
+
+To optimize forking, you need to minimize the amount of branches. Forking -
+creates one branch per entity, so you need to write very specific selectors that
+select few entities.
+
+Use many selector arguments to narrow down the amount of branches. You should
+especially make use of `tag=` argument by adding tags to specific entities
+first, and then using them. As well as `distance=`, `limit=`, `type=` and other
+arguments.
+
+### Nested forking
+
+Sometimes, every branch that was already forked, gets forked again. That is called
+nested forking. If forking is nested, the total amount of branches is going to
+be `x * y` where `x` is the amount of branchs after first fork, and `y` is the
+amount of branches of the second fork.
+
+```mcfunction
+execute as @e[type=pig] at @e[type=cow] run say hello
+```
+
+Lets explore an example where there are 100 pigs and 200 cows. And you run the
+command above. Since the execution forks twice, first after `as @e` and then
+after `at @e` that leads to *nested forking*. Resulting in a total of `100 * 200
+= 20.000` branches. That is equivalent of 20.000 `say` commands ran at the same
+time.
+
+Notice, how rapidly that amplifies the amount of commands. This is precisely
+why you should always keep track of execute subcommands that fork the execution,
+because even the smallest mistake can cause *exponential* growth.
+
+That also means, you shouldn't [ID search](/guide/nbt-and-scores/player-id-system#find-the-playerentity-with-a-specific-id)
+for all entities. ID search itself already forks once, running an ID search
+for all entities, would result in nested forking.
+
+## Slow operations
+
+[Macro functions](/wiki/files/functions#macro-functions)
+and
+entity / block [NBT](/wiki/nbt-scoreboards/nbt) operations
+are two of the slowest operations in the game.
+
+Macro functions are very slow. It is best that you avoid any macro functions,
+unless absolutely necessary.
+
+All [NBT](/wiki/nbt-scoreboards/nbt) operations on **a block** or **an entity**
+whether a modifying, copying or using in a condition are slow. You should always
+avoid running block / entity NBT operations every tick.
+
+It is okay to perform those operations on rarely occuring events. That way, the
+brief lag spike does not ruin user experience.
+
+If a slow operation is unavoidable, you can put it behind a condition. That way,
+the slow operation does not get executed all the time, but only when that
+condition is met. For example, if you wanted to modify every pig's `NoAI` data,
+you can do the following.
+
+```mcfunction:tick.mcfunction
+execute as @e[type=pig] unless entity @s[tag=disabled_ai] run function example:disable_ai
+```
+
+```mcfunction:example.mcfunction
+data modify entity @s NoAI set value true
+tag @s add disabled_ai
+```
+
+In this example, to avoid mindlessly modifying NBT of every pig, we tag all pigs
+with modified NBT. Then we add a condition to only modify NBT of pigs without
+the tag, so that we dont run the NBT operations twice on the same pig.
+
+## Scoreboard event detection
+
+Using scoreboards to detect events (such as breaking a block), requires
+running a condition check every tick. Detecting many events like this may cause
+lag.
+
+Instead, [use advancements to detect events](/wiki/files/advancements#using-advancements-to-detect-events)
+whenever possible. Advancements do not have to check for condition every tick to
+detect an event, unlike scoreboards.
+
+## Recursion
+
+:::info
+Recursive function is a function that runs itself repeatedly.
+:::
+
+Any recursive functions, whether a 
+[loop](/guide/mcf-vs-code#q-how-do-you-loop-in-mcfunction),
+[raycast](/guide/misc/raycasts),
+or an [array iteration](/guide/nbt-and-scores/array-iteration)
+should be used carefully.
+
+Avoid the following:
+
+- Combining recursive functions with [forking](#forking).
+
+- Recursive functions within recursive functions (*Nested recursion*).
+
+- Running recursive functions every tick or upon often occuring events
+
+- Too many recursion calls. For example a long distance raycast, large loop, or
+  iteration over a long array.

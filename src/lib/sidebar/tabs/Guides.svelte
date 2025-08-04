@@ -81,6 +81,11 @@
   <SidebarPage label="Array Iteration" icon={IconList} page="/guide/nbt-and-scores/array-iteration" />
 </SidebarCategory>
 
+<SidebarCategory name="Performance" icon={IconScoreboard}>
+  <SidebarPage label="How to measure" icon={IconDice} page="/guide/performance/how-to-measure" />
+  <SidebarPage label="Write optimized code" icon={IconList} page="/guide/performance/write-optimized-code" />
+</SidebarCategory>
+
 <SidebarCategory name="Datapacks for Mods" icon={IconCoffee}>
   <SidebarPage label="Mods vs Datapacks" icon={IconVersus} page="/guide/datapacks-for-mods/mods-vs-datapacks" />
   <SidebarPlaceholder label="Create" icon={IconBuilding} />
