@@ -33,6 +33,7 @@ These people have written or edited pages for the wiki or guides.
 - SuperAnt_
 - SwitchedCube
 - Kraggle09
+- Amandin
 
 :::note
 If you're contributing, feel free to add your username to this page! You can contribute by clicking the Edit
