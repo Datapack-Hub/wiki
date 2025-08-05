@@ -46,13 +46,13 @@ Each color serves it's own purpose.
 
 - **Layer 4** Green / Yellow / Red (depending on lag) is time spent waiting for the next tick. Top layer.
 
-Then, on top of the graph you can see 3 numbers, min / avg / max. They show the
+Then, on top of the graph you can see 3 numbers: min, avg, max. They show the
 how much time in milliseconds it took to compute for the shortest, average and
 longest tick, currently visible on the graph.
 
-If the longest tick(max) on the graph took less than 50ms (lenght of a single
-tick) TPS is good. The server is able to process all logic in time. Otherwise,
-if max is above 50 and the lines high enough to cross over the border, TPS is
+If the longest tick (max) on the graph took less than 50ms (length of a single
+tick) the TPS is good. The server is able to process all logic in time. Otherwise,
+if max is above 50 and the lines high enough to cross over the border, the TPS is
 suffering.
 
 ## Benchmarking
@@ -75,14 +75,14 @@ as many times as possible before the game starts to lag. The more times your
 function ran - the more performant it is.
 
 To start, download the datapack, unzip, and open it. In the function folder
-under `benchmark` namespace you will notice a few functions for you to use.
+under the `benchmark` namespace you will notice a few functions for you to use.
 
  📄 `config.mcfunction`  📄 `order.mcfunction`
 
 Functions above are used to customize the behavior of the benchmark datapack.
-There are many various settings, every option is documented within the `config`
-function using comments. For this example, the default settings are good enough
-so we will not change anything.
+There are many settings, every option is documented within the `config` function
+using comments. For this example, the default settings are good enough so we
+will not change anything.
 
  📄 `test.mcfunction`  📄 `test2.mcfunction`
 

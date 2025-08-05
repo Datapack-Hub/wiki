@@ -67,8 +67,7 @@ arguments.
 
 Sometimes, every branch that was already forked, gets forked again. That is called
 nested forking. If forking is nested, the total amount of branches is going to
-be `x * y` where `x` is the amount of branchs after first fork, and `y` is the
-amount of branches of the second fork.
+be equal to `<branches from first fork> * <branches from second fork>`.
 
 ```mcfunction
 execute as @e[type=pig] at @e[type=cow] run say hello
@@ -85,7 +84,7 @@ why you should always keep track of execute subcommands that fork the execution,
 because even the smallest mistake can cause *exponential* growth.
 
 That also means, you shouldn't [ID search](/guide/nbt-and-scores/player-id-system#find-the-playerentity-with-a-specific-id)
-for all entities. ID search itself already forks once, running an ID search
+for all entities. ID search itself already forks once. Therefore, running an ID search
 for all entities, would result in nested forking.
 
 ## Slow operations
@@ -95,8 +94,9 @@ and
 entity / block [NBT](/wiki/nbt-scoreboards/nbt) operations
 are two of the slowest operations in the game.
 
-Macro functions are very slow. It is best that you avoid any macro functions,
-unless absolutely necessary.
+Macro functions are very slow, because they have to be re-evaluated every time
+you run them. It is best that you avoid any macro functions, unless absolutely
+necessary.
 
 All [NBT](/wiki/nbt-scoreboards/nbt) operations on **a block** or **an entity**
 whether a modifying, copying or using in a condition are slow. You should always
@@ -136,7 +136,7 @@ detect an event, unlike scoreboards.
 ## Recursion
 
 :::info
-Recursive function is a function that runs itself repeatedly.
+A recursive function is a function that runs itself repeatedly.
 :::
 
 Any recursive functions, whether a 
@@ -149,7 +149,7 @@ Avoid the following:
 
 - Combining recursive functions with [forking](#forking).
 
-- Recursive functions within recursive functions (*Nested recursion*).
+- Recursive functions within recursive functions (Nested recursion).
 
 - Running recursive functions every tick or upon often occuring events
 
