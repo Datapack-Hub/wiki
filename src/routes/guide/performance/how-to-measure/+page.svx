@@ -88,7 +88,7 @@ so we will not change anything.
 
 Functions above will both be running repeatedly to test their performance.
 For this example, let's compare a scoreboard check with an entity NBT check.
-First, create a bunch of armor_stand entities in an emtpy world. Then put the
+First, create a bunch of armor_stand entities in an empty world. Then put the
 following code in `test` and `test2` functions.
 
 ```mcfunction:test.mcfunction
