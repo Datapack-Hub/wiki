@@ -1,14 +1,13 @@
 ---
 title: Write optimized code
-description: "Learn how to write optimized code"
+description: "Learn how to optimize a minecraft datapack."
 version: 1.21.8
 ---
 
-# Write optimized code
+# How to write optimized code
 
-Poorly written code can cause major lag and ruin user experience. To provide
-seamless user experience, without constant lagging, you need to write optimized
-code.
+Poorly written code might cause major lag and ruin user experience. To ensure
+seamless user experience, you should write optimized code.
 
 ## Identify the bottlenecks
 
@@ -24,7 +23,7 @@ Below - we will identify and address every major performance bottleneck.
 The concept of forking is explained on [the execute page](/wiki/command/execute#forking) itself.
 :::
 
-Forking - is the *biggest* performance bottleneck.
+Forking is the *biggest* performance bottleneck.
 Some execute subcommands like `execute as` fork the command execution into
 multiple branches, executing every branch one by one.
 
@@ -73,13 +72,13 @@ be equal to `<branches from first fork> * <branches from second fork>`.
 execute as @e[type=pig] at @e[type=cow] run say hello
 ```
 
-Lets explore an example where there are 100 pigs and 200 cows. And you run the
+Let's explore an example where in a world with 100 pigs and 200 cows you run the
 command above. Since the execution forks twice, first after `as @e` and then
 after `at @e` that leads to *nested forking*. Resulting in a total of `100 * 200
-= 20.000` branches. That is equivalent of 20.000 `say` commands ran at the same
+= 20,000` branches. That is equivalent of 20.000 `say` commands ran at the same
 time.
 
-Notice, how rapidly that amplifies the amount of commands. This is precisely
+Notice how rapidly that amplifies the amount of commands. This is precisely
 why you should always keep track of execute subcommands that fork the execution,
 because even the smallest mistake can cause *exponential* growth.
 

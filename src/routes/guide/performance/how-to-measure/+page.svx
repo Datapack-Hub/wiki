@@ -69,10 +69,10 @@ implementations.
 
 ### How to benchmark
 
-This section will explain how to use [Kragast's Benchmark](https://www.planetminecraft.com/data-pack/benchmark-6443027/) datapack.
-This datapack measures the performance of a function by running it repeatedly
-as many times as possible before the game starts to lag. The more times your
-function ran - the more performant it is.
+This section will explain how to use [Kragast's Benchmark](https://www.planetminecraft.com/data-pack/benchmark-6443027/) datapack
+using an example. This datapack measures the performance of a function by
+running it repeatedly as many times as possible before the game starts to lag.
+The more times your function ran - the more performant it is.
 
 To start, download the datapack, unzip, and open it. In the function folder
 under the `benchmark` namespace you will notice a few functions for you to use.
@@ -88,8 +88,9 @@ will not change anything.
 
 Functions above will both be running repeatedly to test their performance.
 For this example, let's compare a scoreboard check with an entity NBT check.
-First, create a bunch of armor_stand entities in an empty world. Then put the
-following code in `test` and `test2` functions.
+But you can write your own tests, and compare anything you want. First, create a
+bunch of armor_stand entities in an empty world. Then put the following code in
+`test` and `test2` functions.
 
 ```mcfunction:test.mcfunction
 execute as @e[type=armor_stand] if score @s test matches 1.. 
@@ -108,8 +109,11 @@ With the previously mentioned setup, and a total of 300 armor stands in the
 world, these are the results i ended up with. Yellow number is the amount of
 time a function was ran. Bigger number - faster execution, better performance.
 
-- **Function 0:** This function is empty, it is only here to compare to.
+- **Function 0:** This is the control function. It is always empty, and is only
+  here to provide a baseline to compare to.
 
-- **Function 1:** This is the `test` function, the one with scoreboard check.
+- **Function 1:** This is the `test` function, the one with scoreboard check. It
+  executed more frequently. Therefore has better performance compared to `test2`
 
-- **Function 2:** This is the `test2` function, the one with entity NBT check
+- **Function 2:** This is the `test2` function, the one with scoreboard check. It
+  executed more frequently. Therefore has better performance compared to `test`
