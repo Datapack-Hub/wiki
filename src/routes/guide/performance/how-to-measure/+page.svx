@@ -7,7 +7,7 @@ version: 1.21.8
 # Datapack performance
 
 Datapacks are server side - they run on the server. The "server" is the brain of
-the world. It handles all the logic. 
+the world. It handles all the logic of the world. 
 
 - Generating new chunks as players explore the world.
 
@@ -18,15 +18,15 @@ the world. It handles all the logic.
 - And so on...
 
 Server performance is measured in [TPS](https://minecraft.wiki/w/Tick#Game_tick) - ticks per second.
-Server updates the game state every tick. Calculates mobs' positions, validating
-player actions like breaking and placing blocks, processing all redstone
-circuits, and the rest of the game logic.
+Server updates the game state every tick. Calculates mobs' positions and state,
+validating player actions like breaking and placing blocks, and processes all
+other game logic.
 
-Server normally runs at 20 TPS. However, if a server is overloaded with
+Server normally runs at 20 TPS. However, if the server is overloaded with
 computations - it makes the individual tick longer, to keep up with all the
-computations. This leads to lower TPS, which causes lag and delay for all
+computations. That leads to lower TPS, which causes lag and delay for all
 players. Blocks disappearing, or breaking too slowly, mobs behaviour slowing
-down, all these are caused by low TPS.
+down, this is all due to low TPS.
 
 ## Measure general performance
 
@@ -54,10 +54,6 @@ If the longest tick(max) on the graph took less than 50ms (lenght of a single
 tick) TPS is good. The server is able to process all logic in time. Otherwise,
 if max is above 50 and the lines high enough to cross over the border, TPS is
 suffering.
-
-Most datapack functions and command blocks are executed as part of the first
-layer, which handles the main logic of tick. Scheduled functions execute as part
-of the second layer, which handles the scheduled tasks.
 
 ## Benchmarking
 
@@ -90,10 +86,10 @@ so we will not change anything.
 
  📄 `test.mcfunction`  📄 `test2.mcfunction`
 
-Functions above will both be running repeatedly to test their performance. For
-this example, let's compare a scoreboard check to an entity NBT check. First,
-create a bunch of armor stands in an emtpy world. Then put the following code in
-`test` and `test2` functions.
+Functions above will both be running repeatedly to test their performance.
+For this example, let's compare a scoreboard check with an entity NBT check.
+First, create a bunch of armor_stand entities in an emtpy world. Then put the
+following code in `test` and `test2` functions.
 
 ```mcfunction:test.mcfunction
 execute as @e[type=armor_stand] if score @s test matches 1.. 
@@ -103,5 +99,17 @@ execute as @e[type=armor_stand] if score @s test matches 1..
 execute as @e[type=armor_stand] if data entity @s {ShowArms:false}
 ```
 
-Now, you need to run `function #benchmark:get_profile` and wait for
+Now, all that is left is to run `function #benchmark:get_profile` and wait for
 the result.
+
+![Benchmark Results](https://i.postimg.cc/1zMR54Fz/Cn-P-05082025-232103.png)
+
+With the previously mentioned setup, and a total of 300 armor stands in the
+world, these are the results i ended up with. Yellow number is the amount of
+time a function was ran. Bigger number - faster execution, better performance.
+
+- **Function 0:** This function is empty, it is only here to compare to.
+
+- **Function 1:** This is the `test` function, the one with scoreboard check.
+
+- **Function 2:** This is the `test2` function, the one with entity NBT check
