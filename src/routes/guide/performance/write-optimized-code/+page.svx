@@ -6,7 +6,7 @@ version: 1.21.8
 
 # Write optimized code
 
-Poorly written code can cause major lag, and bad user experience. To provide
+Poorly written code can cause major lag and ruin user experience. To provide
 seamless user experience, without constant lagging, you need to write optimized
 code.
 
@@ -54,7 +54,7 @@ tag @s add already_acquired_apple
 
 ### Minimize the amount of branches
 
-To optimize forking, you need to minimize the amount of branches. Forking -
+To optimize forking, you need to minimize the amount of branches. Forking
 creates one branch per entity, so you need to write very specific selectors that
 select few entities.
 

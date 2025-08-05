@@ -1,0 +1,107 @@
+---
+title: How to measure
+description: "Learn about the perfromance impact of a datapack."
+version: 1.21.8
+---
+
+# Datapack performance
+
+Datapacks are server side - they run on the server. The "server" is the brain of
+the world. It handles all the logic. 
+
+- Generating new chunks as players explore the world.
+
+- Validating player interactions such as mining blocks.
+
+- Mob behaviour. All mob AI, pathfinding, targeting, etc.
+
+- And so on...
+
+Server performance is measured in [TPS](https://minecraft.wiki/w/Tick#Game_tick) - ticks per second.
+Server updates the game state every tick. Calculates mobs' positions, validating
+player actions like breaking and placing blocks, processing all redstone
+circuits, and the rest of the game logic.
+
+Server normally runs at 20 TPS. However, if a server is overloaded with
+computations - it makes the individual tick longer, to keep up with all the
+computations. This leads to lower TPS, which causes lag and delay for all
+players. Blocks disappearing, or breaking too slowly, mobs behaviour slowing
+down, all these are caused by low TPS.
+
+## Measure general performance
+
+You can toggle the [TPS graph](https://minecraft.wiki/w/Debug_screen#TPS_graph) using `F3 + 2`. 
+
+![TPS graph showcase](https://i.postimg.cc/L4Bx7N4M/Cn-P-05082025-214044.png)
+
+Graph shows the last 240 ticks, each tick represented as a thin colored line.
+There are a total of 4 possible colors, stacked onto each other like layers.
+Each color serves it's own purpose.
+
+- **Layer 1** Dark red is time spent for the main logic of the tick. Bottom layer.
+
+- **Layer 2** Light brown is time spent running [scheduled tasks](https://minecraft.wiki/w/Tick#Scheduled_tick).
+
+- **Layer 3** Purple is time spent executing all other code.
+
+- **Layer 4** Green / Yellow / Red (depending on lag) is time spent waiting for the next tick. Top layer.
+
+Then, on top of the graph you can see 3 numbers, min / avg / max. They show the
+how much time in milliseconds it took to compute for the shortest, average and
+longest tick, currently visible on the graph.
+
+If the longest tick(max) on the graph took less than 50ms (lenght of a single
+tick) TPS is good. The server is able to process all logic in time. Otherwise,
+if max is above 50 and the lines high enough to cross over the border, TPS is
+suffering.
+
+Most datapack functions and command blocks are executed as part of the first
+layer, which handles the main logic of tick. Scheduled functions execute as part
+of the second layer, which handles the scheduled tasks.
+
+## Benchmarking
+
+Benchmarking is also a way of measuring performance. However, unlike the TPS
+graph, benchmarking measures the performance of a specific chunk of code in a
+datapack, rather than general performance of the server. 
+
+Benchmarking results are inconsistent across PCs due to different hardware
+specifications. However, the difference in results between two different
+benchmarks is usually somewhat consistent, even across different PCs. This is
+why benchmarking is generally used for comparing the performane of different
+implementations.
+
+### How to benchmark
+
+This section will explain how to use [Kragast's Benchmark](https://www.planetminecraft.com/data-pack/benchmark-6443027/) datapack.
+This datapack measures the performance of a function by running it repeatedly
+as many times as possible before the game starts to lag. The more times your
+function ran - the more performant it is.
+
+To start, download the datapack, unzip, and open it. In the function folder
+under `benchmark` namespace you will notice a few functions for you to use.
+
+ 📄 `config.mcfunction`  📄 `order.mcfunction`
+
+Functions above are used to customize the behavior of the benchmark datapack.
+There are many various settings, every option is documented within the `config`
+function using comments. For this example, the default settings are good enough
+so we will not change anything.
+
+ 📄 `test.mcfunction`  📄 `test2.mcfunction`
+
+Functions above will both be running repeatedly to test their performance. For
+this example, let's compare a scoreboard check to an entity NBT check. First,
+create a bunch of armor stands in an emtpy world. Then put the following code in
+`test` and `test2` functions.
+
+```mcfunction:test.mcfunction
+execute as @e[type=armor_stand] if score @s test matches 1.. 
+```
+
+```mcfunction:test2.mcfunction
+execute as @e[type=armor_stand] if data entity @s {ShowArms:false}
+```
+
+Now, you need to run `function #benchmark:get_profile` and wait for
+the result.
