@@ -64,7 +64,7 @@ datapack, rather than general performance of the server.
 Benchmarking results are inconsistent across PCs due to different hardware
 specifications. However, the difference in results between two different
 benchmarks is usually somewhat consistent, even across different PCs. This is
-why benchmarking is generally used for comparing the performane of different
+why benchmarking is generally used for comparing the performance of different
 implementations.
 
 ### How Benchmarking Works
