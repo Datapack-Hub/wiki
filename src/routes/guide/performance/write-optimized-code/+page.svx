@@ -1,15 +1,15 @@
 ---
-title: Write optimized code
+title: Write Optimized Code
 description: "Learn how to optimize a minecraft datapack."
 version: 1.21.8
 ---
 
-# How to write optimized code
+# How To Write Optimized Code
 
 Poorly written code might cause major lag and ruin user experience. To ensure
 seamless user experience, you should write optimized code.
 
-## Identify the bottlenecks
+## Identify the Bottlenecks
 
 First step to writing optimized code is to identify the bottlenecks. A
 bottleneck is a specific part of your code that hinders performance.
@@ -27,7 +27,7 @@ Forking is the *biggest* performance bottleneck.
 Some execute subcommands like `execute as` fork the command execution into
 multiple branches, executing every branch one by one.
 
-### Minimize the amount of forking
+### Minimize the Amount of Forking
 
 If you want to run multiple commands using the same selector and condition,
 you should avoid writing code in the following way:
@@ -51,7 +51,7 @@ give @s diamond[item_name="Rewards"]
 tag @s add already_acquired_apple
 ```
 
-### Minimize the amount of branches
+### Minimize the Amount of Branches
 
 To optimize forking, you need to minimize the amount of branches. Forking
 creates one branch per entity, so you need to write very specific selectors that
@@ -62,7 +62,7 @@ especially make use of `tag=` argument by adding tags to specific entities
 first, and then using them. As well as `distance=`, `limit=`, `type=` and other
 arguments.
 
-### Nested forking
+### Nested Forking
 
 Sometimes, every branch that was already forked, gets forked again. That is called
 nested forking. If forking is nested, the total amount of branches is going to
@@ -86,7 +86,7 @@ That also means, you shouldn't [ID search](/guide/nbt-and-scores/player-id-syste
 for all entities. ID search itself already forks once. Therefore, running an ID search
 for all entities, would result in nested forking.
 
-## Slow operations
+## Slow Operations
 
 [Macro functions](/wiki/files/functions#macro-functions)
 and
@@ -122,7 +122,7 @@ In this example, to avoid mindlessly modifying NBT of every pig, we tag all pigs
 with modified NBT. Then we add a condition to only modify NBT of pigs without
 the tag, so that we dont run the NBT operations twice on the same pig.
 
-## Scoreboard event detection
+## Scoreboard Event Detection
 
 Using scoreboards to detect events (such as breaking a block), requires
 running a condition check every tick. Detecting many events like this may cause

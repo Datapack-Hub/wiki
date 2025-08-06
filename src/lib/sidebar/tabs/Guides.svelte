@@ -85,8 +85,8 @@
 </SidebarCategory>
 
 <SidebarCategory name="Performance" icon={IconBrandSpeedtest}>
-  <SidebarPage label="How to measure" icon={IconRuler2} page="/guide/performance/how-to-measure" />
-  <SidebarPage label="Write optimized code" icon={IconMathMaxMin} page="/guide/performance/write-optimized-code" />
+  <SidebarPage label="How to Measure Performance" icon={IconRuler2} page="/guide/performance/how-to-measure" />
+  <SidebarPage label="Write Optimized Code" icon={IconMathMaxMin} page="/guide/performance/write-optimized-code" />
 </SidebarCategory>
 
 <SidebarCategory name="Datapacks for Mods" icon={IconCoffee}>

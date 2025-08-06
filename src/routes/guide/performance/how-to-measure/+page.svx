@@ -1,10 +1,10 @@
 ---
-title: How to measure
-description: "Learn about the perfromance impact of a datapack."
+title: How to Measure Performance
+description: "Learn about the performance impact of a datapack."
 version: 1.21.8
 ---
 
-# Datapack performance
+# How to Measure Performance
 
 Datapacks are server side - they run on the server. The "server" is the brain of
 the world. It handles all the logic of the world. 
@@ -28,7 +28,7 @@ computations. That leads to lower TPS, which causes lag and delay for all
 players. Blocks disappearing, or breaking too slowly, mobs behaviour slowing
 down, this is all due to low TPS.
 
-## Measure general performance
+## Measure Overall Performance
 
 You can toggle the [TPS graph](https://minecraft.wiki/w/Debug_screen#TPS_graph) using `F3 + 2`. 
 
@@ -67,12 +67,39 @@ benchmarks is usually somewhat consistent, even across different PCs. This is
 why benchmarking is generally used for comparing the performane of different
 implementations.
 
-### How to benchmark
+### How Benchmarking Works
 
-This section will explain how to use [Kragast's Benchmark](https://www.planetminecraft.com/data-pack/benchmark-6443027/) datapack
-using an example. This datapack measures the performance of a function by
-running it repeatedly as many times as possible before the game starts to lag.
-The more times your function ran - the more performant it is.
+:::info
+A recursive function is a function that runs itself repeatedly. A single
+recursive function call is called an iteration.
+:::
+
+Benchmarkng works by running the same function recursively, as many times as
+possible, for 40ms every tick.
+
+High level overview of the implementation:
+
+- Move world border by a 1000 blocks in 1 second.
+
+- Start recursively running the function, until the world border has moved by 40
+blocks
+
+- Repeat this cycle for a 100 more ticks (5 seconds)
+
+Then, measure the average amount of iterations across the 100 ticks. This works,
+because world border movement does not depend on ticks, and moves in real time.
+
+### Benchmark Tools
+
+While you could write your own benchmark,
+we recommend using [Kragast's Benchmark](https://www.planetminecraft.com/data-pack/benchmark-6443027/) datapack,
+since it makes benchmarking easier.
+
+The following section will explain how to
+use Kragast's Benchmark datapack using an example. This datapack measures the
+performance of a function by running it repeatedly as many times as possible
+before the game starts to lag. The more times your function ran - the more
+performant it is.
 
 To start, download the datapack, unzip, and open it. In the function folder
 under the `benchmark` namespace you will notice a few functions for you to use.
@@ -103,6 +130,8 @@ execute as @e[type=armor_stand] if data entity @s {ShowArms:false}
 Now, all that is left is to run `function #benchmark:get_profile` and wait for
 the result.
 
+### Reading Results
+
 ![Benchmark Results](https://i.postimg.cc/1zMR54Fz/Cn-P-05082025-232103.png)
 
 With the previously mentioned setup, and a total of 300 armor stands in the
@@ -112,8 +141,9 @@ time a function was ran. Bigger number - faster execution, better performance.
 - **Function 0:** This is the control function. It is always empty, and is only
   here to provide a baseline to compare to.
 
-- **Function 1:** This is the `test` function, the one with scoreboard check. It
-  executed more frequently. Therefore has better performance compared to `test2`
+- **Function 1:** This is the `test` function, the one with scoreboard check.
 
-- **Function 2:** This is the `test2` function, the one with scoreboard check. It
-  executed more frequently. Therefore has better performance compared to `test`
+- **Function 2:** This is the `test2` function, the one with entity NBT check.
+
+Since the `test` function executed more frequently, it has better
+performance compared to `test2`.
