@@ -79,7 +79,7 @@ The following properties can be used in a text component to add **interactivity*
 - `separator`: If the text source returns multiple values (e.g. multiple entities with the `selector` source, or multiple NBT values with the `nbt` source), this can be used to specify the separator between the values. This should be a string value.
 
 ## Text component generators
-Writing text components manually is tedious - there are numerous generators which can be used to quickly create text components. We reccomend [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy UI, cool features like gradient creators, and is updated for modern versions.
+Writing text components manually is tedious - there are numerous generators which can be used to quickly create text components. We recommend [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy UI, cool features like gradient creators, and is updated for modern versions.
 
 If you are a more advanced datapacker and want full control over the output, these let you create text components one component at a time, with support for more advanced features
 - [Misode](https://misode.github.io/text-component)

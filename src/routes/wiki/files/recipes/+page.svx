@@ -173,7 +173,7 @@ Represents a single item, the result of a recipe. An object containing:
 | Field                   | Format    | Description                                                                                                                        |
 | ----------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                    | A string  | The id of the resulting item                                                                                                       |
-| `components` (optional) | An object | A map of [component](/wiki/concepts/item_components) names to values, which add to or replace the components of the resulting item |
+| `components` (optional) | An object | A map of [component](/wiki/concepts/item-components) names to values, which add to or replace the components of the resulting item |
 
 #### Counted result
 

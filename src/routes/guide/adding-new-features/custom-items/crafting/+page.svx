@@ -8,7 +8,7 @@ version: 1.21.8
 
 There are two ways to add recipes to your custom items, they differentiate based on what Minecraft version you are
 developing for. The first one is for the Minecraft version 1.20.5+ (Datapack format 34+), here items can be directly
-specified in the output with [item components](/wiki/concepts/item_components). The second method is for all version
+specified in the output with [item components](/wiki/concepts/item-components). The second method is for all version
 before 1.20.5.
 
 ## 1.20.5 and newer

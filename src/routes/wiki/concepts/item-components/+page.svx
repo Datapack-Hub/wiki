@@ -10,7 +10,7 @@ version: 1.21.8
 
 Item components are data structures which can be applied to items in Minecraft to give them special attributes, such as
 a name, lore, being able to be eaten, etc. Each item has specific item components by default - for example, all food
-items will have the minecraft:consumable` component, which makes the item edible.
+items will have the `minecraft:consumable` component, which makes the item edible.
 
 A command such as `/give` or `/item` can be used to create an item which has additional item components, or remove item
 components from any item.

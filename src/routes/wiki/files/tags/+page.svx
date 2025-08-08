@@ -8,7 +8,7 @@ version: 1.21.8
 ---
 
 # Tags
-Registry tags, not to be confused with [entity tags](/wiki/command/tag), are essentially lists of groups such as blocks,
+Registry tags, not to be confused with [entity tags](https://minecraft.wiki/w/Commands/tag), are essentially lists of groups such as blocks,
 items, entity types, etc. They use JSON format and are located in the `data/<namespace>/tags/<category>` folder.
 
 ## Special tags

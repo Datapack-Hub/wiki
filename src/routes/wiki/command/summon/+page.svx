@@ -20,7 +20,7 @@ summon <entity> [position] [nbt data]
   (`minecraft:`) is omitted, it will default to the `minecraft` namespace.
 - `[position]` (optional): the [coordinates](/wiki/concepts/coordinates) at which the entity should be spawned.
   (Defaults to the current position).
-- `[nbt data]` (optional): a compound containing the NBT (in [SNBT format](/wiki/nbt/snbt)) which the entity should be
+- `[nbt data]` (optional): a compound containing the NBT (in [SNBT format](/wiki/nbt-scoreboards/nbt#snbt-format)) which the entity should be
   spawned with. For example: `{NoAI:1b}`.
 
 ## Examples
@@ -34,7 +34,7 @@ summon <entity> [position] [nbt data]
 ## Alternatives
 
 The `execute summon <entity>` command can also be used to summon an entity. Using this
-[execute subcommand](/wiki/command/execute) will summon an entity at the current position, and then run the specified
+[execute subcommand](/wiki/command/execute#execute-summon-ltentitygt-) will summon an entity at the current position, and then run the specified
 command as the newly summoned entity.
 
 However, `execute summon` cannot provide any NBT to give the entity upon being spawned. You will have to edit the nbt in
