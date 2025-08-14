@@ -1,5 +1,5 @@
 ---
-title: Adding Paitings
+title: Adding Paintings
 description: "Learn how to add custom paitings to Minecraft just with a datapack and a resourcepack!"
 version: 1.21.8
 ---
