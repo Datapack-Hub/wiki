@@ -112,6 +112,8 @@ For example, if you wanted to add a frog variant, you would:
 
 3. Add the texture to `assets/<namespace>/textures/entity/frog/example_frog`
 
+## Mobs with additional fields
+
 If you want to add a chicken, cow, or pig variant, you'll also need to specify the `model` field, like this:
 
 ```json:example_cow.json
