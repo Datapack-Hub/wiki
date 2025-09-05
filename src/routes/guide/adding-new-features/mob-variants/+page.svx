@@ -1,0 +1,148 @@
+---
+title: Adding Mob Variants
+description: "Learn how to add custom mob variants with Minecraft datapacks"
+version: 1.21.8
+---
+
+# How to add custom mob variants
+
+By the end of this guide, you will be able to add your own naturally spawning mob variants, including custom spawn conditions.
+
+This will only work in 1.21.5+, as data-driven mob variants were added in the snapshot 25w04a. 
+:::info 
+This guide requires you
+to have at least a small understanding of datapacks. If you don't understand this guide, you can read the [Getting Started
+guide](/guide/getting-started). 
+:::
+
+## Creating a cat variant
+
+### Setting up the datapack
+
+To start you will need a basic datapack, if you don't know how to make one, see the
+[Getting Started](/guide/getting-started) guide.
+
+Firstly, we are going to create the main cat variant file in the directory `data/<namespace>/cat_variant/`.
+You can name the file whatever you want, but it has to be in the `.json` file format. For the purposes of this tutorial, we're
+going to call it `example_cat.json`. Inside, we will put and configure these settings:
+
+```json:example_cat.json
+{
+  "asset_id": "example:entity/cat/example_cat",
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}
+```
+
+This is a run-down of the fields in that file:
+- `asset_id`: The resource location of the paintings texture to use. In this example, `example:entity/cat/example_cat` directs to `assets/example/textures/entity/cat/example_cat.png`.
+-  `spawn_conditions`: A list of spawn conditions, each with a priority. Right now we only have one, with a priority of 0. This means it will spawn like any other cat texture.
+
+### Settings up the resource pack
+
+Next we are going to add the actual texture file for the cat variant. This needs to be placed in `assets/<namespace>/textures/entity/cat/`, and match the name you specified in the `asset_id` field earlier. In this example that is `example_cat.png`.
+
+### Testing
+
+If you load the datapack and the resource pack, you should now be able to spawn your cat using `/summon minecraft:cat ~ ~ ~ {variant:"example:example_cat"}`
+
+:::warning
+For this to work, you will need to leave and rejoin the world, just using the `/reload` command won't do the trick here!
+:::
+
+## Adding more spawn conditions
+
+To add more spawn conditions, you can add more entries to the `spawn_conditions` field in the .json file you created earlier.
+
+```json:example_cat.json
+{
+  "asset_id": "example:entity/cat/custom",
+  "spawn_conditions": [
+    {
+      "condition": {
+        "type": "minecraft:structure",
+        "structures": "minecraft:village_snowy"
+      },
+      "priority": 1
+    },
+    {
+      "condition": {
+        "type": "minecraft:biome",
+        "biomes": "snowy_taiga"
+      },
+      "priority": 1
+    },
+    {
+      "priority": 0
+    }
+  ]
+}
+```
+
+This cat variant will spawn with a priority level of 1 if it spawns in a snowy village or a snowy taiga. If another cat variant were to meet its spawn conditions, the game would randomly select a variant.
+
+For more spawn conditions, see [this page](https://minecraft.wiki/w/Mob_variant_definitions#Spawn_condition) on the minecraft wiki.
+
+## Other mobs with variants
+
+You can also add variants for these mobs:
+- chicken
+- cow
+- frog
+- pig
+- wolf
+
+For example, if you wanted to add a frog variant, you would:
+1. Create a variant file in `data/<namespace>/frog_variant`
+2. Add something like the following to the file:
+
+```json:example_frog.json
+{
+  "asset_id": "example:entity/frog/example_frog",
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}
+```
+
+3. Add the texture to `assets/<namespace>/textures/entity/frog/example_frog`
+
+If you want to add a chicken, cow, or pig variant, you'll also need to specify the `model` field, like this:
+
+```json:example_cow.json
+{
+  "asset_id": "example:entity/cow/example_cow",
+  "model": "normal",
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}
+```
+
+The `model` field can be `normal`, `cold` or `warm` for cows, and just `normal` or `cold` for chickens and pigs.
+
+If you want to add a wolf variant, you'll need to specify 3 textures, like this:
+
+```json:example_wolf.json
+{
+  "assets": {
+    "angry": "example:entity/wolf/example_wolf_angry",
+    "tame": "minecraft:entity/wolf/example_wolf_tame",
+    "wild": "minecraft:entity/wolf/example_wolf"
+  },
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}
+```
+
+It's worth noting that you can't add custom variants for some mobs like Horses and Rabbits. If it's not in the list I mentioned earlier, then it can't be added using a datapack.
