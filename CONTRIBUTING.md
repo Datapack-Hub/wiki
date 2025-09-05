@@ -106,7 +106,7 @@ you may run into.
 > [!NOTE]
 > If you don't know where to put a page on the sidebar, then mention
 > that in your PR, and someone else will add it for you. The sidebar pages are
-> stored in `/src/lib/sidebar-pages/WikiPages.svelte`.
+> stored in `/src/lib/sidebar/tabs/WikiPages.svelte` (for Wiki pages) and `/src/lib/sidebar/tabs/Guides.svelte` (for Guide pages).
 
 ### Sidebar Categories
 
