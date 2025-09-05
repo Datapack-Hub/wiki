@@ -43,6 +43,7 @@
   import IconBrandSpeedtest from "~icons/tabler/brand-speedtest";
   import IconRuler2 from "~icons/tabler/ruler-2";
   import IconMathMaxMin from "~icons/tabler/math-max-min";
+  import IconCat from "~icons/tabler/cat";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
 </script>
 
