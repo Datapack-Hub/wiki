@@ -147,4 +147,4 @@ If you want to add a wolf variant, you'll need to specify 3 textures, like this:
 }
 ```
 
-It's worth noting that you can't add custom variants for some mobs like Horses and Rabbits. If it's not in the list I mentioned earlier, then it can't be added using a datapack.
+It's worth noting that you can't add custom variants for some mobs like Horses and Rabbits. If it's not in the list mentioned earlier, then it can't be added using a datapack.
