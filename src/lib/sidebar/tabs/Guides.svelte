@@ -43,6 +43,7 @@
   import IconBrandSpeedtest from "~icons/tabler/brand-speedtest";
   import IconRuler2 from "~icons/tabler/ruler-2";
   import IconMathMaxMin from "~icons/tabler/math-max-min";
+  import IconCat from "~icons/tabler/cat";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -61,6 +62,7 @@
   <SidebarPage label="Jukebox Songs" icon={IconMusic} page="/guide/adding-new-features/jukebox-songs" />
   <SidebarPage label="Painting Variants" icon={IconPainting} page="/guide/adding-new-features/painting-variants" />
   <SidebarPage label="Smithing Trims" icon={IconDiamond} page="/guide/adding-new-features/smithing-trims" />
+  <SidebarPage label="Mob Variants" icon={IconCat} page="/guide/adding-new-features/mob-variants" />
 
   <SidebarHeading label="Custom Items" />
   <SidebarPage label="Introduction" icon={IconItem} page="/guide/adding-new-features/custom-items/intro" />
