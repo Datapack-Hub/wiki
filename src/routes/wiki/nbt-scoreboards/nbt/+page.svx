@@ -105,7 +105,7 @@ Strings can store any text value, or more technically, any sequence of unicode c
 - **Long** is a 64 bit integer, it can be any value from `-9,223,372,036,854,775,808` to
   `9,223,372,036,854,775,807`
 
-**Format**: By default, numbers are stored as integers. To store a number in the other formats, you need to use the appropriate suffix. For shorts, ints, and longs, the prefix is `s`, `i`, and `l` respectively. 
+**Format**: By default, numbers are stored as integers. To store a number in the other formats, you need to use the appropriate suffix. For shorts, ints, and longs, the suffixes are `s`, `i`, and `l` respectively.
 
 The suffix can be extended with `u` or `s` to say whether it is unsigned (only a positive number) or signed (can be positive or negative) - for example, `402ub`.
 
