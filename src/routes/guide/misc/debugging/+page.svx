@@ -1,66 +1,85 @@
 ---
 title: Debugging your Datapacks
-description: "Sometimes your datapack won't work, and you will have to figure out what exactly doesn't work in them. And this guide will help you with exactly that!"
+description:
+  "Sometimes your datapack won't work, and you will have to figure out what
+  exactly doesn't work in them. And this guide will help you with exactly that!"
 ---
 
 # Debugging your datapacks
-There will come times when your datapack won't work, and you will have to figure out what exactly doesn't work in it.
-Don't worry if this happens to you, if you're like any of the rest of us, this will happen often. Code will almost never
-work the first time you try it. An error in your code is referred to as a bug. Removing these bugs is called debugging.
-This guide will teach you the best methods for debugging datapacks.
+
+There will come times when your datapack won't work, and you will have to figure
+out what exactly doesn't work in it. Don't worry if this happens to you, if
+you're like any of the rest of us, this will happen often. Code will almost
+never work the first time you try it. An error in your code is referred to as a
+bug. Removing these bugs is called debugging. This guide will teach you the best
+methods for debugging datapacks.
 
 ## What are bugs?
 
-Bugs are a fancy programmer term for an error in your code. There are two main types of bugs:
+Bugs are a fancy programmer term for an error in your code. There are two main
+types of bugs:
 
-- **Syntax error**: This is a bug in the actual written code. This is caused by the code you write being incorrectly
-  written so that the computer literally can't read it. For example, writing `executr as @a` would be a syntax error
+- **Syntax error**: This is a bug in the actual written code. This is caused by
+  the code you write being incorrectly written so that the computer literally
+  can't read it. For example, writing `executr as @a` would be a syntax error
   because `executr` isn't a command.
-- **Logic error**: This is a bug where the written code is correctly written, but the code doesn't do what you want it
-  to. This is caused by a mistake in the code logic. In the simplest example, if you want to give a player 32 diamonds,
-  but you accidentally wrote 322.
+- **Logic error**: This is a bug where the written code is correctly written,
+  but the code doesn't do what you want it to. This is caused by a mistake in
+  the code logic. In the simplest example, if you want to give a player 32
+  diamonds, but you accidentally wrote 322.
 
 ## Finding and debugging syntax errors
 
-Syntax errors are pretty easy to spot and fix, due to Minecraft's output logs, which literally tell you if your code is
-incorrect. When you're coding datapacks, its a good idea to always have the logs open if you need to double check it.
-You can open the logs by opening the default Minecraft launcher and clicking "Settings", and then enabling "Open output
-log when Minecraft: Java Edition starts", then just starting the game.
+Syntax errors are pretty easy to spot and fix, due to Minecraft's output logs,
+which literally tell you if your code is incorrect. When you're coding
+datapacks, its a good idea to always have the logs open if you need to double
+check it. You can open the logs by opening the default Minecraft launcher and
+clicking "Settings", and then enabling "Open output log when Minecraft: Java
+Edition starts", then just starting the game.
 
 ![A guide on how to open the Minecraft launchers output logs](https://i.postimg.cc/NFxkZV2g/image.png)
 
-Syntax errors will show up in **red text** when you `/reload` your datapack. But sometimes other errors can also show in
-**yellow text** instead.
+Syntax errors will show up in **red text** when you `/reload` your datapack. But
+sometimes other errors can also show in **yellow text** instead.
 
-Lets take this image as an example: ![Output log with an error.](https://i.postimg.cc/hjkYKHGT/image.png) Here, the
-error tells you exactly where the error is - in this case it's in the function "be:give" at line 1 after ".... give @s".
-And indeed I did spell "loot" as "lot", which caused the error.
+Lets take this image as an example:
+![Output log with an error.](https://i.postimg.cc/hjkYKHGT/image.png) Here, the
+error tells you exactly where the error is - in this case it's in the function
+"be:give" at line 1 after ".... give @s". And indeed I did spell "loot" as
+"lot", which caused the error.
 ![Code with a syntax error](https://i.postimg.cc/fL9HqBvL/image.png)
 
 ## Finding logic errors
 
-Logic errors are more difficult to find because there's nothing actually incorrect with the code you wrote, it just does
-something other than what you want it to do.
+Logic errors are more difficult to find because there's nothing actually
+incorrect with the code you wrote, it just does something other than what you
+want it to do.
 
-An easy way to find where a logic error is in the code is to make use of the `say` or `tellraw` command. These commands
-will send **any message** to the chat, making it easy for you to know when and if your code actually runs **as you
-expect it to**. You can easily put a `say Function <function_name> ran correctly` command in your function - If the
-function runs, then it will send a message to the chat. It will also send the **name of the entity that ran the
-function** to the chat, so you can see if your function is executed by the correct entity.
+An easy way to find where a logic error is in the code is to make use of the
+`say` or `tellraw` command. These commands will send **any message** to the
+chat, making it easy for you to know when and if your code actually runs **as
+you expect it to**. You can easily put a
+`say Function <function_name> ran correctly` command in your function - If the
+function runs, then it will send a message to the chat. It will also send the
+**name of the entity that ran the function** to the chat, so you can see if your
+function is executed by the correct entity.
 
-Similarly, you can use the `tellraw` command for more advanced debugging. The tellraw command also has the capability to
-show you the value of scoreboards and NBT values, so you can check what data your code is using. For instance, if you
+Similarly, you can use the `tellraw` command for more advanced debugging. The
+tellraw command also has the capability to show you the value of scoreboards and
+NBT values, so you can check what data your code is using. For instance, if you
 want to check the value of a scoreboard, you could use the following command:
 
 ```mcfunction
 tellraw @a {"score":{"name":"@s","objective":"some_scoreboard_objective"}}
 ```
 
-Based on the output of these commands in chat, you can use this to tell where your code goes wrong. (Just make sure to
-remove them after you've found the error, otherwise it can get annoying).
+Based on the output of these commands in chat, you can use this to tell where
+your code goes wrong. (Just make sure to remove them after you've found the
+error, otherwise it can get annoying).
 
-You may want to keep the debug messages in the datapack, but you don't want it to be sent to every player. Fortunately
-for us, with the `tellraw` command, you can specify to who the message will be sent. This means you could only send the
+You may want to keep the debug messages in the datapack, but you don't want it
+to be sent to every player. Fortunately for us, with the `tellraw` command, you
+can specify to who the message will be sent. This means you could only send the
 debug messages to those who have the tag `debug`:
 
 ```mcfunction
@@ -69,24 +88,28 @@ tellraw @a[tag=debug] {"text":"Debug message sent only to people with the debug 
 
 ## Debugging logic errors
 
-Unfortunately, debugging logic errors in your code isn't as easy as fixing one spelling mistake. But yet there are still
-techniques that we can use.
+Unfortunately, debugging logic errors in your code isn't as easy as fixing one
+spelling mistake. But yet there are still techniques that we can use.
 
-One way to solve logic errors is to recreate the error in a separate project. When you remove all the other context of
-the pack, you can focus just on the bit which doesn't work. You can just copy out the code you want to fix into a
-separate datapack, then fix it there. Once you've identified and fixed the problem, you'll know how to fix it in the
-real project.
+One way to solve logic errors is to recreate the error in a separate project.
+When you remove all the other context of the pack, you can focus just on the bit
+which doesn't work. You can just copy out the code you want to fix into a
+separate datapack, then fix it there. Once you've identified and fixed the
+problem, you'll know how to fix it in the real project.
 
 ## Summary
 
-The first main method for debugging datapacks is using Minecraft's output logs, we've already learnt how to use those in
-the first part of this guide. The second method is using the in-game commands, like `/say` and `/tellraw` to print
-information in real-time about how your datapack works. But those are not the only ones, you can use the
-`/scoreboard objectives setdisplay <objective>` command to show the values of a scoreboard on your screen in real-time,
-or you can use `/data get ...`, which will print the value of any NBT data in chat.
+The first main method for debugging datapacks is using Minecraft's output logs,
+we've already learnt how to use those in the first part of this guide. The
+second method is using the in-game commands, like `/say` and `/tellraw` to print
+information in real-time about how your datapack works. But those are not the
+only ones, you can use the `/scoreboard objectives setdisplay <objective>`
+command to show the values of a scoreboard on your screen in real-time, or you
+can use `/data get ...`, which will print the value of any NBT data in chat.
 
 ![A scoreboard on screen](https://i.postimg.cc/HWQm72Vp/image.png)
 
-You might also find that some other methods that suit you the best, for example you might find the
-[Data Reload](https://modrinth.com/mod/data-reload) mod useful for displaying errors in chat, or a completely different
-method, that is up to you.
+You might also find that some other methods that suit you the best, for example
+you might find the [Data Reload](https://modrinth.com/mod/data-reload) mod
+useful for displaying errors in chat, or a completely different method, that is
+up to you.

@@ -1,29 +1,37 @@
 ---
 title: Adding Jukebox Songs
-description: "Learn how to create custom music discs and custom jukebox songs with Minecraft datapacks"
+description:
+  "Learn how to create custom music discs and custom jukebox songs with
+  Minecraft datapacks"
 version: 1.21.8
 ---
 
 # How to add custom jukebox songs
 
-In this guide, we will not only learn how to create custom jukebox songs, but also how to give yourself a custom music
-disc item and implement custom sounds!
+In this guide, we will not only learn how to create custom jukebox songs, but
+also how to give yourself a custom music disc item and implement custom sounds!
 
-This will only work in 1.21+, as custom jukebox songs were added in the snapshot 24w21a. 
-:::info 
-This guide requires you
-to have at least a small understanding of datapacks, if you don't understand this guide, you can read the [Getting Started
-guide](/guide/getting-started). 
+This will only work in 1.21+, as custom jukebox songs were added in the snapshot
+24w21a.
+
+:::info
+
+This guide requires you to have at least a small understanding of datapacks, if
+you don't understand this guide, you can read the
+[Getting Started guide](/guide/getting-started).
+
 :::
 
 ## Setting up the datapack
 
-To start you will need a basic datapack, if you don't know how to make one, see the
-[Getting Started](/guide/getting-started) guide.
+To start you will need a basic datapack, if you don't know how to make one, see
+the [Getting Started](/guide/getting-started) guide.
 
-Firstly, we are going to create the actual jukebox song file in the directory `data/<datapack namespace>/jukebox_song/`.
-The file can be named whatever, but it has to be in the `.json` file format. For the purposes of this tutorial, we're
-gonna call it `example_jukebox_song.json`. Inside, we will put and configure this:
+Firstly, we are going to create the actual jukebox song file in the directory
+`data/<datapack namespace>/jukebox_song/`. The file can be named whatever, but
+it has to be in the `.json` file format. For the purposes of this tutorial,
+we're gonna call it `example_jukebox_song.json`. Inside, we will put and
+configure this:
 
 ```json:example_jukebox_song.json
 {
@@ -40,34 +48,42 @@ gonna call it `example_jukebox_song.json`. Inside, we will put and configure thi
 
 This is a run-down of the fields in that file:
 
-- `comparator_output`: A value between 1 and 15, representing the redstone output when a comparator is placed next to
-  the jukebox playing this song.
-- `description`: The description of the enchantment (should be a JSON text component).
+- `comparator_output`: A value between 1 and 15, representing the redstone
+  output when a comparator is placed next to the jukebox playing this song.
+- `description`: The description of the enchantment (should be a JSON text
+  component).
 - `length_in_seconds`: The length of the song (in seconds).
 - `sound_event`: The ID of the sound (from the resource pack) to play.
 
-If you don't understand what to put in `sound_event`, don't worry, the next part is going to focus specifically on this!
+If you don't understand what to put in `sound_event`, don't worry, the next part
+is going to focus specifically on this!
 
 ## Adding custom music - Resource Pack
 
-This part is going to be optional in the case, that you only want a vanilla Minecraft sound to play from the jukebox. In
-that case, change the `sound_id` in the `example_jukebox_song.json` file from the datapack to the sounds ID. (for
+This part is going to be optional in the case, that you only want a vanilla
+Minecraft sound to play from the jukebox. In that case, change the `sound_id` in
+the `example_jukebox_song.json` file from the datapack to the sounds ID. (for
 example: `"sound_id": "minecraft:music_disc.cat"`).
 
-If you don't want to use a default Minecraft sound, then a resource pack is required to add the custom sound (in this
-case, the music on the disc) to Minecraft, so that the datapack can read it.
+If you don't want to use a default Minecraft sound, then a resource pack is
+required to add the custom sound (in this case, the music on the disc) to
+Minecraft, so that the datapack can read it.
 
 :::info
-Minecraft handles sound in `.ogg` files. There are many different converters you can use to convert an MP3, WAV,
-or other audio file to .ogg.
+
+Minecraft handles sound in `.ogg` files. There are many different converters you
+can use to convert an MP3, WAV, or other audio file to .ogg.
+
 :::
 
-You need to add your `.ogg` file (the audio of your music disc) to `assets/<namespace>/sounds/<title>.ogg`. Make sure
-that `<namespace>` and `<title>` are the same values you put in the datapack's JSON file (the
+You need to add your `.ogg` file (the audio of your music disc) to
+`assets/<namespace>/sounds/<title>.ogg`. Make sure that `<namespace>` and
+`<title>` are the same values you put in the datapack's JSON file (the
 `example_jukebox_song.json` file in our case).
 
-Then, if you haven't already, you need to create a `sounds.json` file at the position `assets/<namespace>/sounds.json`.
-This file tells Minecraft what audio files map to what IDs. Put this inside:
+Then, if you haven't already, you need to create a `sounds.json` file at the
+position `assets/<namespace>/sounds.json`. This file tells Minecraft what audio
+files map to what IDs. Put this inside:
 
 ```json:sounds.json
 {
@@ -84,16 +100,20 @@ This file tells Minecraft what audio files map to what IDs. Put this inside:
 
 ## See it in action
 
-Once you save the above files, you need to activate the resource pack with the keybind **F3 + T**
-in-game. You will also need to leave and rejoin the world to update the datapack.
+Once you save the above files, you need to activate the resource pack with the
+keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
+update the datapack.
 
 :::warning
-For this to work, you will need to leave and rejoin the world, just using the `/reload` command won't do the
-trick here!
+
+For this to work, you will need to leave and rejoin the world, just using the
+`/reload` command won't do the trick here!
+
 :::
 
-To get the music disc, you need to get an item which has the `minecraft:jukebox_playable` component. This can be any
-item - it doesn't have to necessarily be an already existing music disc (but you can if you want).
+To get the music disc, you need to get an item which has the
+`minecraft:jukebox_playable` component. This can be any item - it doesn't have
+to necessarily be an already existing music disc (but you can if you want).
 
 ```mcfunction
 give @s minecraft:YOUR_ITEM[minecraft:jukebox_playable={song:"<datapack namespace>:example_jukebox_song"}]

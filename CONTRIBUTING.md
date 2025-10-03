@@ -76,12 +76,24 @@ you may run into.
    This command runs any `.mcfunction` file when called. You can also pass in a NBT
    compound or NBT source path.
 
-   :::info I am a very important piece of information. Please dont ignore me. I'm
-   only smol. :::
+   :::info 
 
-   :::warning The stuff in this box is probably very important. :::
+   I am a very important piece of information. Please dont ignore me. I'm
+   only smol. 
+   
+   :::
 
-   :::tip You can do this really cool thing. It'll make your life a lot better! :::
+   :::warning 
+   
+   The stuff in this box is probably very important.
+   
+   :::
+
+   :::tip 
+   
+   You can do this really cool thing. It'll make your life a lot better!
+   
+    :::
    ```
 
 > [!TIP]
@@ -89,15 +101,21 @@ you may run into.
 >
 > ```md
 > :::info
+>
 > This is an info box!
+>
 > :::
 >
 > :::warning
+>
 > This is a warning box!
+>
 > :::
 >
 > :::tip
+> 
 > This is a tip box!
+>
 > :::
 > ```
 

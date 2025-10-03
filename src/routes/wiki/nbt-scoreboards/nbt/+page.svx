@@ -1,6 +1,9 @@
 ---
 title: NBT
-description: NBT is Minecraft's way of storing internal data, such as item data, entity data, and block data. In datapacks, we can use it to store data in custom data storages.
+description:
+  NBT is Minecraft's way of storing internal data, such as item data, entity
+  data, and block data. In datapacks, we can use it to store data in custom data
+  storages.
 version: 1.21.5
 ---
 
@@ -9,24 +12,37 @@ version: 1.21.5
 </script>
 
 # NBT
-NBT (Named Binary Tags) is a structured (key/value) data format used by Minecraft to store data about entities, items, blocks, structures, player data, worldgen, and more. You can use it to store custom data in items and NBT storages.
+
+NBT (Named Binary Tags) is a structured (key/value) data format used by
+Minecraft to store data about entities, items, blocks, structures, player data,
+worldgen, and more. You can use it to store custom data in items and NBT
+storages.
 
 ## SNBT Format
-SNBT (Stringified Named Binary Tags) format is a JSON-like tree structure used in datapack development to manipulate the
-NBT data of an entity. SNBT is a human-readable version of NBT (Named Binary Tags), which is a format used by Minecraft
-to store data. NBT is used to store data about entities, items, blocks, structures, game saves, and more.
 
-SNBT consists of **key/value pairs**, which are represented as `key:value`. These are contained with **compounds**,
-marked with curly brackets (`{}`). Compounds can contain multiple key/value pairs, which are separated with commas, like
-so: `key:value,key:value,key:value`
+SNBT (Stringified Named Binary Tags) format is a JSON-like tree structure used
+in datapack development to manipulate the NBT data of an entity. SNBT is a
+human-readable version of NBT (Named Binary Tags), which is a format used by
+Minecraft to store data. NBT is used to store data about entities, items,
+blocks, structures, game saves, and more.
+
+SNBT consists of **key/value pairs**, which are represented as `key:value`.
+These are contained with **compounds**, marked with curly brackets (`{}`).
+Compounds can contain multiple key/value pairs, which are separated with commas,
+like so: `key:value,key:value,key:value`
 
 An example SNBT structure looks like:
 `{name:"Silabear",age:102,friends:["Flynecraft","Aandeel","Cobblestone"],socials:{discord:"silabear"}}`
 
 ## NBT paths
-NBT paths are used to reference a specific location within an NBT structure. They are used in commands like `/data get` and `/data modify` to access or modify NBT data. 
 
-NBT paths are made up of a series of keys, separated by dots (`.`). Square brackets (`[]`) can be used to access items in an array, either by index `array[0]` or by object value (`array[{age:102}]`)
+NBT paths are used to reference a specific location within an NBT structure.
+They are used in commands like `/data get` and `/data modify` to access or
+modify NBT data.
+
+NBT paths are made up of a series of keys, separated by dots (`.`). Square
+brackets (`[]`) can be used to access items in an array, either by index
+`array[0]` or by object value (`array[{age:102}]`)
 
 Imagine the following NBT structure:
 
@@ -44,21 +60,32 @@ Imagine the following NBT structure:
 ```
 
 The following are examples of NBT paths:
+
 - `root.version`: would give the value `1`.
 - `root.title`: would give the value `"Targets"`.
 - `root.people[0]`: would give the value `{name: "Silabear", age: 102}`.
 - `root.people[0].name`: would give the value `"Silabear"`.
-- `root.people[{name:"Aandeel"}]`: would give the value `{name: "Aandeel", age: 100}`.
+- `root.people[{name:"Aandeel"}]`: would give the value
+  `{name: "Aandeel", age: 100}`.
 - `root.people[{name:"Aandeel"}].age`: would give the value `100`.
 
 ## NBT storages
-Storages allow you to store NBT data in a world without binding it to a physical object (item, entity, block), but rather storing it under a namespaced ID (e.g `example:main`). Storages are stored globally per world, and can only be accessed with `/data`. Storages don't need to be initialized beforehand, unlike scoreboards.
 
-Unlike entity and block NBT, storages have no fixed structure, and can contain whichever arbitrary keys are added to it.
+Storages allow you to store NBT data in a world without binding it to a physical
+object (item, entity, block), but rather storing it under a namespaced ID (e.g
+`example:main`). Storages are stored globally per world, and can only be
+accessed with `/data`. Storages don't need to be initialized beforehand, unlike
+scoreboards.
+
+Unlike entity and block NBT, storages have no fixed structure, and can contain
+whichever arbitrary keys are added to it.
 
 ### Storage example
-Storages are defined when a `/data` command modifies them. Unlike scoreboards, storages do not need to be "created" -
-the only code needed to initialize a storage is a `/data modify` or `/data merge` command to that storage, for example:
+
+Storages are defined when a `/data` command modifies them. Unlike scoreboards,
+storages do not need to be "created" - the only code needed to initialize a
+storage is a `/data modify` or `/data merge` command to that storage, for
+example:
 
 ```mcfunction
 data merge storage example:main {number: 1, message: "Hello!"}
@@ -81,66 +108,88 @@ The `example:main` storage would now contain the following data:
 }
 ```
 
-
 ## Data Types
-There are a few data types you can use to represent different types of data, including whole numbers, decimal numbers,
-string, text, booleans, and more.
+
+There are a few data types you can use to represent different types of data,
+including whole numbers, decimal numbers, string, text, booleans, and more.
 
 ### Strings
 
-Strings can store any text value, or more technically, any sequence of unicode characters.
+Strings can store any text value, or more technically, any sequence of unicode
+characters.
 
-**Format**: Strings are stored within either double or single quotes. For strings containing standard characters
-(`A-Z, a-z, 0-9, -,_,+,.`), the quotes are optional (as long as the text starts with a letter), but recommended. `"<text>"` or `'<text>'` or `<text>`
+**Format**: Strings are stored within either double or single quotes. For
+strings containing standard characters (`A-Z, a-z, 0-9, -,_,+,.`), the quotes
+are optional (as long as the text starts with a letter), but recommended.
+`"<text>"` or `'<text>'` or `<text>`
 
 **Example**: `name:"Silabear"`, `name:'Cobblestone'`, `name:Aandeel`
 
 ### Whole Numbers
 
-**Short**, **Int**, and **Long** data types all represent integers (whole numbers).
+**Short**, **Int**, and **Long** data types all represent integers (whole
+numbers).
 
 - **Byte** is an 8 bit integer, it can be any value from `0` to `255`
 - **Short** is a 16 bit integer, it can be any value from `-32,768` to `32,767`
-- **Int** is a 32 bit integer, it can be any value from `-2,147,483,648` to `2,147,483,647`
-- **Long** is a 64 bit integer, it can be any value from `-9,223,372,036,854,775,808` to
-  `9,223,372,036,854,775,807`
+- **Int** is a 32 bit integer, it can be any value from `-2,147,483,648` to
+  `2,147,483,647`
+- **Long** is a 64 bit integer, it can be any value from
+  `-9,223,372,036,854,775,808` to `9,223,372,036,854,775,807`
 
 **Format**: By default, numbers are stored as integers. To store a number in the other formats, you need to use the appropriate suffix. For shorts, ints, and longs, the suffixes are `s`, `i`, and `l` respectively.
 
-The suffix can be extended with `u` or `s` to say whether it is unsigned (only a positive number) or signed (can be positive or negative) - for example, `402ub`.
+The suffix can be extended with `u` or `s` to say whether it is unsigned (only a
+positive number) or signed (can be positive or negative) - for example, `402ub`.
 
-It is also possible to write using E notation (e.g `1.2E3` would be `1200`), hexadecimals (e.g `0xBC` would be `188`), and binary (e.g `0b110` would be `6`)
+It is also possible to write using E notation (e.g `1.2E3` would be `1200`),
+hexadecimals (e.g `0xBC` would be `188`), and binary (e.g `0b110` would be `6`)
 
-**Example**: `count:1234s`, `bigNumber:1200000`, `reallyBigNumber:12123023687234L`, `byte:112b`
+**Example**: `count:1234s`, `bigNumber:1200000`,
+`reallyBigNumber:12123023687234L`, `byte:112b`
 
 ### Decimal Numbers
 
 **Float** and **Double** data types both represent decimal numbers.
 
-- **Float** is a signed 32 bit floating point number, it can be any value from `-3.4028235E38` to `3.4028235E38`. It is precise to 7 decimal places.
-- **Double** is a signed 64 bit floating point number, it can be any value from `-1.7976931348623157E308` to
-  `1.7976931348623157E308`. It is precise to 15 decimal places.
+- **Float** is a signed 32 bit floating point number, it can be any value from
+  `-3.4028235E38` to `3.4028235E38`. It is precise to 7 decimal places.
+- **Double** is a signed 64 bit floating point number, it can be any value from
+  `-1.7976931348623157E308` to `1.7976931348623157E308`. It is precise to 15
+  decimal places.
 
-**Format**: By default, decimal numbers are stored as doubles. To store a number in the other formats, you need to use the
-appropriate suffix. For floats, the suffix is `f`. For doubles, the suffix is `d`.
+**Format**: By default, decimal numbers are stored as doubles. To store a number
+in the other formats, you need to use the appropriate suffix. For floats, the
+suffix is `f`. For doubles, the suffix is `d`.
 
 **Example**: `pi:3.1415926535d`, `e:2.718281828459045d`, `phi:1.6180f`
 
 ### Bytes or Booleans
 
-In older versions of Minecraft, booleans were stored as bytes with `0b` representing `false` and `1b` representing `true`. In newer versions, booleans were introduced. Essentially, booleans represent the old `0b` and `1b` with a more descriptive name. It's recommended to use booleans instead of bytes whenever possible, as they are more readable.
-
-
+In older versions of Minecraft, booleans were stored as bytes with `0b`
+representing `false` and `1b` representing `true`. In newer versions, booleans
+were introduced. Essentially, booleans represent the old `0b` and `1b` with a
+more descriptive name. It's recommended to use booleans instead of bytes
+whenever possible, as they are more readable.
 
 ### Lists/Arrays
-Lists, or number arrays are used to store multiple values. Lists can store different types of values, whereas number arrays can only store the same type of number. In practicality, you often do not need to think about the difference
 
-**Format**: They are defined using square brackets (`[]`), with the values separated by commas. Number arrays can be prefixed with the type of number the array is going to store and a semicolon (for instance, a list starting with `[B;` will only store bytes)
+Lists, or number arrays are used to store multiple values. Lists can store
+different types of values, whereas number arrays can only store the same type of
+number. In practicality, you often do not need to think about the difference
 
-**Example**: `["Silabear", 15, true, 242]`, `[B;1b,2B,true,false]`, `["Kanokarob", "LadyEternal", "lionlance", "thederdiscohund", "theblackswitch"]`, `[L;1l,2l,3l,4l,5l]`
+**Format**: They are defined using square brackets (`[]`), with the values
+separated by commas. Number arrays can be prefixed with the type of number the
+array is going to store and a semicolon (for instance, a list starting with
+`[B;` will only store bytes)
+
+**Example**: `["Silabear", 15, true, 242]`, `[B;1b,2B,true,false]`,
+`["Kanokarob", "LadyEternal", "lionlance", "thederdiscohund", "theblackswitch"]`,
+`[L;1l,2l,3l,4l,5l]`
 
 ## Validator
 
-Below is a validator for SNBT. It will validate the input and show you if it is valid or not.
+Below is a validator for SNBT. It will validate the input and show you if it is
+valid or not.
 
 <SNBTValidator />

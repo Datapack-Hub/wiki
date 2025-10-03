@@ -6,131 +6,149 @@ version: 1.21.8
 
 # Recipes
 
-Recipes are files which define crafting recipes in-game. They can be used to add new recipes, or overwrite existing
-ones.  
+Recipes are files which define crafting recipes in-game. They can be used to add
+new recipes, or overwrite existing ones.  
 Recipes are JSON files located in the `data/<namespace>/recipe` folder.
 
 ## JSON format
-For information about the JSON format in general, see the [JSON](/wiki/info/json) page.
 
-Since recipe files represent a variety of different recipe types, the format can vary. However, there are some fields
-which appear in every recipe file.
+For information about the JSON format in general, see the
+[JSON](/wiki/info/json) page.
+
+Since recipe files represent a variety of different recipe types, the format can
+vary. However, there are some fields which appear in every recipe file.
 
 ### `type`
 
 Determines which type of recipe this is. Possible values:
 
-| Type | Description |
-| -----| ----------- |
-| `blasting`               | A recipe for a blast furnace |
-| `campfire_cooking`       | A recipe for cooking items on a campfire |
-| `crafting_shaped`        | A shaped crafting recipe in a crafting table. Ingredients must be placed in the correct pattern to craft |
-| `crafting_shapeless`     | A shapeless recipe in a crafting table. Ingredients can be placed in any pattern to craft |
+| Type                     | Description                                                                                                                              |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `blasting`               | A recipe for a blast furnace                                                                                                             |
+| `campfire_cooking`       | A recipe for cooking items on a campfire                                                                                                 |
+| `crafting_shaped`        | A shaped crafting recipe in a crafting table. Ingredients must be placed in the correct pattern to craft                                 |
+| `crafting_shapeless`     | A shapeless recipe in a crafting table. Ingredients can be placed in any pattern to craft                                                |
 | `crafting_special_*`     | A crafting recipe handled using built-in logic, and not displayed in the recipe book. Only useful for disabling/enabling certain recipes |
-| `crafting_decorated_pot` | The recipe for crafting decorated pots. Also handled with built-in logic, but does show up in the recipe book |
-| `crafting_transmute`     | A recipe to turn one item into another in a crafting table, while preserving its item components |
-| `smelting`               | A recipe for a furnace |
-| `smithing_transform`     | A recipe to upgrade an item in a smithing table |
-| `smithing_trim`          | A recipe to add an armor trim to an item in a smithing table |
-| `smoking`                | A recipe for a smoker |
-| `stonecutting`           | A recipe for a stonecutter |
+| `crafting_decorated_pot` | The recipe for crafting decorated pots. Also handled with built-in logic, but does show up in the recipe book                            |
+| `crafting_transmute`     | A recipe to turn one item into another in a crafting table, while preserving its item components                                         |
+| `smelting`               | A recipe for a furnace                                                                                                                   |
+| `smithing_transform`     | A recipe to upgrade an item in a smithing table                                                                                          |
+| `smithing_trim`          | A recipe to add an armor trim to an item in a smithing table                                                                             |
+| `smoking`                | A recipe for a smoker                                                                                                                    |
+| `stonecutting`           | A recipe for a stonecutter                                                                                                               |
 
 ### `category`
 
-Which category the recipe appears in the recipe book. If not provided, defaults to `misc`.  
+Which category the recipe appears in the recipe book. If not provided, defaults
+to `misc`.  
 Possible values: `blocks`, `building`, `equipment`, `food`, `misc`, `redstone`
 
 ### `group`
 
-An identifier to group multiple recipes in the recipe book. For example, recipes to craft planks use this.  
-Allowed in most recipe types, except: `crafting_decorated_pot`, `crafting_special_*`, `smithing_transform`,
-`smithing_trim`
+An identifier to group multiple recipes in the recipe book. For example, recipes
+to craft planks use this.  
+Allowed in most recipe types, except: `crafting_decorated_pot`,
+`crafting_special_*`, `smithing_transform`, `smithing_trim`
 
 ### Cooking fields
 
-These fields are present in `blasting`, `campfire_cooking`, `smelting` and `smoking` recipes.
+These fields are present in `blasting`, `campfire_cooking`, `smelting` and
+`smoking` recipes.
 
-| Field | Format | Default value | Description |
-| ----- | ------ | ------------- | ----------- |
-| `ingredient`  | An [ingredient](#ingredient) | _required_ | The ingredient which gets cooked |
-| `result`      | A [single result](#single-result) | _required_ | The result of cooking the ingredient |
-| `experience`  | A number | `0` | The amount of experience gained from this recipe |
-| `cookingtime` | An integer | `100`, or `200` for `smelting` recipes | The number of ticks it takes to cook the ingredient |
+| Field         | Format                            | Default value                          | Description                                         |
+| ------------- | --------------------------------- | -------------------------------------- | --------------------------------------------------- |
+| `ingredient`  | An [ingredient](#ingredient)      | _required_                             | The ingredient which gets cooked                    |
+| `result`      | A [single result](#single-result) | _required_                             | The result of cooking the ingredient                |
+| `experience`  | A number                          | `0`                                    | The amount of experience gained from this recipe    |
+| `cookingtime` | An integer                        | `100`, or `200` for `smelting` recipes | The number of ticks it takes to cook the ingredient |
 
 :::tip
-The vanilla recipes range between 0.1 and 1 experience, and take 200 ticks (10 seconds) for smelting, 100 ticks
-for blasting and smoking, and 600 ticks for campfire cooking
+
+The vanilla recipes range between 0.1 and 1 experience, and take 200 ticks (10
+seconds) for smelting, 100 ticks for blasting and smoking, and 600 ticks for
+campfire cooking
+
 :::
 
 ### `crafting_shaped` fields
 
 These fields are present in shaped crafting recipes.
 
-| Field | Format | Description |
-| ----- | ------ | ----------- |
-| `pattern` | An array of strings | The pattern for the crafting recipe. Represents rows of the crafting grid. Each row contains up to three characters, each representing an ingredient, spaces can be used to indicate an empty slot. All rows must be of the same length. |
-| `key`     | An object | A map of characters to ingredients. Determines what the characters in `pattern` represent. Each key is the character which represents it, and the value being an [ingredient](#ingredient).                                |
-| `result`  | A [counted result](#counted-result) | The result of the recipe |
+| Field     | Format                              | Description                                                                                                                                                                                                                              |
+| --------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pattern` | An array of strings                 | The pattern for the crafting recipe. Represents rows of the crafting grid. Each row contains up to three characters, each representing an ingredient, spaces can be used to indicate an empty slot. All rows must be of the same length. |
+| `key`     | An object                           | A map of characters to ingredients. Determines what the characters in `pattern` represent. Each key is the character which represents it, and the value being an [ingredient](#ingredient).                                              |
+| `result`  | A [counted result](#counted-result) | The result of the recipe                                                                                                                                                                                                                 |
 
 :::info
-If the rows are less than three characters long, or there are fewer than three rows, the recipe can be moved
-around the crafting grid. Recipes with two or fewer rows and columns can be crafting in the 2x2 crafting grid in the
+
+If the rows are less than three characters long, or there are fewer than three
+rows, the recipe can be moved around the crafting grid. Recipes with two or
+fewer rows and columns can be crafting in the 2x2 crafting grid in the
 inventory.
+
 :::
 
 :::tip
-This can be a bit hard to understand from the description; it may be helpful to read the
-[example](#example) to understand it better.
+
+This can be a bit hard to understand from the description; it may be helpful to
+read the [example](#example) to understand it better.
+
 :::
 
 ### `crafting_shapeless` fields
 
 These fields are present in shapeless crafting recipes.
 
-| Field         | Format                                               | Description                                |
-| ------------- | ---------------------------------------------------- | ------------------------------------------ |
+| Field         | Format                                 | Description                                |
+| ------------- | -------------------------------------- | ------------------------------------------ |
 | `ingredients` | An array of [ingredients](#ingredient) | The ingredients needed to craft the recipe |
-| `result`      | A [counted result](#counted-result)                  | The result of the recipe                   |
+| `result`      | A [counted result](#counted-result)    | The result of the recipe                   |
 
 ### `crafting_special_*` fields
 
-The `crafting_special_*` recipes don't have extra fields, but there are many possible values of the `type` field which
-count as special crafting recipes.  
+The `crafting_special_*` recipes don't have extra fields, but there are many
+possible values of the `type` field which count as special crafting recipes.  
 Possible special recipes:
 
-| Recipe Type                           | Description                                          |
-| ------------------------------------- | ---------------------------------------------------- |
-| `crafting_special_armordye`           | The recipe for dyeing leather armor                  |
-| `crafting_special_bannerduplicate`    | The recipe for copying banners                       |
-| `crafting_special_bookcloning`        | The recipe for copying written books                 |
-| `crafting_special_firework_rocket`    | The recipe for crafting firework rockets             |
-| `crafting_special_firework_star`      | The recipe for crafting firework stars               |
-| `crafting_special_firework_star_fade` | The recipe for adding fade colors to firework stars  |
-| `crafting_special_mapcloning`         | The recipe for copying maps                          |
-| `crafting_special_mapextending`       | The recipe for extending maps                        |
-| `crafting_special_repairitem`         | The recipe for repairing items with durability       |
-| `crafting_special_shielddecoration`   | The recipe for adding banners to shields             |
-| `crafting_special_tippedarrow`        | The recipe for adding potion effects to arrows       |
+| Recipe Type                           | Description                                         |
+| ------------------------------------- | --------------------------------------------------- |
+| `crafting_special_armordye`           | The recipe for dyeing leather armor                 |
+| `crafting_special_bannerduplicate`    | The recipe for copying banners                      |
+| `crafting_special_bookcloning`        | The recipe for copying written books                |
+| `crafting_special_firework_rocket`    | The recipe for crafting firework rockets            |
+| `crafting_special_firework_star`      | The recipe for crafting firework stars              |
+| `crafting_special_firework_star_fade` | The recipe for adding fade colors to firework stars |
+| `crafting_special_mapcloning`         | The recipe for copying maps                         |
+| `crafting_special_mapextending`       | The recipe for extending maps                       |
+| `crafting_special_repairitem`         | The recipe for repairing items with durability      |
+| `crafting_special_shielddecoration`   | The recipe for adding banners to shields            |
+| `crafting_special_tippedarrow`        | The recipe for adding potion effects to arrows      |
 
 ### `crafting_transmute` fields
 
 These fields are present in crafting transmute recipes.
 
-| Field      | Format                       | Description                                                                                                  |
-| ---------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `input`    | An [ingredient](#ingredient) | The item to be transmuted. This item's components will be preserved                                          |
-| `material` | An [ingredient](#ingredient) | The item used to transmute the `input`                                                                       |
-| `result`   | A [counted result](#counted-result)  | The id of the resulting item. This will copy the components of the `input` item if they weren't overwritten. |
+| Field      | Format                              | Description                                                                                                  |
+| ---------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `input`    | An [ingredient](#ingredient)        | The item to be transmuted. This item's components will be preserved                                          |
+| `material` | An [ingredient](#ingredient)        | The item used to transmute the `input`                                                                       |
+| `result`   | A [counted result](#counted-result) | The id of the resulting item. This will copy the components of the `input` item if they weren't overwritten. |
 
 :::info
-If the rows are less than three characters long, or there are fewer than three rows, the recipe can be moved
-around the crafting grid. Recipes with two or fewer rows and columns can be crafting in the 2x2 crafting grid in the
+
+If the rows are less than three characters long, or there are fewer than three
+rows, the recipe can be moved around the crafting grid. Recipes with two or
+fewer rows and columns can be crafting in the 2x2 crafting grid in the
 inventory.
+
 :::
 
 :::tip
-This can be a bit hard to understand from the description; it may be helpful to read the
-[example](#example) to understand it better.
+
+This can be a bit hard to understand from the description; it may be helpful to
+read the [example](#example) to understand it better.
+
 :::
 
 ### Smithing fields
@@ -142,17 +160,17 @@ These fields are present in `smithing_transform` and `smithing_trim` recipes.
 | `template` | An [ingredient](#ingredient)        | The item to be used as the template in the recipe                                        |
 | `base`     | An [ingredient](#ingredient)        | The base item to be upgraded or trimmed                                                  |
 | `addition` | An [ingredient](#ingredient)        | The item used to upgrade or trim the base                                                |
-| `pattern`   | A smithing trim pattern ID         | The smithing trim pattern applied in the recipe, only present in `smithing_trim` recipes |
+| `pattern`  | A smithing trim pattern ID          | The smithing trim pattern applied in the recipe, only present in `smithing_trim` recipes |
 | `result`   | A [counted result](#counted-result) | The result of the recipe, only present in `smithing_transform` recipes                   |
 
 ### `stonecutting`
 
 These fields are present in stonecutting recipes.
 
-| Field        | Format                                    | Description                   |
-| ------------ | ----------------------------------------- | ----------------------------- |
-| `ingredient` | An [ingredient](#ingredient)              | The ingredient for the recipe |
-| `result`     | A [counted result](#counted-result)       | The result of the recipe      |
+| Field        | Format                              | Description                   |
+| ------------ | ----------------------------------- | ----------------------------- |
+| `ingredient` | An [ingredient](#ingredient)        | The ingredient for the recipe |
+| `result`     | A [counted result](#counted-result) | The result of the recipe      |
 
 ### Common data structures
 
@@ -160,10 +178,15 @@ This is a list of common data structures used in different recipe formats.
 
 #### Ingredient
 
-Represents possible ingredients for a recipe. Can be an item's [resource location](/wiki/concepts/resource-locations), the hash-prefixed resource location of an item tag (e.g. `#minecraft:logs`), or an array of valid item resource locations.
+Represents possible ingredients for a recipe. Can be an item's
+[resource location](/wiki/concepts/resource-locations), the hash-prefixed
+resource location of an item tag (e.g. `#minecraft:logs`), or an array of valid
+item resource locations.
 
 :::info
-Unfortunately, components cannot be detected for recipe ingredients 
+
+Unfortunately, components cannot be detected for recipe ingredients
+
 :::
 
 #### Single result
@@ -177,18 +200,22 @@ Represents a single item, the result of a recipe. An object containing:
 
 #### Counted result
 
-Represents the result of a recipe. A [single result](#single-result), with an optional `count` field, an integer
-specifying the count of the resulting item. If not included, the count defaults to `1`.
+Represents the result of a recipe. A [single result](#single-result), with an
+optional `count` field, an integer specifying the count of the resulting item.
+If not included, the count defaults to `1`.
 
 ## Example
 
-This file adds a shaped crafting recipe to craft bedrock out of beds and rock (stone).
+This file adds a shaped crafting recipe to craft bedrock out of beds and rock
+(stone).
 
-This file should be placed in the `data/<namespace>/recipe` folder. 
+This file should be placed in the `data/<namespace>/recipe` folder.
 
 :::info
-`minecraft:beds` is an
-[item tag](/wiki/files/tags) provided by Minecraft containing all colors of beds.
+
+`minecraft:beds` is an [item tag](/wiki/files/tags) provided by Minecraft
+containing all colors of beds.
+
 :::
 
 ```json:bedrock.json

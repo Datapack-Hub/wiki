@@ -1,22 +1,38 @@
 ---
 title: Right Click Detection Summary
-description: This section goes over the various ways of detecting right clicks with a Minecraft datapack.
+description:
+  This section goes over the various ways of detecting right clicks with a
+  Minecraft datapack.
 version: 1.21.8
 ---
 
 # Right Click Detection
-There a few ways we can detect right clicks in a Minecraft datapack, depending on your situation. Here are the methods we can use:
+
+There a few ways we can detect right clicks in a Minecraft datapack, depending
+on your situation. Here are the methods we can use:
 
 ### Using a [Carrot on a stick](/guide/right-click/coas)
-This method is the "traditional" right click detection method. We can use a scoreboard to detect when a player right clicks a carrot on a stick item. 
 
-This is the most straightforward method for simple right click detection, but it has certain drawbacks - including making pigs follow the player.
+This method is the "traditional" right click detection method. We can use a
+scoreboard to detect when a player right clicks a carrot on a stick item.
+
+This is the most straightforward method for simple right click detection, but it
+has certain drawbacks - including making pigs follow the player.
 
 ### Using [an item with the consumable component](/guide/right-click/consumable_component)
-With the item changes added in 1.20.5, we can now detect right clicks on any item using the consumable component. This method is much more versatile. However, this method triggers once per tick, not just once per right click.
+
+With the item changes added in 1.20.5, we can now detect right clicks on any
+item using the consumable component. This method is much more versatile.
+However, this method triggers once per tick, not just once per right click.
 
 ### Using an [Eye of Ender](/guide/right-click/eoe)
-This method is a bit more niche, as it only works in worlds without strongholds. This method also triggers once per tick, not just once per right click.
+
+This method is a bit more niche, as it only works in worlds without strongholds.
+This method also triggers once per tick, not just once per right click.
 
 ### Clicking an [Interaction Entity](/guide/right-click/interaction)
-This method detects when the player right clicks on an `interaction` entity. Unlike the other methods, which all detect right clicks while holding specific items, this method lets you detect when a player right clicks on a specific area of the world.
+
+This method detects when the player right clicks on an `interaction` entity.
+Unlike the other methods, which all detect right clicks while holding specific
+items, this method lets you detect when a player right clicks on a specific area
+of the world.

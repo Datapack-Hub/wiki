@@ -1,9 +1,9 @@
 ---
 title: Tags
 description:
-  "Registry tags, not to be confused with [entity tags](/wiki/command/tag), are essentially lists of groups such as
-  blocks, items, entity types, etc. They use JSON format and are located in the `data/<namespace>/tags/<category>`
-  folder."
+  "Registry tags, not to be confused with [entity tags](/wiki/command/tag), are
+  essentially lists of groups such as blocks, items, entity types, etc. They use
+  JSON format and are located in the `data/<namespace>/tags/<category>` folder."
 version: 1.21.8
 ---
 
@@ -13,63 +13,86 @@ items, entity types, etc. They use JSON format and are located in the `data/<nam
 
 ## Special tags
 
-Minecraft uses some tags internally for certain behaviours. These tags are located in the `minecraft` namespace. For
-example:
+Minecraft uses some tags internally for certain behaviours. These tags are
+located in the `minecraft` namespace. For example:
 
-- any functions in the `#minecraft:load` function tag will be automatically run when a datapack is loaded
-- the `#minecraft:minable/pickaxe` block tag lists blocks which are mined faster using a pickaxe.
+- any functions in the `#minecraft:load` function tag will be automatically run
+  when a datapack is loaded
+- the `#minecraft:minable/pickaxe` block tag lists blocks which are mined faster
+  using a pickaxe.
 
-In many cases, modifying these special tags allows you to configure certain aspects of how Minecraft behaves.
+In many cases, modifying these special tags allows you to configure certain
+aspects of how Minecraft behaves.
 
 ## Registries
-Tags group various types in a specific registry (category), such as items, blocks, functions, game events, chat types, etc.
 
-This list shows some of the possible registry types, as well as the path their tags should be put in.
+Tags group various types in a specific registry (category), such as items,
+blocks, functions, game events, chat types, etc.
 
-| Registry Types    | Path                                               | Example Value                 |
-|-------------------|----------------------------------------------------|-------------------------------|
-| Items             | `/tags/item`                                       | `"minecraft:apple"`           |
-| Blocks            | `/tags/block`                                      | `"minecraft:grass_block"`     |
-| Entity types      | `/tags/entity_type`                                | `"minecraft:pig"`             |
-| Functions         | `/tags/function`                                   | `"namespace:some_function"`   |
-| Fluids            | `/tags/fluid`                                      | `"minecraft:water"`           |
-| Game Events       | `/tags/game_event`                                 | `"minecraft:container_open"`  |
-| Chat Types        | `/tags/chat_type`                                  | `"minecraft:say_command"`     |
-| Damage Types      | `/tags/damage_type`                                | `"minecraft:fly_into_wall"`   |
-| Banner patterns   | `/tags/banner_pattern`                             | `"minecraft:square_top_right"`|
-| Cat variants      | `/tags/cat_variant`                                | `"minecraft:jellie"`          |
-| Enchantments      | `/tags/enchantment`                                | `"minecraft:sharpness"`       |
-| Goat horns        | `/tags/instrument`                                 | `"minecraft:seek_goat_horn"`  |
-| Paintings         | `/tags/painting_variant`                           | `"minecraft:skull_and_roses"` |
-| Entity POI        | `/tags/point_of_interest_type`                     | `"minecraft:cleric"`          |
-| Biome             | `/tags/worldgen/biome`                             | `"minecraft:plains"`          |
-| Flat world preset | `/tags/worldgen/flat_level_generator_preset`       | `"minecraft:classic_flat"`    |
-| Structures        | `/tags/worldgen/structure`                         | `"minecraft:village"`         |
-| World preset      | `/tags/worldgen/world_preset`                      | `"minecraft:large_biomes"`    |
+This list shows some of the possible registry types, as well as the path their
+tags should be put in.
+
+| Registry Types    | Path                                         | Example Value                  |
+| ----------------- | -------------------------------------------- | ------------------------------ |
+| Items             | `/tags/item`                                 | `"minecraft:apple"`            |
+| Blocks            | `/tags/block`                                | `"minecraft:grass_block"`      |
+| Entity types      | `/tags/entity_type`                          | `"minecraft:pig"`              |
+| Functions         | `/tags/function`                             | `"namespace:some_function"`    |
+| Fluids            | `/tags/fluid`                                | `"minecraft:water"`            |
+| Game Events       | `/tags/game_event`                           | `"minecraft:container_open"`   |
+| Chat Types        | `/tags/chat_type`                            | `"minecraft:say_command"`      |
+| Damage Types      | `/tags/damage_type`                          | `"minecraft:fly_into_wall"`    |
+| Banner patterns   | `/tags/banner_pattern`                       | `"minecraft:square_top_right"` |
+| Cat variants      | `/tags/cat_variant`                          | `"minecraft:jellie"`           |
+| Enchantments      | `/tags/enchantment`                          | `"minecraft:sharpness"`        |
+| Goat horns        | `/tags/instrument`                           | `"minecraft:seek_goat_horn"`   |
+| Paintings         | `/tags/painting_variant`                     | `"minecraft:skull_and_roses"`  |
+| Entity POI        | `/tags/point_of_interest_type`               | `"minecraft:cleric"`           |
+| Biome             | `/tags/worldgen/biome`                       | `"minecraft:plains"`           |
+| Flat world preset | `/tags/worldgen/flat_level_generator_preset` | `"minecraft:classic_flat"`     |
+| Structures        | `/tags/worldgen/structure`                   | `"minecraft:village"`          |
+| World preset      | `/tags/worldgen/world_preset`                | `"minecraft:large_biomes"`     |
 
 ## JSON format
-For information about the JSON format in general, see the [JSON](/wiki/info/json) page.
+
+For information about the JSON format in general, see the
+[JSON](/wiki/info/json) page.
 
 Tag files follow a very simple format, with two fields.
-- `replace`: Can be `true` or `false` (defaults to `false`). If `true`, the tag will overwrite other tags with the same path. If `false`, it will merge with them.
-- `values`: An array containing everything to group under this tag. Each element can either be
+
+- `replace`: Can be `true` or `false` (defaults to `false`). If `true`, the tag
+  will overwrite other tags with the same path. If `false`, it will merge with
+  them.
+- `values`: An array containing everything to group under this tag. Each element
+  can either be
   - an id (e.g. `"minecraft:apple"`)
-  - an object with an `id` field and a `required` field (e.g. `{"required": false, "id":"minecraft:stick"}`). If `required` is `false`, the tag will still skip nonexistent ids.
+  - an object with an `id` field and a `required` field (e.g.
+    `{"required": false, "id":"minecraft:stick"}`). If `required` is `false`,
+    the tag will still skip nonexistent ids.
 
 :::info
-Tags can also reference other tags. For example, if a tag file contains `#minecraft:logs`, it will also contain the entire contents of the `minecraft:logs` tag. A tag is represented by an ID beginning with a `#`. For more information, refer to the [resource locations](/wiki/concepts/resource-locations#resource-locations-for-tags) page.
+
+Tags can also reference other tags. For example, if a tag file contains
+`#minecraft:logs`, it will also contain the entire contents of the
+`minecraft:logs` tag. A tag is represented by an ID beginning with a `#`. For
+more information, refer to the
+[resource locations](/wiki/concepts/resource-locations#resource-locations-for-tags)
+page.
+
 :::
 
 ### Example
+
 Here is an example `item` tag file:
 
 ```json
 {
   "replace": true,
   "values": [
-    "#minecraft:logs", 
-    "#minecraft:planks", 
-    "minecraft:chest", 
+    "#minecraft:logs",
+    "#minecraft:planks",
+    "minecraft:chest",
     "minecraft:stick"
   ]
 }
+```

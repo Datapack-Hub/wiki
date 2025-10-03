@@ -1,34 +1,55 @@
 ---
 title: Raycasts
-description: "Raycasting is when we shoot a line from the player's eyes in the direction they are looking. We use this to get what the player is looking at, and do something to it, such as spawning an explosion."
+description:
+  "Raycasting is when we shoot a line from the player's eyes in the direction
+  they are looking. We use this to get what the player is looking at, and do
+  something to it, such as spawning an explosion."
 version: 1.21.8
 ---
 
 # Raycasting
-Raycasting is when we shoot a line from the player's eyes in the direction they are looking. We use this to get what the
-player is looking at and do something to it, such as spawning an explosion.
+
+Raycasting is when we shoot a line from the player's eyes in the direction they
+are looking. We use this to get what the player is looking at and do something
+to it, such as spawning an explosion.
 
 :::info
-This tutorial uses a neat thing called a **_recursive function_**. A recursive function is a function that runs itself over and over again.
+
+This tutorial uses a neat thing called a **_recursive function_**. A recursive
+function is a function that runs itself over and over again.
+
 :::
 
-This method works due to a special behaviour of Minecraft functions - functions are always run at a position and rotation. This means that we can run a function at a postition, move it forward in the direction, and run it again, over and over again. This is how we can make a raycast.
+This method works due to a special behaviour of Minecraft functions - functions
+are always run at a position and rotation. This means that we can run a function
+at a postition, move it forward in the direction, and run it again, over and
+over again. This is how we can make a raycast.
 
 ## Method
-This method will show you how to find what entity that a player is looking at. This is useful for many reasons - if you wanted to make a gun datapack, you'd need to damage the entity that a player is looking at in order to damage them.
 
-To do this, you have to run a recursive function which will start at the eyes of the player and keep running itself
-**0.1 blocks forward** until it hits an entity. When it does hit an entity, you can easily get the entity and do
+This method will show you how to find what entity that a player is looking at.
+This is useful for many reasons - if you wanted to make a gun datapack, you'd
+need to damage the entity that a player is looking at in order to damage them.
+
+To do this, you have to run a recursive function which will start at the eyes of
+the player and keep running itself **0.1 blocks forward** until it hits an
+entity. When it does hit an entity, you can easily get the entity and do
 something to it.
 
-Firstly, we'll make the function which, when you run it, will **start** the raycast. In this function, we'll want to:
+Firstly, we'll make the function which, when you run it, will **start** the
+raycast. In this function, we'll want to:
 
-- Set the **maximum distance** for the raycast, so it won't go on forever if it never hits an entity.
+- Set the **maximum distance** for the raycast, so it won't go on forever if it
+  never hits an entity.
 - Run the function at the eyes of the player.
 
-To set a maximum distance, we store the maximum amount of times we want the function to run in a scoreboard. Every time the recursive function runs, we want to subtract one from that scoreboard, and only continue if the score is more than 0.
+To set a maximum distance, we store the maximum amount of times we want the
+function to run in a scoreboard. Every time the recursive function runs, we want
+to subtract one from that scoreboard, and only continue if the score is more
+than 0.
 
-First, you need to create a scoreboard in your load function. This scoreboard will store the maximum amount of times the raycast function can run:
+First, you need to create a scoreboard in your load function. This scoreboard
+will store the maximum amount of times the raycast function can run:
 
 ```mcfunction:load.mcfunction
 # Create the scoreboard
@@ -36,7 +57,9 @@ scoreboard objectives add raycast dummy
 ```
 
 Then, when we want to start the raycast, we just do the following:
-- Tag the entity or player that starts the raycast, so we can refer back to them.
+
+- Tag the entity or player that starts the raycast, so we can refer back to
+  them.
 - Set the maximum distance for the raycast.
 - Call the raycast function in the facing direction.
 - Remove the tag at the end, so it doesn't interfere with other raycasts.
@@ -55,13 +78,22 @@ execute at @s anchored eyes positioned ^ ^ ^.1 run function <namespace>:raycast
 tag @s remove raycaster
 ```
 
-In the raycast function, we just want to check if the function has hit an entity, and if not, run it again until it does, hits a wall, or reaches the raycasts limit, moving slightly each time.
+In the raycast function, we just want to check if the function has hit an
+entity, and if not, run it again until it does, hits a wall, or reaches the
+raycasts limit, moving slightly each time.
 
-The next step is a bit more complex. We execute a command as every entity that is not the caster and whose hitbox intersects with the current path of the raycast (using [virtual volumes](https://datapack.wiki/wiki/concepts/target-selectors#dxdydz-arguments)). The command will `return run <namespace>:hit` if the raycast hits an entity. The `return run` will stop the raycast from running further, and then will run the `hit` function as the entity it has hit.
+The next step is a bit more complex. We execute a command as every entity that
+is not the caster and whose hitbox intersects with the current path of the
+raycast (using
+[virtual volumes](https://datapack.wiki/wiki/concepts/target-selectors#dxdydz-arguments)).
+The command will `return run <namespace>:hit` if the raycast hits an entity. The
+`return run` will stop the raycast from running further, and then will run the
+`hit` function as the entity it has hit.
 
-The last command checks if the raycast hit a wall. If it does, the raycast will end. If it doesn't, it will then check
-if the limit is reached, again ending if it is. Should the limit not be reached yet, it will move `0.1` blocks forward and
-call the raycast function again _(recursion)_.
+The last command checks if the raycast hit a wall. If it does, the raycast will
+end. If it doesn't, it will then check if the limit is reached, again ending if
+it is. Should the limit not be reached yet, it will move `0.1` blocks forward
+and call the raycast function again _(recursion)_.
 
 ```mcfunction:raycast.mcfunction
 # Remove one from the raycast limit

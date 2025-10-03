@@ -1,18 +1,33 @@
 ---
 title: Using the Consumable component for RC detection
-description: "Using the minecraft:consumable component to detect when the user right clicks an item in a datapack."
+description:
+  "Using the minecraft:consumable component to detect when the user right clicks
+  an item in a datapack."
 version: 1.21.8
 ---
 
 # Consumable Component Right Click Detection
-The `minecraft:consumable` component can be a helpful indicator of when an item is right clicked by the player in a Minecraft datapack. We can detect usage of an item with the `consumable` and `food` components with an advancement which can trigger a function. This method can be used on almost any type of item.
+
+The `minecraft:consumable` component can be a helpful indicator of when an item
+is right clicked by the player in a Minecraft datapack. We can detect usage of
+an item with the `consumable` and `food` components with an advancement which
+can trigger a function. This method can be used on almost any type of item.
 
 :::warning
-This method will work for any type of item. However, if the item type already has a default rightclick functionality (such as placing a block), it will keep that functionality. This method is best used for items that don't have a default rightclick functionality.
+
+This method will work for any type of item. However, if the item type already
+has a default rightclick functionality (such as placing a block), it will keep
+that functionality. This method is best used for items that don't have a default
+rightclick functionality.
+
 :::
 
 ## Method
-To detect when the item is being used (in this case, being right clicked), you must create a `using_item` advancement, and specify the item data you want to trigger the advancement. Then, you can specify a reward function which will be run when the advancement is triggered.
+
+To detect when the item is being used (in this case, being right clicked), you
+must create a `using_item` advancement, and specify the item data you want to
+trigger the advancement. Then, you can specify a reward function which will be
+run when the advancement is triggered.
 
 ```json:click.json
 {
@@ -37,7 +52,10 @@ To detect when the item is being used (in this case, being right clicked), you m
 }
 ```
 
-In the function (in this case, `/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands that you want to run when the item is clicked. Make sure that this function also **revokes the advancement** so that it can be triggered again next tick.
+In the function (in this case,
+`/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands
+that you want to run when the item is clicked. Make sure that this function also
+**revokes the advancement** so that it can be triggered again next tick.
 
 ```mcfunction:rightclick_run.mcfunction
 # Revoke the advancement from the player so it can be used again
@@ -47,10 +65,12 @@ advancement revoke @s only <namespace>:click
 say I right clicked the item!
 ```
 
-After `/reload`ing the datapack, we will now need to give the player the item with the custom food and data components.
+After `/reload`ing the datapack, we will now need to give the player the item
+with the custom food and data components.
 
 ```mcfunction
 give @p <item>[consumable={consume_seconds:999999999,animation:"none"},food={nutrition:0,saturation:0,can_always_eat:true},custom_data={custom_id:"your_custom_item_id"}] 1
 ```
 
-Now, when you right click this item, it should send a message to the chat saying `I right clicked the item!`.
+Now, when you right click this item, it should send a message to the chat saying
+`I right clicked the item!`.

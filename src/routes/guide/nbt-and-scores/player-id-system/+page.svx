@@ -1,21 +1,32 @@
 ---
 title: Player ID System
-description: Create a player ID system in a Minecraft datapack for linking players to entities.
+description:
+  Create a player ID system in a Minecraft datapack for linking players to
+  entities.
 version: 1.21.8
 ---
 
 # Player ID System
-This guide will explain how to create a player ID system within a datapack. A player ID system gives each player a unique score on a scoreboard, which can then be used to link players to entities, or for the player to be able to select another player easily.
+
+This guide will explain how to create a player ID system within a datapack. A
+player ID system gives each player a unique score on a scoreboard, which can
+then be used to link players to entities, or for the player to be able to select
+another player easily.
 
 ## Assigning player IDs
-Firstly, we need to create a scoreboard objective to store the players' IDs. This scoreboard will also hold a counter of the IDs given in a fake player so that no two players end up with the same ID.
+
+Firstly, we need to create a scoreboard objective to store the players' IDs.
+This scoreboard will also hold a counter of the IDs given in a fake player so
+that no two players end up with the same ID.
 
 ```mcfunction:load.mcfunction
 # Create the playerid scoreboard
 scoreboard objectives add playerid dummy
 ```
 
-Next, we need to assign an ID to the player when they first join the world. Create a function which assigns the value of the max player ID counter to the player, and then increments it by one.
+Next, we need to assign an ID to the player when they first join the world.
+Create a function which assigns the value of the max player ID counter to the
+player, and then increments it by one.
 
 ```mcfunction:assign_id.mcfunction
 # Assign the max player ID to the player
@@ -26,27 +37,34 @@ scoreboard players operation @s playerid = .max playerid
 scoreboard players add .max playerid 1
 ```
 
-Finally, we need to make this function run when a player first joins the world. We can do this using a `tick` advancement - it will only trigger when the player first joins the world.
+Finally, we need to make this function run when a player first joins the world.
+We can do this using a `tick` advancement - it will only trigger when the player
+first joins the world.
+
 ```json:first_join.json
 {
-  "criteria": { 
-    "requirement": { 
-      "trigger": "minecraft:tick" 
-    } 
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick"
+    }
   },
-  "rewards": { 
-    "function": "<namespace>:assign_id" 
+  "rewards": {
+    "function": "<namespace>:assign_id"
   }
 }
 ```
 
 ## Find the player/entity with a specific ID
-We can use a predicate to check if the player has the same ID as the specified ID (stored in a fake player on a scoreboard). In this case, this predicate will only trigger if the player's `playerid` score is equal to the `playerid` score of the fake player (`#this`).
+
+We can use a predicate to check if the player has the same ID as the specified
+ID (stored in a fake player on a scoreboard). In this case, this predicate will
+only trigger if the player's `playerid` score is equal to the `playerid` score
+of the fake player (`#this`).
 
 ```json:namespace:match_id.json
-{ 
-  "condition": "minecraft:entity_scores", 
-  "entity": "this", 
+{
+  "condition": "minecraft:entity_scores",
+  "entity": "this",
   "scores": {
     "playerid": {
       "min": { "type": "minecraft:score", "target": { "type": "minecraft:fixed", "name": "#this" }, "score": "playerid" },
@@ -56,7 +74,10 @@ We can use a predicate to check if the player has the same ID as the specified I
 }
 ```
 
-We can call this predicate any time we want to find the player or entity with a specific ID - just set the `#this` fake player to the score you want to match, and then call the predicate as all entities or players. This function will return all the entities with the same ID as the executor:
+We can call this predicate any time we want to find the player or entity with a
+specific ID - just set the `#this` fake player to the score you want to match,
+and then call the predicate as all entities or players. This function will
+return all the entities with the same ID as the executor:
 
 ```mcfunction:find_id.mcfunction
 # Set #this to the current entity's ID

@@ -1,52 +1,113 @@
 ---
 title: Advancements
-description: In a datapack, we can create advancements, which can additionally be used to detect events.
+description:
+  In a datapack, we can create advancements, which can additionally be used to
+  detect events.
 version: 1.21.8
 ---
 
 # Advancements
-Advancement files are used to create in-game advancements. These can have display properties to make them visible to the player, like how vanilla advancements work. In many function datapacks, we can use hidden custom advancements to detect events (e.g player attacks entity) and then run a function.
 
-Advancements can be stored in trees. This means that an advancement can have parent and children advancements. This tree format is good for showing progression in different areas of the game, as well as allowing you to have custom advancment tabs.
+Advancement files are used to create in-game advancements. These can have
+display properties to make them visible to the player, like how vanilla
+advancements work. In many function datapacks, we can use hidden custom
+advancements to detect events (e.g player attacks entity) and then run a
+function.
 
-Advancement files are JSON files stored in the `/data/<namespace>/advancement` folder.
+Advancements can be stored in trees. This means that an advancement can have
+parent and children advancements. This tree format is good for showing
+progression in different areas of the game, as well as allowing you to have
+custom advancment tabs.
+
+Advancement files are JSON files stored in the `/data/<namespace>/advancement`
+folder.
 
 ## JSON Format
-For information about the JSON format in general, see the [JSON](/wiki/info/json) page.
 
-Each advancement is represented by a JSON object stored in the advancement JSON file. The advancment JSON object can have the following fields:
-- `criteria`: An object containing the criteria/criterion that can trigger this advancement. (See the **Criteria** section below)
-- `requirements`: This can optionally be used to specify more advanced rules as to which criteria trigger the advancement (for example, this can be used to specfiy "Advancement is given if (Criteria A OR Criteria B) AND (Criteria C OR Criteria D) is true"). This should be a list of lists of `criteria` keys - the advancement is given when at least one criteria from each list has been achieved.
-- `display`: If left out, this advancement is completely hidden from the player. Otherwise, this will control the style of the advancement, and where it is displayed to the player. It has the following keys:
-    - `icon`: An object defining the item used as the icon as the advancement. This has a `id` field (the item ID) and `components` (an object with the item components)
-    - `title`: A text component representing the title or name of the advancement that is shown to the player
-    - `description`: A text component representing the description of the advancement
-    - `background`: (Root advancement only) The path to the background texture of the advancement tab
-    - `frame`: Used to specify the frame (or type) of advancement. This should be either `"task"` (default), `"challenge"`, or `"goal"`.
-    - `show_toast`: If true, a pop-up will be shown when a player completes the advancement. Defaults to true (if display exists).
-    - `announce_to_chat`: If true, the advancement will be announced to chat when it is completed by a player. Defaults to true (if display exists)
-    - `hidden`: If true, the advancement will not show up in the advancements menu until it has been achieved by the player. Defaults to false.
-- `parent`: The ID of this advancement's parent advancement. This should be set if your advancement is not just for internal event purposes. If this is left blank, it is considered to be a root advancement.
-- `rewards`: An object which stores data about what should happen to the player when the advancement has been achieved. This can contain the following fields:
-    - `function`: The ID of the function to run as the player when they achieve the advancement.
-    - `loot`: A list of loot table IDs to be given to the player when they achieve the advancement.
-    - `recipes`: A list of the recipe IDs to be unlocked by the player when they achieve the advancement
-    - `experience`: The XP points to give to the player when they achieve the advancement. This should be an integer
-- `sends_telemetry_event`: (`minecraft` namespace only) Whether to send telemetry info about this advancement to Mojang. Defaults to `false`.
+For information about the JSON format in general, see the
+[JSON](/wiki/info/json) page.
+
+Each advancement is represented by a JSON object stored in the advancement JSON
+file. The advancment JSON object can have the following fields:
+
+- `criteria`: An object containing the criteria/criterion that can trigger this
+  advancement. (See the **Criteria** section below)
+- `requirements`: This can optionally be used to specify more advanced rules as
+  to which criteria trigger the advancement (for example, this can be used to
+  specfiy "Advancement is given if (Criteria A OR Criteria B) AND (Criteria C OR
+  Criteria D) is true"). This should be a list of lists of `criteria` keys - the
+  advancement is given when at least one criteria from each list has been
+  achieved.
+- `display`: If left out, this advancement is completely hidden from the player.
+  Otherwise, this will control the style of the advancement, and where it is
+  displayed to the player. It has the following keys:
+  - `icon`: An object defining the item used as the icon as the advancement.
+    This has a `id` field (the item ID) and `components` (an object with the
+    item components)
+  - `title`: A text component representing the title or name of the advancement
+    that is shown to the player
+  - `description`: A text component representing the description of the
+    advancement
+  - `background`: (Root advancement only) The path to the background texture of
+    the advancement tab
+  - `frame`: Used to specify the frame (or type) of advancement. This should be
+    either `"task"` (default), `"challenge"`, or `"goal"`.
+  - `show_toast`: If true, a pop-up will be shown when a player completes the
+    advancement. Defaults to true (if display exists).
+  - `announce_to_chat`: If true, the advancement will be announced to chat when
+    it is completed by a player. Defaults to true (if display exists)
+  - `hidden`: If true, the advancement will not show up in the advancements menu
+    until it has been achieved by the player. Defaults to false.
+- `parent`: The ID of this advancement's parent advancement. This should be set
+  if your advancement is not just for internal event purposes. If this is left
+  blank, it is considered to be a root advancement.
+- `rewards`: An object which stores data about what should happen to the player
+  when the advancement has been achieved. This can contain the following fields:
+  - `function`: The ID of the function to run as the player when they achieve
+    the advancement.
+  - `loot`: A list of loot table IDs to be given to the player when they achieve
+    the advancement.
+  - `recipes`: A list of the recipe IDs to be unlocked by the player when they
+    achieve the advancement
+  - `experience`: The XP points to give to the player when they achieve the
+    advancement. This should be an integer
+- `sends_telemetry_event`: (`minecraft` namespace only) Whether to send
+  telemetry info about this advancement to Mojang. Defaults to `false`.
 
 ## `criteria`
-The `criteria` object is an object containing the criteria needed to unlock this advancement. This object should contain other objects - the key of which can be anything, as it serves as the criteria ID. If the `requirements` field is not used, the advancement will be achieved when all of the criteria have been achieved.
 
-Each criteria object contains a `trigger` and `conditions` fields. There are many different `trigger`s that can be used, the contents of `conditions` depends on which `trigger` is used. 
+The `criteria` object is an object containing the criteria needed to unlock this
+advancement. This object should contain other objects - the key of which can be
+anything, as it serves as the criteria ID. If the `requirements` field is not
+used, the advancement will be achieved when all of the criteria have been
+achieved.
+
+Each criteria object contains a `trigger` and `conditions` fields. There are
+many different `trigger`s that can be used, the contents of `conditions` depends
+on which `trigger` is used.
 
 :::info
-The `player` condition can exist with any advancement trigger (except `minecraft:impossible`). This condition can either be an object (an `entity_properties` predicate) or a list of other predicates (any predicate type) to further match the player.
+
+The `player` condition can exist with any advancement trigger (except
+`minecraft:impossible`). This condition can either be an object (an
+`entity_properties` predicate) or a list of other predicates (any predicate
+type) to further match the player.
+
 :::
 
-You can see all the advancement criteria using a generator such as [misode.github.io](https://misode.github.io/advancement).
+You can see all the advancement criteria using a generator such as
+[misode.github.io](https://misode.github.io/advancement).
+
 <!-- I will add these all at a later date, I have some already but it's proving to take a while to add them all in - Silabear -->
 
 ## Using advancements to detect events
-By specifying a `function` in the `rewards` section, and not including any `display` information, you can make an advancement essentially just become an event listener (something that will run a function when the player does something). In order for this to work multiple times, the function must revoke the advancement from the player (using `advancement revoke @s only ...`), so that it can be regained later.
 
-Note that the advanement will run the function **as** the player, but not **at** the player.
+By specifying a `function` in the `rewards` section, and not including any
+`display` information, you can make an advancement essentially just become an
+event listener (something that will run a function when the player does
+something). In order for this to work multiple times, the function must revoke
+the advancement from the player (using `advancement revoke @s only ...`), so
+that it can be regained later.
+
+Note that the advanement will run the function **as** the player, but not **at**
+the player.

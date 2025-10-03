@@ -1,6 +1,8 @@
 ---
 title: Recipes for your Custom Items
-description: "Learn how to make custom crafting recipes for custom items in Minecraft Datapacks."
+description:
+  "Learn how to make custom crafting recipes for custom items in Minecraft
+  Datapacks."
 version: 1.21.8
 ---
 
@@ -13,15 +15,20 @@ before 1.20.5.
 
 ## 1.20.5 and newer
 
-This is the easier method of the two, only requiring you to put the item id and components into the recipe output.
+This is the easier method of the two, only requiring you to put the item id and
+components into the recipe output.
 
 :::info
-Note that there is currently no way to specify item components in the recipe's input items, only in the result.
-Meaning your custom item can't (easily) be crafted out of different custom items.
+
+Note that there is currently no way to specify item components in the recipe's
+input items, only in the result. Meaning your custom item can't (easily) be
+crafted out of different custom items.
+
 :::
 
-The instructions here will be very simple, requiring you to only create one file, that being the actual crafting recipe
-file. This file can be named whatever, but has to end in the `.json` file format.
+The instructions here will be very simple, requiring you to only create one
+file, that being the actual crafting recipe file. This file can be named
+whatever, but has to end in the `.json` file format.
 
 Here is an example of a recipe with the output of a custom item:
 
@@ -62,17 +69,19 @@ Here is an example of a recipe with the output of a custom item:
 }
 ```
 
-In the example, you can see that the result has a `"components"` field, where you can list the components that your
-custom item should have. I can also recommend a useful site for generating recipes with specified components:
+In the example, you can see that the result has a `"components"` field, where
+you can list the components that your custom item should have. I can also
+recommend a useful site for generating recipes with specified components:
 https://misode.github.io/recipe/
 
 ## 1.20.4 and below
 
-**This part of the guide assumes that you already knowledge some basic commands and how crafting recipes and
-advancements work.**
+**This part of the guide assumes that you already knowledge some basic commands
+and how crafting recipes and advancements work.**
 
-To create a crafting recipe for one of your custom items, you need just a little bit more than for a normal recipe. This
-is because of the fact that you couldn't use NBT in recipes before 1.20.5 dropped, so that's why we need a small
+To create a crafting recipe for one of your custom items, you need just a little
+bit more than for a normal recipe. This is because of the fact that you couldn't
+use NBT in recipes before 1.20.5 dropped, so that's why we need a small
 workaround.
 
 Lets create the recipe first:
@@ -99,11 +108,13 @@ Lets create the recipe first:
 }
 ```
 
-As mentioned before, we can't use the custom item as output, so we use the knowledge book as a placeholder.
+As mentioned before, we can't use the custom item as output, so we use the
+knowledge book as a placeholder.
 
-To switch the knowledge book with our custom item, we need an advancement to react when we craft the recipe. For this we
-use the `recipe_crafted` trigger. _With some trickery, here it is also possible to make the ingredients require certain
-nbt._
+To switch the knowledge book with our custom item, we need an advancement to
+react when we craft the recipe. For this we use the `recipe_crafted` trigger.
+_With some trickery, here it is also possible to make the ingredients require
+certain nbt._
 
 ```json:craft_scuteaxe.json
 {
@@ -121,8 +132,9 @@ nbt._
 }
 ```
 
-Lastly we have to make the actual function that handles the item switching. You can either use a `give` command or, what
-I recommend more, define the item in a separate loot table and then use the `loot` command.
+Lastly we have to make the actual function that handles the item switching. You
+can either use a `give` command or, what I recommend more, define the item in a
+separate loot table and then use the `loot` command.
 
 ```mcfunction:craft_scuteaxe.mcfunction
 clear @s knowledge_book
@@ -133,7 +145,10 @@ loot give @s loot <namespace>:<scuteaxe_item_loot_table>
 ```
 
 :::tip
-If you want to create more recipes, you can just copy, rename and configure all the files we've just created.
+
+If you want to create more recipes, you can just copy, rename and configure all
+the files we've just created.
+
 :::
 
 And that's it, you should now have a custom working recipe for your item.

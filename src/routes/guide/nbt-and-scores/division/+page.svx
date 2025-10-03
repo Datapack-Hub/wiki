@@ -5,12 +5,18 @@ version: 1.21.8
 ---
 
 # Division with floating points
-Typically, we can use `scoreboard players operation` to divide two numbers in Minecraft. However, this command will only output an integer. If the result of the division is a decimal number, it is always rounded down. To divide numbers with decimal points, we need to use a workaround:
+
+Typically, we can use `scoreboard players operation` to divide two numbers in
+Minecraft. However, this command will only output an integer. If the result of
+the division is a decimal number, it is always rounded down. To divide numbers
+with decimal points, we need to use a workaround:
+
 1. Multiply the dividend by a large factor of 10 (e.g `1000000`).
 2. Divide the numbers using `scoreboard players operation`.
 3. Store the result to a data storage, scaling it down by the same factor of 10.
 
 Here is an example of how to divide two arbitrary integer numbers:
+
 ```mcfunction
 # Define the numbers we want to divide (in this case, 10 / 3)
 scoreboard players set #dividend math 10
@@ -30,7 +36,9 @@ execute store result storage result minecraft:math float 0.000001 run scoreboard
 tellraw @a {"nbt":"result","storage":"temp"}
 ```
 
-Alternatively, you can scale by `1/n` to divide by `n`. For instance, if you want to divide by 2, you can scale by `1/2` which is `0.5`:
+Alternatively, you can scale by `1/n` to divide by `n`. For instance, if you
+want to divide by 2, you can scale by `1/2` which is `0.5`:
+
 ```mcfunction
 # Define the numbers we want to divide (in this case, 10 / 2)
 scoreboard players set #dividend math 10

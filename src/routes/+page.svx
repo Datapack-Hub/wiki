@@ -1,6 +1,9 @@
 ---
 title: Home
-description: "Welcome to the Datapack Wiki, a resource for everything related to Minecraft Datapacks. We've got guides, tutorials, and documentation to help you build your knowledge about data packs."
+description:
+  "Welcome to the Datapack Wiki, a resource for everything related to Minecraft
+  Datapacks. We've got guides, tutorials, and documentation to help you build
+  your knowledge about data packs."
 ---
 
 <script lang="ts">
@@ -9,17 +12,30 @@ import SearchBox from '$lib/sidebar/SearchBox.svelte';
 </script>
 
 # Welcome to the Datapack Wiki!
-Welcome to the Datapack Wiki, a resource for everything related to Minecraft Datapacks. This community-built wiki has got guides, tutorials, and documentation to help you create and modify Minecraft Datapacks.
+
+Welcome to the Datapack Wiki, a resource for everything related to Minecraft
+Datapacks. This community-built wiki has got guides, tutorials, and
+documentation to help you create and modify Minecraft Datapacks.
 
 <SearchBox />
 
 ## New to Minecraft Datapacks?
-Don't worry! You're in the right place. We've got a guide on [how to make a datapack](/guide/getting-started) for those of you with no or little experience. If you get stuck, don't hesitate to ask in our Discord Server. Pages on this wiki have been written with beginners in mind - you should have no trouble working through these resources.
+
+Don't worry! You're in the right place. We've got a guide on
+[how to make a datapack](/guide/getting-started) for those of you with no or
+little experience. If you get stuck, don't hesitate to ask in our Discord
+Server. Pages on this wiki have been written with beginners in mind - you should
+have no trouble working through these resources.
 
 ## What are Minecraft Datapacks?
-Minecraft Datapacks are like addons - they are a Minecraft feature that lets you customize Minecraft worlds without mods. They allow you to modify and enhance the game by adding new features and mechanics by using Minecraft commands, advancements, worldgen, and more!
+
+Minecraft Datapacks are like addons - they are a Minecraft feature that lets you
+customize Minecraft worlds without mods. They allow you to modify and enhance
+the game by adding new features and mechanics by using Minecraft commands,
+advancements, worldgen, and more!
 
 With datapacks, you can:
+
 - Add and modify custom recipes
 - Modify existing or create new loot tables
 - Add new advancements and enchantments
@@ -27,8 +43,15 @@ With datapacks, you can:
 - And much more!
 
 ## Contribute
-This project wouldn't be possible without the support of community members. We encourage you to contribute to this wiki if you want to write any pages, correct any mistakes, or share any of your knowledge!
 
-You can hit the `Edit` button on any page to open the GitHub page for the current wiki page. All our contributions are done via GitHub and are written in Markdown. For more information, find the Contribution section of this page, or read our contribution guide on our [GitHub repo](https://github.com/Datapack-Hub/wiki/).
+This project wouldn't be possible without the support of community members. We
+encourage you to contribute to this wiki if you want to write any pages, correct
+any mistakes, or share any of your knowledge!
+
+You can hit the `Edit` button on any page to open the GitHub page for the
+current wiki page. All our contributions are done via GitHub and are written in
+Markdown. For more information, find the Contribution section of this page, or
+read our contribution guide on our
+[GitHub repo](https://github.com/Datapack-Hub/wiki/).
 
 <Discord />

@@ -1,7 +1,11 @@
 ---
 title: How to Make a Minecraft Datapack - Beginner's Guide
 tags: guide, beginner, Minecraft, datapack, tutorial, step-by-step
-description: Learn how to create a Minecraft datapack with our beginner's guide. This step-by-step tutorial will help you understand the basics of datapack creation, even if you have little coding knowledge. Start enhancing your Minecraft experience today!
+description:
+  Learn how to create a Minecraft datapack with our beginner's guide. This
+  step-by-step tutorial will help you understand the basics of datapack
+  creation, even if you have little coding knowledge. Start enhancing your
+  Minecraft experience today!
 version: 1.21.8
 ---
 
@@ -10,53 +14,83 @@ import { Discord } from '$lib/reusables';
 </script>
 
 # How to make a Minecraft Datapack
-Datapacks are a Minecraft feature that lets you customize Minecraft worlds without mods. They allow you to modify and enhance the game by adding new features and mechanics by using Minecraft commands, advancements, worldgen, and more! This guide will walk you through the process of creating your first Minecraft datapack from scratch in the latest version.
+
+Datapacks are a Minecraft feature that lets you customize Minecraft worlds
+without mods. They allow you to modify and enhance the game by adding new
+features and mechanics by using Minecraft commands, advancements, worldgen, and
+more! This guide will walk you through the process of creating your first
+Minecraft datapack from scratch in the latest version.
 
 :::info
-If you don't know what datapacks are, then take this explanation. Datapacks are essentially add-ons to Minecraft
-which can change the game, whether by adding a simple game mechanic, or creating completely new experiences! The best
-part is that they're really easy to create, even if you have little coding knowledge
+
+If you don't know what datapacks are, then take this explanation. Datapacks are
+essentially add-ons to Minecraft which can change the game, whether by adding a
+simple game mechanic, or creating completely new experiences! The best part is
+that they're really easy to create, even if you have little coding knowledge
+
 :::
 
-This guide will help you to create your first datapack, whether you've never tried coding before or if you've got loads
-of experience. The process of coding a datapack is a bit different to other typical programs. By the end of this
-tutorial, you'll have made a simple datapack which makes **arrows explode when they land!**
+This guide will help you to create your first datapack, whether you've never
+tried coding before or if you've got loads of experience. The process of coding
+a datapack is a bit different to other typical programs. By the end of this
+tutorial, you'll have made a simple datapack which makes **arrows explode when
+they land!**
 
 ## Prerequisites
-Minecraft Datapacks basically just consist of text files inside folders. For this reason, you can *technically* make a datapack with just the default text editor and a file explorer. However, if you are able to, we **highly suggest** downloading a code editor such as Visual Studio Code. 
 
-With VS Code, you will be able to view errors in your datapack, autocomplete commands, and highlight syntax with different colours so that making datapacks isn't as painful as using Notepad.
+Minecraft Datapacks basically just consist of text files inside folders. For
+this reason, you can _technically_ make a datapack with just the default text
+editor and a file explorer. However, if you are able to, we **highly suggest**
+downloading a code editor such as Visual Studio Code.
+
+With VS Code, you will be able to view errors in your datapack, autocomplete
+commands, and highlight syntax with different colours so that making datapacks
+isn't as painful as using Notepad.
 
 - Download Visual Studio Code: https://code.visualstudio.com/download
-- Get the VS Code extensions for datapack development: https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack
+- Get the VS Code extensions for datapack development:
+  https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack
 
 :::info
-If you prefer not to download programs, then you can use a web version of Visual Studio Code which essentially has all the same features, except it can be slower or more difficult to work with. https://vscode.dev/
+
+If you prefer not to download programs, then you can use a web version of Visual
+Studio Code which essentially has all the same features, except it can be slower
+or more difficult to work with. https://vscode.dev/
+
 :::
 
 ## Setting up an empty datapack
+
 <!-- <b style="color: #2563eb;">Learn:</b> How to set up an empty datapack to start working in -->
 
-The first step when creating a datapack is to **make a new world** to test it in. Go ahead and do that now - make sure
-that your world has **cheats enabled** and it is set to **creative mode**. Once you've created the world, the next step
+The first step when creating a datapack is to **make a new world** to test it
+in. Go ahead and do that now - make sure that your world has **cheats enabled**
+and it is set to **creative mode**. Once you've created the world, the next step
 is to find and open your world folder:
 
 1. Save and quit your world
 2. Go to your world in the Singleplayer menu and hit "Edit"
 3. Press "Open World Folder"
 
-The folder that opens contains all the data in your Minecraft world. You should see that there's lots of other subfolders in
-this folder. Find the one which is called `datapacks`, and open it. This folder is where the world's datapacks are stored. 
-Create a folder - this will be the root folder of your datapack project. The name doesn't matter. 
-I'm just going to call it `Example Datapack`. **Open this new folder**. Inside this folder is where all the data starts from.
+The folder that opens contains all the data in your Minecraft world. You should
+see that there's lots of other subfolders in this folder. Find the one which is
+called `datapacks`, and open it. This folder is where the world's datapacks are
+stored. Create a folder - this will be the root folder of your datapack project.
+The name doesn't matter. I'm just going to call it `Example Datapack`. **Open
+this new folder**. Inside this folder is where all the data starts from.
 
 :::tip
-If you are using Visual Studio Code, at this point you should open it, find `Open Folder`, and open the newly created folder. Navigating through your datapack will be *so much easier*!
+
+If you are using Visual Studio Code, at this point you should open it, find
+`Open Folder`, and open the newly created folder. Navigating through your
+datapack will be _so much easier_!
 ![open folder location](https://i.postimg.cc/6ptvVNMj/image.png)
+
 :::
 
-The first file we want to create is the `pack.mcmeta` file. This file will tell Minecraft that the folder is a datapack,
-as well as holding the basic information of the pack. **Create `pack.mcmeta`, and put this inside it**:
+The first file we want to create is the `pack.mcmeta` file. This file will tell
+Minecraft that the folder is a datapack, as well as holding the basic
+information of the pack. **Create `pack.mcmeta`, and put this inside it**:
 
 ```json
 {
@@ -70,25 +104,32 @@ as well as holding the basic information of the pack. **Create `pack.mcmeta`, an
 If you're interested, here's what this file means:
 
 - `pack` is an object containing the metadata of the file.
-  - `description` is the name of your datapack, usually along with a short description of what your pack does.
-  - `pack_format` tells Minecraft what versions this datapack works in. `81` is the latest for 1.21.8
+  - `description` is the name of your datapack, usually along with a short
+    description of what your pack does.
+  - `pack_format` tells Minecraft what versions this datapack works in. `81` is
+    the latest for 1.21.8
 
 ## Writing your first function
 
 :::info
-What are functions? In short, functions are the majority of what makes up most datapacks. A function is a file
-containing Minecraft commands. When a function is ran, every command in the function is ran in order. Functions are
-always ran as an entity (or as the Server) and at a position
+
+What are functions? In short, functions are the majority of what makes up most
+datapacks. A function is a file containing Minecraft commands. When a function
+is ran, every command in the function is ran in order. Functions are always ran
+as an entity (or as the Server) and at a position
+
 :::
 
-Let's get started by writing one simple function. In
-traditional programming fashion, let's make a function which sends "Hello World" to chat.
+Let's get started by writing one simple function. In traditional programming
+fashion, let's make a function which sends "Hello World" to chat.
 
 1. Create a folder in your datapack called `data`.
-2. In the `data` folder, create a new folder. This folder is your **namespace** - it will contain all the data specific
-   to your datapack. Usually this needs to have a **unique name** (one which other people would not have picked), but
-   for this tutorial just call it `example`.
-3. In the `example` folder, create a folder called `function`. This folder will contain all the **mcfunction** files.
+2. In the `data` folder, create a new folder. This folder is your
+   **namespace** - it will contain all the data specific to your datapack.
+   Usually this needs to have a **unique name** (one which other people would
+   not have picked), but for this tutorial just call it `example`.
+3. In the `example` folder, create a folder called `function`. This folder will
+   contain all the **mcfunction** files.
 
 You should now have a folder structure that looks something like this:
 
@@ -97,14 +138,16 @@ You should now have a folder structure that looks something like this:
 ```
 
 :::warning
-In versions earlier than 1.21, the function folder should be called `functions`, due to some pesky name changes
-Mojang introduced in a recent update.
+
+In versions earlier than 1.21, the function folder should be called `functions`,
+due to some pesky name changes Mojang introduced in a recent update.
+
 :::
 
 Once you're sure that's correct, you can start writing the actual function.
 
-In the `function` folder, create an empty file called `hello_world.mcfunction`. Open this file with any text editor (we
-recommend Visual Studio Code)
+In the `function` folder, create an empty file called `hello_world.mcfunction`.
+Open this file with any text editor (we recommend Visual Studio Code)
 
 Inside `hello_world.mcfunction`, put the following:
 
@@ -116,8 +159,9 @@ title @s title "Hello World!"
 give @s diamond
 ```
 
-It's that simple! Once you **save that file**, **rejoin your world** and then run `/reload`, you should be able to use
-the following command to run the function:
+It's that simple! Once you **save that file**, **rejoin your world** and then
+run `/reload`, you should be able to use the following command to run the
+function:
 
 ```mcfunction
 /function example:hello_world
@@ -125,43 +169,53 @@ the following command to run the function:
 
 ## What's next?
 
-Now you know how to create a basic function and run it, we'll next start to think about how to create our project. For
-more advanced projects, this can sometimes be the most difficult part. Luckily for us, what we want to create won't be
-too difficult.
+Now you know how to create a basic function and run it, we'll next start to
+think about how to create our project. For more advanced projects, this can
+sometimes be the most difficult part. Luckily for us, what we want to create
+won't be too difficult.
 
-Let's break down the idea into smaller steps. Remember, we want to create a datapack which makes arrows explode.
+Let's break down the idea into smaller steps. Remember, we want to create a
+datapack which makes arrows explode.
 
-1. **Detect when an arrow lands on the ground**. We can do this by running a command on a loop which will select any
-   arrow on the ground and then run a function.
-2. **Create an explosion**. This is as simple as summoning a TNT at the position of the arrow.
-3. **Remove the arrow**. If you don't do this, then it will keep on exploding forever.
+1. **Detect when an arrow lands on the ground**. We can do this by running a
+   command on a loop which will select any arrow on the ground and then run a
+   function.
+2. **Create an explosion**. This is as simple as summoning a TNT at the position
+   of the arrow.
+3. **Remove the arrow**. If you don't do this, then it will keep on exploding
+   forever.
 
-The next steps of this guide will guide you through the typical process of each of those steps.
+The next steps of this guide will guide you through the typical process of each
+of those steps.
 
 ## Running functions on a loop
 
-The first step on our list is to detect arrows which land on the ground. To do this, we need to run a command on a loop.
-Luckily, Minecraft makes this pretty easy for us.
+The first step on our list is to detect arrows which land on the ground. To do
+this, we need to run a command on a loop. Luckily, Minecraft makes this pretty
+easy for us.
 
-Firstly, let's make the function which you want to run on a loop. In the `function` folder, create a new `mcfunction`
-file - call this one `loop.mcfunction`.
+Firstly, let's make the function which you want to run on a loop. In the
+`function` folder, create a new `mcfunction` file - call this one
+`loop.mcfunction`.
 
-For now, let's just make it say "Hi" every time it loops. You can do this by putting this in the new function:
+For now, let's just make it say "Hi" every time it loops. You can do this by
+putting this in the new function:
 
 ```mcfunction
 say Hi
 ```
 
-To make this function run on a loop, we need to create a JSON file which tells Minecraft "run this command every tick"
-(every tick = 20 times per second)
+To make this function run on a loop, we need to create a JSON file which tells
+Minecraft "run this command every tick" (every tick = 20 times per second)
 
 1. In the `data` folder, create the `minecraft` folder.
 2. In the `minecraft` folder, create a `tags` folder
 3. In the `tags` folder, create a `function` folder
 4. In the new `function` folder, create a new file: `tick.json`
 
-**`tick.json` is NOT a function**. In `tick.json`, we are going to put a **list of functions** which we want to run
-every tick. If you put any commands in tick.json, it will break your pack.
+**`tick.json` is NOT a function**. In `tick.json`, we are going to put a **list
+of functions** which we want to run every tick. If you put any commands in
+tick.json, it will break your pack.
 
 In `tick.json`, put the following:
 
@@ -172,31 +226,35 @@ In `tick.json`, put the following:
 ```
 
 - `values` is a list of function references which will be run on a loop.
-- `example:loop` is a reference to the `loop.mcfunction` file we created earlier. `example` refers to the namespace (the
-  folder in `data`), and `loop` refers to the mcfunction file name.
+- `example:loop` is a reference to the `loop.mcfunction` file we created
+  earlier. `example` refers to the namespace (the folder in `data`), and `loop`
+  refers to the mcfunction file name.
 
-If you save this file, go back to your world, and run `/reload`, you should see that the chat is being spammed with "Hi"
-over and over again!
+If you save this file, go back to your world, and run `/reload`, you should see
+that the chat is being spammed with "Hi" over and over again!
 
 ## Selecting the arrows
 
-Now we've created a function which will run infinitely on a loop, we can move on to detecting when an arrow is in the
-ground.
+Now we've created a function which will run infinitely on a loop, we can move on
+to detecting when an arrow is in the ground.
 
-As far as the game is concerned, an arrow is an **entity**, just like a pig, cow or zombie. Minecraft gives us a special
-way to **select** any types of entities with [target selectors](/wiki/concepts/target-selectors). Once we've selected an
-entity, we can use the [/execute](/wiki/command/execute) command to run a command as the entity.
+As far as the game is concerned, an arrow is an **entity**, just like a pig, cow
+or zombie. Minecraft gives us a special way to **select** any types of entities
+with [target selectors](/wiki/concepts/target-selectors). Once we've selected an
+entity, we can use the [/execute](/wiki/command/execute) command to run a
+command as the entity.
 
-We can use these to select all arrows which are in the ground, and then run a command to make them explode (and then
-remove themselves).
+We can use these to select all arrows which are in the ground, and then run a
+command to make them explode (and then remove themselves).
 
-As mentioned, to select an entity, we need to use a target selectors. I'm going to teach you a bit about target
-selectors. You should pay attention here, but if you only want the code, scroll past this section.
+As mentioned, to select an entity, we need to use a target selectors. I'm going
+to teach you a bit about target selectors. You should pay attention here, but if
+you only want the code, scroll past this section.
 
 ### What are target selectors?
 
-Target selectors are a special bit of code we can use to find an entity in the world. They all start with an `@` symbol.
-There are 6 base target selectors:
+Target selectors are a special bit of code we can use to find an entity in the
+world. They all start with an `@` symbol. There are 6 base target selectors:
 
 | Target Selector | Description                                                                                                                                                                |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -207,14 +265,17 @@ There are 6 base target selectors:
 | `@p`            | **Nearest Player** - This selects the nearest player to the position this command is ran from.                                                                             |
 | `@n`            | **Nearest Entity** - This selects the nearest entity (player or non-player) to the position this command is ran from.                                                      |
 
-On it's own, a base target selector (like in the table) does not do much. We can narrow down the selection even more by
-using criteria. Criteria are put in square brackets after the base selector.
+On it's own, a base target selector (like in the table) does not do much. We can
+narrow down the selection even more by using criteria. Criteria are put in
+square brackets after the base selector.
 
-For example, we can use `@e` with a `type` criteria to select all entities of a certain type - for example,
-`@e[type=minecraft:cow]` would select all cow entities.
+For example, we can use `@e` with a `type` criteria to select all entities of a
+certain type - for example, `@e[type=minecraft:cow]` would select all cow
+entities.
 
 I'm not going to explain every single criteria you can use - you can view a list
-[here](/wiki/concepts/target-selectors#additional-arguments). These are the basic ones which you might see quite often:
+[here](/wiki/concepts/target-selectors#additional-arguments). These are the
+basic ones which you might see quite often:
 
 | Criteria                 | Description                                                                                                                                                                                                                                                      |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -225,37 +286,41 @@ I'm not going to explain every single criteria you can use - you can view a list
 
 ### How are we going to use them?
 
-We can use these selectors to only select arrows which are in the ground. We can select all arrows with
-`@e[type=arrow]`, but this will also include arrows in the air. To select arrows in the ground, we can check if they
-have the data `{inGround:1b}`, so we would use `@e[type=arrow,nbt={inGround:1b}]`
+We can use these selectors to only select arrows which are in the ground. We can
+select all arrows with `@e[type=arrow]`, but this will also include arrows in
+the air. To select arrows in the ground, we can check if they have the data
+`{inGround:1b}`, so we would use `@e[type=arrow,nbt={inGround:1b}]`
 
-This target selector can be used in an `execute` command to run a command as the entity. Try putting this in your
-`loop.mcfunction`:
+This target selector can be used in an `execute` command to run a command as the
+entity. Try putting this in your `loop.mcfunction`:
 
 ```mcfunction:loop.mcfunction
 execute as @e[type=arrow,nbt={inGround:1b}] at @s run say I'm an arrow, I'm in the ground!
 ```
 
-Reload your datapack and fire an arrow at at a block. You should see that your chat is spammed with messages, meaning
-that we successfully selected arrows in the ground, and executed a command as them!
+Reload your datapack and fire an arrow at at a block. You should see that your
+chat is spammed with messages, meaning that we successfully selected arrows in
+the ground, and executed a command as them!
 
 ## Make it go boom
 
-Now we can move onto the fun part! We have a simple command which will run another command as any arrow in the ground.
-We only need to do two things with this command:
+Now we can move onto the fun part! We have a simple command which will run
+another command as any arrow in the ground. We only need to do two things with
+this command:
 
 - Spawn an explosion at the position of the arrow
 - Kill the arrow so that it only explodes once
 
-To create an explosion in Minecraft, we can simply summon a TNT entity. When a TNT entity is summoned, it will explode
-instantly.
+To create an explosion in Minecraft, we can simply summon a TNT entity. When a
+TNT entity is summoned, it will explode instantly.
 
 ```mcfunction
 execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt
 ```
 
-Then, we just need to copy this command and make it kill the arrow after the explosion has happened. This is as simple
-as it sounds - we can use `/kill` to remove the arrow. Your finished `loop.mcfunction` should look like this:
+Then, we just need to copy this command and make it kill the arrow after the
+explosion has happened. This is as simple as it sounds - we can use `/kill` to
+remove the arrow. Your finished `loop.mcfunction` should look like this:
 
 ```mcfunction:loop.mcfunction
 execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt
@@ -263,17 +328,23 @@ kill @e[type=arrow,nbt={inGround:1b}]
 ```
 
 :::info
-In reality, this method isn't the best one to use. Instead of having two commands for this, you can just execute
-a function as the arrow which will summon the TNT at @s's position, and then kill @s. By only using the @e selector once
-and then referring to @s, you remove extra stress from the computer. For now, it doesn't matter - this guide is designed
-to give you a better idea of the logic rather than the little details.
+
+In reality, this method isn't the best one to use. Instead of having two
+commands for this, you can just execute a function as the arrow which will
+summon the TNT at @s's position, and then kill @s. By only using the @e selector
+once and then referring to @s, you remove extra stress from the computer. For
+now, it doesn't matter - this guide is designed to give you a better idea of the
+logic rather than the little details.
+
 :::
 
-You're done! Once you `/reload` your pack, you should be free to play around with a simple exploding arrows datapack
-which you made with the help of this tutorial. Take a break to play around with it - you deserve one!
+You're done! Once you `/reload` your pack, you should be free to play around
+with a simple exploding arrows datapack which you made with the help of this
+tutorial. Take a break to play around with it - you deserve one!
 
-And when you want to move on to other datapack ideas you might have, feel free to join our Discord server for extra
-support from our team of helpers. We're more than happy to help you on your journey to creating awesome Minecraft
+And when you want to move on to other datapack ideas you might have, feel free
+to join our Discord server for extra support from our team of helpers. We're
+more than happy to help you on your journey to creating awesome Minecraft
 datapacks!
 
 <Discord />

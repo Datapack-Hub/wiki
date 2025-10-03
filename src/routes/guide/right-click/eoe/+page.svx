@@ -1,21 +1,35 @@
 ---
 title: Using an Eye of Ender for RC detection
-description: "An intresting right click detection method for sure, due to the fact that it can only be used in worlds without strongholds!"
+description:
+  "An intresting right click detection method for sure, due to the fact that it
+  can only be used in worlds without strongholds!"
 version: 1.21.8
 ---
 
 # Eye of Ender Right Click Detection
 
 :::warning
-This only works in world without strongholds, if you don't want that, you can either use a similiar method that works everywhere (using the Food Component method) or do some chnages to these functions, as specified at the end of this guide.
+
+This only works in world without strongholds, if you don't want that, you can
+either use a similiar method that works everywhere (using the Food Component
+method) or do some chnages to these functions, as specified at the end of this
+guide.
+
 :::
 
-Eye of ender items can be used to detect right clicks in Minecraft. Similarly to the Carrot on a Stick method, we can detect when an eye of ender item is being used by the player as a result of right clicking it.
+Eye of ender items can be used to detect right clicks in Minecraft. Similarly to
+the Carrot on a Stick method, we can detect when an eye of ender item is being
+used by the player as a result of right clicking it.
 
-Unlike the Carrot on a Stick method, this method will be trigger every tick that right click is being held, instead of just once when right click is pressed.
+Unlike the Carrot on a Stick method, this method will be trigger every tick that
+right click is being held, instead of just once when right click is pressed.
 
 ## Method
-To detect when an eye of ender is being used, you must create a `using_item` advancement, and specify the item data you want to trigger the advancement. Then, you can specify a reward function which will be run when the advancement is triggered.
+
+To detect when an eye of ender is being used, you must create a `using_item`
+advancement, and specify the item data you want to trigger the advancement.
+Then, you can specify a reward function which will be run when the advancement
+is triggered.
 
 ```json:used_eye_of_ender.json
 {
@@ -40,7 +54,10 @@ To detect when an eye of ender is being used, you must create a `using_item` adv
 }
 ```
 
-In the function (in this case, `/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands that you want to run when the item is clicked. Make sure that this function also **revokes the advancement** so that it can be triggered again next tick.
+In the function (in this case,
+`/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands
+that you want to run when the item is clicked. Make sure that this function also
+**revokes the advancement** so that it can be triggered again next tick.
 
 ```mcfunction:rightclick_run.mcfunction
 # Revoke the advancement from the player so it can be used again
@@ -50,4 +67,6 @@ advancement revoke @s only <namespace>:used_eye_of_ender
 say I successfully used EoE detection!
 ```
 
-If you want this method to work in worlds with strongholds, you can either block the target of ender eyes in the `pack.mcmeta` or killing the eye and giving it back after it being used.
+If you want this method to work in worlds with strongholds, you can either block
+the target of ender eyes in the `pack.mcmeta` or killing the eye and giving it
+back after it being used.

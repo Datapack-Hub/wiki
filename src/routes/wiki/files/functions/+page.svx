@@ -13,19 +13,22 @@ Functions are files essentially containing a list of Minecraft commands. Functio
 located in the `data/<namespace>/function` folder. Functions can be called (ran) using the `function` command. (See
 [/function](/wiki/command/function) for more information)
 
-The `function` folder can contain sub-folders for organisation. This changes their reference accordingly - for example,
-a function located at `data/<namespace>/function/sub_folder/my_func.mcfunction` would be called using
+The `function` folder can contain sub-folders for organisation. This changes
+their reference accordingly - for example, a function located at
+`data/<namespace>/function/sub_folder/my_func.mcfunction` would be called using
 `function <namespace>:sub_folder/my_func`.
 
-When a function is run, the commands within it are executed in order. If the `return` command is run, the function stops
-executing immediately and any commands after the return are ignored.
+When a function is run, the commands within it are executed in order. If the
+`return` command is run, the function stops executing immediately and any
+commands after the return are ignored.
 
-Any line in a function which starts with a `#` is a **comment**, and the game ignores it. Any other line is interpreted
-as a command
+Any line in a function which starts with a `#` is a **comment**, and the game
+ignores it. Any other line is interpreted as a command
 
 ### Example
 
-This function will give every player an apple, then tell them to enjoy the apple.
+This function will give every player an apple, then tell them to enjoy the
+apple.
 
 ```mcfunction
 # Give a player the apple
@@ -37,16 +40,18 @@ say Enjoy the apple!
 
 ## Macro functions
 
-Macros can dynamically change part of a function by inserting NBT into it. Any function can define a macro within it. A
-macro is a command beginning with `$`. Macros can use a special syntax: `$(<argument>)`. This will substitute for any
+Macros can dynamically change part of a function by inserting NBT into it. Any
+function can define a macro within it. A macro is a command beginning with `$`.
+Macros can use a special syntax: `$(<argument>)`. This will substitute for any
 value provided as `<argument>` when run.
 
-The `/function` command can specify a NBT compound to use as the macro values. In traditional programming, this is best
-represented as `someFunction(foo, bar)`
+The `/function` command can specify a NBT compound to use as the macro values.
+In traditional programming, this is best represented as `someFunction(foo, bar)`
 
 ### Example
 
-In this example, we write a function that gives the player a number of diamonds using a macro.
+In this example, we write a function that gives the player a number of diamonds
+using a macro.
 
 ```mcfunction:macro.mcfunction
 # When called, $(count) will be replaced with some number, producing a valid command

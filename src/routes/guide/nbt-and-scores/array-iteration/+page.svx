@@ -1,26 +1,38 @@
 ---
 title: Array Iteration
-description: This guide explains how to loop through an array's items in a Minecraft datapack
+description:
+  This guide explains how to loop through an array's items in a Minecraft
+  datapack
 version: 1.21.8
 ---
 
 # Array Iteration
-Array Iteration allows us to loop through an array and do something with each item individually (for example, add every item in an array, output each array item individually, modify all elements in an array, combine strings in an array, etc.)
+
+Array Iteration allows us to loop through an array and do something with each
+item individually (for example, add every item in an array, output each array
+item individually, modify all elements in an array, combine strings in an array,
+etc.)
 
 ## Method
+
 For this guide, imagine our array is defined with the following:
+
 ```mcfunction
 data modify storage minecraft:example ExampleArray set value ["Array Item 1", "Array Item 2", "Array Item 3"]
 ```
 
 The steps to iterate through the array are:
+
 1. Store the length of the array in a score.
-2. Do something with the first element in the array (`array[0]`) - you can either just read the element, or modify it.
-3. Copy the first element to the end of the array, then remove the first element.
+2. Do something with the first element in the array (`array[0]`) - you can
+   either just read the element, or modify it.
+3. Copy the first element to the end of the array, then remove the first
+   element.
 4. Decrease the length score by 1.
 5. If the length score is 1 or more, repeat from step 2 until it isn't.
 
-First, we need a function which will begin the process. This is where we do step 1 and then run the loop function:
+First, we need a function which will begin the process. This is where we do step
+1 and then run the loop function:
 
 ```mcfunction:array_start.mcfunction
 # Get the length of the array, and store it in a fake player in a scoreboard
@@ -31,7 +43,9 @@ execute store result $length <objective> run data get storage minecraft:example 
 execute if score $length <objective> matches 1.. run function <namespace>:array_loop
 ```
 
-In the `array_loop` function, you can do whatever you want to the array item, including modifying it. In this example, we will send the array item to chat, and then replace it with `"Iterated"`.
+In the `array_loop` function, you can do whatever you want to the array item,
+including modifying it. In this example, we will send the array item to chat,
+and then replace it with `"Iterated"`.
 
 ```mcfunction:array_loop.mcfunction
 # We can access the current array item with "storage minecraft:example ExampleArray[0]"
@@ -54,6 +68,7 @@ execute if score $length <objective> matches 1.. run function <namespace>:array_
 ```
 
 The chat output should be as follows:
+
 ```mcfunction
 Array Item 1
 Array Item 2

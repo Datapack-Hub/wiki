@@ -6,23 +6,30 @@ version: 1.21.8
 
 # How to add custom paintings
 
-By the end of this guide, you will be able to implement your own custom paintings, which will show up in the creative inventory.
+By the end of this guide, you will be able to implement your own custom
+paintings, which will show up in the creative inventory.
 
-This will only work in 1.21+, as custom painting variants were added in the snapshot 24w18a. 
-:::info 
-This guide requires you
-to have at least a small understanding of datapacks. If you don't understand this guide, you can read the [Getting Started
-guide](/guide/getting-started). 
+This will only work in 1.21+, as custom painting variants were added in the
+snapshot 24w18a.
+
+:::info
+
+This guide requires you to have at least a small understanding of datapacks. If
+you don't understand this guide, you can read the
+[Getting Started guide](/guide/getting-started).
+
 :::
 
 ## Setting up the datapack
 
-To start you will need a basic datapack, if you don't know how to make one, see the
-[Getting Started](/guide/getting-started) guide.
+To start you will need a basic datapack, if you don't know how to make one, see
+the [Getting Started](/guide/getting-started) guide.
 
-Firstly, we are going to create the main painting variant file in the directory `data/<namespace>/painting_variant/`.
-You can name the file whatever you want, but it has to be in the `.json` file format. For the purposes of this tutorial, we're
-going to call it `example_painting.json`. Inside, we will put and configure these settings:
+Firstly, we are going to create the main painting variant file in the directory
+`data/<namespace>/painting_variant/`. You can name the file whatever you want,
+but it has to be in the `.json` file format. For the purposes of this tutorial,
+we're going to call it `example_painting.json`. Inside, we will put and
+configure these settings:
 
 ```json:example_painting.json
 {
@@ -35,16 +42,26 @@ going to call it `example_painting.json`. Inside, we will put and configure thes
 ```
 
 This is a run-down of the fields in that file:
+
 - `title`: A text component to use as this paintings title.
 - `author`: A text component to use as this paintings author.
-- `height`: A value between 1 and 16, represents the height of the painting when placed.
-- `width`: A value between 1 and 16, represents the width of the painting when placed.
-- `asset_id`: The resource location of the paintings texture to use. In this example, `example:texture_name` would direct to `assets/example/textures/painting/texture_name.png`.
+- `height`: A value between 1 and 16, represents the height of the painting when
+  placed.
+- `width`: A value between 1 and 16, represents the width of the painting when
+  placed.
+- `asset_id`: The resource location of the paintings texture to use. In this
+  example, `example:texture_name` would direct to
+  `assets/example/textures/painting/texture_name.png`.
 
-If you are not sure what to put in `asset_id`, don't worry, the resource pack part is going to focus on that!
+If you are not sure what to put in `asset_id`, don't worry, the resource pack
+part is going to focus on that!
 
-To finish with the datapack, we are going to have to add the newly created painting into Minecraft's `#minecraft:placeable` painting variant tag. This will allow the painting to be placed via the Painting item, and to be added to the creative inventory.
-To do this, create a new file called `placeable.json` under `data/minecraft/tags/painting_variant/placeable.json`. Please note that the exact spelling and the use of the Minecraft namespace is required here!
+To finish with the datapack, we are going to have to add the newly created
+painting into Minecraft's `#minecraft:placeable` painting variant tag. This will
+allow the painting to be placed via the Painting item, and to be added to the
+creative inventory. To do this, create a new file called `placeable.json` under
+`data/minecraft/tags/painting_variant/placeable.json`. Please note that the
+exact spelling and the use of the Minecraft namespace is required here!
 
 ```json:placeable.json
 {
@@ -56,17 +73,29 @@ To do this, create a new file called `placeable.json` under `data/minecraft/tags
 
 ## Finish off with the Resource Pack
 
-Lastly, we are going to add the actual painting texture file. This has to be placed in `assets/example/textures/painting/<example_painting-texture>.png` This texture, of course, has to have the same dimensions as the width and height you previously entered into the painting variant definition file.
+Lastly, we are going to add the actual painting texture file. This has to be
+placed in `assets/example/textures/painting/<example_painting-texture>.png` This
+texture, of course, has to have the same dimensions as the width and height you
+previously entered into the painting variant definition file.
 
-Optionally, you can change the author and title in the datapack definition to use a resourcepack translation file. Which can be added into `assets/example/lang/<language_code>.json` under `"painting.<namespace>.example_painting.<author or title>"`.
+Optionally, you can change the author and title in the datapack definition to
+use a resourcepack translation file. Which can be added into
+`assets/example/lang/<language_code>.json` under
+`"painting.<namespace>.example_painting.<author or title>"`.
 
 ## See it in action
 
-Once you save the above files, you need to reload the resource pack with the keybind **F3 + T**
-in-game. You will also need to leave and rejoin the world to update the datapack.
+Once you save the above files, you need to reload the resource pack with the
+keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
+update the datapack.
 
 :::warning
-For this to work, you will need to leave and rejoin the world, just using the `/reload` command won't do the trick here!
+
+For this to work, you will need to leave and rejoin the world, just using the
+`/reload` command won't do the trick here!
+
 :::
 
-You can either get the painting by using the normal painting item and placing it into a 1x1 spot, or by searching for "Example Painting" in the creative inventory.
+You can either get the painting by using the normal painting item and placing it
+into a 1x1 spot, or by searching for "Example Painting" in the creative
+inventory.

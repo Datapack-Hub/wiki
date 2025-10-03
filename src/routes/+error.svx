@@ -9,5 +9,5 @@
 </script>
 
 # Error {page.status}: {page.error?.message}
-{messages.get(page.status)}
-<Discord />
+
+{messages.get(page.status)} <Discord />

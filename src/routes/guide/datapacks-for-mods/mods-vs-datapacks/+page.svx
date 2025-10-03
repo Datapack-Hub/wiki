@@ -1,13 +1,17 @@
 ---
 title: MCFunction vs Coding
-description: "Learn the differences between using MCFunctions and traditional coding."
+description:
+  "Learn the differences between using MCFunctions and traditional coding."
 version: 1.21.8
 ---
 
 # Mods vs Datapacks
 
-Mods and datapacks are two commonly confused topics in Minecraft, and knowing the difference between them could help you
-decide which better fits your use case. While both mods and datapacks extend Minecraft's capabilities, mods generally offer more control and customization, while datapacks are more integrated with the base game and rely on the server environment.
+Mods and datapacks are two commonly confused topics in Minecraft, and knowing
+the difference between them could help you decide which better fits your use
+case. While both mods and datapacks extend Minecraft's capabilities, mods
+generally offer more control and customization, while datapacks are more
+integrated with the base game and rely on the server environment.
 
 ## What is a mod?
 
@@ -17,52 +21,76 @@ and datapacks. _For the remainder of this guide, when you read mod, we will be r
 
 ## Datapacks
 
-Datapacks are extensions to vanilla features and are officially supported by Mojang Studios. Datapacks are becoming
-increasingly powerful with the advent of new data-driven features, commands and technical additions such as interactions
-or block displays. For these reasons, datapacks make an excellent addition for a vanilla server or even some modded servers, who don't want to worry about incompatibilities or dealing with broken plugins/mods.
+Datapacks are extensions to vanilla features and are officially supported by
+Mojang Studios. Datapacks are becoming increasingly powerful with the advent of
+new data-driven features, commands and technical additions such as interactions
+or block displays. For these reasons, datapacks make an excellent addition for a
+vanilla server or even some modded servers, who don't want to worry about
+incompatibilities or dealing with broken plugins/mods.
 
 Datapacks can be used to define custom world generation, [advancements](/wiki/files/advancements), enchantments, loot
 tables, [recipes](/wiki/files/recipes) and many contain [command functions](/wiki/files/functions); small scripts which run Minecraft commands (with some small caveats). Datapacks use these functions to create unique mod-like features or add interactivity in maps. Many impressive datapacks can be so well made they are confused for mods, which is
 where some of the confusion between them and mods stem from.
 
-Due to how they work, datapacks can be more limited compared to mods. New features have to be added by Mojang themselves
-before they can be used in datapacks and many custom features such as custom entities and custom blocks have yet to be
-implemented. In addition to this, _anything_ that requires the Minecraft client such as rendering changes or key input
-is not possible, as datapacks are installed on the server/world.
+Due to how they work, datapacks can be more limited compared to mods. New
+features have to be added by Mojang themselves before they can be used in
+datapacks and many custom features such as custom entities and custom blocks
+have yet to be implemented. In addition to this, _anything_ that requires the
+Minecraft client such as rendering changes or key input is not possible, as
+datapacks are installed on the server/world.
 
 ## Mod
 
-Mods are unofficial changes to the game's code using Java and in most cases a mod loader such as Fabric, Forge, NeoForge, etc.
-__Mods are not supported by Mojang Studios.__ Mods allow you to do anything you want with the game on both the client and the server.
-They give you full control of everything in the game from game rendering, to blocks, to key input, to even networking. They allow for
+Mods are unofficial changes to the game's code using Java and in most cases a
+mod loader such as Fabric, Forge, NeoForge, etc. **Mods are not supported by
+Mojang Studios.** Mods allow you to do anything you want with the game on both
+the client and the server. They give you full control of everything in the game
+from game rendering, to blocks, to key input, to even networking. They allow for
 much more complex interactions with some minor caveats.
 
 :::warning
-Do not install mods from suspicious sources, as they have near full access to anything on your computer including sensitive files.
 
-Always download from a reputable distributor such as [Modrinth](https://modrinth.com/mods) or [CurseForge](https://www.curseforge.com/minecraft/)!
+Do not install mods from suspicious sources, as they have near full access to
+anything on your computer including sensitive files.
+
+Always download from a reputable distributor such as
+[Modrinth](https://modrinth.com/mods) or
+[CurseForge](https://www.curseforge.com/minecraft/)!
+
 :::
 
 :::info
-Mods can include data and asset files alongside code. This includes shipping model/texture files in the resource pack format, recipe files in the datapack format, and more.
+
+Mods can include data and asset files alongside code. This includes shipping
+model/texture files in the resource pack format, recipe files in the datapack
+format, and more.
 
 In some cases, mods can simply be datapacks in a specially formatted JAR file!
+
 :::
 
-Mods that add blocks or unique interactions can only be used on servers if everyone on the server uses the required mods, which can be hard to manage especially with larger packs. Mods can also be harder to debug and troubleshoot, especially if they utilize parts of Minecraft's obfuscated code. A strength of datapacks is that anyone can join a server that uses them since they are fully vanilla.
+Mods that add blocks or unique interactions can only be used on servers if
+everyone on the server uses the required mods, which can be hard to manage
+especially with larger packs. Mods can also be harder to debug and troubleshoot,
+especially if they utilize parts of Minecraft's obfuscated code. A strength of
+datapacks is that anyone can join a server that uses them since they are fully
+vanilla.
 
 ## Summary of Differences
 
-As you may have read, datapacks and mods are very different and can be used for very different use cases. Below we've summarized some of the important points into a handy-dandy list!
+As you may have read, datapacks and mods are very different and can be used for
+very different use cases. Below we've summarized some of the important points
+into a handy-dandy list!
 
-|Mods|Datapacks|
-|---|---|
-|Allow for full control over all of Minecraft's code|Modify the base systems of the game|
-|Can contain datapacks in the form of data folders|May contain command functions along with system modifications such as recipes or world generation|
-|Full control over everything in game/server and out of game (could be a security risk)|Limited to server-side changes of game mechanics, malicious datapacks are much safer than malicious mods|
-|Generally faster and can improve game and server performance due to high level of control|Generally slower but more lightweight and less resource hungry|
-|Ideal for modifying the game in ways datapacks cannot (e.g custom blocks, new mobs) or adding new mechanics/systems|Ideal for small mods that modify existing systems, "vanilla" looking mods and map making|
-|Server owners must verify mod compatibility between clients|Any client can use datapacks, making them easy to manage|
-|May require some knowledge of Java to use and debug effectively|In most cases, easier to debug|
+| Mods                                                                                                                | Datapacks                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Allow for full control over all of Minecraft's code                                                                 | Modify the base systems of the game                                                                      |
+| Can contain datapacks in the form of data folders                                                                   | May contain command functions along with system modifications such as recipes or world generation        |
+| Full control over everything in game/server and out of game (could be a security risk)                              | Limited to server-side changes of game mechanics, malicious datapacks are much safer than malicious mods |
+| Generally faster and can improve game and server performance due to high level of control                           | Generally slower but more lightweight and less resource hungry                                           |
+| Ideal for modifying the game in ways datapacks cannot (e.g custom blocks, new mobs) or adding new mechanics/systems | Ideal for small mods that modify existing systems, "vanilla" looking mods and map making                 |
+| Server owners must verify mod compatibility between clients                                                         | Any client can use datapacks, making them easy to manage                                                 |
+| May require some knowledge of Java to use and debug effectively                                                     | In most cases, easier to debug                                                                           |
 
-If you would like to learn [how to install datapacks](/guide/installing-a-datapack), see our guide!
+If you would like to learn
+[how to install datapacks](/guide/installing-a-datapack), see our guide!

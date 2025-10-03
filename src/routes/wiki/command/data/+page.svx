@@ -1,6 +1,8 @@
 ---
 title: /data
-description: "The data command is used to modify and fetch NBT data of blocks, entities and storages."
+description:
+  "The data command is used to modify and fetch NBT data of blocks, entities and
+  storages."
 version: 1.21.8
 ---
 
@@ -8,10 +10,14 @@ version: 1.21.8
 The `/data` command is used to modify and fetch NBT data of [blocks](/wiki/nbt-scoreboards/block-nbt), [entities](/wiki/nbt-scoreboards/entity-nbt) and [storages](/wiki/nbt-scoreboards/nbt#nbt-storages).
 
 :::warning
-Player data cannot be modified using commands. All subcommands fail when trying to modify player data.
+
+Player data cannot be modified using commands. All subcommands fail when trying
+to modify player data.
+
 :::
 
 ## Subcommands
+
 ### `get <source> [path] [scale]`
 Gets the data from a data source, and a `path`, if specified. Multiplies the resulting value by `scale`, if specified.  
 `source` is a [data source](#data-source), `path` is an [nbt path](/wiki/nbt-scoreboards/nbt#nbt-paths) and `scale` is a number.  
@@ -20,15 +26,17 @@ If `scale` is set, and the data at that path it not a number, the command fails.
 After fetching the NBT at the path, if it exists, it prints the data in [SNBT](/wiki/nbt-scoreboards/nbt#snbt-format) format in the chat. Therefore, its main use is manually inspecting NBT data. However, it also returns the integer representation <!-- TODO: we probably want to explain ths somewhere --> of the fetched data, so it can be used in combination with `execute store` or `return run` to convert NBT into an integer.
 
 #### Examples
-`data get entity @s SelectedItem.id`
-`data get block ~ ~ ~ Items`
+
+`data get entity @s SelectedItem.id` `data get block ~ ~ ~ Items`
 
 ### `merge <target> <nbt>`
+
 [Merges](#data-merging) data with the given data source.  
 `target` is a [data source](#data-source) and `nbt` is an [SNBT compound](/wiki/nbt-scoreboards/nbt#snbt-format).  
 This command fails if the given entity or block does exist, or if the block is not a block entity and cannot hold NBT data. However, if the data source is a storage, and that storage does no exist yet, the storage is automatically created. 
 
 #### Examples
+
 `data merge entity @n[type=creeper] {Fuse: 10s, ignited: true, ExplosionRadius: 8}`
 `data merge storage example:data {a: 1, b: "b", c: [41b, 0b]}`
 
@@ -49,7 +57,10 @@ If the index specified would cause the inserted item to be further than one afte
 Inserting creates list if it doesn't exist in the same way as `append`.
 
 #### `merge`
-[Merges](#data-merging) `source` into `target` at `path`. This is similar to `data merge`, but allows modifying a sub-path of a data source, and allows merging from more than just hardcoded NBT values.
+
+[Merges](#data-merging) `source` into `target` at `path`. This is similar to
+`data merge`, but allows modifying a sub-path of a data source, and allows
+merging from more than just hardcoded NBT values.
 
 #### `prepend`
 Prepends an NBT value to a [list or a typed array](/wiki/nbt-scoreboards/nbt#listsarrays), making the value the first element.  
@@ -57,15 +68,22 @@ Lists are created in the same wat as `append`.
 This is equivalent to `data modify ... insert -1 ...`.
 
 #### `set`
-Sets the value of `target` at `path`, discarding any previously present value. This will create keys in a compound if not present, but cannot be used to add elements to an array or list, only modify existing ones.  
+
+Sets the value of `target` at `path`, discarding any previously present value.
+This will create keys in a compound if not present, but cannot be used to add
+elements to an array or list, only modify existing ones.  
 `set` can create a chain of nested compounds if they don't already exist.  
-For example, if the storage `example:main` does not yet exist, after the following command:
+For example, if the storage `example:main` does not yet exist, after the
+following command:
+
 ```mcfunction
 data modify storage example:main a.b.c.d set value 10
 ```
+
 The `example:main` storage looks like this: `{a: {b: {c: {d: 10}}}}`.
 
 #### `source`
+
 `source` determines the value modifying `target`. It can be one of:
 
 - `value <value>` - Gets the value from an [SNBT literal](/wiki/nbt-scoreboards/nbt#snbt-format).
@@ -77,25 +95,34 @@ Removes the NBT data from `source` at `path`. `source` is a [data source](#data-
 This deletes compound keys, and removes array and list elements, shifting proceeding elements left. It cannot, however, be used to delete an entire storage using the special `{}` path; only single keys of the root storage.
 
 :::tip
-If you would like to be able to remove an entire storage in one go, put all your NBT data in a sub-path of it, for example:
+
+If you would like to be able to remove an entire storage in one go, put all your
+NBT data in a sub-path of it, for example:
+
 ```mcfunction
 data modify storage example:main temp.a set value 1
 data modify storage example:main temp.b set value 2
 # Removes both keys
 data remove storage example:main temp
 ```
+
 :::
 
 ## Data source
+
 The place to get data from or store data to. One of:
 - `entity <selector>` - The [NBT of an entity](/wiki/nbt-scoreboards/entity-nbt).
 - `block <pos>` - The [NBT of a block entity](/wiki/nbt-scoreboards/block-nbt).
 - `storage <name>` - The NBT from a [data storage](/wiki/nbt-scoreboards/nbt#nbt-storages).
 
 ## Data merging
-Data merging is a process of merging two data values into one another.  
-There are two values: The left side and the right side. The left side is the base of the operation, with the right being merged into the left. 
 
-If both sides of the operation are compounds, each key of the right compound is merged into the matching key of the left compound. If the key does not exist in the left compound, it is created and set to the value of the right.
+Data merging is a process of merging two data values into one another.  
+There are two values: The left side and the right side. The left side is the
+base of the operation, with the right being merged into the left.
+
+If both sides of the operation are compounds, each key of the right compound is
+merged into the matching key of the left compound. If the key does not exist in
+the left compound, it is created and set to the value of the right.
 
 If both sides are not a compound, the left is simply set to the right.

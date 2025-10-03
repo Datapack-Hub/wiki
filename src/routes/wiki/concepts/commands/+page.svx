@@ -1,29 +1,49 @@
 ---
 title: Commands
-description: "Commands tell the game to do things. [Functions](/wiki/files/functions) are files which are made up of many commands. They form the basic building blocks for any function datapack."
+description:
+  "Commands tell the game to do things. [Functions](/wiki/files/functions) are
+  files which are made up of many commands. They form the basic building blocks
+  for any function datapack."
 version: 1.21.8
 ---
 
 # Commands
-Commands are the basic building blocks of most datapacks. Each command is a simple instruction which can tell the game
-to do something. Most datapacks are made primarily of [functions](/wiki/files/functions) - functions are just lists of
-commands ran in order.
 
-There are too many commands for this wiki to go over each one individually. However, important commands can be found in the **Command Reference** section of the sidebar.
+Commands are the basic building blocks of most datapacks. Each command is a
+simple instruction which can tell the game to do something. Most datapacks are
+made primarily of [functions](/wiki/files/functions) - functions are just lists
+of commands ran in order.
+
+There are too many commands for this wiki to go over each one individually.
+However, important commands can be found in the **Command Reference** section of
+the sidebar.
 
 ## Command Context
-Programming Minecraft command is unique. Commands are always run with context - this means commands always have a position (in a dimension), rotation, and executor entity. Functions inherit context from their caller, so if you run a function in chat, all the commands in the function will have the same context as if you ran them in chat.
 
-Functions ran by the game, for instance tick, load, and scheduled functions, will have the follwing context:
-- the executor is the game server. If you use `@s` in a command, it will not refer to any entity. 
+Programming Minecraft command is unique. Commands are always run with context -
+this means commands always have a position (in a dimension), rotation, and
+executor entity. Functions inherit context from their caller, so if you run a
+function in chat, all the commands in the function will have the same context as
+if you ran them in chat.
+
+Functions ran by the game, for instance tick, load, and scheduled functions,
+will have the follwing context:
+
+- the executor is the game server. If you use `@s` in a command, it will not
+  refer to any entity.
 - the position of the command is the world spawn
 - the rotation of the command is `0, 0`
 
 If you run a command in chat, then:
-- you are the executor entity. If you use `@s` in a command, it refers to you.
-- the position and rotation of the command are where you are standing and looking. If you use `~ ~ ~` in a command, it refers to where your position.
 
-The `/execute` command will change the context of a command. For instance, this command would change the executor to the player `Silabear`, and the position of the command to `123 456 789`:
+- you are the executor entity. If you use `@s` in a command, it refers to you.
+- the position and rotation of the command are where you are standing and
+  looking. If you use `~ ~ ~` in a command, it refers to where your position.
+
+The `/execute` command will change the context of a command. For instance, this
+command would change the executor to the player `Silabear`, and the position of
+the command to `123 456 789`:
+
 ```mcfunction
 execute as Silabear positioned 123 456 789 run say Hello!
 ```

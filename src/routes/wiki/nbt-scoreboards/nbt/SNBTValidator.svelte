@@ -1,6 +1,6 @@
 <script lang="ts">
   import { parse } from "nbtify";
-  
+
   let value = $state("");
   let valid = $state("unset");
   let error = $state("");

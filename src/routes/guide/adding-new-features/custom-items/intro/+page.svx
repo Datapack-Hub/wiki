@@ -6,40 +6,70 @@ version: 1.21.8
 ---
 
 # Creating Custom Items
-In this guide, we will go over the basics explaining how custom items work, as well as how to make your own using item components. This guide will not go over how to give your custom items a texture or model.
 
-Since 1.21, it has been easy to create custom items in Minecraft. 1.21 introduced [item components](/wiki/concepts/item-components), which are like tags you can put on items to change their appearance or functionality. This is the basis for how custom items work - we take an item which already exists, then add or remove item components from that item to give it the desired feel and functionality.
+In this guide, we will go over the basics explaining how custom items work, as
+well as how to make your own using item components. This guide will not go over
+how to give your custom items a texture or model.
 
-In this guide we will create a custom edible item which can mine sand instantly and makes the player glow who eats it.
+Since 1.21, it has been easy to create custom items in Minecraft. 1.21
+introduced [item components](/wiki/concepts/item-components), which are like
+tags you can put on items to change their appearance or functionality. This is
+the basis for how custom items work - we take an item which already exists, then
+add or remove item components from that item to give it the desired feel and
+functionality.
+
+In this guide we will create a custom edible item which can mine sand instantly
+and makes the player glow who eats it.
 
 ## How do custom items work?
-Custom items are items with a unique set of item components to change their appearance and functionality. As of 1.21, we cannot create fully custom items - instead, we need to take an item which exists, and add, remove, or edit their item components to customise it. 
 
-Item components cannot cover every desired functionality. An example of this is doing something when the item is right clicked. We still have to use workarounds for this, such as giving the item a `food` component to make it edible, then detecting when a player starts eating it. You can read more about this in our [right click detection](/guide/right-click) summary.
+Custom items are items with a unique set of item components to change their
+appearance and functionality. As of 1.21, we cannot create fully custom items -
+instead, we need to take an item which exists, and add, remove, or edit their
+item components to customise it.
+
+Item components cannot cover every desired functionality. An example of this is
+doing something when the item is right clicked. We still have to use workarounds
+for this, such as giving the item a `food` component to make it edible, then
+detecting when a player starts eating it. You can read more about this in our
+[right click detection](/guide/right-click) summary.
 
 ## Creating our custom item
+
 We are going to create a custom item with the following properties:
+
 - It can mine sand very quickly
 - It is edible, and players who eat it will start glowing
 - It will be called `Sandy McDesertface`
 
-We will use item components to give the item those properties. Item components are put after the item in our item's give command. For example:
+We will use item components to give the item those properties. Item components
+are put after the item in our item's give command. For example:
+
 ```mcfunction
 /give @s flint[minecraft:item_name="Sharp Rock"]
 ```
+
 These are all the item components which we are going to use.
 
-| Property | Component needed | Our component |
-| - | - | - |
-| Mines sand very quickly | `minecraft:tool` is used to make items mine different blocks quickly | `[tool={default_mining_speed:1.5,damage_per_block:0,rules:[{blocks:"minecraft:sand",speed:100}]}]` |
-| Is edible, makes the player glow | `minecraft:consumable` makes items edible. We can also use it to specify an effect for the player to recieve. | `[consumable={on_consume_effects:[{type:"minecraft:apply_effects",effects:[{id:"minecraft:glowing",amplifier:1,duration:100}]}]}]` |
-| Gives the player saturation and nutrition stats on consumption | `minecraft:food` gives the player saturation and nutrition after consuming it. | `[food={nutrition:3,saturation:1,can_always_eat:true}]` |
-| Is called Sandy McDesertface | `minecraft:item_name` overrides our item name. | `[item_name="Sandy McDesertface"]` |
+| Property                                                       | Component needed                                                                                              | Our component                                                                                                                      |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Mines sand very quickly                                        | `minecraft:tool` is used to make items mine different blocks quickly                                          | `[tool={default_mining_speed:1.5,damage_per_block:0,rules:[{blocks:"minecraft:sand",speed:100}]}]`                                 |
+| Is edible, makes the player glow                               | `minecraft:consumable` makes items edible. We can also use it to specify an effect for the player to recieve. | `[consumable={on_consume_effects:[{type:"minecraft:apply_effects",effects:[{id:"minecraft:glowing",amplifier:1,duration:100}]}]}]` |
+| Gives the player saturation and nutrition stats on consumption | `minecraft:food` gives the player saturation and nutrition after consuming it.                                | `[food={nutrition:3,saturation:1,can_always_eat:true}]`                                                                            |
+| Is called Sandy McDesertface                                   | `minecraft:item_name` overrides our item name.                                                                | `[item_name="Sandy McDesertface"]`                                                                                                 |
 
-Combining all of these together, we can create a give command for our custom item:
+Combining all of these together, we can create a give command for our custom
+item:
+
 ```mcfunction
 /give @s stick[tool={default_mining_speed:1.5,damage_per_block:0,rules:[{speed:100,blocks:"sand"}]},food={nutrition:3,saturation:1,can_always_eat:true},consumable={on_consume_effects:[{type:"minecraft:apply_effects",effects:[{id:"minecraft:glowing",amplifier:1,duration:100}]}]},item_name='"Sandy McDesertface"'] 1
 ```
+
 :::info
-`minecraft:stick` can be any item you want. All custom items need to be based on an existing item. We do not yet have the functionality to create our own item IDs. However, we can make use of the `custom_model_data` (or `custom_model` in recent snapshots) component to change the model or texture of the item.
+
+`minecraft:stick` can be any item you want. All custom items need to be based on
+an existing item. We do not yet have the functionality to create our own item
+IDs. However, we can make use of the `custom_model_data` (or `custom_model` in
+recent snapshots) component to change the model or texture of the item.
+
 :::

@@ -1,49 +1,65 @@
 ---
 title: Coordinates
-description: "Coordinates in Minecraft are represented by an `x`, `y`, and `z` value. They are used to represent positions of entities, blocks, particles, sounds and more. In commands, they are represented as simply `x y z`, where `x`, `y`, and `z` are decimal numbers representing the coordinates on each axis."
+description:
+  "Coordinates in Minecraft are represented by an `x`, `y`, and `z` value. They
+  are used to represent positions of entities, blocks, particles, sounds and
+  more. In commands, they are represented as simply `x y z`, where `x`, `y`, and
+  `z` are decimal numbers representing the coordinates on each axis."
 version: 1.21.8
 ---
 
 # Coordinates
 
-Coordinates in Minecraft are represented by an `x`, `y`, and `z` value. They are used to represent positions of
-entities, blocks, particles, sounds and more. In commands, they are represented as simply `x y z`, where `x`, `y`, and
-`z` are decimal numbers representing the coordinates on each axis.
+Coordinates in Minecraft are represented by an `x`, `y`, and `z` value. They are
+used to represent positions of entities, blocks, particles, sounds and more. In
+commands, they are represented as simply `x y z`, where `x`, `y`, and `z` are
+decimal numbers representing the coordinates on each axis.
 
-Block coordinates are locked to the grid and are unique - there can only be one block per set of coordinates. Block
-coordinates are whole numbers, for example you can have a block at `123 86 94` but not `123.7 86.2 94.6`. Entities are
-not locked to the grid - they can be at decimal positions (and usually are).
+Block coordinates are locked to the grid and are unique - there can only be one
+block per set of coordinates. Block coordinates are whole numbers, for example
+you can have a block at `123 86 94` but not `123.7 86.2 94.6`. Entities are not
+locked to the grid - they can be at decimal positions (and usually are).
 
-`x.0 y.0 z.0` represents the bottom left corner of a block, not the centre. The centre of a block would be represented
-by the coordinates `x.5 y.5 z.5`.
+`x.0 y.0 z.0` represents the bottom left corner of a block, not the centre. The
+centre of a block would be represented by the coordinates `x.5 y.5 z.5`.
 
 :::info
-Every command and function in Minecraft is always executed at a position. This is usually the world spawn. You
-can change this using the commands "execute at" or "execute positioned".
+
+Every command and function in Minecraft is always executed at a position. This
+is usually the world spawn. You can change this using the commands "execute at"
+or "execute positioned".
+
 :::
 
 ### Examples
 
-- `/setblock 123 86 94 minecraft:pink_concrete`: In this `setblock` command, we tell the game to put a pink concrete
-  block at the coordinates `123 86 94`.
-- `/tp @s 66.2 98 45.7`: This command would teleport the current entity to the exact coordinates `66.2 98 45.7`
+- `/setblock 123 86 94 minecraft:pink_concrete`: In this `setblock` command, we
+  tell the game to put a pink concrete block at the coordinates `123 86 94`.
+- `/tp @s 66.2 98 45.7`: This command would teleport the current entity to the
+  exact coordinates `66.2 98 45.7`
 
 ## Relative Coordinates
 
-Using the symbols `~` and `^`, we can reference coordinates relative to the current coordinates (for example, you can
-get the position `7 blocks above the current position`).
+Using the symbols `~` and `^`, we can reference coordinates relative to the
+current coordinates (for example, you can get the position
+`7 blocks above the current position`).
 
-`~` represents the current position on any axis. For example, `12 ~ 76` would teleport me to `x=12` `z=76` but keep `y`
-as the current position. The coordinates `~ ~ ~` would represent the position of the command - this is useful to do
-something at the current position such as placing a block or summoning an entity.
+`~` represents the current position on any axis. For example, `12 ~ 76` would
+teleport me to `x=12` `z=76` but keep `y` as the current position. The
+coordinates `~ ~ ~` would represent the position of the command - this is useful
+to do something at the current position such as placing a block or summoning an
+entity.
 
-The `~` symbol can be followed by a number to include an offset to the current position. For example, `~ ~12 ~` would
-represent the current position offset by 10 blocks on the y-axis (or in simpler terms: the position 10 blocks above
-the current position). This can also be a negative number.
+The `~` symbol can be followed by a number to include an offset to the current
+position. For example, `~ ~12 ~` would represent the current position offset by
+10 blocks on the y-axis (or in simpler terms: the position 10 blocks above the
+current position). This can also be a negative number.
 
-Similarly `^` represents a relative position, taking into account the current rotation too. The most common use for this
-is to get a position in front of the direction of rotation. For example, you can use `^ ^ ^5` to get the position 5
-blocks in front of the current position in whatever direction the command or entity is rotated.
+Similarly `^` represents a relative position, taking into account the current
+rotation too. The most common use for this is to get a position in front of the
+direction of rotation. For example, you can use `^ ^ ^5` to get the position 5
+blocks in front of the current position in whatever direction the command or
+entity is rotated.
 
 - `^3 ^ ^` represents a vector 3 blocks perpendicular of the head (sway)
 - `^ ^3 ^` represents a vector 3 blocks "above" of the head (heave)

@@ -1,18 +1,20 @@
 ---
 title: Custom World Generation
 description:
-  This guide goes over how to create every step of a custom dimension, which includes custom biomes, terrain, and
-  features.
+  This guide goes over how to create every step of a custom dimension, which
+  includes custom biomes, terrain, and features.
 version: 1.21.8
 ---
 
 # Custom World Generation
 
-Custom World Generation is an experimental feature, allowing a data pack to generate custom features, biomes, or
-dimensions, primarily by way of a series of JSON files rather than by using commands.
+Custom World Generation is an experimental feature, allowing a data pack to
+generate custom features, biomes, or dimensions, primarily by way of a series of
+JSON files rather than by using commands.
 
-This guide goes over how to create every step of a custom dimension, which itself comprises all of the following. If you
-only want to achieve one or some of these things, you can generally skip to those respective sections.
+This guide goes over how to create every step of a custom dimension, which
+itself comprises all of the following. If you only want to achieve one or some
+of these things, you can generally skip to those respective sections.
 
 - Modifying and defining dimension settings
 - Generating terrain
@@ -21,16 +23,19 @@ only want to achieve one or some of these things, you can generally skip to thos
 - Creating features (ores, trees, etc.)
 - Many sub-tasks related to the above
 
-At the same time, this documentation will express some of the major limitations that come with Custom World Generation.
-There are many aspects of worldgen that we will go over here in brief, but that could fill entire guides of their own to
-explore in detail. Many of the tasks involved in creating Custom World Generation can be extremely time-intensive and
-require a lot of trial and error.
+At the same time, this documentation will express some of the major limitations
+that come with Custom World Generation. There are many aspects of worldgen that
+we will go over here in brief, but that could fill entire guides of their own to
+explore in detail. Many of the tasks involved in creating Custom World
+Generation can be extremely time-intensive and require a lot of trial and error.
 
 ## What is Custom World Generation?
 
-Custom Worldgen can take the form of anything from a completely separate dimension, an override of vanilla dimensions or
-biomes, like the Overworld at large or Swamps in particular, or individual features that are placed via commands. The
-following are all things that Custom World Generation can include, irrespective of difficulty.
+Custom Worldgen can take the form of anything from a completely separate
+dimension, an override of vanilla dimensions or biomes, like the Overworld at
+large or Swamps in particular, or individual features that are placed via
+commands. The following are all things that Custom World Generation can include,
+irrespective of difficulty.
 
 - Custom Terrain
 - Custom Dimension Settings, such as:
@@ -45,16 +50,19 @@ following are all things that Custom World Generation can include, irrespective 
   - Custom colors and ambient particles
 - Custom Biome layout (including of vanilla biomes)
 
-Custom Structures, and changes related to structures, are also a sub-feature of Custom World Generation. We already have
-documentation for creating Custom Structures, which you can find
+Custom Structures, and changes related to structures, are also a sub-feature of
+Custom World Generation. We already have documentation for creating Custom
+Structures, which you can find
 [here](https://www.planetminecraft.com/blog/custom-structure-gen-documentation/).
 
 ## Folder Structure
 
-To begin creating a Custom Dimension, there are a few folders you should create in a data pack. If you’re unfamiliar
-with the general structure of a data pack, you should check out our [Data Pack Starter Guide](/guide/getting-started).
+To begin creating a Custom Dimension, there are a few folders you should create
+in a data pack. If you’re unfamiliar with the general structure of a data pack,
+you should check out our [Data Pack Starter Guide](/guide/getting-started).
 
-In your namespace folder, you will create the following folders, organized as such:
+In your namespace folder, you will create the following folders, organized as
+such:
 
 ```
 <namespace>/
@@ -70,21 +78,25 @@ In your namespace folder, you will create the following folders, organized as su
     └── placed_feature/
 ```
 
-You may not need all of these folders depending on the degree of configurability you want or the scope of your project,
-so which folders are needed or optional for any particular task will be listed at the top of each section.
+You may not need all of these folders depending on the degree of configurability
+you want or the scope of your project, so which folders are needed or optional
+for any particular task will be listed at the top of each section.
 
-Because Custom World Generation requires so many different JSON files, many with a variety of required vs. optional
-fields, it is strongly recommended that you generate most or all of these files using
-[Misode’s generators](https://misode.github.io/). Furthermore, frequent reference to the
-[wiki pages](https://minecraft.wiki/w/Dimension_definition) for custom dimensions and their respective subcategories
-will likely be necessary, if only to determine what type of data some fields are expecting, when Misode or this guide do
-not specify.
+Because Custom World Generation requires so many different JSON files, many with
+a variety of required vs. optional fields, it is strongly recommended that you
+generate most or all of these files using
+[Misode’s generators](https://misode.github.io/). Furthermore, frequent
+reference to the [wiki pages](https://minecraft.wiki/w/Dimension_definition) for
+custom dimensions and their respective subcategories will likely be necessary,
+if only to determine what type of data some fields are expecting, when Misode or
+this guide do not specify.
 
 :::info
 
-Some popular VSCode extensions may falsely inform you that certain files you reference don’t exist or are in the wrong
-folder, when in fact they are, depending on the version you are working in. This is most common for configured_features,
-but be on the lookout for this behavior elsewhere.
+Some popular VSCode extensions may falsely inform you that certain files you
+reference don’t exist or are in the wrong folder, when in fact they are,
+depending on the version you are working in. This is most common for
+configured_features, but be on the lookout for this behavior elsewhere.
 
 :::
 
@@ -92,10 +104,12 @@ but be on the lookout for this behavior elsewhere.
 
 **Folders:** `dimension_type`
 
-When creating a new dimension, or modifying an existing one, it’s recommended to start with the Dimension Type. The
-Dimension Type is what defines the very broad details about the dimension, such as whether water evaporates instantly
-like the Nether (Ultrawarm), whether Beds and/or Respawn Anchors work or explode, and what light level Hostile Mobs need
-to spawn. Most of these fields are self explanatory, and most of them are required.
+When creating a new dimension, or modifying an existing one, it’s recommended to
+start with the Dimension Type. The Dimension Type is what defines the very broad
+details about the dimension, such as whether water evaporates instantly like the
+Nether (Ultrawarm), whether Beds and/or Respawn Anchors work or explode, and
+what light level Hostile Mobs need to spawn. Most of these fields are self
+explanatory, and most of them are required.
 
 `dimension_type/overworld.json`
 
@@ -125,49 +139,61 @@ to spawn. Most of these fields are self explanatory, and most of them are requir
 }
 ```
 
-To create this, simply add a .json file to the dimension_type folder, and set the name to that of the dimension you are
-creating/modifying. Like all file names, it must have no capital letters, and no special characters except underscores.
-Then generate the list of fields with [Misode](https://misode.github.io/dimension-type/).
+To create this, simply add a .json file to the dimension_type folder, and set
+the name to that of the dimension you are creating/modifying. Like all file
+names, it must have no capital letters, and no special characters except
+underscores. Then generate the list of fields with
+[Misode](https://misode.github.io/dimension-type/).
 
-Note that some fields, like “has ceiling”, don’t do what you would expect – this field doesn’t actually give the
-dimension a physical ceiling, that’s handled in the terrain. Similarly, “Effects” pretty much just changes the skybox
-and determines whether the time affects the light level.
+Note that some fields, like “has ceiling”, don’t do what you would expect – this
+field doesn’t actually give the dimension a physical ceiling, that’s handled in
+the terrain. Similarly, “Effects” pretty much just changes the skybox and
+determines whether the time affects the light level.
 
 ## Noise Settings
 
 **Folders:** `noise_settings`  
 **Optional Folders:** `density_function`, `noise`
 
-The Noise Settings are one of the largest files you will create. This single file per dimension controls all of the
-following:
+The Noise Settings are one of the largest files you will create. This single
+file per dimension controls all of the following:
 
 - What base block the dimension’s terrain is made of (Stone, Netherrack, etc.)
-- What base fluid is used for the sea level (Water, Lava, etc. Does not need to be a fluid)
+- What base fluid is used for the sea level (Water, Lava, etc. Does not need to
+  be a fluid)
 - Some global settings, such as:
   - Whether “Creatures” (passive mobs) spawn during chunk generation
-  - Biome noise parameters that the worldspawn is allowed to be set in during world creation
-  - Whether large ore veins generate, and their general size and shape via Density Functions. Only applies to Copper and
-    Iron veins
-  - Whether aquifers generate. Not configurable beyond true/false. If false, most caves below sea level will be filled
-    with the base fluid.
-- Noise Router (The shape of the terrain, which is determined by a few further fields)
-- Surface Rules (What blocks the surface is made up of, typically broken down by biome)
+  - Biome noise parameters that the worldspawn is allowed to be set in during
+    world creation
+  - Whether large ore veins generate, and their general size and shape via
+    Density Functions. Only applies to Copper and Iron veins
+  - Whether aquifers generate. Not configurable beyond true/false. If false,
+    most caves below sea level will be filled with the base fluid.
+- Noise Router (The shape of the terrain, which is determined by a few further
+  fields)
+- Surface Rules (What blocks the surface is made up of, typically broken down by
+  biome)
 
-Note that the sea level also determines the level that caves become filled with Lava, so a higher sea level will also
-raise the cave Lava level, and a deeper world with a default sea level will result in all caves being filled with lava
+Note that the sea level also determines the level that caves become filled with
+Lava, so a higher sea level will also raise the cave Lava level, and a deeper
+world with a default sea level will result in all caves being filled with lava
 below the same point (about Y=-50).
 
 ### Noise Router (Terrain)
 
-The Noise Router is responsible for most factors relating to the terrain, which is to say, whether a given block is
-air/fluid or the default_block, before surface_rules or biome features are added. In addition, the Noise Router includes
-several fields that don’t directly influence the terrain, but may approximate it for use in making biome distribution
-conform to the terrain.
+The Noise Router is responsible for most factors relating to the terrain, which
+is to say, whether a given block is air/fluid or the default_block, before
+surface_rules or biome features are added. In addition, the Noise Router
+includes several fields that don’t directly influence the terrain, but may
+approximate it for use in making biome distribution conform to the terrain.
 
-The Noise Router contains several fields. All of these fields are density functions, which can be defined in-line or
-referenced from the density_function folder. These are essentially formulas of variable length and complexity, that use
-a variety of functions to determine a value between 0 and 1 for every coordinate. For density functions that affect
-terrain, this determines whether the block is air/fluid (respecting sea level), or the default_block, respectively.
+The Noise Router contains several fields. All of these fields are density
+functions, which can be defined in-line or referenced from the density_function
+folder. These are essentially formulas of variable length and complexity, that
+use a variety of functions to determine a value between 0 and 1 for every
+coordinate. For density functions that affect terrain, this determines whether
+the block is air/fluid (respecting sea level), or the default_block,
+respectively.
 
 Let’s look at what each of these density functions are responsible for.
 
@@ -177,115 +203,145 @@ These all relate to some facet of Aquifer generation, if they are enabled.
 
 #### lava
 
-Used to determine whether an aquifer is lava or not. Does not affect the lava that floods the bottom of the world.
+Used to determine whether an aquifer is lava or not. Does not affect the lava
+that floods the bottom of the world.
 
 #### vein_toggle, vein_ridged, vein_gap
 
-Used to control the shape, density, and rarity of both Iron and Copper Large Ore Veins. Cannot change what these blocks
-are made of, but whether the vein is Copper or Iron is based on the vein_toggle noise range.
+Used to control the shape, density, and rarity of both Iron and Copper Large Ore
+Veins. Cannot change what these blocks are made of, but whether the vein is
+Copper or Iron is based on the vein_toggle noise range.
 
 #### temperature, vegetation
 
-Correspond to the “temperature,” and “humidity,” parameters in the dimension’s biome source, respectively. Ostensibly
-create the noise maps that biomes are placed relative to. These density functions don’t affect terrain at all.
+Correspond to the “temperature,” and “humidity,” parameters in the dimension’s
+biome source, respectively. Ostensibly create the noise maps that biomes are
+placed relative to. These density functions don’t affect terrain at all.
 
 #### continents, erosion, depth, ridges
 
-Correspond to the “continentalness,” “erosion,” “depth”, and "weirdness" parameters in the dimension’s biome source,
-respectively. Like the temperature and vegetation density functions, whatever is put in these fields will not directly
-affect terrain, and ostensibly just create noise maps for the biome source to use. However, in the vanilla overworld,
-these fields are used to reference separate density function files that also get referenced elsewhere, to inform the
-terrain. This means that unlike the temperate and vegetation density functions, these correspond to certain parts of the
-terrain.
+Correspond to the “continentalness,” “erosion,” “depth”, and "weirdness"
+parameters in the dimension’s biome source, respectively. Like the temperature
+and vegetation density functions, whatever is put in these fields will not
+directly affect terrain, and ostensibly just create noise maps for the biome
+source to use. However, in the vanilla overworld, these fields are used to
+reference separate density function files that also get referenced elsewhere, to
+inform the terrain. This means that unlike the temperate and vegetation density
+functions, these correspond to certain parts of the terrain.
 
-For example, high erosion parameter values match up with where the terrain is more flat, because of how it gets
-referenced by other density functions that impact terrain.
+For example, high erosion parameter values match up with where the terrain is
+more flat, because of how it gets referenced by other density functions that
+impact terrain.
 
 :::tip
 
-Temperature and vegetation are also all capable of behaving more like continents, erosion, and depth, but it’s generally
-not necessary to have so many parameters that conform to terrain, and can in fact make biome distribution harder and
-more time consuming.
+Temperature and vegetation are also all capable of behaving more like
+continents, erosion, and depth, but it’s generally not necessary to have so many
+parameters that conform to terrain, and can in fact make biome distribution
+harder and more time consuming.
 
 :::
 
 #### initial_density_without_jaggedness
 
-Used for aquifers and surface_rules, in order to more accurately determine where the surface of the world is so that
-neither can generate above that surface. Typically, will be similar to the final_density, but with the surface slightly
-lowered, and with noise caves unaccounted for. Similar to the above few functions, it does not affect terrain at all.
+Used for aquifers and surface_rules, in order to more accurately determine where
+the surface of the world is so that neither can generate above that surface.
+Typically, will be similar to the final_density, but with the surface slightly
+lowered, and with noise caves unaccounted for. Similar to the above few
+functions, it does not affect terrain at all.
 
 #### final_density
 
-This is the density function that actually creates the bulk of the terrain. As such, it’s often the largest and most
-complex part of the noise_settings file, barring surface_rules. It controls not only the surface, including hills,
-mountains, valleys, and oceans, but also the large noise caves and noodle caves introduced in the Caves and Cliffs
-update. And, as alluded to above, you still need at least the continents and erosion density functions to align with the
-general shape of this density function if you plan to have ocean biomes generate only where the terrain dips below sea
-level, or mountain biomes generate only where the terrain spikes up to look like mountains.
+This is the density function that actually creates the bulk of the terrain. As
+such, it’s often the largest and most complex part of the noise_settings file,
+barring surface_rules. It controls not only the surface, including hills,
+mountains, valleys, and oceans, but also the large noise caves and noodle caves
+introduced in the Caves and Cliffs update. And, as alluded to above, you still
+need at least the continents and erosion density functions to align with the
+general shape of this density function if you plan to have ocean biomes generate
+only where the terrain dips below sea level, or mountain biomes generate only
+where the terrain spikes up to look like mountains.
 
 In the
 [vanilla Overworld](https://github.com/misode/mcmeta/blob/data/data/minecraft/worldgen/noise_settings/overworld.json),
-the final_density is split into two distinct parts: The part that handles the shape of the surface, including mountains,
-hills, rivers, and oceans; and the part that handles the large noise caves underground. These are separated by an
+the final_density is split into two distinct parts: The part that handles the
+shape of the surface, including mountains, hills, rivers, and oceans; and the
+part that handles the large noise caves underground. These are separated by an
 in-line range_choice density function.
 
-Density functions are very complex, and being very math-heavy, difficult to dive into and learn about; an in-depth
-understanding of them and how to apply them is outside the scope of this guide. Generally, a lot of trial and error is
-required, and there are minimal resources for getting particularly good at applying them. These are primarily
-[the wiki page](https://minecraft.wiki/w/Density_function) which lists them all and what they do to the
-inputs/arguments, [this brief tutorial](https://minecraft.wiki/w/Noise_router#Final_density) written by Misode and now
-hosted on the wiki, which explains how the Final Density affects the terrain, and provides some basic steps to
-manipulate it, and of course [Misode’s generator](https://misode.github.io/worldgen/noise-settings/) to help visualize
-individual density functions or chains of them. However, as a brief introduction, this guide will attempt to describe,
-roughly, how the vanilla overworld's final_density applies important density functions to shape the world's surface.
+Density functions are very complex, and being very math-heavy, difficult to dive
+into and learn about; an in-depth understanding of them and how to apply them is
+outside the scope of this guide. Generally, a lot of trial and error is
+required, and there are minimal resources for getting particularly good at
+applying them. These are primarily
+[the wiki page](https://minecraft.wiki/w/Density_function) which lists them all
+and what they do to the inputs/arguments,
+[this brief tutorial](https://minecraft.wiki/w/Noise_router#Final_density)
+written by Misode and now hosted on the wiki, which explains how the Final
+Density affects the terrain, and provides some basic steps to manipulate it, and
+of course
+[Misode’s generator](https://misode.github.io/worldgen/noise-settings/) to help
+visualize individual density functions or chains of them. However, as a brief
+introduction, this guide will attempt to describe, roughly, how the vanilla
+overworld's final_density applies important density functions to shape the
+world's surface.
 
 #### sloped_cheese
 
-Used as the input in the aforementioned range_choice density function to distinguish between the surface and underground
-(for noise caves), as well as the main density function that gets applied to the surface. It multiplies the depth and
-the jaggedness density functions with the factor density function, combining the various shapes they create into one
-coherent surface shape.
+Used as the input in the aforementioned range_choice density function to
+distinguish between the surface and underground (for noise caves), as well as
+the main density function that gets applied to the surface. It multiplies the
+depth and the jaggedness density functions with the factor density function,
+combining the various shapes they create into one coherent surface shape.
 
 #### factor
 
-Contains a complex spline that functionally combines the continents, erosion, and ridges_folded density functions. These
-three on their own are ostensibly noise maps like temperature and vegetation, but this spline translates them into
-terrain. Continents is used to create a transition between high and low terrain, with erosion added to flatten the
-terrain, and ridges_folded (which just references ridges with some multipliers) to carve rivers or raise peaks on
+Contains a complex spline that functionally combines the continents, erosion,
+and ridges_folded density functions. These three on their own are ostensibly
+noise maps like temperature and vegetation, but this spline translates them into
+terrain. Continents is used to create a transition between high and low terrain,
+with erosion added to flatten the terrain, and ridges_folded (which just
+references ridges with some multipliers) to carve rivers or raise peaks on
 mountains.
 
 #### depth
 
-Creates a gradient from the surface of the world down, where the surface and everything above it is assigned a value of
-0, and ascends towards 1 as the world height decreases. It gets the coordinates of the surface by referencing the offset
-density function.
+Creates a gradient from the surface of the world down, where the surface and
+everything above it is assigned a value of 0, and ascends towards 1 as the world
+height decreases. It gets the coordinates of the surface by referencing the
+offset density function.
 
 #### offset
 
-Similar to factor, and uses the continents, erosion, and ridges_folded density functions in a similar way to create a
-shape similar to the terrain's surface, but slightly offset so that the depth density function doesn't start the
+Similar to factor, and uses the continents, erosion, and ridges_folded density
+functions in a similar way to create a shape similar to the terrain's surface,
+but slightly offset so that the depth density function doesn't start the
 gradient until a little below the surface (generally).
 
 #### jaggedness
 
-Similar to factor, and uses the continents, erosion, and ridges_folded density functions in a similar way to create a
-more jagged version of the surface shape. This gets diluted some due to being combined with both offset and factor
-higher up the chain, but results in some hills populating flatter areas, which also helps to break up otherwise smooth
-or flat mountains so they look more natural and rolling.
+Similar to factor, and uses the continents, erosion, and ridges_folded density
+functions in a similar way to create a more jagged version of the surface shape.
+This gets diluted some due to being combined with both offset and factor higher
+up the chain, but results in some hills populating flatter areas, which also
+helps to break up otherwise smooth or flat mountains so they look more natural
+and rolling.
 
 ### Surface Rules
 
-Surface Rules are what add the surface layers to terrain. This is highly-configurable, but at its most basic level, it’s
-what decides that the ground in Forests is made up of Grass Blocks and Dirt, and that Deserts have Sand and Sandstone.
-Surface Rules can also allow for different blocks to make up the ground depending on height, steepness, or even based on
-random noise.
+Surface Rules are what add the surface layers to terrain. This is
+highly-configurable, but at its most basic level, it’s what decides that the
+ground in Forests is made up of Grass Blocks and Dirt, and that Deserts have
+Sand and Sandstone. Surface Rules can also allow for different blocks to make up
+the ground depending on height, steepness, or even based on random noise.
 
-Notably, the Surface Rule also places the Bedrock on the bottom (or top) of the world, and handles the transition from
-Stone to Deepslate at Y=0. This means both of these features can be edited or removed, and in fact it’s fairly easy to
+Notably, the Surface Rule also places the Bedrock on the bottom (or top) of the
+world, and handles the transition from Stone to Deepslate at Y=0. This means
+both of these features can be edited or removed, and in fact it’s fairly easy to
 do so compared to handling the actual surface.
 
-Creating surface rules is relatively easy. You’ll start with something like this in your Noise Settings:
+Creating surface rules is relatively easy. You’ll start with something like this
+in your Noise Settings:
 
 ```json
 {
@@ -296,38 +352,48 @@ Creating surface rules is relatively easy. You’ll start with something like th
 }
 ```
 
-Inside the sequence brackets, you can add yet more objects. There are four different types:
+Inside the sequence brackets, you can add yet more objects. There are four
+different types:
 
-- **Sequence:** Allows you to add a new nested list. Generally, it’s good practice to nest sequences inside of a
-  condition that will apply to multiple child conditions or blocks.
-- **Block:** Defines the block that gets placed. Usually used at the end of a series of conditions.
-- **Bandlands:** Not a typo. Just places the hardcoded Badlands terracotta pattern, and doesn’t have any additional
-  fields.
-- **Condition:** This is the most prominent part of Surface Rules. There are multiple kinds of conditions, including
-  biome, Y level, steep, and more. Regardless of the condition you select, it will always have the additional field
-  “then run”, which just accepts another object type from the above list.
+- **Sequence:** Allows you to add a new nested list. Generally, it’s good
+  practice to nest sequences inside of a condition that will apply to multiple
+  child conditions or blocks.
+- **Block:** Defines the block that gets placed. Usually used at the end of a
+  series of conditions.
+- **Bandlands:** Not a typo. Just places the hardcoded Badlands terracotta
+  pattern, and doesn’t have any additional fields.
+- **Condition:** This is the most prominent part of Surface Rules. There are
+  multiple kinds of conditions, including biome, Y level, steep, and more.
+  Regardless of the condition you select, it will always have the additional
+  field “then run”, which just accepts another object type from the above list.
 
-You may find yourself using combinations of conditions, with or without sequences, to get a satisfying surface. This
-guide won't go over every surface rule condition, but here are some common ones and how they are often used.
+You may find yourself using combinations of conditions, with or without
+sequences, to get a satisfying surface. This guide won't go over every surface
+rule condition, but here are some common ones and how they are often used.
 
 #### above_preliminary_surface
 
-Uses the initial_density_without_jaggedness density function to determine where the surface of the world is. Not using
-this would just mean that the surface rule would apply in noise caves as well. If you’re not using an
-initial_density_without_jaggedness density function, there’s no other real harm in choosing not to use this condition.
+Uses the initial_density_without_jaggedness density function to determine where
+the surface of the world is. Not using this would just mean that the surface
+rule would apply in noise caves as well. If you’re not using an
+initial_density_without_jaggedness density function, there’s no other real harm
+in choosing not to use this condition.
 
 #### stone_depth
 
-This condition finds the blocks that are actually on the surface via heightmap, ignoring water, and works even if there
-was no preliminary surface condition used. This is one of the most common conditions, in that every dimension will use
-it, but it is also a fairly resource-intensive condition, and the one most likely to cause chunk generation lag. It’s
-best to use it minimally, as high up in the Surface Rule as you can. Oftentimes, you will need at least two of these:
+This condition finds the blocks that are actually on the surface via heightmap,
+ignoring water, and works even if there was no preliminary surface condition
+used. This is one of the most common conditions, in that every dimension will
+use it, but it is also a fairly resource-intensive condition, and the one most
+likely to cause chunk generation lag. It’s best to use it minimally, as high up
+in the Surface Rule as you can. Oftentimes, you will need at least two of these:
 One for the top surface, and one for the secondary surface.
 
 #### water
 
-Can be used to have its child conditions apply based on the fluid level at that location, including not being in fluid.
-The vanilla Overworld surface rule uses this a lot, and it’s a great way to alleviate the impact of an earlier
+Can be used to have its child conditions apply based on the fluid level at that
+location, including not being in fluid. The vanilla Overworld surface rule uses
+this a lot, and it’s a great way to alleviate the impact of an earlier
 stone_depth condition.
 
 #### biome
@@ -336,53 +402,67 @@ Specifies which biome(s) to apply the rest of the rule to.
 
 #### y_above
 
-Causes the rest of the rule to only apply to blocks above the specified Y value. You can add an optional multiplier for
-this value, or choose to add the stone_depth from previous conditions to this calculation.
+Causes the rest of the rule to only apply to blocks above the specified Y value.
+You can add an optional multiplier for this value, or choose to add the
+stone_depth from previous conditions to this calculation.
 
-It’s best to look at how the Overworld’s surface rule uses combinations of conditions to produce a surface of, for
-example, Grass Blocks with 2-4 layers of Dirt underneath. The vanilla Overworld Surface Rule is not as extreme as the
-vanilla Overworld Dimension file (up next), but it is a little more lengthy and sophisticated than can reasonably be
-pasted here. [Misode’s generator](https://misode.github.io/worldgen/noise-settings/) has a feature to view the vanilla
-Overworld Noise Settings as a preset, which includes the Surface Rule; this may be useful to get a more user-friendly
-view of how the conditions fit together.
+It’s best to look at how the Overworld’s surface rule uses combinations of
+conditions to produce a surface of, for example, Grass Blocks with 2-4 layers of
+Dirt underneath. The vanilla Overworld Surface Rule is not as extreme as the
+vanilla Overworld Dimension file (up next), but it is a little more lengthy and
+sophisticated than can reasonably be pasted here.
+[Misode’s generator](https://misode.github.io/worldgen/noise-settings/) has a
+feature to view the vanilla Overworld Noise Settings as a preset, which includes
+the Surface Rule; this may be useful to get a more user-friendly view of how the
+conditions fit together.
 
 ## Dimension
 
 **Folders:** `dimension`
 
-The Dimension file is where you reference both the Dimension Type and Noise Settings you would like this dimension to
-use by their namespaced ID. The name of this file is also what will become the namespaced ID of this dimension for
-commands such as `/execute` in, regardless of the names of the noise_settings or dimension_type files referenced.
-Lastly, this is where you will list all of the biomes you want to appear in the world, using parameters to define which
-biomes can appear where on several noise maps.
+The Dimension file is where you reference both the Dimension Type and Noise
+Settings you would like this dimension to use by their namespaced ID. The name
+of this file is also what will become the namespaced ID of this dimension for
+commands such as `/execute` in, regardless of the names of the noise_settings or
+dimension_type files referenced. Lastly, this is where you will list all of the
+biomes you want to appear in the world, using parameters to define which biomes
+can appear where on several noise maps.
 
 ### Biome Source
 
-Besides Terrain, the Biome Source is where you may find yourself spending the most time. It is highly configurable, and
-has the potential to integrate with the Continents and Erosion density functions defined in the Noise Router to help
-place biomes in a way that appears to conform to the terrain (Mountain biomes on elevated terrain, Plains biomes on
-flatter terrain, etc.). Biome Layout is much more approachable than terrain in terms of configurability, but making them
-work hand-in-hand in this way can be time consuming.
+Besides Terrain, the Biome Source is where you may find yourself spending the
+most time. It is highly configurable, and has the potential to integrate with
+the Continents and Erosion density functions defined in the Noise Router to help
+place biomes in a way that appears to conform to the terrain (Mountain biomes on
+elevated terrain, Plains biomes on flatter terrain, etc.). Biome Layout is much
+more approachable than terrain in terms of configurability, but making them work
+hand-in-hand in this way can be time consuming.
 
-To put things in perspective, you may have noticed above that the vanilla Overworld’s Dimension file is over 200,000
-lines long. Every biome has dozens of repeat entries, each with slightly different parameters to get the biome
-distribution and terrain conformity just right. This is because the six primary parameters (temperature, humidity,
-continentalness, erosion, and depth) basically work to create a 6-dimension noise map. Making a biome source that places
-biomes according to terrain by hand is borderline impossible, and indeed, this file gets generated by the game using a
-system similar to [Snowcapped](https://snowcapped.jacobsjo.eu/), a tool by jacobsjo that uses grids to simplify the
-visualization of a 6D grid.
+To put things in perspective, you may have noticed above that the vanilla
+Overworld’s Dimension file is over 200,000 lines long. Every biome has dozens of
+repeat entries, each with slightly different parameters to get the biome
+distribution and terrain conformity just right. This is because the six primary
+parameters (temperature, humidity, continentalness, erosion, and depth)
+basically work to create a 6-dimension noise map. Making a biome source that
+places biomes according to terrain by hand is borderline impossible, and indeed,
+this file gets generated by the game using a system similar to
+[Snowcapped](https://snowcapped.jacobsjo.eu/), a tool by jacobsjo that uses
+grids to simplify the visualization of a 6D grid.
 
-The Nether is far easier to work with and add new biomes to, as those biomes do not conform to the terrain, and each
-vanilla biome has only one entry.
+The Nether is far easier to work with and add new biomes to, as those biomes do
+not conform to the terrain, and each vanilla biome has only one entry.
 
-The End’s biome source is hardcoded; this is because Mojang needs to ensure that the central End Island is always the
-default “minecraft:the_end” biome, which cannot be guaranteed with current tools. However, if you don’t mind making the
-central End Island a different biome, you can approach a custom biome layout similarly to how you would the Nether.
+The End’s biome source is hardcoded; this is because Mojang needs to ensure that
+the central End Island is always the default “minecraft:the_end” biome, which
+cannot be guaranteed with current tools. However, if you don’t mind making the
+central End Island a different biome, you can approach a custom biome layout
+similarly to how you would the Nether.
 
-For a custom dimension, the complexity is up to you. If you aim to have your biomes conform to terrain, then you may end
-up with a biome layout of comparable complexity and time commitment to the vanilla Overworld’s. If not, then it’s just a
-matter of determining which biomes you do or do not want to appear next to each other, and then setting the parameters
-appropriately.
+For a custom dimension, the complexity is up to you. If you aim to have your
+biomes conform to terrain, then you may end up with a biome layout of comparable
+complexity and time commitment to the vanilla Overworld’s. If not, then it’s
+just a matter of determining which biomes you do or do not want to appear next
+to each other, and then setting the parameters appropriately.
 
 Each entry in the “biomes” list should look something like this:
 
@@ -401,44 +481,54 @@ Each entry in the “biomes” list should look something like this:
 }
 ```
 
-More biomes can be added by including more entries in the “biomes” list. It can and often may include repeats. Each
-entry must also contain all of the parameters listed above. Unless otherwise specified, all of these parameters can
-either be a single constant, or a list of two constants, which serves as a min and max range of values. These must be in
-order from min to max; failure to do so will cause the data pack to not validate.
+More biomes can be added by including more entries in the “biomes” list. It can
+and often may include repeats. Each entry must also contain all of the
+parameters listed above. Unless otherwise specified, all of these parameters can
+either be a single constant, or a list of two constants, which serves as a min
+and max range of values. These must be in order from min to max; failure to do
+so will cause the data pack to not validate.
 
 #### temperature, humidity
 
-These are named completely arbitrarily, and have no bearing on the actual temperature or humidity of the biome that
-impacts gameplay in any way. You can make both a “desert” and “snowy” biome have a temperature of 0, and all it will
-mean is that they will be placed near each other (unless other parameters forbid this). These parameters just refer to
-different noise maps that are available. These should each be a value between -1.0 and 1.0. The closer a value is to 0,
+These are named completely arbitrarily, and have no bearing on the actual
+temperature or humidity of the biome that impacts gameplay in any way. You can
+make both a “desert” and “snowy” biome have a temperature of 0, and all it will
+mean is that they will be placed near each other (unless other parameters forbid
+this). These parameters just refer to different noise maps that are available.
+These should each be a value between -1.0 and 1.0. The closer a value is to 0,
 the more frequently that biome will appear, or the larger.
 
 #### depth
 
-Used exclusively for cave biomes, and is otherwise 0. Positive values cause that biome to be placed deeper in the world,
-and the area above it to be filled with other biomes of lower depth values that meet the other parameters of that space.
-In the vanilla depth density function, a depth of 1.0 corresponds to approximately 128 blocks below the surface, but
-this can vary if you've changed the Final Density or the depth density function in your Noise Router.
+Used exclusively for cave biomes, and is otherwise 0. Positive values cause that
+biome to be placed deeper in the world, and the area above it to be filled with
+other biomes of lower depth values that meet the other parameters of that space.
+In the vanilla depth density function, a depth of 1.0 corresponds to
+approximately 128 blocks below the surface, but this can vary if you've changed
+the Final Density or the depth density function in your Noise Router.
 
 #### offset
 
-Helps to limit the relative size of the biome. Accepts a value between 0 and 1.0, and must be a single constant, not a
-list. Larger values reduce the size of the biome, and allow biomes of neighboring parameter values to fill the space.
-This can also result in the biome becoming rarer, if it was already small enough that a positive offset causes some of
-its placements to disappear.
+Helps to limit the relative size of the biome. Accepts a value between 0 and
+1.0, and must be a single constant, not a list. Larger values reduce the size of
+the biome, and allow biomes of neighboring parameter values to fill the space.
+This can also result in the biome becoming rarer, if it was already small enough
+that a positive offset causes some of its placements to disappear.
 
 #### weirdness
 
-This parameter corresponds to the ridges density function, which is responsible for rivers and mountain peaks. Values
-closer to 0 tend to correspond to rivers, and values further from 0 tend to correspond to peaks, before dipping back to
-more level terrain. The vanilla overworld also uses this parameter to place "variant" biomes like Bamboo Jungles or Pale
-Gardens, which otherwise might share similar parameters to their base biomes (Jungles and Dark Forests)
+This parameter corresponds to the ridges density function, which is responsible
+for rivers and mountain peaks. Values closer to 0 tend to correspond to rivers,
+and values further from 0 tend to correspond to peaks, before dipping back to
+more level terrain. The vanilla overworld also uses this parameter to place
+"variant" biomes like Bamboo Jungles or Pale Gardens, which otherwise might
+share similar parameters to their base biomes (Jungles and Dark Forests)
 
 #### continentalness, erosion
 
-These are the two parameters that influence a biome’s placement on the density functions of the same names used for
-Terrain. In the vanilla Overworld, only these values will affect biome position relative to the shape of the terrain.
+These are the two parameters that influence a biome’s placement on the density
+functions of the same names used for Terrain. In the vanilla Overworld, only
+these values will affect biome position relative to the shape of the terrain.
 For the vanilla Overworld:
 
 - High continentalness corresponds to inlands terrain.
@@ -446,57 +536,68 @@ For the vanilla Overworld:
 - High erosion corresponds to flat terrain.
 - Low erosion corresponds to jagged terrain.
 
-The above rules may not necessarily hold true if you have a Final Density that differs from the vanilla Overworld.
+The above rules may not necessarily hold true if you have a Final Density that
+differs from the vanilla Overworld.
 
-The best way to view and manipulate the biome source and how it may look in the world is with
-[Misode’s generator](https://misode.github.io/dimension/). However, it may not show completely accurate biome placement
-if you are taking advantage of continentalness and/or erosion.
+The best way to view and manipulate the biome source and how it may look in the
+world is with [Misode’s generator](https://misode.github.io/dimension/).
+However, it may not show completely accurate biome placement if you are taking
+advantage of continentalness and/or erosion.
 
 ## Biomes
 
 **Folders:** `biome`  
-**Optional Folders**: `configured_carver`, `placed_feature`, `configured_feature`
+**Optional Folders**: `configured_carver`, `placed_feature`,
+`configured_feature`
 
-This is where the most configurability and excitement, and least limitations, comes into play. Biomes are really just
-designated areas that can have the following things defined:
+This is where the most configurability and excitement, and least limitations,
+comes into play. Biomes are really just designated areas that can have the
+following things defined:
 
 - Precipitation (True/False)
 - Temperature
   - Used to determine rain or snow if Precipitation is true
   - Also influences natural grass and foliage coloration, along with Downfall
 - Override colors for grass, foliage, sky, fog, water, and water fog
-  - For grass and foliage, this color is added to the color determined by Temperature and Downfall, which references the
-    respective colormaps in the Resource Pack.
+  - For grass and foliage, this color is added to the color determined by
+    Temperature and Downfall, which references the respective colormaps in the
+    Resource Pack.
 - Particles, if any (such as in many Nether biomes)
 - Music and ambient sounds
 - Cave and canyon (ravine) types
 - Naturally spawning mobs
 - Features
 
-Not all of these need to be defined, but they all need to be present, even if empty. As always, it’s best to use
-[Misode’s generator](https://misode.github.io/worldgen/biome/) to ensure all required fields are accounted for. It also
-has useful tools for selecting colors, where appropriate.
+Not all of these need to be defined, but they all need to be present, even if
+empty. As always, it’s best to use
+[Misode’s generator](https://misode.github.io/worldgen/biome/) to ensure all
+required fields are accounted for. It also has useful tools for selecting
+colors, where appropriate.
 
 :::warning
 
-If you are modifying a vanilla biome (or a biome from another mod or data pack), your biome will necessarily be
-incompatible with any other data packs that modify that biome, too. This means you can’t, for example, add more Diamonds
-to the vanilla Swamp biome, and then also include Terralith -- you would need to instead use Terralith’s Swamp biome as
-a base and add more diamonds to that, if you want to use both in the same world.
+If you are modifying a vanilla biome (or a biome from another mod or data pack),
+your biome will necessarily be incompatible with any other data packs that
+modify that biome, too. This means you can’t, for example, add more Diamonds to
+the vanilla Swamp biome, and then also include Terralith -- you would need to
+instead use Terralith’s Swamp biome as a base and add more diamonds to that, if
+you want to use both in the same world.
 
 :::
 
 ### Naturally Spawning Mobs
 
-Called “Spawners” (not confusing at all), this is what decides what mobs will spawn in this biome, at what rarities and
-in what quantities.
+Called “Spawners” (not confusing at all), this is what decides what mobs will
+spawn in this biome, at what rarities and in what quantities.
 
 :::info
 
-This does not dictate those mobs’ spawning conditions–for the most part, we can’t change that. Passive Mobs will always
-need Grass Blocks and light to spawn, and Hostile Mobs will still need a low enough light level as defined in the
-Dimension Type. Some mobs, like Sniffers and Camels, don’t have as strict spawning conditions because they don’t spawn
-naturally in vanilla. This means they can spawn anywhere in the biome, even if it doesn’t make sense.
+This does not dictate those mobs’ spawning conditions–for the most part, we
+can’t change that. Passive Mobs will always need Grass Blocks and light to
+spawn, and Hostile Mobs will still need a low enough light level as defined in
+the Dimension Type. Some mobs, like Sniffers and Camels, don’t have as strict
+spawning conditions because they don’t spawn naturally in vanilla. This means
+they can spawn anywhere in the biome, even if it doesn’t make sense.
 
 :::
 
@@ -569,20 +670,25 @@ naturally in vanilla. This means they can spawn anywhere in the biome, even if i
 }
 ```
 
-Spawners are defined by first opening up a list of one of several categories, such as Monster, Creature, Water Ambient,
-or Axolotl. You can make mobs spawn in whatever category you want, but if you put it in the wrong category than it
-belongs (generally, Creature for passive mobs, Monster for hostile mobs, etc.), they may either fail to spawn entirely,
-or overspawn and exceed the mobcap. For this reason, it is advised that you only spawn mobs in their correct category;
-if you don’t know which it belongs to, refer to a vanilla biome that spawns that mob and see where it’s placed.
+Spawners are defined by first opening up a list of one of several categories,
+such as Monster, Creature, Water Ambient, or Axolotl. You can make mobs spawn in
+whatever category you want, but if you put it in the wrong category than it
+belongs (generally, Creature for passive mobs, Monster for hostile mobs, etc.),
+they may either fail to spawn entirely, or overspawn and exceed the mobcap. For
+this reason, it is advised that you only spawn mobs in their correct category;
+if you don’t know which it belongs to, refer to a vanilla biome that spawns that
+mob and see where it’s placed.
 
-An individual mob spawner entry includes the mob type, its weight (which works just like loot tables) and a min and max
-count. These latter values determine how many mobs will spawn within a group as one successful spawn attempt of that mob
-type. The min must be greater than 0.
+An individual mob spawner entry includes the mob type, its weight (which works
+just like loot tables) and a min and max count. These latter values determine
+how many mobs will spawn within a group as one successful spawn attempt of that
+mob type. The min must be greater than 0.
 
 ### Spawn Costs
 
-Spawn Costs are an optional field within the biome file, and are used to limit the frequency of spawns around mobs of a
-certain type, within that biome only. In vanilla, this is used to limit the number of Endermen that appear in Warped
+Spawn Costs are an optional field within the biome file, and are used to limit
+the frequency of spawns around mobs of a certain type, within that biome only.
+In vanilla, this is used to limit the number of Endermen that appear in Warped
 Forests, and Skeletons that appear in Soul Sand Valleys.
 
 ```json
@@ -596,42 +702,52 @@ Forests, and Skeletons that appear in Soul Sand Valleys.
 }
 ```
 
-A Spawn Cost for an individual mob consists of an energy_budget, and a charge, which are both float values. These are a
-little hard to explain, but essentially, the “charge” is used to calculate an individual mob’s contribution to the
-overall “energy budget” shared by all mobs of that type in the biome. If the value calculated from that charge would
-exceed that energy budget, it fails to spawn. This is very simplified, and indeed somewhat unintuitive, as the charge
-will generally be higher than the energy budget.
+A Spawn Cost for an individual mob consists of an energy_budget, and a charge,
+which are both float values. These are a little hard to explain, but
+essentially, the “charge” is used to calculate an individual mob’s contribution
+to the overall “energy budget” shared by all mobs of that type in the biome. If
+the value calculated from that charge would exceed that energy budget, it fails
+to spawn. This is very simplified, and indeed somewhat unintuitive, as the
+charge will generally be higher than the energy budget.
 
-If you’d like to learn more about how this works, see the wiki entry relating to it
-[here](https://minecraft.wiki/w/Spawn#Spawn_costs).
+If you’d like to learn more about how this works, see the wiki entry relating to
+it [here](https://minecraft.wiki/w/Spawn#Spawn_costs).
 
 ### Carvers
 
-This is where the legacy caves and ravines are defined for the biome. They are split into two steps: air and liquid,
-which behave as you would expect; either producing regular air caves, or flooded caves.
+This is where the legacy caves and ravines are defined for the biome. They are
+split into two steps: air and liquid, which behave as you would expect; either
+producing regular air caves, or flooded caves.
 
-You can define custom caves or canyons with a configured_carver, including defining what types of blocks the cave will
-be allowed to replace (which is why it’s called a carver), their frequency, size, and other values. To explore this
+You can define custom caves or canyons with a configured_carver, including
+defining what types of blocks the cave will be allowed to replace (which is why
+it’s called a carver), their frequency, size, and other values. To explore this
 fully, it’s recommended to mess with the various fields using
 [Misode’s generator](https://misode.github.io/worldgen/carver/).
 
 ### Features
 
-Features are the real meat of a biome. These are everything that actually fills up the biome and gives it character
-beyond the terrain and surface. Trees, flowers, ores, geodes, granite deposits, and sometimes small structures like
-Desert Wells are all features. There is a lot you can do here, but the options aren’t limitless.
+Features are the real meat of a biome. These are everything that actually fills
+up the biome and gives it character beyond the terrain and surface. Trees,
+flowers, ores, geodes, granite deposits, and sometimes small structures like
+Desert Wells are all features. There is a lot you can do here, but the options
+aren’t limitless.
 
-For one, there’s the issue of performance. Larger and more common features make loading new chunks slower, as do
-features that have hyper-specific location requirements to spawn.
+For one, there’s the issue of performance. Larger and more common features make
+loading new chunks slower, as do features that have hyper-specific location
+requirements to spawn.
 
-For two, some specific shapes are harder to achieve, and some common features aren’t as configurable as others. Trees
-are some of the most configurable features in the game, able to use any block or combination of blocks for their trunks,
-leaves, roots, and more, and can be used to make elaborate shapes and features that don’t even look like trees.
-Conversely, the coral reefs in Warm Oceans are easy to replicate and adjust the frequency and location of, but their
+For two, some specific shapes are harder to achieve, and some common features
+aren’t as configurable as others. Trees are some of the most configurable
+features in the game, able to use any block or combination of blocks for their
+trunks, leaves, roots, and more, and can be used to make elaborate shapes and
+features that don’t even look like trees. Conversely, the coral reefs in Warm
+Oceans are easy to replicate and adjust the frequency and location of, but their
 shapes and the blocks they’re made of cannot be changed at all.
 
-As such, it’s often better to have some broad strokes for the “feel” or atmosphere you want for a biome in mind, rather
-than planning everything down to the shape, as flexibility may be necessary.
+As such, it’s often better to have some broad strokes for the “feel” or
+atmosphere you want for a biome in mind, rather than planning everything down to
+the shape, as flexibility may be necessary.
 
 ```json
 {
@@ -693,67 +809,89 @@ than planning everything down to the shape, as flexibility may be necessary.
 }
 ```
 
-Best practice is to have the “features” section of your biome consist of 11 lists (defined with square brackets: [ ]),
-called “steps”, but you can have any number of steps, fewer or greater. Generally, features will be placed in order
-based on which step they appear in, from top to bottom. So, if you want to place Tree features with leaves made of
-Stone, and then place Ore features that get placed in the stone, you would put those features in separate steps, with
-the Ore feature in a later step from the Tree.
+Best practice is to have the “features” section of your biome consist of 11
+lists (defined with square brackets: [ ]), called “steps”, but you can have any
+number of steps, fewer or greater. Generally, features will be placed in order
+based on which step they appear in, from top to bottom. So, if you want to place
+Tree features with leaves made of Stone, and then place Ore features that get
+placed in the stone, you would put those features in separate steps, with the
+Ore feature in a later step from the Tree.
 
-Other parts of the game refer to these steps by name, representative of the order they generate in, specifically for
-things like Custom Structure Generation to reference which step of generation those should appear in. However, the names
-themselves are arbitrary and just reflect which steps vanilla chooses to put its features in; any feature type can go in
-any step. For interest’s sake, these designations are, in order from first step to last:
+Other parts of the game refer to these steps by name, representative of the
+order they generate in, specifically for things like Custom Structure Generation
+to reference which step of generation those should appear in. However, the names
+themselves are arbitrary and just reflect which steps vanilla chooses to put its
+features in; any feature type can go in any step. For interest’s sake, these
+designations are, in order from first step to last:
 
-1. **RAW_GENERATION:** Where End biomes place the small circular endstone islands
-2. **LAKES:** Where Overworld biomes place lava lakes, and used to place water lakes
-3. **LOCAL_MODIFICATIONS:** Where Overworld Biomes place Amethyst Geodes, and the Frozen Ocean biome places Icebergs
+1. **RAW_GENERATION:** Where End biomes place the small circular endstone
+   islands
+2. **LAKES:** Where Overworld biomes place lava lakes, and used to place water
+   lakes
+3. **LOCAL_MODIFICATIONS:** Where Overworld Biomes place Amethyst Geodes, and
+   the Frozen Ocean biome places Icebergs
 4. **UNDERGROUND_STRUCTURES:** Where Overworld Biomes place Dungeons and Fossils
 5. **SURFACE_STRUCTURES:** Where the Desert biome places Desert Wells
-6. **STRONGHOLDS:** No vanilla biomes place features here, but you can and it’ll work fine
-7. **UNDERGROUND_ORES:** Where all Overworld biomes place ores (which includes actual ore blocks, as well as the blobs
-   of Dirt, Gravel, and Stone variants), as well as discs that generate on the floor underwater
-8. **UNDERGROUND_DECORATION:** Where all Nether biomes place ores (which includes actual ore blocks, as well as the
-   blobs of Gravel and Blackstone), and where Overworld mountain biomes place blobs of Infested Stone
-9. **FLUID_SPRINGS:** Where all Overworld and Nether biomes place water and/or lava springs (individual fluid blocks
-   that may or may not spill out of walls or ceilings)
-10. **VEGETAL_DECORATION:** Where all biomes place features such as trees, flowers, cacti, Huge Fungi, Chorus Plants and
-    similar features
-11. **TOP_LAYER_MODIFICATION:** Where all Overworld biomes place a feature that causes snow or ice to cover the top
-    blocks if the temperature is sufficiently low at that altitude
+6. **STRONGHOLDS:** No vanilla biomes place features here, but you can and it’ll
+   work fine
+7. **UNDERGROUND_ORES:** Where all Overworld biomes place ores (which includes
+   actual ore blocks, as well as the blobs of Dirt, Gravel, and Stone variants),
+   as well as discs that generate on the floor underwater
+8. **UNDERGROUND_DECORATION:** Where all Nether biomes place ores (which
+   includes actual ore blocks, as well as the blobs of Gravel and Blackstone),
+   and where Overworld mountain biomes place blobs of Infested Stone
+9. **FLUID_SPRINGS:** Where all Overworld and Nether biomes place water and/or
+   lava springs (individual fluid blocks that may or may not spill out of walls
+   or ceilings)
+10. **VEGETAL_DECORATION:** Where all biomes place features such as trees,
+    flowers, cacti, Huge Fungi, Chorus Plants and similar features
+11. **TOP_LAYER_MODIFICATION:** Where all Overworld biomes place a feature that
+    causes snow or ice to cover the top blocks if the temperature is
+    sufficiently low at that altitude
 
-Note that there are some exceptions to generation order. For example, Deltas will generally spawn after everything else regardless
-of which step they’re placed in. Conversely, Lakes often spawn before other features, even if they are in a later step.
+Note that there are some exceptions to generation order. For example, Deltas
+will generally spawn after everything else regardless of which step they’re
+placed in. Conversely, Lakes often spawn before other features, even if they are
+in a later step.
 
 :::warning
 
-If you have two or more features that appear in one step together (regardless of which step it is) in multiple biomes,
-they must always be in the same order, or the game will throw an error and fail to load (this is called a feature order
-cycle error). For the same reason, you can't repeat a feature in the same step, even one after the other, if that
-feature is used in a different biome.
+If you have two or more features that appear in one step together (regardless of
+which step it is) in multiple biomes, they must always be in the same order, or
+the game will throw an error and fail to load (this is called a feature order
+cycle error). For the same reason, you can't repeat a feature in the same step,
+even one after the other, if that feature is used in a different biome.
 
 :::
 
-Features are themselves composed of two other file types: placed_features, and configured_features. A configured_feature
-defines what type of feature it is, physically, such as an ore or a tree. The placed_feature determines under what
-conditions it spawns, such as in or on what blocks, at what Y level, or other factors. The placed_feature is what the
-biome file references.
+Features are themselves composed of two other file types: placed_features, and
+configured_features. A configured_feature defines what type of feature it is,
+physically, such as an ore or a tree. The placed_feature determines under what
+conditions it spawns, such as in or on what blocks, at what Y level, or other
+factors. The placed_feature is what the biome file references.
 
-Technically, the configured_feature can be defined in-line in the placed_feature, however it’s good practice to separate
-these files. This allows easier delineation when creating and editing -- as some configured_feature types include
-in-line placements like a placed_feature -- and also makes it easier to reuse a configured_feature in multiple
-placed_features.
+Technically, the configured_feature can be defined in-line in the
+placed_feature, however it’s good practice to separate these files. This allows
+easier delineation when creating and editing -- as some configured_feature types
+include in-line placements like a placed_feature -- and also makes it easier to
+reuse a configured_feature in multiple placed_features.
 
 #### Configured Features
 
-There are many configured_feature types, each with different required fields. Listing each in detail would be unhelpful,
-outside the scope of this guide, and a duplication of efforts -- [the wiki](https://minecraft.wiki/w/Configured_feature)
-serves as a great reference to become familiar with the available feature types. As always, utilizing
-[Misode](https://misode.github.io/worldgen/feature/) to keep track of required fields is highly recommended.
-Furthermore, if you do have an idea of a vanilla feature that looks similar to what you want to create, referencing it
-or starting from it as a base, and then modifying it, is a completely valid strategy.
+There are many configured_feature types, each with different required fields.
+Listing each in detail would be unhelpful, outside the scope of this guide, and
+a duplication of efforts --
+[the wiki](https://minecraft.wiki/w/Configured_feature) serves as a great
+reference to become familiar with the available feature types. As always,
+utilizing [Misode](https://misode.github.io/worldgen/feature/) to keep track of
+required fields is highly recommended. Furthermore, if you do have an idea of a
+vanilla feature that looks similar to what you want to create, referencing it or
+starting from it as a base, and then modifying it, is a completely valid
+strategy.
 
-Instead, what this section of the guide will go over is point out which features are best for what purpose, and which
-features are surprisingly difficult to work with, primarily as this knowledge may help keep you from becoming frustrated
+Instead, what this section of the guide will go over is point out which features
+are best for what purpose, and which features are surprisingly difficult to work
+with, primarily as this knowledge may help keep you from becoming frustrated
 that you can’t figure out how to do something that is, in fact, not possible.
 
 ```json
@@ -811,16 +949,20 @@ that you can’t figure out how to do something that is, in fact, not possible.
 }
 ```
 
-As mentioned above, some configured_features, like trees, offer a lot of control and flexibility. Trees have several
-different shapes to choose from for their trunks and leaves, as well as optional roots (such as what Mangroves have),
-options for decorations on any face of leaves, and can accept one or multiple different blocks to make up each of these
-facets.
+As mentioned above, some configured_features, like trees, offer a lot of control
+and flexibility. Trees have several different shapes to choose from for their
+trunks and leaves, as well as optional roots (such as what Mangroves have),
+options for decorations on any face of leaves, and can accept one or multiple
+different blocks to make up each of these facets.
 
-The Ore feature type does not have quite as many fields, but still presents a good deal of configurability. Making a new
-ore configured_feature entails determining what the block being placed is (the state) and what blocks it tries to get
-placed in (the target), which can be a block tag. As you can see in the below example for Coal, you can also list
-multiple state and target pairs in one feature, which vanilla uses to place the appropriate Deepslate variant if the
-block it gets placed in is a Deepslate or Tuff Block rather than Stone or a stone variant.
+The Ore feature type does not have quite as many fields, but still presents a
+good deal of configurability. Making a new ore configured_feature entails
+determining what the block being placed is (the state) and what blocks it tries
+to get placed in (the target), which can be a block tag. As you can see in the
+below example for Coal, you can also list multiple state and target pairs in one
+feature, which vanilla uses to place the appropriate Deepslate variant if the
+block it gets placed in is a Deepslate or Tuff Block rather than Stone or a
+stone variant.
 
 ```json
 {
@@ -852,42 +994,54 @@ block it gets placed in is a Deepslate or Tuff Block rather than Stone or a ston
 }
 ```
 
-The size is self-explanatory but is not indicative of the actual quantity of the state blocks that will be placed. More
-info on that relationship can be found on the [wiki](<https://minecraft.wiki/w/Ore_(feature)>).
-Discard_chance_on_air_exposure is a chance between 0.0 and 1.0 to intentionally fail to spawn the feature if it touches
-air, such as in a cave. This is used in vanilla for so-called “buried” ore features like Iron and Diamonds, to encourage
+The size is self-explanatory but is not indicative of the actual quantity of the
+state blocks that will be placed. More info on that relationship can be found on
+the [wiki](<https://minecraft.wiki/w/Ore_(feature)>).
+Discard_chance_on_air_exposure is a chance between 0.0 and 1.0 to intentionally
+fail to spawn the feature if it touches air, such as in a cave. This is used in
+vanilla for so-called “buried” ore features like Iron and Diamonds, to encourage
 other forms of mining than just caving.
 
-The Ore feature type is also what is used for the blobs of dirt, gravel, granite, tuff, and other blocks in the
-Overworld.
+The Ore feature type is also what is used for the blobs of dirt, gravel,
+granite, tuff, and other blocks in the Overworld.
 
-Moving into feature types that are not configurable and what you can do about it. End Islands, Basalt Pillars, Ice
-Spikes, Glowstone Blobs, and Coral Claws are all examples of features that have no configuration at all, meaning their
-shape and block palette is hardcoded. You can still change how they get placed with a placed_feature later, but you
-can’t change what these features physically are.
+Moving into feature types that are not configurable and what you can do about
+it. End Islands, Basalt Pillars, Ice Spikes, Glowstone Blobs, and Coral Claws
+are all examples of features that have no configuration at all, meaning their
+shape and block palette is hardcoded. You can still change how they get placed
+with a placed_feature later, but you can’t change what these features physically
+are.
 
-For cases like these where you may want to make use of those specific shapes, but can’t recreate them with other
-features (End Islands are a good example), you can create features to replace those blocks with other blocks in a later
-step. A good feature to use for this is geodes, because they can define a list of blocks that they are not able to
-replace, which can include all blocks except the desired replaceables.
+For cases like these where you may want to make use of those specific shapes,
+but can’t recreate them with other features (End Islands are a good example),
+you can create features to replace those blocks with other blocks in a later
+step. A good feature to use for this is geodes, because they can define a list
+of blocks that they are not able to replace, which can include all blocks except
+the desired replaceables.
 
-This just allows you to replace a target block with a state block in a 3D-diamond with a defined radius. It
-unfortunately doesn’t support block tags. It also has a maximum radius of 12, so you may need a higher quantity of them
+This just allows you to replace a target block with a state block in a
+3D-diamond with a defined radius. It unfortunately doesn’t support block tags.
+It also has a maximum radius of 12, so you may need a higher quantity of them
 using your placed_feauture later to get consistent coverage.
 
 #### Placed Features
 
-A placed_feature typically references a configured_feature, and determines how it gets placed in the world. For some
-features, like Trees, they will obey wherever your placements happen to define as valid. For other features, like Ice
-Spikes, they need to adhere to hardcoded conditions of the feature type, which are not always obvious. Ice Spikes for
-example can only spawn on Snow Blocks, regardless of what the placed_feature says.
+A placed_feature typically references a configured_feature, and determines how
+it gets placed in the world. For some features, like Trees, they will obey
+wherever your placements happen to define as valid. For other features, like Ice
+Spikes, they need to adhere to hardcoded conditions of the feature type, which
+are not always obvious. Ice Spikes for example can only spawn on Snow Blocks,
+regardless of what the placed_feature says.
 
-As with the previous section, this guide will not go over every type of placement that can be included, nor every field
-they contain. These are all covered in detail on [the wiki](https://minecraft.wiki/w/Placed_feature), and generating
-them can be aided using [Misode](https://misode.github.io/worldgen/placed-feature/).
+As with the previous section, this guide will not go over every type of
+placement that can be included, nor every field they contain. These are all
+covered in detail on [the wiki](https://minecraft.wiki/w/Placed_feature), and
+generating them can be aided using
+[Misode](https://misode.github.io/worldgen/placed-feature/).
 
-However, there are a handful of placement types that are used extremely commonly, and so we will go over what those are,
-how to use them, and when they may not be needed.
+However, there are a handful of placement types that are used extremely
+commonly, and so we will go over what those are, how to use them, and when they
+may not be needed.
 
 ```json
 {
@@ -919,60 +1073,77 @@ how to use them, and when they may not be needed.
 }
 ```
 
-Generally, placements are calculated in order from first to last. For some placement types, this is irrelevant, while
-for others, being listed before or after another placement can dramatically alter the spawning behavior. The following
-placement types are the most commonly used; a majority of placed_features will use some combination of these placements:
+Generally, placements are calculated in order from first to last. For some
+placement types, this is irrelevant, while for others, being listed before or
+after another placement can dramatically alter the spawning behavior. The
+following placement types are the most commonly used; a majority of
+placed_features will use some combination of these placements:
 
 ##### count
 
-The number of spawn attempts this feature will make per chunk. Accepts a constant, or other number providers like
-uniform or trapezoid. If excluded, the placed_feature will make only 1 spawn attempt per chunk.
+The number of spawn attempts this feature will make per chunk. Accepts a
+constant, or other number providers like uniform or trapezoid. If excluded, the
+placed_feature will make only 1 spawn attempt per chunk.
 
 ##### count_on_every_layer
 
-An alternative to count. A little hard to explain, but essentially includes some random X and Z distribution, and Y
-distribution based on layers of air or fluid.
+An alternative to count. A little hard to explain, but essentially includes some
+random X and Z distribution, and Y distribution based on layers of air or fluid.
 
 ##### rarity_filter
 
-Accepts a positive integer. Essentially divides any previous count-type placements by this value. For example, a rarity
-of 1 will cause no change, a rarity of 2 will make the feature half as common, a rarity of 5 will make it 5 times less
-common, etc. If no count-type placement was specified before this placement, the count is assumed to be 1.
+Accepts a positive integer. Essentially divides any previous count-type
+placements by this value. For example, a rarity of 1 will cause no change, a
+rarity of 2 will make the feature half as common, a rarity of 5 will make it 5
+times less common, etc. If no count-type placement was specified before this
+placement, the count is assumed to be 1.
 
 ##### in_square
 
-This is used to include some random distribution within the chunk. Without this placement, all of the spawn attempts
-would be made at the chunk’s 0x, 0z coordinate. If you are using count_on_every_layer, you do not need to use in_square.
+This is used to include some random distribution within the chunk. Without this
+placement, all of the spawn attempts would be made at the chunk’s 0x, 0z
+coordinate. If you are using count_on_every_layer, you do not need to use
+in_square.
 
 ##### height_range
 
-Determines the height this feature will try to spawn in. Accepts a constant, or other number providers like uniform or
-trapezoid. Whether using a constant or a number provider, each value must also be defined as “absolute” (this exact Y
-level), “above_bottom” (this many blocks above the lowest Y level of this dimension) or “below_top” (this many blocks
-below the highest Y level of this dimension, always a positive number). This allows some flexibility for situations such
-as if the height of the dimension may change or is unknown.
+Determines the height this feature will try to spawn in. Accepts a constant, or
+other number providers like uniform or trapezoid. Whether using a constant or a
+number provider, each value must also be defined as “absolute” (this exact Y
+level), “above_bottom” (this many blocks above the lowest Y level of this
+dimension) or “below_top” (this many blocks below the highest Y level of this
+dimension, always a positive number). This allows some flexibility for
+situations such as if the height of the dimension may change or is unknown.
 
 ##### heightmap
 
-Accepts one of a few different heightmaps, including MOTION_BLOCKING, OCEAN_FLOOR, and WORLD_SURFACE_WG. This causes the
-feature to attempt to spawn at the highest block in the chosen X and Z coordinate, according to the selected heightmap.
-Unsurprisingly, this can cause undesired behavior if the dimension has a roof, like the Nether.
+Accepts one of a few different heightmaps, including MOTION_BLOCKING,
+OCEAN_FLOOR, and WORLD_SURFACE_WG. This causes the feature to attempt to spawn
+at the highest block in the chosen X and Z coordinate, according to the selected
+heightmap. Unsurprisingly, this can cause undesired behavior if the dimension
+has a roof, like the Nether.
 
 ##### biome
 
-Doesn’t have any other fields. Ensures that this feature won’t be allowed to spawn if the spawn attempt would be inside
-a biome that does not contain this placed_feature in its listed features. Without it, if a chunk contains two biomes,
-the feature would be allowed to “bleed” into the neighboring biome, even if it doesn’t belong there, as long as all
-other conditions are met (for example, a Desert’s Cactus feature spawning in an adjacent Beach biome).
+Doesn’t have any other fields. Ensures that this feature won’t be allowed to
+spawn if the spawn attempt would be inside a biome that does not contain this
+placed_feature in its listed features. Without it, if a chunk contains two
+biomes, the feature would be allowed to “bleed” into the neighboring biome, even
+if it doesn’t belong there, as long as all other conditions are met (for
+example, a Desert’s Cactus feature spawning in an adjacent Beach biome).
 
 ##### block_predicate_filter
 
-Can be used to apply one or more conditions based on nearby blocks, including the block that has been selected for the
-spawn attempt. This can include details like if the block below is solid or in a block tag, whether it has a sturdy
+Can be used to apply one or more conditions based on nearby blocks, including
+the block that has been selected for the spawn attempt. This can include details
+like if the block below is solid or in a block tag, whether it has a sturdy
 face, or is a valid location for a sapling or mushroom to be placed.
 
-One of the most important things to keep in mind when creating placed_features in particular is performance. More than
-anything else in worldgen, the placed_features are going to have the greatest impact on the speed of your chunk
-generation. Features that have a high count, or hyper-specific block_predicate_filters, can cause chunks to load more
-slowly. Similarly, including a height range for a feature that includes a lot of space that the feature can’t spawn in
-can impact this chunk generation, as all of those failed spawn attempts still have to be calculated.
+One of the most important things to keep in mind when creating placed_features
+in particular is performance. More than anything else in worldgen, the
+placed_features are going to have the greatest impact on the speed of your chunk
+generation. Features that have a high count, or hyper-specific
+block_predicate_filters, can cause chunks to load more slowly. Similarly,
+including a height range for a feature that includes a lot of space that the
+feature can’t spawn in can impact this chunk generation, as all of those failed
+spawn attempts still have to be calculated.

@@ -1,12 +1,15 @@
 ---
 title: /summon
-description: "The /summon command is used to summon an entity at a position, along with any entity NBT."
+description:
+  "The /summon command is used to summon an entity at a position, along with any
+  entity NBT."
 version: 1.21.8
 ---
 
 # /summon command
 
-The `/summon` command is used to summon an entity at a position, along with any entity NBT.
+The `/summon` command is used to summon an entity at a position, along with any
+entity NBT.
 
 ## Syntax
 
@@ -26,10 +29,13 @@ summon <entity> [position] [nbt data]
 ## Examples
 
 - `summon minecraft:cow` - Summons a cow at the current position.
-- `summon minecraft:ender_dragon ~ ~50 ~` - Summons an ender dragon 50 blocks above the current position
-- `summon minecraft:wither 29 372 121` - Summons a wither at the coordinates `x=29, y=372, z=121`
-- `summon minecraft:zombie ~ ~ ~ {NoAI:1b}` - Summons a zombie at the current position with the `NoAI` NBT, meaning it
-  will not move around or attack players.
+- `summon minecraft:ender_dragon ~ ~50 ~` - Summons an ender dragon 50 blocks
+  above the current position
+- `summon minecraft:wither 29 372 121` - Summons a wither at the coordinates
+  `x=29, y=372, z=121`
+- `summon minecraft:zombie ~ ~ ~ {NoAI:1b}` - Summons a zombie at the current
+  position with the `NoAI` NBT, meaning it will not move around or attack
+  players.
 
 ## Alternatives
 
@@ -37,9 +43,11 @@ The `execute summon <entity>` command can also be used to summon an entity. Usin
 [execute subcommand](/wiki/command/execute#execute-summon-ltentitygt-) will summon an entity at the current position, and then run the specified
 command as the newly summoned entity.
 
-However, `execute summon` cannot provide any NBT to give the entity upon being spawned. You will have to edit the nbt in
-the command/function which is executed, which can be a bit tedious. An alternative to
-`execute summon minecraft:cow run function custom_function` would be the following:
+However, `execute summon` cannot provide any NBT to give the entity upon being
+spawned. You will have to edit the nbt in the command/function which is
+executed, which can be a bit tedious. An alternative to
+`execute summon minecraft:cow run function custom_function` would be the
+following:
 
 ```mcfunction
 summon minecraft:cow ~ ~ ~ {Tags:["newly_summoned_cow"]}

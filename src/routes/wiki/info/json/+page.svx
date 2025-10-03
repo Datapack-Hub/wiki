@@ -1,66 +1,117 @@
 ---
 title: JSON
-description: "A rough guide to the JSON format used in Minecraft Datapacks (among other places)"
+description:
+  "A rough guide to the JSON format used in Minecraft Datapacks (among other
+  places)"
 ---
 
 # JSON Format
 JSON is a data storage type used by Minecraft Datapacks for files such as [predicates](/wiki/files/predicates) and [tags](/wiki/files/tags), as well as in [Styled Text](/wiki/concepts/json-text). JSON is a way of storing data, usually used in `.json` files but is also seen in `.mcmeta` files too.
 
 ## How JSON works
-JSON stands for **JavaScript Object Notation**. It was originally created as a way of writing objects in Javascript. These days, JSON is used in almost every programming environment, datapacks included.
 
-JSON is a way of storing information so that both a computer and a human can understand it. It stores data as **key-value pairs** - this means that a key (such as `name`) can store any value (such as `Aron Aronson`). The code can ask for `name`, and it will get the result `Aron Aronson`.
+JSON stands for **JavaScript Object Notation**. It was originally created as a
+way of writing objects in Javascript. These days, JSON is used in almost every
+programming environment, datapacks included.
 
-A `.json` file usually is itself just a JSON object (aka a JSON dictionary). A JSON dictionary is like a real dictionary because it holds sets of key/value pairs - just like how a dictionary consists of word/definition pairs. In a JSON dictionary, the key and value are separated by a colon (`"key":value`), and each key/value pair is separated by a comma.
+JSON is a way of storing information so that both a computer and a human can
+understand it. It stores data as **key-value pairs** - this means that a key
+(such as `name`) can store any value (such as `Aron Aronson`). The code can ask
+for `name`, and it will get the result `Aron Aronson`.
+
+A `.json` file usually is itself just a JSON object (aka a JSON dictionary). A
+JSON dictionary is like a real dictionary because it holds sets of key/value
+pairs - just like how a dictionary consists of word/definition pairs. In a JSON
+dictionary, the key and value are separated by a colon (`"key":value`), and each
+key/value pair is separated by a comma.
 
 ## Example JSON
+
 ```json
 {
-  "name":"Aron Aronson",
-  "age":83,
-  "alive":true,
-  "family_members":[
-    "James Aronson",
-    "Catherine Aronson"
-  ],
-  "login_details":{
-    "email":"aron.aronson@gmail.com",
-    "password":"MyNameIsAron12345"
-  }
+  "name": "Aron Aronson",
+  "age": 83,
+  "alive": true,
+  "family_members": ["James Aronson", "Catherine Aronson"],
+  "login_details": {
+    "email": "aron.aronson@gmail.com",
+    "password": "MyNameIsAron12345"
+  }
 }
 ```
-An explanation of this file:
-- Everything is contained within curly brackets `{...}`, which means that the whole file is a JSON dictionary.
-- The first key/value pair is `"name":"Aron Aronson"`. The key here is `name`, and it has a **string** (text) value: `"Aron Aronson"`
-- The second key/value pair is `"age":83`. The key here is `age`, and it has a **integer** (whole number) value of `83`. The number isn't `"` signs, because if a value is in `"` signs, it is considered to be text.
-- The third key/value pair is `"alive":true`. The key here is `alive`, and it has a **boolean** (true/false) value of `true`.
-- The fourth key/value pair is `"family_members:[...]"`. The key here is `family_members`, and it has a **list** value (indicated by the square brackets `[]`). This list has two **string** (text) values. The list does *not* contain key/value pairs, just values.
-- The final key/value pair is `"login_details":{...}`. The key here is `login_details`, and it has a **dictionary** value. The dictionary itself contains two key/value pairs.
 
-Note that the key in a key/value pair is contained within `"` signs - don't confuse this with the string data type seen in the first key/value pair. The key is always on the **left** of the colon, and is **always** in `"` signs. The value is always on the **right** of the colon, and should only use `"` signs if it is a text value.
+An explanation of this file:
+
+- Everything is contained within curly brackets `{...}`, which means that the
+  whole file is a JSON dictionary.
+- The first key/value pair is `"name":"Aron Aronson"`. The key here is `name`,
+  and it has a **string** (text) value: `"Aron Aronson"`
+- The second key/value pair is `"age":83`. The key here is `age`, and it has a
+  **integer** (whole number) value of `83`. The number isn't `"` signs, because
+  if a value is in `"` signs, it is considered to be text.
+- The third key/value pair is `"alive":true`. The key here is `alive`, and it
+  has a **boolean** (true/false) value of `true`.
+- The fourth key/value pair is `"family_members:[...]"`. The key here is
+  `family_members`, and it has a **list** value (indicated by the square
+  brackets `[]`). This list has two **string** (text) values. The list does
+  _not_ contain key/value pairs, just values.
+- The final key/value pair is `"login_details":{...}`. The key here is
+  `login_details`, and it has a **dictionary** value. The dictionary itself
+  contains two key/value pairs.
+
+Note that the key in a key/value pair is contained within `"` signs - don't
+confuse this with the string data type seen in the first key/value pair. The key
+is always on the **left** of the colon, and is **always** in `"` signs. The
+value is always on the **right** of the colon, and should only use `"` signs if
+it is a text value.
 
 ## Types of values
+
 You can use the following data types for JSON values:
-- **String** (e.g `"Hi! I am text"`): A string is plain text. Everything inside the string should be contained within `"` or `'` signs. If you want to use one of those signs within the string without making the computer think the string has ended, put a `\` before the character (e.g `"Dave said \"Hello\"."`)
-- **Integer** (e.g `42`): An integer (often called an int) is a whole number. This is also often used to store date and time values (seconds since `Jan 1 1970`)
-- **Float** (e.g `12.5`): A float (short for "floating point number") is any decimal number. The decimal point needs to be a `.` symbol.
-- **Boolean** (e.g `true` or `false`): A boolean is either `true` or `false`. In some circumstances, these are just easier ways to write `1` or `0`.
-- **List** (e.g `[123, "hello", 456, "goodbye"]`): A list is an ordered collection of values (not key/value pairs). List items should be contained within square brackets (`[]`) and separated with a comma. Confusingly, the first item in a list is "item 0", the second one is "item 1", etc.
-- **Dictionary** (e.g `{"name":"Aron", "age":94}`): A dictionary contains key/value pairs, separated by commas. The key needs to be inside `"` signs, and followed by a colon.
+
+- **String** (e.g `"Hi! I am text"`): A string is plain text. Everything inside
+  the string should be contained within `"` or `'` signs. If you want to use one
+  of those signs within the string without making the computer think the string
+  has ended, put a `\` before the character (e.g `"Dave said \"Hello\"."`)
+- **Integer** (e.g `42`): An integer (often called an int) is a whole number.
+  This is also often used to store date and time values (seconds since
+  `Jan 1 1970`)
+- **Float** (e.g `12.5`): A float (short for "floating point number") is any
+  decimal number. The decimal point needs to be a `.` symbol.
+- **Boolean** (e.g `true` or `false`): A boolean is either `true` or `false`. In
+  some circumstances, these are just easier ways to write `1` or `0`.
+- **List** (e.g `[123, "hello", 456, "goodbye"]`): A list is an ordered
+  collection of values (not key/value pairs). List items should be contained
+  within square brackets (`[]`) and separated with a comma. Confusingly, the
+  first item in a list is "item 0", the second one is "item 1", etc.
+- **Dictionary** (e.g `{"name":"Aron", "age":94}`): A dictionary contains
+  key/value pairs, separated by commas. The key needs to be inside `"` signs,
+  and followed by a colon.
 
 ## JSON Paths
-A JSON path is basically the address of a specific value within a JSON structure. Nested dictionaries (if the value of a key is a dictionary) are separated by `.` signs, otherwise it's pretty straightforward how they work. 
 
-If we assume that `root` contains the entirety of the example file (remember that the contents of the file itself is just a JSON dictionary), then the following paths can be used:
+A JSON path is basically the address of a specific value within a JSON
+structure. Nested dictionaries (if the value of a key is a dictionary) are
+separated by `.` signs, otherwise it's pretty straightforward how they work.
+
+If we assume that `root` contains the entirety of the example file (remember
+that the contents of the file itself is just a JSON dictionary), then the
+following paths can be used:
+
 - `root.name` would return `"Aron Aronson"`
 - `root.alive` would return `true`
-- `root.family_members[0]` would return `"James Aronson"` (the first item in the array)
+- `root.family_members[0]` would return `"James Aronson"` (the first item in the
+  array)
 - `root.login_detiails.password` would return `"MyNameIsAron12345"`
 
-In datapacks, you will not use JSON paths often, but you will use [NBT paths](/wiki/nbt-scoreboards/nbt#nbt-paths), which are very similar.
+In datapacks, you will not use JSON paths often, but you will use
+[NBT paths](/wiki/nbt-scoreboards/nbt#nbt-paths), which are very similar.
 
 :::note
-The format for paths above is only the most commonly seen path format. Other languages, such as Python, use a different format, such as:
+
+The format for paths above is only the most commonly seen path format. Other
+languages, such as Python, use a different format, such as:
+
 ```json
 root["login_details"]["password"]
 ```

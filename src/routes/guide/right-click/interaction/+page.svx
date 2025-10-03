@@ -1,16 +1,28 @@
 ---
 title: Using an Interaction Entity for RC detection
-description: Interaction entities can be used to detect when a player rightclicks or leftclicks in a specific area of the world.
+description:
+  Interaction entities can be used to detect when a player rightclicks or
+  leftclicks in a specific area of the world.
 version: 1.21.8
 ---
 
 # Interaction Right (and left) Click Detection
-An interaction entity can detect clicks in a specific area, instead of on an item. Interaction entities can detect both right and left clicks (although this guide will go over right clicks specifically). There are two methods to detect right clicks using interaction entities, depending on what you want to do afterwards.
+
+An interaction entity can detect clicks in a specific area, instead of on an
+item. Interaction entities can detect both right and left clicks (although this
+guide will go over right clicks specifically). There are two methods to detect
+right clicks using interaction entities, depending on what you want to do
+afterwards.
 
 ## Method 1: Detect when a player right clicks an interaction entity
-This method works best when you want to do something to the player when they right click the interaction entity.
 
-To detect when the interaction entity has been interacted with, you must create a `player_interacted_with_entity` advancement, and specify the entity data you want to trigger the advancement. Then, you can specify a reward function which will be run when the advancement is triggered.
+This method works best when you want to do something to the player when they
+right click the interaction entity.
+
+To detect when the interaction entity has been interacted with, you must create
+a `player_interacted_with_entity` advancement, and specify the entity data you
+want to trigger the advancement. Then, you can specify a reward function which
+will be run when the advancement is triggered.
 
 ```json:interacted_with_interaction.json
 {
@@ -31,7 +43,11 @@ To detect when the interaction entity has been interacted with, you must create 
 }
 ```
 
-In the function (in this case, you will need to create it: `/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands that you want to run when the interaction entity is right clicked. Make sure that this function also **revokes the advancement** so that it can be triggered again next tick.
+In the function (in this case, you will need to create it:
+`/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands
+that you want to run when the interaction entity is right clicked. Make sure
+that this function also **revokes the advancement** so that it can be triggered
+again next tick.
 
 ```mcfunction:rightclick_run.mcfunction
 # Revoke the advancement so we can detect the click again
@@ -41,18 +57,27 @@ advancement revoke @s only namespace:interacted_with_interaction
 say I clicked the interaction entity!
 ```
 
-Now you can summon the interaction entity by doing `/summon interaction ~ ~ ~ {Tags:["my_interaction"]}` - you may want to enable hitboxes with `F3 + B` in order to see the hitbox of the interaction entity (it is invisible without it).
+Now you can summon the interaction entity by doing
+`/summon interaction ~ ~ ~ {Tags:["my_interaction"]}` - you may want to enable
+hitboxes with `F3 + B` in order to see the hitbox of the interaction entity (it
+is invisible without it).
 
 ## Method 2: Detect when an interaction entity is right clicked
-This method works best when you want to do something to the interaction when it is right clicked, ignoring which player did it.
 
-The interaction entity will have an `interaction` NBT tag when it has been right clicked by a player. You can use a tick function to detect this easily using `execute if entity`, and run a function as the interaction entity when it has been triggered:
+This method works best when you want to do something to the interaction when it
+is right clicked, ignoring which player did it.
+
+The interaction entity will have an `interaction` NBT tag when it has been right
+clicked by a player. You can use a tick function to detect this easily using
+`execute if entity`, and run a function as the interaction entity when it has
+been triggered:
 
 ```mcfunction:tick.mcfunction
 execute as @e[type=interaction,tag=my_interaction] if data entity @s interaction run function <namespace>:rightclick_run
 ```
 
-In the `rightclick_run` function, you will need to remove the `interaction` NBT from the entity so that it resets, and then you can add custom logic:
+In the `rightclick_run` function, you will need to remove the `interaction` NBT
+from the entity so that it resets, and then you can add custom logic:
 
 ```mcfunction:rightclick_run.mcfunction
 # Remove the interaction tag so it can be used again
@@ -63,5 +88,8 @@ say I was right clicked!
 ```
 
 :::tip
-If you want to detect left clicks instead, then instead of checking and removing the `interaction` NBT, use the `attack` NBT.
+
+If you want to detect left clicks instead, then instead of checking and removing
+the `interaction` NBT, use the `attack` NBT.
+
 :::

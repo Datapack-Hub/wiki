@@ -1,14 +1,17 @@
 ---
 title: Credits
 description:
-  "The Datapack Wiki is brought to you by [Datapack Hub](https://datapackhub.net) in collaboration with Aandeel."
+  "The Datapack Wiki is brought to you by [Datapack
+  Hub](https://datapackhub.net) in collaboration with Aandeel."
 ---
 
 # Credits
 
-The Datapack Wiki is managed by [Datapack Hub](https://datapackhub.net), based on an original design and idea by
-[Aandeel](https://aandeel.co.uk). All of the content on this wiki is made possible thanks to the dedication of our
-awesome contributors! You can contribute to this wiki on our GitHub - click the `Edit` button on any page.
+The Datapack Wiki is managed by [Datapack Hub](https://datapackhub.net), based
+on an original design and idea by [Aandeel](https://aandeel.co.uk). All of the
+content on this wiki is made possible thanks to the dedication of our awesome
+contributors! You can contribute to this wiki on our GitHub - click the `Edit`
+button on any page.
 
 ### Administrators
 
@@ -20,7 +23,8 @@ These people run and develop the site, making any and all important decisions.
 
 ### Editors
 
-These people are in charge of what contributions are added to the site, as well as planning and writing new pages.
+These people are in charge of what contributions are added to the site, as well
+as planning and writing new pages.
 
 - [Gears](https://gearsdatapacks.github.io/)
 
@@ -30,12 +34,14 @@ These people have written or edited pages for the wiki or guides.
 
 - Diamond
 - HeDeAn
-- SuperAnt_
+- SuperAnt\_
 - SwitchedCube
 - Kraggle09
 - Amandin
 
 :::note
-If you're contributing, feel free to add your username to this page! You can contribute by clicking the Edit
-button on any page.
+
+If you're contributing, feel free to add your username to this page! You can
+contribute by clicking the Edit button on any page.
+
 :::

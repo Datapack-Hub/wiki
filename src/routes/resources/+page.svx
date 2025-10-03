@@ -1,6 +1,8 @@
 ---
 title: Resources
-description: "Listed here are links to credible and reliable places to aid in command support and creation."
+description:
+  "Listed here are links to credible and reliable places to aid in command
+  support and creation."
 ---
 
 <script lang="ts">
@@ -8,67 +10,175 @@ import {Version, Highlight} from '$lib/reusables';
 </script>
 
 # Resources
-Listed here are links to credible and reliable places and libraries to aid in command/datapack support and creation. 
+
+Listed here are links to credible and reliable places and libraries to aid in
+command/datapack support and creation.
 
 :::note
-This wiki is run by Datapack Hub. We aren't responsible for the content on external sites or Discord Servers, so proceed with caution. However, they're all safe to use and have amazingly useful content and tools for creating Minecraft Datapacks.
+
+This wiki is run by Datapack Hub. We aren't responsible for the content on
+external sites or Discord Servers, so proceed with caution. However, they're all
+safe to use and have amazingly useful content and tools for creating Minecraft
+Datapacks.
+
 :::
 
 ## Communities
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.datapackhub.net">Datapack Hub</a> - Get help with Minecraft Datapacks, resource packs, commands and more.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://smithed.net/">Smithed</a> - A general (but non-help) datapack community for sharing projects.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/QAFXFtZ">Minecraft Commands</a> - Get help with Java datapacks/commands or Bedrock addons.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/Ayav9YPQra">ShaderLABS</a> - Get help with vanilla shaders.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/blockbench">Blockbench</a> - Support for the Blockbench (3D model editor) app.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/DtevV9NmaR">FabricMC</a> - Get help with Fabric and Fabric mods.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/minecraft">Minecraft</a> - Discuss Minecraft generally with people from around the world.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://animated-java.dev/discord">Animated Java</a> - Support for the Animated Java Blockbench plugin.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/5y5FBz5">Dataworld (French)</a> - A French discord server for help with datapacks.
-- <Highlight color="#738ADB">Discord</Highlight> <a href="https://discord.gg/anthill-914772142300749854">Anthill (Russian)</a> - A russian-speaking discord server for help with datapacks, resource packs and commands.
+
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.datapackhub.net">Datapack Hub</a> - Get help with
+  Minecraft Datapacks, resource packs, commands and more.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://smithed.net/">Smithed</a> - A general (but non-help) datapack
+  community for sharing projects.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/QAFXFtZ">Minecraft Commands</a> - Get help with
+  Java datapacks/commands or Bedrock addons.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/Ayav9YPQra">ShaderLABS</a> - Get help with vanilla
+  shaders.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/blockbench">Blockbench</a> - Support for the
+  Blockbench (3D model editor) app.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/DtevV9NmaR">FabricMC</a> - Get help with Fabric
+  and Fabric mods.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/minecraft">Minecraft</a> - Discuss Minecraft
+  generally with people from around the world.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://animated-java.dev/discord">Animated Java</a> - Support for
+  the Animated Java Blockbench plugin.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/5y5FBz5">Dataworld (French)</a> - A French discord
+  server for help with datapacks.
+- <Highlight color="#738ADB">Discord</Highlight>
+  <a href="https://discord.gg/anthill-914772142300749854">Anthill
+  (Russian)</a> - A russian-speaking discord server for help with datapacks,
+  resource packs and commands.
 
 ## Generators
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://mcstacker.net">MCStacker</a> - Generate commands such as <code>/summon</code>, <code>/give</code>, and more.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://misode.github.io/">Misode</a> - Generate files such as advancements, predicates, recipes, worldgen, and more.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://crafting.thedestruc7i0n.ca/">TheDestruc7i0n Recipe Generator</a> - Generate simple recipes.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://minecraftjson.com/">Minecraft JSON</a> - Generate JSON Text.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://bdengine.app/">Block Display Engine</a> - Create models with display entities and export as commands.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://haselkern.com/Minecraft-ArmorStand/">haselkern's ArmorStand</a> - Generate summon commands for armor stands in any pose.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://text.datapackhub.net/">Datapack Hub's Text Editor</a> - Create /tellraw commands and text components (JSON text) for Minecraft Java Edition with our easy-to-use, modern online tool!
+
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://mcstacker.net">MCStacker</a> - Generate commands such as
+  <code>/summon</code>, <code>/give</code>, and more.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://misode.github.io/">Misode</a> - Generate files such as
+  advancements, predicates, recipes, worldgen, and more.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://crafting.thedestruc7i0n.ca/">TheDestruc7i0n Recipe
+  Generator</a> - Generate simple recipes.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://minecraftjson.com/">Minecraft JSON</a> - Generate JSON Text.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://bdengine.app/">Block Display Engine</a> - Create models with
+  display entities and export as commands.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://haselkern.com/Minecraft-ArmorStand/">haselkern's
+  ArmorStand</a> - Generate summon commands for armor stands in any pose.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://text.datapackhub.net/">Datapack Hub's Text Editor</a> -
+  Create /tellraw commands and text components (JSON text) for Minecraft Java
+  Edition with our easy-to-use, modern online tool!
 
 ## Tools
-- <Highlight color="#C44500">Tool</Highlight> <a href="https://github.com/StickyPiston-Hosting/Easy-Map-Updater">Easy Map Updater</a> - A toolset for automatically updating Minecraft maps (including datapacks) to the latest version.
-- <Highlight color="#C44500">Tool</Highlight> <a href="https://weld.smithed.dev/">Weld</a> - The fastest data and resource pack merger in the west.
+
+- <Highlight color="#C44500">Tool</Highlight>
+  <a href="https://github.com/StickyPiston-Hosting/Easy-Map-Updater">Easy Map
+  Updater</a> - A toolset for automatically updating Minecraft maps (including
+  datapacks) to the latest version.
+- <Highlight color="#C44500">Tool</Highlight>
+  <a href="https://weld.smithed.dev/">Weld</a> - The fastest data and resource
+  pack merger in the west.
 
 ## Templates/Reference
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://minecraft.wiki/">Minecraft Wiki</a> - A detailed technical wiki covering all Minecraft mechanics.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://github.com/misode/mcmeta/">Misode's MCMeta</a> - A GitHub repository with every vanilla file (compiled by Misode).
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://mcasset.cloud/">inventivetalent's Minecraft assets</a> - Website with every vanilla file.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://cccode.pages.dev/version-diff/">CCCode's version-diff</a> - Shows all the differences in vanilla files between two versions.
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://gist.github.com/misode/77ee37217a69a3c74032679d8084d6c6">Misode's Tick Order</a> - A detailed sequence of events that occur during a Minecraft server tick.
+
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://minecraft.wiki/">Minecraft Wiki</a> - A detailed technical
+  wiki covering all Minecraft mechanics.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://github.com/misode/mcmeta/">Misode's MCMeta</a> - A GitHub
+  repository with every vanilla file (compiled by Misode).
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://mcasset.cloud/">inventivetalent's Minecraft assets</a> -
+  Website with every vanilla file.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://cccode.pages.dev/version-diff/">CCCode's version-diff</a> -
+  Shows all the differences in vanilla files between two versions.
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://gist.github.com/misode/77ee37217a69a3c74032679d8084d6c6">Misode's
+  Tick Order</a> - A detailed sequence of events that occur during a Minecraft
+  server tick.
 
 ## Tutorials/Content Creation
-- <Highlight color="#FF0000">YouTube</Highlight> <a href="https://www.youtube.com/@Cl0udWolf">Cloud Wolf</a> - Datapack tutorials, especially advanced concepts.
-- <Highlight color="#FF0000">YouTube</Highlight> <a href="https://www.youtube.com/@slicedlime">Slicedlime</a> - Covers all the technical changes in recent snapshots.
-- <Highlight color="#FF0000">YouTube</Highlight> <a href="https://www.youtube.com/@conure512">Conure</a> - Small, but informative datapack tutorials.
-- <Highlight color="#FF0000">YouTube</Highlight> <a href="https://www.youtube.com/@Legitimoose">Legitimoose</a> - Easy to understand datapack and command tutorials.
-- <Highlight color="#11A488">PMC Guide</Highlight> <a href="https://www.planetminecraft.com/blog/custom-structure-gen-documentation/">Structure Generation Guide</a>
-- <Highlight color="#11A488">PMC Guide</Highlight> <a href="https://www.planetminecraft.com/blog/custom-world-generation-documentation/">World Generation Guide</a>
-- <Highlight color="#DC2626">Website</Highlight> <a href="https://minecraftcommands.github.io/wiki/questions">MCC's FAQs</a> - A list of common questions along with tutorials for answers.
 
+- <Highlight color="#FF0000">YouTube</Highlight>
+  <a href="https://www.youtube.com/@Cl0udWolf">Cloud Wolf</a> - Datapack
+  tutorials, especially advanced concepts.
+- <Highlight color="#FF0000">YouTube</Highlight>
+  <a href="https://www.youtube.com/@slicedlime">Slicedlime</a> - Covers all the
+  technical changes in recent snapshots.
+- <Highlight color="#FF0000">YouTube</Highlight>
+  <a href="https://www.youtube.com/@conure512">Conure</a> - Small, but
+  informative datapack tutorials.
+- <Highlight color="#FF0000">YouTube</Highlight>
+  <a href="https://www.youtube.com/@Legitimoose">Legitimoose</a> - Easy to
+  understand datapack and command tutorials.
+- <Highlight color="#11A488">PMC Guide</Highlight>
+  <a href="https://www.planetminecraft.com/blog/custom-structure-gen-documentation/">Structure
+  Generation Guide</a>
+- <Highlight color="#11A488">PMC Guide</Highlight>
+  <a href="https://www.planetminecraft.com/blog/custom-world-generation-documentation/">World
+  Generation Guide</a>
+- <Highlight color="#DC2626">Website</Highlight>
+  <a href="https://minecraftcommands.github.io/wiki/questions">MCC's FAQs</a> -
+  A list of common questions along with tutorials for answers.
 
 ## Libraries
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/HeDeAnTheonlyone/Taglib/">TagLib</a> - A curated list of useful tag files.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://docs.smithed.dev/libraries/">Smithed (Libraries)</a> - A collection of useful technical and compatibility libraries.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/MulverineX/player_motion">Player Motion</a> - Allows manipulating player's motion.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/Triton365/BlockState">Blockstate</a> - Extracts the BlockState data of any block at given position.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://bookshelf.docs.gunivers.net/en/latest/">Bookshelf</a> - A user-friendly modular library datapack with lots of useful modules.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/Aeldrion/Iris">Iris</a> - A raycasting library with micrometric precision and taking into account individual block geometries.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/AjjMC/ajjgui">AjjGUI</a> - A Data-Driven GUI library.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/MulverineX/mcfunction-logger">Mcfunction Logger</a> - A library for logging things to the server console.
-- <Highlight color="#2ED141">Library</Highlight> <a href="https://github.com/moxvallix/moxlib">Moxvallix's Library</a> - The ultimate Minecraft Datapack Library, constantly updated with new helpful functions.
+
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/HeDeAnTheonlyone/Taglib/">TagLib</a> - A curated
+  list of useful tag files.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://docs.smithed.dev/libraries/">Smithed (Libraries)</a> - A
+  collection of useful technical and compatibility libraries.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/MulverineX/player_motion">Player Motion</a> -
+  Allows manipulating player's motion.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/Triton365/BlockState">Blockstate</a> - Extracts
+  the BlockState data of any block at given position.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://bookshelf.docs.gunivers.net/en/latest/">Bookshelf</a> - A
+  user-friendly modular library datapack with lots of useful modules.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/Aeldrion/Iris">Iris</a> - A raycasting library
+  with micrometric precision and taking into account individual block
+  geometries.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/AjjMC/ajjgui">AjjGUI</a> - A Data-Driven GUI
+  library.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/MulverineX/mcfunction-logger">Mcfunction
+  Logger</a> - A library for logging things to the server console.
+- <Highlight color="#2ED141">Library</Highlight>
+  <a href="https://github.com/moxvallix/moxlib">Moxvallix's Library</a> - The
+  ultimate Minecraft Datapack Library, constantly updated with new helpful
+  functions.
 
 ## Mods
-- <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/datamancer">Datamancer</a> - A tool for datapack devs with several features, such as function profiling & benchmarking, marker goggles, datapack autoreloading and more.
-- <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/datapack-debugger">Datapack debugger</a> - Set breakpoints in the functions to "freeze" the game when the breakpoint is reached.
-- <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/better-suggestions">Better Suggestions</a> - Provides more/better suggestions for Minecraft commands.
-- <Highlight color="#832161">Mod</Highlight> <a href="https://modrinth.com/mod/nbt-autocomplete">NBT Autocomplete</a> - Adds suggestions for NBT tags in commands.
+
+- <Highlight color="#832161">Mod</Highlight>
+  <a href="https://modrinth.com/mod/datamancer">Datamancer</a> - A tool for
+  datapack devs with several features, such as function profiling &
+  benchmarking, marker goggles, datapack autoreloading and more.
+- <Highlight color="#832161">Mod</Highlight>
+  <a href="https://modrinth.com/mod/datapack-debugger">Datapack debugger</a> -
+  Set breakpoints in the functions to "freeze" the game when the breakpoint is
+  reached.
+- <Highlight color="#832161">Mod</Highlight>
+  <a href="https://modrinth.com/mod/better-suggestions">Better Suggestions</a> -
+  Provides more/better suggestions for Minecraft commands.
+- <Highlight color="#832161">Mod</Highlight>
+  <a href="https://modrinth.com/mod/nbt-autocomplete">NBT Autocomplete</a> -
+  Adds suggestions for NBT tags in commands.

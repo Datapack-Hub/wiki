@@ -1,34 +1,56 @@
 ---
 title: Resource Locations
 description:
-  "A resource location is a kind of identified used in Minecraft to point to a certain piece of data, such as a function, item, or storage."
+  "A resource location is a kind of identified used in Minecraft to point to a
+  certain piece of data, such as a function, item, or storage."
 version: 1.21.8
 ---
 
 # Resource Locations
-A resource location is a way of referencing a resource in a datapack (or resourcepack), such as a function. 
+
+A resource location is a way of referencing a resource in a datapack (or
+resourcepack), such as a function.
 
 ## Example
+
 This is an example of a resource location for a function:
+
 ```mcfunction
 /function my_namespace:some_folder/my_function
 ```
-This resource location would try and access the function `/data/my_namespace/function/some_folder/my_function.mcfunction`. Notice how we don't need to specify the `function` folder in the resource location, as it is implied by the `/function` command.
+
+This resource location would try and access the function
+`/data/my_namespace/function/some_folder/my_function.mcfunction`. Notice how we
+don't need to specify the `function` folder in the resource location, as it is
+implied by the `/function` command.
 
 ## Resource locations for tags
-To reference a tag (ie the function tag `#minecraft:load`), you can use the `#` symbol before the tag name. For example:
+
+To reference a tag (ie the function tag `#minecraft:load`), you can use the `#`
+symbol before the tag name. For example:
+
 ```mcfunction
 /function #minecraft:load
 ```
-This resource location would try and access the tag `/data/minecraft/tags/function/load.json`. In this case, all functions in the tag would be ran.
+
+This resource location would try and access the tag
+`/data/minecraft/tags/function/load.json`. In this case, all functions in the
+tag would be ran.
 
 ## Default namespace
-If the namespace (`my_namespace`, before the colon) is left out, it will default to the `minecraft` namespace.
+
+If the namespace (`my_namespace`, before the colon) is left out, it will default
+to the `minecraft` namespace.
 
 ```mcfunction
 /function some_folder/my_function
 ```
-This resource location would try and access `/data/minecraft/function/some_folder/my_function.mcfunction`.
+
+This resource location would try and access
+`/data/minecraft/function/some_folder/my_function.mcfunction`.
 
 ## Allowed characters
-A file name (and resource location) can only contain lowercase letters (`a-z`), numbers (`0-9`), underscores (`_`), dashes (`-`) and periods (`.`). In a resource location, `/` can be used to separate folders.
+
+A file name (and resource location) can only contain lowercase letters (`a-z`),
+numbers (`0-9`), underscores (`_`), dashes (`-`) and periods (`.`). In a
+resource location, `/` can be used to separate folders.

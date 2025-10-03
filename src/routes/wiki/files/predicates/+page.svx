@@ -1,18 +1,32 @@
 ---
 title: Predicates
-description: Predicates are a type of file which can be called to check if a certain condition is true.
+description:
+  Predicates are a type of file which can be called to check if a certain
+  condition is true.
 version: 1.21.5
 ---
 
 # Predicates
-Predicates are a type of file which can be called to check if a certain condition is true. For instance, you can create a predicate to check if a player is walking, if an entity is above a specific Y level, or if a player is holding an item. They are extremely versatile and, in many cases, more optimised than `execute if` commands.
+
+Predicates are a type of file which can be called to check if a certain
+condition is true. For instance, you can create a predicate to check if a player
+is walking, if an entity is above a specific Y level, or if a player is holding
+an item. They are extremely versatile and, in many cases, more optimised than
+`execute if` commands.
 
 :::info
-Although this page covers predicate files, predicates are also used within in advancements and loot table files. The structure of these predicates is the same as described here, although some fields may not be used in certain contexts.
-::: 
+
+Although this page covers predicate files, predicates are also used within in
+advancements and loot table files. The structure of these predicates is the same
+as described here, although some fields may not be used in certain contexts.
+
+:::
 
 ## Examples
-This predicate will use the `entity_properties` condition check if the player is holding a `beef` item while being inside a desert village:
+
+This predicate will use the `entity_properties` condition check if the player is
+holding a `beef` item while being inside a desert village:
+
 ```json:data/namespace/predicate/my_predicate.json
 {
   "condition": "minecraft:entity_properties",
@@ -30,206 +44,375 @@ This predicate will use the `entity_properties` condition check if the player is
 }
 ```
 
-We can use `@a[predicate=namespace:my_predicate]` to select all players who match the predicate. For example:
+We can use `@a[predicate=namespace:my_predicate]` to select all players who
+match the predicate. For example:
+
 ```mcfunction
 execute as @a[predicate=namespace:my_predicate] run say I am holding beef in a desert village :D
 ```
 
 ## JSON Format
-Each predicate is represented as a JSON object. Predicate files can either contain one predicate object, or a list of predicate objects. Each predicate object needs a `condition` field, which specifies the type of condition to check. The rest of the fields depend on the condition type.
 
-For more information about the JSON format in general, see the [JSON](/wiki/info/json) page.
+Each predicate is represented as a JSON object. Predicate files can either
+contain one predicate object, or a list of predicate objects. Each predicate
+object needs a `condition` field, which specifies the type of condition to
+check. The rest of the fields depend on the condition type.
 
-Certain objects are commonly reused within different predicate (and advancement) conditions. Below are some of them, along with their JSON structure:
+For more information about the JSON format in general, see the
+[JSON](/wiki/info/json) page.
+
+Certain objects are commonly reused within different predicate (and advancement)
+conditions. Below are some of them, along with their JSON structure:
 
 ### Number providers
-A number provider is used in a predicate to provide a number. This could be a constant, score value, random value, etc. 
 
-This can simply be a number (e.g `4` or `5.87`). This can also be an object with a `min` and `max` field to represent a random number (e.g `{"min":1, "max":10}`). For more advanced providers, they are represented as objects - the contents of the object will vary based on which `type` field you use. The available `type` fields, along with the fields required for them, are as follows:
+A number provider is used in a predicate to provide a number. This could be a
+constant, score value, random value, etc.
 
-- `"binomial"`: Provides a random number based on binomial distribution. Requires the following fields:
-    - `n`: The number of trials used for the binomial distribution. This should be an int or number provider
-    - `p`: The chance of success for each trial. This should be an int or number provider
+This can simply be a number (e.g `4` or `5.87`). This can also be an object with
+a `min` and `max` field to represent a random number (e.g
+`{"min":1, "max":10}`). For more advanced providers, they are represented as
+objects - the contents of the object will vary based on which `type` field you
+use. The available `type` fields, along with the fields required for them, are
+as follows:
+
+- `"binomial"`: Provides a random number based on binomial distribution.
+  Requires the following fields:
+  - `n`: The number of trials used for the binomial distribution. This should be
+    an int or number provider
+  - `p`: The chance of success for each trial. This should be an int or number
+    provider
 
 - `"constant"`: Provides the specified number. Requires the following field:
-    - `value`: The value to provide. This should be an int or a float
+  - `value`: The value to provide. This should be an int or a float
 
-- `"score"`: Provides the score of the entity as a number. Requires the following fields:
-    - `target`: An object to specify the score holder. Contains a `type` field - if set to `fixed`, then a `name` field should be used to specify which player's (by username) or entity's (by UUID) score to use. If set to `context`, then a `target` field should be used with one of the following: `this`, `killer`, `direct_killer`, `killer_player`
-    - `score`: The objective name to get the entity's score from.
-    - `scale`: If present, then the score is multiplied by `scale`.
+- `"score"`: Provides the score of the entity as a number. Requires the
+  following fields:
+  - `target`: An object to specify the score holder. Contains a `type` field -
+    if set to `fixed`, then a `name` field should be used to specify which
+    player's (by username) or entity's (by UUID) score to use. If set to
+    `context`, then a `target` field should be used with one of the following:
+    `this`, `killer`, `direct_killer`, `killer_player`
+  - `score`: The objective name to get the entity's score from.
+  - `scale`: If present, then the score is multiplied by `scale`.
 
-- `"storage"`: Provides the value from a specific path in an NBT storage. Requires the following fields:
-    - `storage`: The storage ID to get the score from.
-    - `path`: The NBT path to the specified field in the storage.
+- `"storage"`: Provides the value from a specific path in an NBT storage.
+  Requires the following fields:
+  - `storage`: The storage ID to get the score from.
+  - `path`: The NBT path to the specified field in the storage.
 
-- `"uniform"`: Provides a random number between two values. Requires the following fields:
-    - `min`: The minimum number to return. This should be a number or number provider.
-    - `max`: The maximum number to return. This should be a number or number provider.
+- `"uniform"`: Provides a random number between two values. Requires the
+  following fields:
+  - `min`: The minimum number to return. This should be a number or number
+    provider.
+  - `max`: The maximum number to return. This should be a number or number
+    provider.
 
 ### Item matcher
-An item matcher is used to match an item with advanced filters for components and count. 
+
+An item matcher is used to match an item with advanced filters for components
+and count.
 
 An item matcher is an object which can consist of the following fields:
-- `items`: The item type(s) to match. This can either be string (with an item ID or item tag ID), or an array of item IDs.
-- `count`: The count of the item stack. This can either be an integer or an object with a `min` and `max` key to match a range of counts.
-- `components`: An object containing the item components to match. The key is the component name, and the value is the expected value in the component. This will only match if the component is **exactly** the same as the value - if any other data is in the component, it will be false.
-- `predicate`: Like `components`, but will match if the component at least contains the specified data, rather than only matching if it is exactly the same.
+
+- `items`: The item type(s) to match. This can either be string (with an item ID
+  or item tag ID), or an array of item IDs.
+- `count`: The count of the item stack. This can either be an integer or an
+  object with a `min` and `max` key to match a range of counts.
+- `components`: An object containing the item components to match. The key is
+  the component name, and the value is the expected value in the component. This
+  will only match if the component is **exactly** the same as the value - if any
+  other data is in the component, it will be false.
+- `predicate`: Like `components`, but will match if the component at least
+  contains the specified data, rather than only matching if it is exactly the
+  same.
 
 ## Conditions
+
 These are all the possible conditions that can be used in a predicate.
 
 ### `block_state_property`
-`block_state_property` checks if the block state(s) of the block is/are equal to a specified value(s). This predicate type is not usable with `execute if predicate`, instead, this predicate is used in a loot table to check a block.
+
+`block_state_property` checks if the block state(s) of the block is/are equal to
+a specified value(s). This predicate type is not usable with
+`execute if predicate`, instead, this predicate is used in a loot table to check
+a block.
 
 **Fields**:
+
 - `block`: The block ID to match (e.g `minecraft:andesite_wall`)
-- `properties`: A map of block state properties to match. The key is the property name, and the value is the property value. For instance, `{"waterlogged":"true", "south":"tall"}`.
+- `properties`: A map of block state properties to match. The key is the
+  property name, and the value is the property value. For instance,
+  `{"waterlogged":"true", "south":"tall"}`.
 
 ### `damage_source_properties`
-`damage_source_properties` checks the source of damage. This is often used in advancements and loot tables.
 
-**Fields**: 
+`damage_source_properties` checks the source of damage. This is often used in
+advancements and loot tables.
+
+**Fields**:
+
 - `predicate`: An object containing the following keys:
-    - `tags`: A list of damage_type tags to match. Checks if the type of damage is inflicted in any of these tags (can be toggled with the `expected` field). For instance, `[{"id":"minecraft:bypasses_shield","expected":true}]`.
-    - `source_entity`: An `entity_properties` predicate to match the source entity (inflicter, e.g skeleton) of the damage.
-    - `direct_entity`: An `entity_properties` predicate to match the direct entity (entity responsible, e.g arrow entity) for the damage.
+  - `tags`: A list of damage_type tags to match. Checks if the type of damage is
+    inflicted in any of these tags (can be toggled with the `expected` field).
+    For instance, `[{"id":"minecraft:bypasses_shield","expected":true}]`.
+  - `source_entity`: An `entity_properties` predicate to match the source entity
+    (inflicter, e.g skeleton) of the damage.
+  - `direct_entity`: An `entity_properties` predicate to match the direct entity
+    (entity responsible, e.g arrow entity) for the damage.
 
 ### `enchantment_active_check`
-`enchantment_active_check` checks if the enchantment is active. This can only be used in enchantments.
+
+`enchantment_active_check` checks if the enchantment is active. This can only be
+used in enchantments.
 
 **Fields**:
-- `active`: If set to true, will check that the enchantment is active. If false, will check that the enchantment is inactive.
+
+- `active`: If set to true, will check that the enchantment is active. If false,
+  will check that the enchantment is inactive.
 
 ### `entity_properties`
-`entity_properties` checks if the entity matches the specified properties. This is very often used in datapacks - it can be used to check players and entities with the `predicate=` selector argument, and `execute if predicate`.
+
+`entity_properties` checks if the entity matches the specified properties. This
+is very often used in datapacks - it can be used to check players and entities
+with the `predicate=` selector argument, and `execute if predicate`.
 
 **Fields**:
-- `entity`: Who to check. Can be `this` (equivalent of `@s`), `attacker` (the entity that attacked), `direct_entity` (the entity that caused the damage), or `attacking_player`.
-- `predicate`: An object containing all the entity properties to check. There are lots of these, and going into full detail would take a lot of space (use a generator like [misode.github.io](https://misode.github.io) to create these more efficiently):
-    - `type`: The entity type to match. For instance, `minecraft:player`.
-    - `type_specific`: An object that contains properties which may only be specific to one type of entity.
-    - `team`: The team that the entity is on.
-    - `nbt`: An NBT object to match. This should be in a string. For instance, `"{Health:20}"`.
-    - `location`: A `location_check` predicate to match the entity's location.
-    - `distance`: An object which is used to match the distance between the entity and wherever the predicate is being checked.
-    - `flags`: An object which is used to match certain true/false flags of the entity, such as if they are on fire, or if they are sneaking.
-    - `equipment`: An object which is used to match the equipment (head, chest, mainhand, etc.) of the entity. The key is the slot (e.g `head`), and the value is an item matcher.
-    - `vehicle`: Another `entity_properties` predicate to match the entity which this entity is riding.
-    - `passenger`: Another `entity_properties` predicate to match the entity which is riding this entity.
-    - `stepping_on`: Following the same structure as `location`, this matches the block the entity is standing on.
-    - `targeted_entity`: Another `entity_properties` predicate to match the entity which this entity (non-player) is targeting.
-    - `effects`: An object which matches the current status effects of this entity
-    - `slots`: An object which matches the contents of the entity's inventory slots.
-    - `movement`: An object which matches the movement of the entity.
-    - `periodic_tick`: Returns true once every `x` ticks of the entity's lifetime.
-    - `movement_affected_by`: Following the same structure as `location`, this matches what affects the movement of the entity.
-    - `components` - Matches entity components exactly (the component must be exactly equal to what is being checked).
-    - `predicates` - Matches entity components ignoring any other data in the component (the component must contain what is being checked).
+
+- `entity`: Who to check. Can be `this` (equivalent of `@s`), `attacker` (the
+  entity that attacked), `direct_entity` (the entity that caused the damage), or
+  `attacking_player`.
+- `predicate`: An object containing all the entity properties to check. There
+  are lots of these, and going into full detail would take a lot of space (use a
+  generator like [misode.github.io](https://misode.github.io) to create these
+  more efficiently):
+  - `type`: The entity type to match. For instance, `minecraft:player`.
+  - `type_specific`: An object that contains properties which may only be
+    specific to one type of entity.
+  - `team`: The team that the entity is on.
+  - `nbt`: An NBT object to match. This should be in a string. For instance,
+    `"{Health:20}"`.
+  - `location`: A `location_check` predicate to match the entity's location.
+  - `distance`: An object which is used to match the distance between the entity
+    and wherever the predicate is being checked.
+  - `flags`: An object which is used to match certain true/false flags of the
+    entity, such as if they are on fire, or if they are sneaking.
+  - `equipment`: An object which is used to match the equipment (head, chest,
+    mainhand, etc.) of the entity. The key is the slot (e.g `head`), and the
+    value is an item matcher.
+  - `vehicle`: Another `entity_properties` predicate to match the entity which
+    this entity is riding.
+  - `passenger`: Another `entity_properties` predicate to match the entity which
+    is riding this entity.
+  - `stepping_on`: Following the same structure as `location`, this matches the
+    block the entity is standing on.
+  - `targeted_entity`: Another `entity_properties` predicate to match the entity
+    which this entity (non-player) is targeting.
+  - `effects`: An object which matches the current status effects of this entity
+  - `slots`: An object which matches the contents of the entity's inventory
+    slots.
+  - `movement`: An object which matches the movement of the entity.
+  - `periodic_tick`: Returns true once every `x` ticks of the entity's lifetime.
+  - `movement_affected_by`: Following the same structure as `location`, this
+    matches what affects the movement of the entity.
+  - `components` - Matches entity components exactly (the component must be
+    exactly equal to what is being checked).
+  - `predicates` - Matches entity components ignoring any other data in the
+    component (the component must contain what is being checked).
 
 ### `entity_scores`
-`entity_scores` checks if the entity's score on an object matches a specified value or range. 
+
+`entity_scores` checks if the entity's score on an object matches a specified
+value or range.
 
 **Fields**:
-- `entity`: Who to check. Can be `this` (equivalent of `@s`), `attacker` (the entity that attacked), `direct_entity` (the entity that caused the damage), or `attacking_player`.
-- `scores`: An object containing the scores to check. The key is the objective name, and the value is either an int (e.g `33`) or an object containing a `min` and `max` number provider to match a range. For instance, `{"scoreboard1":5, "scoreboard2":{"min":1, "max": 10}}`.
+
+- `entity`: Who to check. Can be `this` (equivalent of `@s`), `attacker` (the
+  entity that attacked), `direct_entity` (the entity that caused the damage), or
+  `attacking_player`.
+- `scores`: An object containing the scores to check. The key is the objective
+  name, and the value is either an int (e.g `33`) or an object containing a
+  `min` and `max` number provider to match a range. For instance,
+  `{"scoreboard1":5, "scoreboard2":{"min":1, "max": 10}}`.
 
 ### `killed_by_player`
-`killed_by_player` checks if the entity was killed by a player. This is used in loot tables.
+
+`killed_by_player` checks if the entity was killed by a player. This is used in
+loot tables.
 
 **Fields**:
-- `inverse`: If true, checks if the entity was not killed by a player. (optional)
+
+- `inverse`: If true, checks if the entity was not killed by a player.
+  (optional)
 
 ### `location_check`
-`location_check` checks if the current location matches the specified properties. When used in an `entity_properties -> location` field, it checks the entity's location, but if used in a loot table, it checks the location of the loot source (block or entity).
+
+`location_check` checks if the current location matches the specified
+properties. When used in an `entity_properties -> location` field, it checks the
+entity's location, but if used in a loot table, it checks the location of the
+loot source (block or entity).
 
 **Fields**:
-- `position`: The coordinates in the world to check. This is an object containing the following keys:
-    - `x`: The x coordinate to match. This should be a number or a number provider.
-    - `y`: The y coordinate to match. This should be a number or a number provider.
-    - `z`: The z coordinate to match. This should be a number or a number provider.
-- `biomes`: A biome or list of biomes to match. Will be true if the location is within a biome. For instance, `["minecraft:plains", "minecraft:forest"]`.
-- `structures`: A structure or list of structures to match. Will be true if the location is within a structure. For instance, `["minecraft:village", "minecraft:woodland_mansion"]`.
-- `dimension`: The dimension to match. Will be true if the location is in a predicate For instance, `minecraft:overworld`.
-- `light`: The light level to match. This should be a single int, or an object containing a `min` and `max` number provider to match a range.
-- `block`: The block to match. This should be an object containing the following:
-    - `blocks`: A block ID or list of block IDs to match. For instance, `["minecraft:mycelium", "minecraft:grass_block"]`.
-    - `state`: An object containing the block state properties to match. For instance, `{"waterlogged":"true", "south":"tall"}`.
-    - `nbt`: An NBT string to match. Will be true if the block at the location contains all of the specified NBT (ignoring other tags). For instance, `"{Items:[{id:\"minecraft:stick\",Count:1b}]}"`.
-- `fluid`: The fluid to match. This should be an object containing the following:
-    - `fluids`: A fluid ID or list of fluid IDs to match. For instance, `["minecraft:water", "minecraft:flowing_water"]`.
-    - `state`: An object containing the fluid state properties to match. For instance, `{"level":"2"}`.
-- `smokey`: Checks if the location is within 5 blocks veritically of a campfire. This should be a boolean.
-- `can_see_sky`: Checks if the the sky light level is the highest it could be. This should be a boolean.
+
+- `position`: The coordinates in the world to check. This is an object
+  containing the following keys:
+  - `x`: The x coordinate to match. This should be a number or a number
+    provider.
+  - `y`: The y coordinate to match. This should be a number or a number
+    provider.
+  - `z`: The z coordinate to match. This should be a number or a number
+    provider.
+- `biomes`: A biome or list of biomes to match. Will be true if the location is
+  within a biome. For instance, `["minecraft:plains", "minecraft:forest"]`.
+- `structures`: A structure or list of structures to match. Will be true if the
+  location is within a structure. For instance,
+  `["minecraft:village", "minecraft:woodland_mansion"]`.
+- `dimension`: The dimension to match. Will be true if the location is in a
+  predicate For instance, `minecraft:overworld`.
+- `light`: The light level to match. This should be a single int, or an object
+  containing a `min` and `max` number provider to match a range.
+- `block`: The block to match. This should be an object containing the
+  following:
+  - `blocks`: A block ID or list of block IDs to match. For instance,
+    `["minecraft:mycelium", "minecraft:grass_block"]`.
+  - `state`: An object containing the block state properties to match. For
+    instance, `{"waterlogged":"true", "south":"tall"}`.
+  - `nbt`: An NBT string to match. Will be true if the block at the location
+    contains all of the specified NBT (ignoring other tags). For instance,
+    `"{Items:[{id:\"minecraft:stick\",Count:1b}]}"`.
+- `fluid`: The fluid to match. This should be an object containing the
+  following:
+  - `fluids`: A fluid ID or list of fluid IDs to match. For instance,
+    `["minecraft:water", "minecraft:flowing_water"]`.
+  - `state`: An object containing the fluid state properties to match. For
+    instance, `{"level":"2"}`.
+- `smokey`: Checks if the location is within 5 blocks veritically of a campfire.
+  This should be a boolean.
+- `can_see_sky`: Checks if the the sky light level is the highest it could be.
+  This should be a boolean.
 
 ### `match_tool`
-`match_tool` matches the item used to perform an action. Contrary to what may seem intuitive, this can *not* be used to check the player's mainhand item in a predicate referenced in `predicate=` or `execute if predicate` - this is only for loot tables and advancements.
+
+`match_tool` matches the item used to perform an action. Contrary to what may
+seem intuitive, this can _not_ be used to check the player's mainhand item in a
+predicate referenced in `predicate=` or `execute if predicate` - this is only
+for loot tables and advancements.
 
 **Fields**:
+
 - `predicate`: An item matcher.
 
 ### `random_chance`
-`random_chance` will be true if a random decimal is less than the value in `chance`. For instance, `0.5` would be true 50% of the time, `0.25` would be true 25% of the time, etc.
+
+`random_chance` will be true if a random decimal is less than the value in
+`chance`. For instance, `0.5` would be true 50% of the time, `0.25` would be
+true 25% of the time, etc.
 
 **Fields**:
-- `chance`: The chance of the predicate being true. This should be a float between 0 and 1.
+
+- `chance`: The chance of the predicate being true. This should be a float
+  between 0 and 1.
 
 ### `random_chance_with_enchanted_bonus`
-`random_chance_with_enchanted_bonus` is similar to `random_chance`, but you can specify a different random chance if the tool used has a certain enchantment. This is used in loot tables and advancements.
+
+`random_chance_with_enchanted_bonus` is similar to `random_chance`, but you can
+specify a different random chance if the tool used has a certain enchantment.
+This is used in loot tables and advancements.
 
 **Fields**:
-- `unenchanted_chance`: The chance of the predicate being true if the tool is not enchanted. This should be a float between 0 and 1.
-- `enchanted_chance`: The chance of the predicate being true if the tool is enchanted. This should be a float between 0 and 1.
-- `enchantment`: The enchantment ID to check for. For instance, `minecraft:fortune`.
+
+- `unenchanted_chance`: The chance of the predicate being true if the tool is
+  not enchanted. This should be a float between 0 and 1.
+- `enchanted_chance`: The chance of the predicate being true if the tool is
+  enchanted. This should be a float between 0 and 1.
+- `enchantment`: The enchantment ID to check for. For instance,
+  `minecraft:fortune`.
 
 ### `survives_explosion`
-`survives_explosion` will be true if the entity survived an explosion. This is used in loot tables. This predicate type has no other fields.
+
+`survives_explosion` will be true if the entity survived an explosion. This is
+used in loot tables. This predicate type has no other fields.
 
 ### `table_bonus`
-Essentially, `table_bonus` is a more advanced version of `random_chance_with_enchanted_bonus`, as you can specify a different chance for each enchantment level
 
-**Fields**: 
-- `enchantment`: The enchantment ID to check for. For instance, `minecraft:fortune`. 
-- `chances`: An array of chances for each enchantment level. The first item in the array would be the chance for enchantment level 1, and so on.
+Essentially, `table_bonus` is a more advanced version of
+`random_chance_with_enchanted_bonus`, as you can specify a different chance for
+each enchantment level
+
+**Fields**:
+
+- `enchantment`: The enchantment ID to check for. For instance,
+  `minecraft:fortune`.
+- `chances`: An array of chances for each enchantment level. The first item in
+  the array would be the chance for enchantment level 1, and so on.
 
 ### `time_check`
+
 `time_check` checks the current time.
 
 **Fields**:
-- `value`: The time to check, represented in game ticks. This should be a single int, or an object containing a `min` and `max` number provider to match a range.
-- `period`: If present, `value` will check for `GAMETIME modulo <period>`. For instance, setting `period` to 24000 (the amount of ticks in a day) would check for the current daytime
+
+- `value`: The time to check, represented in game ticks. This should be a single
+  int, or an object containing a `min` and `max` number provider to match a
+  range.
+- `period`: If present, `value` will check for `GAMETIME modulo <period>`. For
+  instance, setting `period` to 24000 (the amount of ticks in a day) would check
+  for the current daytime
 
 ### `value_check`
-`value_check` simply matches a value from a number provider against a range or constant.
+
+`value_check` simply matches a value from a number provider against a range or
+constant.
 
 **Fields**:
+
 - `value`: A number or a number provider to check against.
-- `range`: The range used to check `value` (will return true if `value` is within this range). This should be a single int, or an object containing a `min` and `max` number provider to match a range.
+- `range`: The range used to check `value` (will return true if `value` is
+  within this range). This should be a single int, or an object containing a
+  `min` and `max` number provider to match a range.
 
 ### `weather_check`
-`weather_check` matches the current weather in the world. To check for sun, you would need to set both fields to false.
 
-**Fields**: 
+`weather_check` matches the current weather in the world. To check for sun, you
+would need to set both fields to false.
+
+**Fields**:
+
 - `raining`: Checks if it is currently raining. This should be a boolean.
 - `thundering`: Checks if it is currently thundering. This should be a boolean
 
 ## Special Conditions
-These conditions are special as they are used in conjunction with one or more other conditions to alter the result of the predicate, often acting like logic gates.
+
+These conditions are special as they are used in conjunction with one or more
+other conditions to alter the result of the predicate, often acting like logic
+gates.
 
 ### `all_of` or `any_of`
-`all_of` and `any_of` are self explanatory. `all_of` checks if all specified predicates are true, and `any_of` checks if any specified predicates are true.
+
+`all_of` and `any_of` are self explanatory. `all_of` checks if all specified
+predicates are true, and `any_of` checks if any specified predicates are true.
 
 **Fields**:
-- `terms`: A list of predicates to check. This cannot be the ID of the current predicate.
+
+- `terms`: A list of predicates to check. This cannot be the ID of the current
+  predicate.
 
 ### `inverted`
-`inverted` will invert the output of the predicate. If the predicate would return true, using this would make it return false, and vice versa.
+
+`inverted` will invert the output of the predicate. If the predicate would
+return true, using this would make it return false, and vice versa.
 
 **Fields**:
+
 - `term`: A predicate to check. This cannot be the ID of the current predicate.
 
 ### `reference`
-`reference` simply references another predicate file, as if you included the predicate in the current one. This is useful for reusing predicates across multiple files.
+
+`reference` simply references another predicate file, as if you included the
+predicate in the current one. This is useful for reusing predicates across
+multiple files.
 
 **Fields**:
-- `name`: A predicate ID to check. This cannot be the ID of the current predicate.
+
+- `name`: A predicate ID to check. This cannot be the ID of the current
+  predicate.

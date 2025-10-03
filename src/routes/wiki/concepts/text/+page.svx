@@ -1,86 +1,162 @@
 ---
 title: Styled Text
-description: Styled text in Minecraft commands is done through an NBT text format.
+description:
+  Styled text in Minecraft commands is done through an NBT text format.
 version: 1.21.8
 ---
 
 # Styled Text
-Styled text (bold, underline, colours, etc) is represented as NBT based structures, called "text components". A text component is a way to format styled text in Minecraft commands, and is used in many places such as `/tellraw`, `/title`, and more.
 
-Instead of just using standard text (for example `"Hello World"`), we can use text components to format the text in a variety of ways, including colours, text effects, click events, hover events, language-based text, accessing NBT data, and more.
+Styled text (bold, underline, colours, etc) is represented as NBT based
+structures, called "text components". A text component is a way to format styled
+text in Minecraft commands, and is used in many places such as `/tellraw`,
+`/title`, and more.
 
-For more information about the NBT format in general, see the [NBT](/wiki/nbt-scoreboards/nbt) page.
+Instead of just using standard text (for example `"Hello World"`), we can use
+text components to format the text in a variety of ways, including colours, text
+effects, click events, hover events, language-based text, accessing NBT data,
+and more.
+
+For more information about the NBT format in general, see the
+[NBT](/wiki/nbt-scoreboards/nbt) page.
 
 ## Format
-A text component is formatted as either an object (`{text:"Hello World",color:"red"}`), or an array of objects (`[{text:"Hello"},{text:"World"}]`). An object could just be a normal string (`["Hello", "World"]` and `"Hello World"` are both valid text components). 
 
-If the text component is an array, then all the objects inherit the style from the first object. For instance, if the first object in an array is styled to be red, then all the other objects in the array will also be red unless specified otherwise. 
+A text component is formatted as either an object
+(`{text:"Hello World",color:"red"}`), or an array of objects
+(`[{text:"Hello"},{text:"World"}]`). An object could just be a normal string
+(`["Hello", "World"]` and `"Hello World"` are both valid text components).
+
+If the text component is an array, then all the objects inherit the style from
+the first object. For instance, if the first object in an array is styled to be
+red, then all the other objects in the array will also be red unless specified
+otherwise.
 
 ### Content sources
-The actual text of a text component can be either static text or from a source such as NBT or scoreboard. Every object requires one of the following:
+
+The actual text of a text component can be either static text or from a source
+such as NBT or scoreboard. Every object requires one of the following:
+
 - `text:"<text>"`: A simple string of text.
-- `score:{name:"<player>",objective:"<objective>"}`: The score of a player in an objective. In some cases, `name` can be set to `"*"`, which will access the score of the player viewing the text.
-- **NBT**: This will display the value of an NBT tag. If `nbt` is used in a text component, then one of `storage`, `entity`, or `block` is also required. The following properties should be used:
-  - `nbt:"<path>"`: The path to the NBT value. This is required - it should be a string value following the NBT path format.
+- `score:{name:"<player>",objective:"<objective>"}`: The score of a player in an
+  objective. In some cases, `name` can be set to `"*"`, which will access the
+  score of the player viewing the text.
+- **NBT**: This will display the value of an NBT tag. If `nbt` is used in a text
+  component, then one of `storage`, `entity`, or `block` is also required. The
+  following properties should be used:
+  - `nbt:"<path>"`: The path to the NBT value. This is required - it should be a
+    string value following the NBT path format.
   - `storage:"<namespace:storage>"`: The storage to get the NBT value from.
   - `entity:"<selector>"`: The entity to get the NBT value from.
   - `block:"<x> <y> <z>"`: The block to get the NBT value from.
-  - `interpret:(true/false)`: If true, then the NBT value's text will be parsed and interpreted as a text component. Defaults to false.
-- `selector:"<selector>"`: The name of a player or entity. 
-- `translate:"<key>"`: A translation key from language files defined in a resource pack. This will display the value of the key in the player's selected language.
-  - `with`: This can also optionally be used to insert arguments into the translation key. This should be an array of text components.
-  - `fallback`: This can also optionally be used to specify what to display if the translation is not found. If this is not specified, the key itself will be displayed if the translation is not found. This should be a string value.
-- `keybind:"<keybind id>"`: The key which a player has bound to a keybind. (For example, `key.jump` would show the text `Space`, assuming the player has not changed the keybind).
+  - `interpret:(true/false)`: If true, then the NBT value's text will be parsed
+    and interpreted as a text component. Defaults to false.
+- `selector:"<selector>"`: The name of a player or entity.
+- `translate:"<key>"`: A translation key from language files defined in a
+  resource pack. This will display the value of the key in the player's selected
+  language.
+  - `with`: This can also optionally be used to insert arguments into the
+    translation key. This should be an array of text components.
+  - `fallback`: This can also optionally be used to specify what to display if
+    the translation is not found. If this is not specified, the key itself will
+    be displayed if the translation is not found. This should be a string value.
+- `keybind:"<keybind id>"`: The key which a player has bound to a keybind. (For
+  example, `key.jump` would show the text `Space`, assuming the player has not
+  changed the keybind).
 
-**Example**: This text component will display the value of the path `ShopData.Name` in the NBT storage `minecraft:xyz`:
+**Example**: This text component will display the value of the path
+`ShopData.Name` in the NBT storage `minecraft:xyz`:
+
 ```json
-{nbt:"ShopData.Name",storage:"minecraft:xyz"}
+{ "nbt": "ShopData.Name", "storage": "minecraft:xyz" }
 ```
 
 ### Style properties
-The following properties can be used in a text component to change the **style** of the text:
-- `color`: The colour of the text. This can be one of the 16 standard colours (e.g `"red"`, `"light_purple"`, etc.), or a hex colour code (e.g `"#ff0000"`).
+
+The following properties can be used in a text component to change the **style**
+of the text:
+
+- `color`: The colour of the text. This can be one of the 16 standard colours
+  (e.g `"red"`, `"light_purple"`, etc.), or a hex colour code (e.g `"#ff0000"`).
 - `bold`: Whether the text is bold. This can be `true` or `false`.
 - `italic`: Whether the text is italic. This can be `true` or `false`.
 - `underlined`: Whether the text is underlined. This can be `true` or `false`.
-- `strikethrough`: Whether the text is strikethrough. This can be `true` or `false`.
-- `obfuscated`: Whether the text is obfuscated. Obfuscated text applies a special glitch effect to the text. This can be `true` or `false`.
+- `strikethrough`: Whether the text is strikethrough. This can be `true` or
+  `false`.
+- `obfuscated`: Whether the text is obfuscated. Obfuscated text applies a
+  special glitch effect to the text. This can be `true` or `false`.
 
 **Example**: This text will be "Hello World", in red, bold, and strikethrough:
+
 ```json
-{text: "Hello World", color: "red", bold: true, strikethrough: true}
+{ "text": "Hello World", "color": "red", "bold": true, "strikethrough": true }
 ```
 
 ### Interactivity properties
-The following properties can be used in a text component to add **interactivity** to the text:
-- `insertion`: Can be used to specify text to be inserted into the chat when the text is shift-clicked. This should be a string value.
-- `click_event`: Can be used to specify an action to be performed when the text is clicked. This should be an object with the following properties:
-  - `action`: The action to be performed. This can be one of the following:
-    - `"open_url"`: Opens the url in the field `url` in the player's web browser.
-    - `"run_command"`: Runs the command in the field `command` (the player needs permission to run the commands, and this excludes commands like /say or /tell which make the player send something to chat).
-    - `"suggest_command"`: Opens and inserts the contents of `command` into the player's chat box.
-    - `"copy_to_clipboard"`: Copies the contents of the field `value` to the clipboard.
-    - `"change_page"`: (books only) Changes the page of the book to the page specified in the field `page`.
-  - `url` or `command` or `value` or `page`: These fields should be added to `click_event` alongside `action` depending on which action you use.
-- `hover_event`: Can be used to specify what happens when a player hovers over the text. This should be an object with the following properties
-  - `action`: The action to be performed. This can be one of the following:
-    - `"show_text"`: Shows the text in the field `value` in a tooltip by the player's mouse.
-    - `"show_entity"`: Shows the entity based on the fields `uuid` and `id` in a tooltip by the player's mouse.
-    - `"show_item"`: Shows the item based on the fields `id` and `components` in a tooltip by the player's mouse.
-  - `value` or `uuid` + `id` or `id` + `components`: These fields should be added to `hover_event` alongside `action` depending on which action you use.
 
-**Example**: This text will be "Click me", in blue, and when clicked, it will run the command `/say Hello`:
+The following properties can be used in a text component to add
+**interactivity** to the text:
+
+- `insertion`: Can be used to specify text to be inserted into the chat when the
+  text is shift-clicked. This should be a string value.
+- `click_event`: Can be used to specify an action to be performed when the text
+  is clicked. This should be an object with the following properties:
+  - `action`: The action to be performed. This can be one of the following:
+    - `"open_url"`: Opens the url in the field `url` in the player's web
+      browser.
+    - `"run_command"`: Runs the command in the field `command` (the player needs
+      permission to run the commands, and this excludes commands like /say or
+      /tell which make the player send something to chat).
+    - `"suggest_command"`: Opens and inserts the contents of `command` into the
+      player's chat box.
+    - `"copy_to_clipboard"`: Copies the contents of the field `value` to the
+      clipboard.
+    - `"change_page"`: (books only) Changes the page of the book to the page
+      specified in the field `page`.
+  - `url` or `command` or `value` or `page`: These fields should be added to
+    `click_event` alongside `action` depending on which action you use.
+- `hover_event`: Can be used to specify what happens when a player hovers over
+  the text. This should be an object with the following properties
+  - `action`: The action to be performed. This can be one of the following:
+    - `"show_text"`: Shows the text in the field `value` in a tooltip by the
+      player's mouse.
+    - `"show_entity"`: Shows the entity based on the fields `uuid` and `id` in a
+      tooltip by the player's mouse.
+    - `"show_item"`: Shows the item based on the fields `id` and `components` in
+      a tooltip by the player's mouse.
+  - `value` or `uuid` + `id` or `id` + `components`: These fields should be
+    added to `hover_event` alongside `action` depending on which action you use.
+
+**Example**: This text will be "Click me", in blue, and when clicked, it will
+run the command `/say Hello`:
+
 ```json
-{text: "Click me", click_event: {"action": "run_command", "command": "/say Hello"}}
+{
+  "text": "Click me",
+  "click_event": { "action": "run_command", "command": "/say Hello" }
+}
 ```
 
 ### Other
-- `extra`: This property can be used to add another component after, which inherits all the styles and interactivity from the parent object.
-- `separator`: If the text source returns multiple values (e.g. multiple entities with the `selector` source, or multiple NBT values with the `nbt` source), this can be used to specify the separator between the values. This should be a string value.
+
+- `extra`: This property can be used to add another component after, which
+  inherits all the styles and interactivity from the parent object.
+- `separator`: If the text source returns multiple values (e.g. multiple
+  entities with the `selector` source, or multiple NBT values with the `nbt`
+  source), this can be used to specify the separator between the values. This
+  should be a string value.
 
 ## Text component generators
 Writing text components manually is tedious - there are numerous generators which can be used to quickly create text components. We recommend [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy UI, cool features like gradient creators, and is updated for modern versions.
 
-If you are a more advanced datapacker and want full control over the output, these let you create text components one component at a time, with support for more advanced features
+Writing text components manually is tedious - there are numerous generators
+which can be used to quickly create text components. We reccomend
+[our Minecraft Text Generator](https://text.datapackhub.net) which has an easy
+UI, cool features like gradient creators, and is updated for modern versions.
+
+If you are a more advanced datapacker and want full control over the output,
+these let you create text components one component at a time, with support for
+more advanced features
+
 - [Misode](https://misode.github.io/text-component)
 - [MinecraftJSON.com](https://minecraftjson.com/)

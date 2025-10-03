@@ -6,8 +6,10 @@ version: 1.21.8
 
 # List of breaking changes
 
-This is list of all breaking changes to datapacks (excluding resource packs). Special thanks to [Misode's Technical
-Changelog](https://misode.github.io/changelog/) and the [Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
+This is list of all breaking changes to datapacks (excluding resource packs).
+Special thanks to
+[Misode's Technical Changelog](https://misode.github.io/changelog/) and the
+[Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
 
 ## [1.21.9](https://minecraft.wiki/w/Java_Edition_1.21.9#Command_format_2)
 You can also watch this video from Conure covering the breaking datapack changes: [Why Your Datapack Broke in 1.21.9](https://www.youtube.com/watch?v=9bpM26PXsj0)
@@ -54,251 +56,459 @@ You can also watch this video from Conure covering the breaking datapack changes
 ## [1.21.6](https://minecraft.wiki/w/Java_Edition_1.21.6#Technical)
 
 **Other**
-- If you are using an item which renders bigger than its inventory size is (most likely for a barrel/custom GUI), it will break with this version. You can change the item model to behave like previously by changing the newly added `oversized_in_gui` item model field in the resource pack.
-- The sound event id `block.sand.wind` has been renamed to `block.dry_grass.ambient`
-- All JSON files (in worlds, packs, configuration, etc.) are now parsed in strict mode
-- Users will now be prompted for confirmation before executing a command from the `run_command` click action in books and chat if the command requires permissions higher than 0. This is not a breaking change, just a warning which shows to the player.
 
-**Componenents**
+- If you are using an item which renders bigger than its inventory size is (most
+  likely for a barrel/custom GUI), it will break with this version. You can
+  change the item model to behave like previously by changing the newly added
+  `oversized_in_gui` item model field in the resource pack.
+- The sound event id `block.sand.wind` has been renamed to
+  `block.dry_grass.ambient`
+- All JSON files (in worlds, packs, configuration, etc.) are now parsed in
+  strict mode
+- Users will now be prompted for confirmation before executing a command from
+  the `run_command` click action in books and chat if the command requires
+  permissions higher than 0. This is not a breaking change, just a warning which
+  shows to the player.
+
+**Item Components**
+
 - The `painting/variant` component no longer accepts inline variants
 
 **Entity Data**
-- The `Particle` field in the `area_effect_cloud` entity has been renamed to `custom_particle`, and now always functions as an exact override for the default colored `entity_effect` particle
+
+- The `Particle` field in the `area_effect_cloud` entity has been renamed to
+  `custom_particle`, and now always functions as an exact override for the
+  default colored `entity_effect` particle
 
 **Tags**
-- Renamed `#plays_ambient_desert_block_sounds` block tag to `#triggers_ambient_desert_sand_block_sounds` 
+
+- Renamed `#plays_ambient_desert_block_sounds` block tag to
+  `#triggers_ambient_desert_sand_block_sounds`
 
 ## [1.21.5](https://minecraft.wiki/w/Java_Edition_1.21.5#Technical)
-You can also watch this video from Conure covering the breaking datapack changes: [Why Your Datapack Broke in 1.21.5](https://www.youtube.com/watch?v=sE7P3QYFniM&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=4&ab_channel=Conure)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21.5](https://www.youtube.com/watch?v=sE7P3QYFniM&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=4&ab_channel=Conure)
 
 **Other**
-- Trim pattern and trim material items are no longer specified in the trim registries, but instead in the recipes and items respectively
+
+- Trim pattern and trim material items are no longer specified in the trim
+  registries, but instead in the recipes and items respectively
   - 🛠️ To fix this:
-    - 1) Trim Pattern - delete the field `template_item` from your trim pattern file, and add a new field containing your trim pattern id into your smithing trim pattern recipe. See the [Smithing Trims guide](/guide/adding-new-features/smithing-trims#adding-a-smithing-trim-pattern) for an example.
-    - 2) Trim Material - delete the field `ingredient` from your trim material file, and add the [`provides_trim_material`](https://minecraft.wiki/w/Data_component_format#provides_trim_material) item component to your item. (E.g. `barrier[provides_trim_material='minecraft:iron']`) See the [Smithing Trims guide](/guide/adding-new-features/smithing-trims#adding-a-smithing-trim-color-palette) for an example.
-- Field `background` in advancement definition no longer contains `textures/` prefix and `.png` suffix
+    - 1. Trim Pattern - delete the field `template_item` from your trim pattern
+         file, and add a new field containing your trim pattern id into your
+         smithing trim pattern recipe. See the
+         [Smithing Trims guide](/guide/adding-new-features/smithing-trims#adding-a-smithing-trim-pattern)
+         for an example.
+    - 2. Trim Material - delete the field `ingredient` from your trim material
+         file, and add the
+         [`provides_trim_material`](https://minecraft.wiki/w/Data_component_format#provides_trim_material)
+         item component to your item. (E.g.
+         `barrier[provides_trim_material='minecraft:iron']`) See the
+         [Smithing Trims guide](/guide/adding-new-features/smithing-trims#adding-a-smithing-trim-color-palette)
+         for an example.
+- Field `background` in advancement definition no longer contains `textures/`
+  prefix and `.png` suffix
 - Wolf Variants
-	- In the wold variants file, the fields `angry_texture`, `tame_texture` and `wild_texture` have been grouped in field `assets` and renamed to `angry`, `tame` and `wild`.
-	- Added field `spawn_conditions`, which describes where the variant can spawn. See more in the changelog under "Spawn conditions".
+  - In the wold variants file, the fields `angry_texture`, `tame_texture` and
+    `wild_texture` have been grouped in field `assets` and renamed to `angry`,
+    `tame` and `wild`.
+  - Added field `spawn_conditions`, which describes where the variant can spawn.
+    See more in the changelog under "Spawn conditions".
 
 **Data Types**
-- The data format of Text Components was changed from [JSON](/wiki/info/json) to [SNBT](/wiki/nbt-scoreboards/nbt#snbt-format).
-	- With that, all the special formats and values were changed. You can read more about it on the changelog.
-	- For example, `minecraft:custom_name="{"text":\"Renamed item\"}"` is now `minecraft:custom_name={text:'Renamed item'}`. Or the previous `/tellraw @s ""text":"Hello world""` is now `/tellraw @s {text:'Hello world'}`
+
+- The data format of Text Components was changed from [JSON](/wiki/info/json) to
+  [SNBT](/wiki/nbt-scoreboards/nbt#snbt-format).
+  - With that, all the special formats and values were changed. You can read
+    more about it on the changelog.
+  - For example, `minecraft:custom_name="{"text":\"Renamed item\"}"` is now
+    `minecraft:custom_name={text:'Renamed item'}`. Or the previous
+    `/tellraw @s ""text":"Hello world""` is now
+    `/tellraw @s {text:'Hello world'}`
 
 **Tags**
+
 - Removed `#default_spawns` and `#full_moon_spawns` in cat variant tags
-- Renamed `#dead_bush_may_place_on` block tag to `#dry_vegetation_may_place_on` 
+- Renamed `#dead_bush_may_place_on` block tag to `#dry_vegetation_may_place_on`
 
 **Entities & Entity Data**
-- The `potion` entity type has been split into `splash_potion` and `lingering_potion`
 
-- A lot of fields will no longer be preserved, or have been removed (You can see them all on https://www.minecraft.net/en-us/article/minecraft-snapshot-25w07a)
-- The `ArmorDropChances`, `HandDropChances`, and `body_armor_drop_chance` fields have been merged into a `drop_chances` field.
-	- The format is a list of `equipment_slot:value` variables. E.g. `drop_chances:{chest:0.1,feet:1.0}`
-	- And drop chances with a default value are no longer stored. The  `drop_chances`  field is removed entirely if all defaults.
-- The `ArmorItems`, `HandItems`, and `body_armor_item` fields have been merged into an `equipment` field
-	- The format is a list of `equipment_slot:item_stack` variables. E.g. `equipment:{chest:{id:'minecraft:diamond_chestplate'}}`.
-	- This affects all mobs and Armor Stands, but not players.
-- The format of saddles has been unified between mobs, becoming a new equipment slot, stored in the `equipment.saddle` field.
-	- This is a pure rename from the previous `SaddleItem` in horse-like mobs. In striders and pigs this replaces the old `Saddle` boolean.
-	- The Saddle dropping on death is now affected by the `drop_chances` field.
-- The `FallDistance` field has been changed from float to double and is now called `fall_distance`
-- The armor and off-hand equipment of Players is now also stored in the `equipment` field *(although items written into the Inventory using armor and off-hand slot numbers still work)*
-- `Pos`, `Motion`, and `Rotation` values without the correct number of components (3, 3, and 2 respectively) will now be fully discarded, instead of only selecting the specified components
-- The `SleepingX`, `SleepingY`, and `SleepingZ` fields have been merged into a single `sleeping_pos` field (e.g. `sleeping_pos: [I;1,2,3]`)
-- Block States in the entity data of Arrows, Minecarts, Block Displays, Endermen, Falling Blocks, Primed TNT, or Piston Moving Blocks are no longer allowed to be specified as an empty object
+- The `potion` entity type has been split into `splash_potion` and
+  `lingering_potion`
+
+- A lot of fields will no longer be preserved, or have been removed (You can see
+  them all on https://www.minecraft.net/en-us/article/minecraft-snapshot-25w07a)
+- The `ArmorDropChances`, `HandDropChances`, and `body_armor_drop_chance` fields
+  have been merged into a `drop_chances` field.
+  - The format is a list of `equipment_slot:value` variables. E.g.
+    `drop_chances:{chest:0.1,feet:1.0}`
+  - And drop chances with a default value are no longer stored. The
+    `drop_chances` field is removed entirely if all defaults.
+- The `ArmorItems`, `HandItems`, and `body_armor_item` fields have been merged
+  into an `equipment` field
+  - The format is a list of `equipment_slot:item_stack` variables. E.g.
+    `equipment:{chest:{id:'minecraft:diamond_chestplate'}}`.
+  - This affects all mobs and Armor Stands, but not players.
+- The format of saddles has been unified between mobs, becoming a new equipment
+  slot, stored in the `equipment.saddle` field.
+  - This is a pure rename from the previous `SaddleItem` in horse-like mobs. In
+    striders and pigs this replaces the old `Saddle` boolean.
+  - The Saddle dropping on death is now affected by the `drop_chances` field.
+- The `FallDistance` field has been changed from float to double and is now
+  called `fall_distance`
+- The armor and off-hand equipment of Players is now also stored in the
+  `equipment` field _(although items written into the Inventory using armor and
+  off-hand slot numbers still work)_
+- `Pos`, `Motion`, and `Rotation` values without the correct number of
+  components (3, 3, and 2 respectively) will now be fully discarded, instead of
+  only selecting the specified components
+- The `SleepingX`, `SleepingY`, and `SleepingZ` fields have been merged into a
+  single `sleeping_pos` field (e.g. `sleeping_pos: [I;1,2,3]`)
+- Block States in the entity data of Arrows, Minecarts, Block Displays,
+  Endermen, Falling Blocks, Primed TNT, or Piston Moving Blocks are no longer
+  allowed to be specified as an empty object
 
 <details><summary>Lots of entity and block entity data fields now have a new default value. Click to see them all</summary>
 
 **Entity Data**
+
 - `creeper` - `Fuse` defaults to 30; `ExplosionRadius` defaults to 3; <br>
-- `tnt` - `block_state` defaults to `tnt`; `fuse` defaults to 80; `explosion_power` defaults to 4; <br>
+- `tnt` - `block_state` defaults to `tnt`; `fuse` defaults to 80;
+  `explosion_power` defaults to 4; <br>
 - `goat` - `HasLeftHorn` and `HasRightHorn` fields default to true; <br>
 - `interaction` - `width` and `height` fields default to 1; <br>
-- `allay` - `CanDuplicate` field removed (now controlled by `DuplicationCooldown`); <br>
+- `allay` - `CanDuplicate` field removed (now controlled by
+  `DuplicationCooldown`); <br>
 - `cat` - `CollarColor` defaults to 14 (red); <br>
-- `dolphin` - `TreasurePosX`, `TreasurePosY`, `TreasurePosZ` fields removed; `Moistness` defaults to 2400; <br>
-- `falling_block` - `BlockState` defaults to sand; `HurtEntities` defaults to false (or true if BlockState is anvil); `FallHurtAmount` defaults to 0; `FallHurtMax` defaults to 40; `DropItem` defaults to true; <br>
+- `dolphin` - `TreasurePosX`, `TreasurePosY`, `TreasurePosZ` fields removed;
+  `Moistness` defaults to 2400; <br>
+- `falling_block` - `BlockState` defaults to sand; `HurtEntities` defaults to
+  false (or true if BlockState is anvil); `FallHurtAmount` defaults to 0;
+  `FallHurtMax` defaults to 40; `DropItem` defaults to true; <br>
 - `fox` - `Trusted` field defaults to empty; <br>
-- `phantom` - `Size` renamed to `size`; `AX`, `AY`, and `AZ` fields collected into a single `anchor_pos` field; <br>
-- `player` - `SpawnX`, `SpawnY`, `SpawnZ`, `SpawnAngle`, `SpawnDimension`, and `SpawnForced` fields collected into a single `respawn` field; `enteredNetherPosition` renamed to `entered_nether_pos`; <br>
-- `turtle` - `HomePosX`, `HomePosY`, and `HomePosZ` fields collected into a single `home_pos` field; `HasEgg` renamed to `has_egg`; <br>
-- `vex` - `LifeTicks` renamed to `life_ticks`; `BoundX`, `BoundY`, and `BoundZ` fields collected into a single `bound_pos` field; <br>
+- `phantom` - `Size` renamed to `size`; `AX`, `AY`, and `AZ` fields collected
+  into a single `anchor_pos` field; <br>
+- `player` - `SpawnX`, `SpawnY`, `SpawnZ`, `SpawnAngle`, `SpawnDimension`, and
+  `SpawnForced` fields collected into a single `respawn` field;
+  `enteredNetherPosition` renamed to `entered_nether_pos`; <br>
+- `turtle` - `HomePosX`, `HomePosY`, and `HomePosZ` fields collected into a
+  single `home_pos` field; `HasEgg` renamed to `has_egg`; <br>
+- `vex` - `LifeTicks` renamed to `life_ticks`; `BoundX`, `BoundY`, and `BoundZ`
+  fields collected into a single `bound_pos` field; <br>
 - `wolf` - `CollarColor` defaults to 14 (red); <br>
 - `area_effect_cloud` - `Duration` defaults to -1 (infinite); <br>
 - `ender_dragon` - `DragonDeathTime` defaults to 0; <br>
 - `firework_rocket` - `ShotAtAngle` defaults to false; <br>
 - `ghast` - `ExplosionPower` defaults to 1; <br>
-- `item` - `Health` defaults to 5; `PickupDelay` defaults to 0; `Age` defaults to 0; <br>
+- `item` - `Health` defaults to 5; `PickupDelay` defaults to 0; `Age` defaults
+  to 0; <br>
 - `item_frame` and `glow_item_frame` - `ItemDropChance` defaults to 1.0; <br>
 - `shulker` - `Color` defaults to 16 (no color); <br>
 - `skeleton` - `StrayConversionTime` field removed; <br>
 - `spectral_arrow` - `Duration` defaults to 200; <br>
 - `snow_golem` - `Pumpkin` defaults to true; <br>
-- `tnt_minecart` - `fuse` defaults to 80; `explosion_power` defaults to 4; `explosion_speed_factor` defaults to 1; <br>
+- `tnt_minecart` - `fuse` defaults to 80; `explosion_power` defaults to 4;
+  `explosion_speed_factor` defaults to 1; <br>
 - `trader_llama` - `DespawnDelay` defaults to 47999; <br>
 - `villager` - `FoodLevel` and `Xp` fields default to 0; <br>
 - `wandering_trader` - `DespawnDelay` defaults to 0; <br>
 - `zombie` - `DrownedConversionTime` field removed; <br>
 - `zombie_villager` - `Xp` defaults to 0; <br>
 - `arrow`, `spectral_arrow`, `trident` - `damage` defaults to 2; <br>
-- `dragon_fireball`, `wind_charge`, `breeze_wind_charge`, `wither_skull`, `small_fireball`, and `large_fireball` - `acceleration_power` defaults to 0.1; <br>
+- `dragon_fireball`, `wind_charge`, `breeze_wind_charge`, `wither_skull`,
+  `small_fireball`, and `large_fireball` - `acceleration_power` defaults to 0.1;
+  <br>
 - `small_fireball` and `large_fireball` - `ExplosionPower` defaults to 1; <br>
-- `block_display`, `item_display`, and `text_display` - `interpolation_duration`, `teleport_duration`, and `start_interpolation` fields default to 0; `view_range` defaults to 1; `shadow_radius` defaults to 0; `shadow_strength` defaults to 1; `width` and `height` fields default to 0; <br>
+- `block_display`, `item_display`, and `text_display` -
+  `interpolation_duration`, `teleport_duration`, and `start_interpolation`
+  fields default to 0; `view_range` defaults to 1; `shadow_radius` defaults to
+  0; `shadow_strength` defaults to 1; `width` and `height` fields default to 0;
+  <br>
 
 **Block Entity Data**
+
 - `campfire` - `CookingTimes` and `CookingTotalTimes` fields removed; <br>
 - `chiseled_bookshelf` - `last_interacted_slot` defaults to -1; <br>
 - `hopper` - `TransferCooldown` defaults to -1; <br>
-- `jigsaw` - `name`, `target`, and `pool` fields default to `minecraft:empty`; `final_state` defaults to `minecraft:air`; <br>
+- `jigsaw` - `name`, `target`, and `pool` fields default to `minecraft:empty`;
+  `final_state` defaults to `minecraft:air`; <br>
 - `sculk_shrieker` - `warning_level` defaults to 0; <br>
-- `structure_block` - `ignoreEntities` and `showboundingbox` fields default to true; `posY` defaults to 1;
+- `structure_block` - `ignoreEntities` and `showboundingbox` fields default to
+  true; `posY` defaults to 1;
 
 </details>
 
 **Commands**
-- The `horse.saddle` item slot has been renamed to `saddle`, and now supports any entity that can equip a Saddle.
-- The behavior of `setblock` and `fill` commands have changed in how they handle block entity data:
-    - If the block entity data is not specified, and the existing block has data, the block entity data will be preserved
-    - If the block entity data is specified, the block entity data will be set to the specified value
-    - To clear the block entity data explicitly, you must now specify the block entity data as `{}`
-    - The operation is now successful if either the block state changed or the block entity data changed
+
+- The `horse.saddle` item slot has been renamed to `saddle`, and now supports
+  any entity that can equip a Saddle.
+- The behavior of `setblock` and `fill` commands have changed in how they handle
+  block entity data:
+  - If the block entity data is not specified, and the existing block has data,
+    the block entity data will be preserved
+  - If the block entity data is specified, the block entity data will be set to
+    the specified value
+  - To clear the block entity data explicitly, you must now specify the block
+    entity data as `{}`
+  - The operation is now successful if either the block state changed or the
+    block entity data changed
 
 **Item Componenents**
-- Entities now have a set of components fro changing variants and other apperance like stuff.
-	- Mob buckets and paintings available in creative menu will now use new entity variant components instead of [`entity_data`](https://minecraft.wiki/w/Data_component_format#entity_data) component
-	- Custom tooltips for Bucket of Tropical Fish and Painting items are now based on new components instead of [`bucket_entity_data`](https://minecraft.wiki/w/Data_component_format#bucket_entity_data) and [`entity_data`](https://minecraft.wiki/w/Data_component_format#entity_data)
-- The `hide_additional_tooltip` and `hide_tooltip` component were removed, and replaced by the new [`tooltip_display`](https://minecraft.wiki/w/Data_component_format#tooltip_display) component. This means that all the items which used this will now need to be hidden using the new component.
-- All item components which had a `show_in_tooltip` field, had this field removed. The old behaviours can be done using the new `tooltip_display` component.
-- In the [`dyed`](https://minecraft.wiki/w/Data_component_format#dyed_color) component, the color field now always uses its simplified form, with the rgb field inlined to top-level (e.g. `dyed_color={rgb:12345}` → `dyed_color=12345`).
-- In the [`can_place_on`](https://minecraft.wiki/w/Data_component_format#can_place_on) and [`can_break`](https://minecraft.wiki/w/Data_component_format#can_break), the predicates field has been inlined to top-level, and supports either a single element or list. (e.g. `can_place_on={predicates:[{blocks:'stone'},{blocks:'dirt'}]}` → `can_place_on=[{blocks:'stone'},{blocks:'dirt'}]`)
-- The [`enchantments`](https://minecraft.wiki/w/Data_component_format#enchantments) and [`stored_enchantments`](https://minecraft.wiki/w/Data_component_format#stored_enchantments) components, will now always use their simplified form, with the `levels` field inlined to top-level (e.g. `enchantments={levels:{sharpness:2}}` → `enchantments={sharpness:2}`)
+
+- Entities now have a set of components fro changing variants and other
+  apperance like stuff.
+  - Mob buckets and paintings available in creative menu will now use new entity
+    variant components instead of
+    [`entity_data`](https://minecraft.wiki/w/Data_component_format#entity_data)
+    component
+  - Custom tooltips for Bucket of Tropical Fish and Painting items are now based
+    on new components instead of
+    [`bucket_entity_data`](https://minecraft.wiki/w/Data_component_format#bucket_entity_data)
+    and
+    [`entity_data`](https://minecraft.wiki/w/Data_component_format#entity_data)
+- The `hide_additional_tooltip` and `hide_tooltip` component were removed, and
+  replaced by the new
+  [`tooltip_display`](https://minecraft.wiki/w/Data_component_format#tooltip_display)
+  component. This means that all the items which used this will now need to be
+  hidden using the new component.
+- All item components which had a `show_in_tooltip` field, had this field
+  removed. The old behaviours can be done using the new `tooltip_display`
+  component.
+- In the [`dyed`](https://minecraft.wiki/w/Data_component_format#dyed_color)
+  component, the color field now always uses its simplified form, with the rgb
+  field inlined to top-level (e.g. `dyed_color={rgb:12345}` →
+  `dyed_color=12345`).
+- In the
+  [`can_place_on`](https://minecraft.wiki/w/Data_component_format#can_place_on)
+  and [`can_break`](https://minecraft.wiki/w/Data_component_format#can_break),
+  the predicates field has been inlined to top-level, and supports either a
+  single element or list. (e.g.
+  `can_place_on={predicates:[{blocks:'stone'},{blocks:'dirt'}]}` →
+  `can_place_on=[{blocks:'stone'},{blocks:'dirt'}]`)
+- The
+  [`enchantments`](https://minecraft.wiki/w/Data_component_format#enchantments)
+  and
+  [`stored_enchantments`](https://minecraft.wiki/w/Data_component_format#stored_enchantments)
+  components, will now always use their simplified form, with the `levels` field
+  inlined to top-level (e.g. `enchantments={levels:{sharpness:2}}` →
+  `enchantments={sharpness:2}`)
 
 **Recipes**
-- The `base` ingredient field is no longer optional in the [`smithing_transform`](/wiki/files/recipes#smithing-fields) recipe type.
-- The `base`, `template`, and `addition` ingredient fields are no longer optional in the [`smithing_trim`](/wiki/files/recipes#smithing-fields) recipe type.
-- Added a new field `pattern` in the [`smithing_trim`](/wiki/files/recipes#smithing-fields) recipe type.
+
+- The `base` ingredient field is no longer optional in the
+  [`smithing_transform`](/wiki/files/recipes#smithing-fields) recipe type.
+- The `base`, `template`, and `addition` ingredient fields are no longer
+  optional in the [`smithing_trim`](/wiki/files/recipes#smithing-fields) recipe
+  type.
+- Added a new field `pattern` in the
+  [`smithing_trim`](/wiki/files/recipes#smithing-fields) recipe type.
 
 **Predicates**
-- Some entity sub-predicates have been removed and replaced by a combination of `components` predicate and variant entity components
-	- These include: `axolotl`, `fox`, `mooshroom`, `rabbit`, `horse`, `llama`, `villager`, `parrot`, `salmon`, `tropical fish`, `painting`, `cat`, `frog`, `wolf`, `pig`
+
+- Some entity sub-predicates have been removed and replaced by a combination of
+  `components` predicate and variant entity components
+  - These include: `axolotl`, `fox`, `mooshroom`, `rabbit`, `horse`, `llama`,
+    `villager`, `parrot`, `salmon`, `tropical fish`, `painting`, `cat`, `frog`,
+    `wolf`, `pig`
 - Field `color` has been removed from `minecraft:sheep` sub-predicate
-- The `stepping_on` entity predicate can now only evaluate to true if the entity is on ground
+- The `stepping_on` entity predicate can now only evaluate to true if the entity
+  is on ground
 
 ## [1.21.4](https://minecraft.wiki/w/Java_Edition_1.21.4#Technical)
-You can also watch this video from Conure covering the breaking datapack changes: [Why Your Datapack Broke in 1.21.4](https://www.youtube.com/watch?v=N2rU-3_2txc&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=3&ab_channel=Conure)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21.4](https://www.youtube.com/watch?v=N2rU-3_2txc&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=3&ab_channel=Conure)
 
 **Item Components**
-- Field `model` in [`equippable`](https://minecraft.wiki/w/Data_component_format#equippable) component has been renamed to `asset_id`.
-- The [`dyed`](https://minecraft.wiki/w/Data_component_format#dyed_color) component now tint's based on the model, not item ID.
-- The [`custom_model_data`](https://minecraft.wiki/w/Data_component_format#custom_model_data) component has new fields `floats`, `flags`, `strings`, `colors`.
-- Item blocks with [`block_entity_data`](https://minecraft.wiki/w/Data_component_format#block_entity_data) component will now set block entity data only if id tag matches type of placed block entity
+
+- Field `model` in
+  [`equippable`](https://minecraft.wiki/w/Data_component_format#equippable)
+  component has been renamed to `asset_id`.
+- The [`dyed`](https://minecraft.wiki/w/Data_component_format#dyed_color)
+  component now tint's based on the model, not item ID.
+- The
+  [`custom_model_data`](https://minecraft.wiki/w/Data_component_format#custom_model_data)
+  component has new fields `floats`, `flags`, `strings`, `colors`.
+- Item blocks with
+  [`block_entity_data`](https://minecraft.wiki/w/Data_component_format#block_entity_data)
+  component will now set block entity data only if id tag matches type of placed
+  block entity
 
 **Renames**
+
 - The `TNTFuse` field of TNT Minecarts has been renamed to `fuse`
-- Changed some Furnace, Smoker and Blast Furnace data. From camelCase to snake_case.
-   * Renamed `CookTime` to `cooking_time_spent`
-   * Renamed `CookTimeTotal` to `cooking_total_time`
-   * Renamed `BurnTime` to `lit_time_remaining`
+- Changed some Furnace, Smoker and Blast Furnace data. From camelCase to
+  snake_case.
+  - Renamed `CookTime` to `cooking_time_spent`
+  - Renamed `CookTimeTotal` to `cooking_total_time`
+  - Renamed `BurnTime` to `lit_time_remaining`
 
 **Other**
-- Removed `#tall_flowers` block tag. And also removed the `#flowers` and `#tall_flowers` item tags.
-- The `trail` particle has a new required field: `duration` - Indicates, in ticks, for how long the particles should travel to its destination.
-- 🎨 The item model resource pack format got completely changed, now allowing for tinting, layered, conditional, and much more!
+
+- Removed `#tall_flowers` block tag. And also removed the `#flowers` and
+  `#tall_flowers` item tags.
+- The `trail` particle has a new required field: `duration` - Indicates, in
+  ticks, for how long the particles should travel to its destination.
+- 🎨 The item model resource pack format got completely changed, now allowing
+  for tinting, layered, conditional, and much more!
 
 ## [1.21.2](https://minecraft.wiki/w/Java_Edition_1.21.2#Technical)
-You can also watch this video from Conure covering the breaking datapack changes: [Why Your Datapack Broke in 1.21.2](https://www.youtube.com/watch?v=Xqj4EAebj80&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=2&ab_channel=Conure)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21.2](https://www.youtube.com/watch?v=Xqj4EAebj80&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=2&ab_channel=Conure)
 
 **Item Components**
-- The [`food`](https://minecraft.wiki/w/Data_component_format#food) item component no longer automatically allows for consumption of food, and now only holds the data relating to it (meaning `nutrition`, `saturation` and `can_always_eat` are the only fields left in the component)
-  - 🛠️ To fix this, just add the [`consumable`](https://minecraft.wiki/w/Data_component_format#consumable) component: `consumable={}`. This component is very customizable, you can read about it [here](https://minecraft.wiki/w/Data_component_format#consumable).
-- The [`lock`](https://minecraft.wiki/w/Data_component_format#lock) has been changed into an item predicate, with a format of `lock={ITEM_PREDICATE}`
-  - 🛠️ The previous `lock="MyKey"` would now look like `lock={components:{"minecraft:custom_name":"'MyKey'"}}`
-- The `fire_resistant` component has been renamed to [`damage_resistant`](https://minecraft.wiki/w/Data_component_format#damage_resistant), with a new field
-  - `types` - A `#` damage type tag. Items in entity form or worn by players with this component will be resistant to the damage types included in the tag.
+
+- The [`food`](https://minecraft.wiki/w/Data_component_format#food) item
+  component no longer automatically allows for consumption of food, and now only
+  holds the data relating to it (meaning `nutrition`, `saturation` and
+  `can_always_eat` are the only fields left in the component)
+  - 🛠️ To fix this, just add the
+    [`consumable`](https://minecraft.wiki/w/Data_component_format#consumable)
+    component: `consumable={}`. This component is very customizable, you can
+    read about it
+    [here](https://minecraft.wiki/w/Data_component_format#consumable).
+- The [`lock`](https://minecraft.wiki/w/Data_component_format#lock) has been
+  changed into an item predicate, with a format of `lock={ITEM_PREDICATE}`
+  - 🛠️ The previous `lock="MyKey"` would now look like
+    `lock={components:{"minecraft:custom_name":"'MyKey'"}}`
+- The `fire_resistant` component has been renamed to
+  [`damage_resistant`](https://minecraft.wiki/w/Data_component_format#damage_resistant),
+  with a new field
+  - `types` - A `#` damage type tag. Items in entity form or worn by players
+    with this component will be resistant to the damage types included in the
+    tag.
 
 **Loot Tables**
-- The `/loot` command now returns an error when trying to drop from block without loot table (like air)
+
+- The `/loot` command now returns an error when trying to drop from block
+  without loot table (like air)
 - The special loot table `empty` has been removed.
-- Sheep now always use a single loot table `entities/sheep`, but wool drops are still defined in sub-tables in  `entities/sheep/<color>`
+- Sheep now always use a single loot table `entities/sheep`, but wool drops are
+  still defined in sub-tables in `entities/sheep/<color>`
 
 **Other**
-- Attribute IDs now don't have the `generic.`, `player.` or `zombie.` prefixes anymore (`generic.scale` → `scale`).
-- `boat` and `chest_boat` entity types have been split into separate types, one per variant (`Type=oak` →
-`minecraft:oak_boat`,...)
+
+- Attribute IDs now don't have the `generic.`, `player.` or `zombie.` prefixes
+  anymore (`generic.scale` → `scale`).
+- `boat` and `chest_boat` entity types have been split into separate types, one
+  per variant (`Type=oak` → `minecraft:oak_boat`,...)
   - With that the `minecraft:boat` entity sub-predicate has been removed.
-- The previous `Lock` field of containers has been renamed to `lock` and is now an item predicate.
-- You now cannot ride Leash Knots, Lighting Bolts and Fishing Bobbers with `/ride` command.
-- The `killed_by_crossbow` advancement was renamed to `killed_by_arrow`, and will now trigger whenever an arrow kills an entity, not just when fired from a crossbow.
-- Renamed effect type `damage_item` to `change_item_damage`, which now also supports negative amounts.
-- Removed liquid carvers and changed biome format (the `carvers` field is now just a list of carvers)
+- The previous `Lock` field of containers has been renamed to `lock` and is now
+  an item predicate.
+- You now cannot ride Leash Knots, Lighting Bolts and Fishing Bobbers with
+  `/ride` command.
+- The `killed_by_crossbow` advancement was renamed to `killed_by_arrow`, and
+  will now trigger whenever an arrow kills an entity, not just when fired from a
+  crossbow.
+- Renamed effect type `damage_item` to `change_item_damage`, which now also
+  supports negative amounts.
+- Removed liquid carvers and changed biome format (the `carvers` field is now
+  just a list of carvers)
 
 ## [1.21](https://minecraft.wiki/w/Java_Edition_1.21#Technical)
-You can also watch this video from Conure covering the breaking datapack changes: [Why Your Datapack Broke in 1.21](https://www.youtube.com/watch?v=QiSoehiXV_c&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=1&ab_channel=Conure)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21](https://www.youtube.com/watch?v=QiSoehiXV_c&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=1&ab_channel=Conure)
 
 **General Renames**
-- All folders which previously had plural names (except `tags`) now have singular names. A list of all changed folders can be found below:
-    - `structures` → `structure`
-    - `advancements` → `advancement`
-    - `recipes` → `recipe`
-    - `loot_tables` → `loot_table`
-    - `predicates` → `predicate`
-    - `item_modifiers` → `item_modifier`
-    - `functions` → `function`
-    - `tags/functions` → `tags/function`
-    - `tags/items` → `tags/item`
-    - `tags/blocks` → `tags/block`
-    - `tags/entity_types` → `tags/entity_type`
-    - `tags/fluids` → `tags/fluid`
-    - `tags/game_events` → `tags/game_event`
-- The `uuid` and `name` arguments have been replaced with a singular namespaced `id` argument.
-  - 🛠️ For example: `attribute ... modifier add <uuid> <name> 0.5 add_value` would now look like `attribute ... modifier add <namespace:id> 0.5 add_value`
+
+- All folders which previously had plural names (except `tags`) now have
+  singular names. A list of all changed folders can be found below:
+  - `structures` → `structure`
+  - `advancements` → `advancement`
+  - `recipes` → `recipe`
+  - `loot_tables` → `loot_table`
+  - `predicates` → `predicate`
+  - `item_modifiers` → `item_modifier`
+  - `functions` → `function`
+  - `tags/functions` → `tags/function`
+  - `tags/items` → `tags/item`
+  - `tags/blocks` → `tags/block`
+  - `tags/entity_types` → `tags/entity_type`
+  - `tags/fluids` → `tags/fluid`
+  - `tags/game_events` → `tags/game_event`
+- The `uuid` and `name` arguments have been replaced with a singular namespaced
+  `id` argument.
+  - 🛠️ For example: `attribute ... modifier add <uuid> <name> 0.5 add_value`
+    would now look like
+    `attribute ... modifier add <namespace:id> 0.5 add_value`
 
 **Entity NBT**
+
 - Entity attribute format has changed:
   - `Attributes` → `attributes`
     - `Name` → `id`
     - `Base` → `base`
-    - `Modifiers` → `modifiers` *(Now stores modifiers in the same format as modifiers in the [`minecraft:attribute_modifiers`](https://minecraft.wiki/w/Data_component_format#attribute_modifiers) item component)*
+    - `Modifiers` → `modifiers` _(Now stores modifiers in the same format as
+      modifiers in the
+      [`minecraft:attribute_modifiers`](https://minecraft.wiki/w/Data_component_format#attribute_modifiers)
+      item component)_
       - `UUID` → `uuid`
       - `Name` → `id`
       - `Amount` → `amount`
-      - `Operation` → `operation` *(This is now a named constant instead of an int)*
+      - `Operation` → `operation` _(This is now a named constant instead of an
+        int)_
         - `add_value` - now a string, previously `0`
         - `add_multiplied_base` - now a string, previously `1`
         - `add_multiplied_total` - now a string, previously `2`
-  - 🛠️ For example: `summon ... {Attributes:[{Name:"generic.scale",Base:2,Modifiers:[{UUID:[I;1,0,0,0],Name:"example_modifier",Amount:1,Operation:0}]}]}` would now look like `summon ... {attributes:[{id:"generic.scale",base:2,modifiers:[{id:"tutorial:example_modifier",amount:1,operation:"add_value"}]}]}`
-- Replaced the `power` NBT tag with an `acceleration_power` tag. This controls the projectile's acceleration (and maximum speed).
-  - This applies to: `dragon_fireball`, `large_fireball`, `small_fireball`, `fireball`, `breeze_wind_charge`, `wind_charge`, `wither_skull`.
-- The field `ShotFromCrossbow` from projectile NBT has been removed. A new `weapon` field has been added to replace this feature.
-  - 🛠️ For example: `@e[type=arrow,nbt={ShotFromCrossbow:1b}]` would now look like `@e[type=arrow,nbt={weapon:{id:"minecraft:crossbow"}}]`
+  - 🛠️ For example:
+    `summon ... {Attributes:[{Name:"generic.scale",Base:2,Modifiers:[{UUID:[I;1,0,0,0],Name:"example_modifier",Amount:1,Operation:0}]}]}`
+    would now look like
+    `summon ... {attributes:[{id:"generic.scale",base:2,modifiers:[{id:"tutorial:example_modifier",amount:1,operation:"add_value"}]}]}`
+- Replaced the `power` NBT tag with an `acceleration_power` tag. This controls
+  the projectile's acceleration (and maximum speed).
+  - This applies to: `dragon_fireball`, `large_fireball`, `small_fireball`,
+    `fireball`, `breeze_wind_charge`, `wind_charge`, `wither_skull`.
+- The field `ShotFromCrossbow` from projectile NBT has been removed. A new
+  `weapon` field has been added to replace this feature.
+  - 🛠️ For example: `@e[type=arrow,nbt={ShotFromCrossbow:1b}]` would now look
+    like `@e[type=arrow,nbt={weapon:{id:"minecraft:crossbow"}}]`
 
 **Tags**
+
 - Removed the `#minecraft:music_discs` item tag
 
 **Predicates**
+
 - Some predicate fields have been renamed:
   - `killer` → `attacker`
   - `direct_killer` → `direct_attacker`
   - `killer_player` → `attacking_player`
-- The `random_chance_with_looting` has been renamed (because it's now controlled by enchantments) to `random_chance_with_enchanted_bonus`. The fields were updated accordingly:
+- The `random_chance_with_looting` has been renamed (because it's now controlled
+  by enchantments) to `random_chance_with_enchanted_bonus`. The fields were
+  updated accordingly:
   - The `looting_multiplier` field has been removed
   - The `chance` field has been removed.
-  - `enchantment` - is a new field containing the namespaced:id of the Enchantment that grants the bonus chance
-  - `enchanted_chance` is a new field for the chance for an enchanted item. A level-based value.
-  - `unenchanted_chance` - is a new field specifying the chance for an unenchanted item.
-- If you are testing for an enchantment on your item, the field `enchantment` → `enchantments`. Can be either an Enchantment, a list of Enchantments or an #Enchantment Tag.
+  - `enchantment` - is a new field containing the namespaced:id of the
+    Enchantment that grants the bonus chance
+  - `enchanted_chance` is a new field for the chance for an enchanted item. A
+    level-based value.
+  - `unenchanted_chance` - is a new field specifying the chance for an
+    unenchanted item.
+- If you are testing for an enchantment on your item, the field `enchantment` →
+  `enchantments`. Can be either an Enchantment, a list of Enchantments or an
+  #Enchantment Tag.
 
 **Item Modifiers**
-- The `looting_enchant` field has been replaced by `enchanted_count_increase`. This has a new field `enchantment` (specifies which enchantment).
+
+- The `looting_enchant` field has been replaced by `enchanted_count_increase`.
+  This has a new field `enchantment` (specifies which enchantment).
 - Under `enchant_randomly` the field `enchantments` is now called `options`.
 - Under `enchant_with_levels` the field `treasure` was removed.
-- Under `copy_name` the field `killer` → `attacking_entity` and `killer_player` → `last_damage_player`
+- Under `copy_name` the field `killer` → `attacking_entity` and `killer_player`
+  → `last_damage_player`
 
 ## [1.20.2](https://minecraft.wiki/w/Java_Edition_1.20.2#Changes)
+
 - Entity effects in NBT now use namespaced IDs instead of numbers.
-- The structure for entity effects in NBT has been changed from `PascalCase` to `snake_case`.
+- The structure for entity effects in NBT has been changed from `PascalCase` to
+  `snake_case`.
   - For mob effect instances:
     - `Id` → `id`
     - `Ambient` → `ambient`
@@ -309,7 +519,8 @@ You can also watch this video from Conure covering the breaking datapack changes
     - `HiddenEffect` → `hidden_effect`
     - `FactorCalculationData` → `factor_calculation_data`
   - For others:
-    - `CustomPotionEffects` → `custom_potion_effects` (potion, lingering_potion, splash_potion, tipped_arrow, arrow)
+    - `CustomPotionEffects` → `custom_potion_effects` (potion, lingering_potion,
+      splash_potion, tipped_arrow, arrow)
     - `Effects` → `effects` (suspicious_stew, area_effect_cloud)
     - `EffectId` → id` (suspicious_stew)
     - `EffectDuration` → `duration` (suspicious_stew)

@@ -1,23 +1,38 @@
 ---
 title: Scoreboards
-description: Scoreboards are a way of storing numerical data attributed to a player or entity in a Minecraft Datapack.
+description:
+  Scoreboards are a way of storing numerical data attributed to a player or
+  entity in a Minecraft Datapack.
 version: 1.21.8
 ---
 
 # Scoreboards
-Scoreboards are a key/value system for storing numbers bound to a player in Minecraft. On a scoreboard objective, each player can have a score, which is an integer value. This player does not need to exist - **fake players** can be used to store a number without attaching it to a player but rather an arbitrary name.
 
-You can modify objectives with the `/scoreboard` or `/execute store` commands. Some objectives can automatically change based on player statistics.
+Scoreboards are a key/value system for storing numbers bound to a player in
+Minecraft. On a scoreboard objective, each player can have a score, which is an
+integer value. This player does not need to exist - **fake players** can be used
+to store a number without attaching it to a player but rather an arbitrary name.
 
-Scoreboard objectives can also be optionally displayed on the sidebar, under a player's name, and/or in the tab list - although only one objective can be shown in each slot at a time.
+You can modify objectives with the `/scoreboard` or `/execute store` commands.
+Some objectives can automatically change based on player statistics.
+
+Scoreboard objectives can also be optionally displayed on the sidebar, under a
+player's name, and/or in the tab list - although only one objective can be shown
+in each slot at a time.
 
 ## Types of scoreboard objectives
+
 There are three main types of scoreboard objectives in Minecraft.
 
-### Dummy objectives 
-These are objectives which can only be modified with commands, like a "blank" scoreboard which you can modify however you want. They are useful for storing arbitrary numbers, or tracking custom values within your datapack. 
+### Dummy objectives
 
-You can create this scoreboard with the command: `/scoreboard objectives add objective_name dummy`. For a better example, take a look at the following function:
+These are objectives which can only be modified with commands, like a "blank"
+scoreboard which you can modify however you want. They are useful for storing
+arbitrary numbers, or tracking custom values within your datapack.
+
+You can create this scoreboard with the command:
+`/scoreboard objectives add objective_name dummy`. For a better example, take a
+look at the following function:
 
 ```mcfunction
 scoreboard objectives add intelligence dummy
@@ -27,19 +42,27 @@ execute store result score Silabear intelligence run data get entity Silabear He
 
 This would create the following scoreboard:
 
-| Player | `intelligence` |
-| - | ------------ |
-| Player1 | 100 |
-| Player2 | 100 |
-| Silabear | 20 |
+| Player   | `intelligence` |
+| -------- | -------------- |
+| Player1  | 100            |
+| Player2  | 100            |
+| Silabear | 20             |
 
-You can also put **fake players** on a dummy objective. These work just like normal players on an objective, except they don't exist. You can specify a fake player by using a special character such as a `#`, `$`, `.`, etc. before the name. For example:
+You can also put **fake players** on a dummy objective. These work just like
+normal players on an objective, except they don't exist. You can specify a fake
+player by using a special character such as a `#`, `$`, `.`, etc. before the
+name. For example:
+
 ```mcfunction
 scoreboard players set #max intelligence 150
 ```
 
 ### Criteria-based objectives
-These are read-only objectives which are automatically updated based on player statistics. They are usually used to track player events or progress. For example, the criteria `minecraft.custom:minecraft.sneak_time` will store the amount of ticks a player has been sneaking on the objective.
+
+These are read-only objectives which are automatically updated based on player
+statistics. They are usually used to track player events or progress. For
+example, the criteria `minecraft.custom:minecraft.sneak_time` will store the
+amount of ticks a player has been sneaking on the objective.
 
 ```mcfunction
 scoreboard objectives add sneaking_duration minecraft.custom:minecraft.sneak_time
@@ -47,29 +70,40 @@ scoreboard objectives add sneaking_duration minecraft.custom:minecraft.sneak_tim
 
 After sneaking for one second, the objective will look like this:
 
-| Player | `sneaking_duration` |
-| - | ------------ |
-| Player1 | 20 |
+| Player  | `sneaking_duration` |
+| ------- | ------------------- |
+| Player1 | 20                  |
 
-### Trigger objectives: 
-These are objectives which allow the player to manually set their score using the `/trigger` command. This is especially useful for creating chat UIs, as it is the closest thing we have to creating "custom commands" with datapacks. Any player can run `/trigger`, regardless of their operator status.
+### Trigger objectives:
 
-A player may only run `/trigger` if that trigger objective has been enabled for that user. Once a user has used `/trigger` on an objective, they cannot use it again until it is re-enabled.
+These are objectives which allow the player to manually set their score using
+the `/trigger` command. This is especially useful for creating chat UIs, as it
+is the closest thing we have to creating "custom commands" with datapacks. Any
+player can run `/trigger`, regardless of their operator status.
+
+A player may only run `/trigger` if that trigger objective has been enabled for
+that user. Once a user has used `/trigger` on an objective, they cannot use it
+again until it is re-enabled.
 
 ```mcfunction
 scoreboard objectives add option trigger
 scoreboard players enable @a option
 ```
 
-Players will now be able to use the `/trigger` command to modify their score on the `option` objective.
+Players will now be able to use the `/trigger` command to modify their score on
+the `option` objective.
 
 - `/trigger option` will set the player's score to 1.
 - `/trigger option set 5` will set the player's score to 5.
 - `/trigger option add 3` will add 3 to the player's score.
 
 :::tip
-There is also a way to disable a scoreboard objective for players, so that they cannot trigger it until it is re-enabled:
+
+There is also a way to disable a scoreboard objective for players, so that they
+cannot trigger it until it is re-enabled:
+
 ```mcfunction
 scoreboard players reset @a option
 ```
+
 :::

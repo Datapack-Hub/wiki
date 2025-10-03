@@ -1,24 +1,33 @@
 ---
 title: /execute
-description: "The execute command is used to execute other commands conditionally, or in a different context. The execute command is made up of multiple subcommands, which can be chained repeatedly and in any order to modify context in various ways."
+description:
+  "The execute command is used to execute other commands conditionally, or in a
+  different context. The execute command is made up of multiple subcommands,
+  which can be chained repeatedly and in any order to modify context in various
+  ways."
 version: 1.21.8
 ---
 
 # /execute command
 
-The execute command is used to execute other commands conditionally, or in a different context. The execute command is
-made up of multiple subcommands, which can be chained repeatedly and in any order to modify context in various ways.
+The execute command is used to execute other commands conditionally, or in a
+different context. The execute command is made up of multiple subcommands, which
+can be chained repeatedly and in any order to modify context in various ways.
 
-Each subcommand has its own syntax, and most allow/require another subcommand to follow.
+Each subcommand has its own syntax, and most allow/require another subcommand to
+follow.
 
 ## Context
 
-Every command is executed in a context. Various `execute` subcommands can modify the context in which other commands are
-run. The context includes:
+Every command is executed in a context. Various `execute` subcommands can modify
+the context in which other commands are run. The context includes:
 
-- Position: The position at which the command is executed (the origin of relative coordinates)
-- Anchor: Either `eyes` or `feet`. Specifies the origin of local coordinates to either the eyes or feet of an entity.
-- Executor: The entity executing the command (which entity the `@s` selector refers to)
+- Position: The position at which the command is executed (the origin of
+  relative coordinates)
+- Anchor: Either `eyes` or `feet`. Specifies the origin of local coordinates to
+  either the eyes or feet of an entity.
+- Executor: The entity executing the command (which entity the `@s` selector
+  refers to)
 - Rotation: The rotation of the command
 - Dimension: The dimension in which the command is executed
 
@@ -50,14 +59,17 @@ The chat output would look like this:
 ## Subcommands
 
 :::info
-In this documentation, `...` represents another required subcommand, and `[...]` denotes that another subcommand
-is optional.
+
+In this documentation, `...` represents another required subcommand, and `[...]`
+denotes that another subcommand is optional.
+
 :::
 
 ### `execute align <axes> ...`
 
-The `align` subcommand aligns the executing position to the specified axes (rounding down coordinates to integers).
-`<axes>` can be any subset of `xyz`, in any order.
+The `align` subcommand aligns the executing position to the specified axes
+(rounding down coordinates to integers). `<axes>` can be any subset of `xyz`, in
+any order.
 
 #### Examples:
 
@@ -73,16 +85,20 @@ Changes the execution anchor to the eyes or feet of the entity.
 `execute anchored eyes ...`
 
 :::warning
-When the position is changed not relative to the player, it resets back to feet. You can lock this though by
-using `positioned ^ ^ ^` after it.
+
+When the position is changed not relative to the player, it resets back to feet.
+You can lock this though by using `positioned ^ ^ ^` after it.
+
 :::
 
 ### `execute as <entity> ...`
 
-Changes the executor of the following subcommand to `<entity>` (Does not modify any other context such as location).  
-If `<entity>` refers to multiple entities, the following subcommand gets executed once for each referenced entity, with
-that entity as the executor.  
-If `<entity>` refers to no entities, the execute chain terminates and no further subcommands are run.
+Changes the executor of the following subcommand to `<entity>` (Does not modify
+any other context such as location).  
+If `<entity>` refers to multiple entities, the following subcommand gets
+executed once for each referenced entity, with that entity as the executor.  
+If `<entity>` refers to no entities, the execute chain terminates and no further
+subcommands are run.
 
 #### Examples:
 
@@ -91,7 +107,8 @@ If `<entity>` refers to no entities, the execute chain terminates and no further
 
 ### `execute at <entity> ...`
 
-Changes the position and rotation of the following subcommand to that of `<entity>` (Executor remains the same).  
+Changes the position and rotation of the following subcommand to that of
+`<entity>` (Executor remains the same).  
 Forking rules apply the same as `execute as`.
 
 #### Examples:
@@ -102,8 +119,9 @@ Forking rules apply the same as `execute as`.
 ### `execute facing <location> ...`
 
 Changes the rotation of the following subcommand to face `<location>`.  
-`<location>` can either be a set of coordinates, or `entity <entity> (eyes|feet)`, which targets the eyes or feet of the
-given entity.
+`<location>` can either be a set of coordinates, or
+`entity <entity> (eyes|feet)`, which targets the eyes or feet of the given
+entity.
 
 #### Examples:
 
@@ -113,7 +131,8 @@ given entity.
 ### `execute in <dimension> ...`
 
 Changes the dimension of the following subcommand to `<dimension>`.  
-Applies dimension scaling, meaning coordinates are divided by 8 when transferring from the overworld to the nether.
+Applies dimension scaling, meaning coordinates are divided by 8 when
+transferring from the overworld to the nether.
 
 #### Examples
 
@@ -121,15 +140,19 @@ Applies dimension scaling, meaning coordinates are divided by 8 when transferrin
 
 ### `execute on <relation> ...`
 
-Changes executor to other entities based on their relation with the current executor. Same forking rules apply as
-`execute as`.  
+Changes executor to other entities based on their relation with the current
+executor. Same forking rules apply as `execute as`.  
 Possible values for `<relation>` are:
 
-- `attacker` - The most recent entity to damage the current entity in the last 5 seconds.
-- `controller` - The entity which is riding and in control of the current entity.
+- `attacker` - The most recent entity to damage the current entity in the last 5
+  seconds.
+- `controller` - The entity which is riding and in control of the current
+  entity.
 - `leasher` - The entity holding the the current entity on a lead.
-- `origin` - The entity the current entity originated from, such as the player that shot an arrow.
-- `passengers` - All entities riding the current entity (not including entities riding the passengers).
+- `origin` - The entity the current entity originated from, such as the player
+  that shot an arrow.
+- `passengers` - All entities riding the current entity (not including entities
+  riding the passengers).
 - `target` - The entity the current entity is trying to attack (angry at).
 - `vehicle` - The entity that the current entity is riding.
 
@@ -140,10 +163,14 @@ Possible values for `<relation>` are:
 
 ### `execute positioned <position> ...`
 
-Changes the position (but not rotation) of the following subcommand to `<position>`. Also resets anchor.  
-`<position>` can be a set of coordinates, `as <entity>`, or `over <heightmap>`.  
-`positioned as <entity> ...` is equivalent to `at <entity> ...`, except that it doesn't change rotation or dimension.  
-`positioned over <heightmap>` sets the `y` coordinate of the position to be one above the specified heightmap.
+Changes the position (but not rotation) of the following subcommand to
+`<position>`. Also resets anchor.  
+`<position>` can be a set of coordinates, `as <entity>`, or
+`over <heightmap>`.  
+`positioned as <entity> ...` is equivalent to `at <entity> ...`, except that it
+doesn't change rotation or dimension.  
+`positioned over <heightmap>` sets the `y` coordinate of the position to be one
+above the specified heightmap.
 
 #### Examples:
 
@@ -154,8 +181,9 @@ Changes the position (but not rotation) of the following subcommand to `<positio
 ### `execute rotated <rotation> ...`
 
 Changes the rotation of the following subcommand to `<rotation>`.  
-`<rotation>` can either be rotation coordinates, or `as <entity>`, which changes the rotation to that of the specified
-entity. For `rotated as <entity>`, forking rules apply the same as `as entity`.
+`<rotation>` can either be rotation coordinates, or `as <entity>`, which changes
+the rotation to that of the specified entity. For `rotated as <entity>`, forking
+rules apply the same as `as entity`.
 
 #### Examples:
 
@@ -164,7 +192,8 @@ entity. For `rotated as <entity>`, forking rules apply the same as `as entity`.
 
 ### `execute summon <entity> ...`
 
-Summons the specified entity at the current position, and executes the following subcommand as that entity.  
+Summons the specified entity at the current position, and executes the following
+subcommand as that entity.  
 **Note**: You cannot specify NBT data for the summoned entity.
 
 #### Examples:
@@ -174,9 +203,13 @@ Summons the specified entity at the current position, and executes the following
 
 ### `execute run <command>`
 
-Runs the specified command with the current context. Takes no further subcommands.  
+Runs the specified command with the current context. Takes no further
+subcommands.
+
 :::info
+
 This is useless by itself, and should always be preceded by other subcommands.
+
 :::
 
 #### Examples:
@@ -186,22 +219,27 @@ This is useless by itself, and should always be preceded by other subcommands.
 
 ### `execute store (result|success) <target> ...`
 
-Stores an integer value somewhere. If storing `result`, this numeric value is taken from the output of the final
-subcommand (Either a `run` subcommand or a condition). If storing `success`, the value is either `1` if the final
-subcommand succeeds (condition passes or command successfully performs its function), or `0` otherwise.
+Stores an integer value somewhere. If storing `result`, this numeric value is
+taken from the output of the final subcommand (Either a `run` subcommand or a
+condition). If storing `success`, the value is either `1` if the final
+subcommand succeeds (condition passes or command successfully performs its
+function), or `0` otherwise.
 
 `target` can be one of the following:
 
-- **`block <position> <path> <type> <scale>`**: Stores the value in the specified path of the given block in the format
-  specified by `type` (Any numeric NBT type), and multiplied by `scale`. **Note**: Even if `type` is a decimal type
-  (`float` or `double`), the value is still rounded down.
-- **`entity <target> <path> <type> <scale>`**: Stores the value in the specified path of the target entity, the same way
-  as `block`. `entity` must only refer to a single entity.
-- **`storage <storage> <path> <type> <scale>`**: Stores the value in the given path of the target storage in the same
-  way as `block` and `entity`.
-- **`score <target> <objective>`**: Stores the value for the target entity in the provided scoreboard. `target` can
-  refer to more than one entity.
-- **`bossbar <id> (value|max)`**: Stores the value in a bossbar, changing either the current value or the maximum value.
+- **`block <position> <path> <type> <scale>`**: Stores the value in the
+  specified path of the given block in the format specified by `type` (Any
+  numeric NBT type), and multiplied by `scale`. **Note**: Even if `type` is a
+  decimal type (`float` or `double`), the value is still rounded down.
+- **`entity <target> <path> <type> <scale>`**: Stores the value in the specified
+  path of the target entity, the same way as `block`. `entity` must only refer
+  to a single entity.
+- **`storage <storage> <path> <type> <scale>`**: Stores the value in the given
+  path of the target storage in the same way as `block` and `entity`.
+- **`score <target> <objective>`**: Stores the value for the target entity in
+  the provided scoreboard. `target` can refer to more than one entity.
+- **`bossbar <id> (value|max)`**: Stores the value in a bossbar, changing either
+  the current value or the maximum value.
 
 #### Examples:
 
@@ -211,28 +249,37 @@ subcommand succeeds (condition passes or command successfully performs its funct
 
 ### `execute (if|unless) <condition> [...]`
 
-Executes the following subcommand under a given condition. `unless` inverts the condition, meaning the chain only
-continues if the condition not met.
+Executes the following subcommand under a given condition. `unless` inverts the
+condition, meaning the chain only continues if the condition not met.
 
 Possible values for `condition`:
 
-- **`biome <pos> <biome>`**: Checks whether a specific biome is at the given position.
-- **`block <pos> <block>`**: Checks whether the given position is a certain block.
-- **`blocks <start> <end> <destination> (all|masked)`**: Compares two volumes of blocks: from `start` to `end`, and from
-  `destination` such that the second volume is the same dimensions as the first. If `all` is specified, it checks all
-  blocks. If `mask` is specified, air blocks are ignored.
-- **`data (block|entity|storage) <target> <path>`**: Checks if the specified path matches the NBT data of `target`.
-- **`dimension <dimension>`**: Checks if the execution is in the specified dimension.
-- **`entity <target>`**: Checks whether `target` resolves to one or more entities.
-- **`function <function>`**: Runs the specified function and tests the return value. If the function did not run the
-  `return` command, or if it returns zero, the condition is not met. Must be followed by another subcommand.
-- **`items (block|entity) <target> <slot> <item>`**: Checks if the given item matches the specified slot of the target
-  block or entity. `item` is in the format `<item_id>[<components>]`.
+- **`biome <pos> <biome>`**: Checks whether a specific biome is at the given
+  position.
+- **`block <pos> <block>`**: Checks whether the given position is a certain
+  block.
+- **`blocks <start> <end> <destination> (all|masked)`**: Compares two volumes of
+  blocks: from `start` to `end`, and from `destination` such that the second
+  volume is the same dimensions as the first. If `all` is specified, it checks
+  all blocks. If `mask` is specified, air blocks are ignored.
+- **`data (block|entity|storage) <target> <path>`**: Checks if the specified
+  path matches the NBT data of `target`.
+- **`dimension <dimension>`**: Checks if the execution is in the specified
+  dimension.
+- **`entity <target>`**: Checks whether `target` resolves to one or more
+  entities.
+- **`function <function>`**: Runs the specified function and tests the return
+  value. If the function did not run the `return` command, or if it returns
+  zero, the condition is not met. Must be followed by another subcommand.
+- **`items (block|entity) <target> <slot> <item>`**: Checks if the given item
+  matches the specified slot of the target block or entity. `item` is in the
+  format `<item_id>[<components>]`.
 - **`loaded <pos>`**: Checks if the specified position is loaded.
 - **`predicate <predicate>`**: Checks whether a predicate succeeds.
-- **`score <target> <objective> (matches <range>|<operator> <source> <sourceObjective>)`**: Checks whether a score is
-  within a range (`matches`), or has a specified comparison to another score. `operator` can be on of: `<`, `<=`, `=`,
-  `>=`, `>`.
+- **`score <target> <objective> (matches <range>|<operator> <source> <sourceObjective>)`**:
+  Checks whether a score is within a range (`matches`), or has a specified
+  comparison to another score. `operator` can be on of: `<`, `<=`, `=`, `>=`,
+  `>`.
 
 #### Examples:
 

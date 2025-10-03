@@ -1,61 +1,76 @@
 ---
 title: "Git Practices"
-description: "This page is an introduction to our Git practices a page for the wiki."
+description:
+  "This page is an introduction to our Git practices a page for the wiki."
 ---
 
 # Git Practices
 
 **Last Updated:** 12-13-2024
 
-This page is an introduction to how we use Git in the [wiki repository](https://github.com/Datapack-Hub/wiki). In order to keep the wiki consistent and
-reputable, we have a few rules that we follow.
+This page is an introduction to how we use Git in the
+[wiki repository](https://github.com/Datapack-Hub/wiki). In order to keep the
+wiki consistent and reputable, we have a few rules that we follow.
 
-Git provides a lot of features that are great for collaboration, and we try to use them as much as possible.
+Git provides a lot of features that are great for collaboration, and we try to
+use them as much as possible.
 
 :::info
+
 This guide assumes you already have experience using Git before.
+
 :::
 
 ## Forking and PRs
 
-Forks are a great way to work on the wiki without introducing unfinished pages, changes, etc. to main.
-You can click the ["Fork"](https://github.com/Datapack-Hub/wiki/fork) button in the top right corner of the repository to
-create a fork of the repository. This will create a complete copy of the repository that you can work on.
+Forks are a great way to work on the wiki without introducing unfinished pages,
+changes, etc. to main. You can click the
+["Fork"](https://github.com/Datapack-Hub/wiki/fork) button in the top right
+corner of the repository to create a fork of the repository. This will create a
+complete copy of the repository that you can work on.
 
 Once you have forked the repository, you can clone it to your local machine.
 
-When it comes time to merge your changes, you can create a pull request, and a wiki contributor will review your contribution.
+When it comes time to merge your changes, you can create a pull request, and a
+wiki contributor will review your contribution.
 
 ## Branches
 
-Branches are useful additions to help separate features in your fork. We use `kebab-case` for branch names meaning the branch 
-name should be all lowercase with hyphens to separate words. For example, if you are working on a page called "Adding New Features", 
-the branch name should be `adding-new-features`.
+Branches are useful additions to help separate features in your fork. We use
+`kebab-case` for branch names meaning the branch name should be all lowercase
+with hyphens to separate words. For example, if you are working on a page called
+"Adding New Features", the branch name should be `adding-new-features`.
 
-We do not recommend you use branches for the main repository, even if you have permissions to. 
-Branches in the repository are mainly for upcoming Minecraft versions or huge upcoming reworks, if you believe you 
-have a reason to add a branch to the main repository, let a wiki admin know.
+We do not recommend you use branches for the main repository, even if you have
+permissions to. Branches in the repository are mainly for upcoming Minecraft
+versions or huge upcoming reworks, if you believe you have a reason to add a
+branch to the main repository, let a wiki admin know.
 
 ## Commit Messages
 
-Commit messages are a great way to keep track of what changes have been made to the wiki. Summarize the changes in the
-commit message and use the imperative mood.
+Commit messages are a great way to keep track of what changes have been made to
+the wiki. Summarize the changes in the commit message and use the imperative
+mood.
 
-For example, if you are adding a new page called "Adding New Features", the commit message should be
-`Add new page for adding new features`. If you are fixing a typo on a page, the commit message could be
+For example, if you are adding a new page called "Adding New Features", the
+commit message should be `Add new page for adding new features`. If you are
+fixing a typo on a page, the commit message could be
 `Fix typo in page about adding new features`.
 
-Optionally, you can add a short description of the changes in the commit message. This is not required, but it is
-recommended.
+Optionally, you can add a short description of the changes in the commit
+message. This is not required, but it is recommended.
 
 ## Merging
 
-Whenever you start working on a new branch or features, pull the latest changes from the main branch. This
-will ensure that you have the most up-to-date changes.
+Whenever you start working on a new branch or features, pull the latest changes
+from the main branch. This will ensure that you have the most up-to-date
+changes.
 
-You will likely run into an issue with the `search.json` file, which is used to generate the search index. This file is
-generated automatically and should not be manually edited. A solution to this is to remove the `search.json` file and optionally
-run the search index generation script. This will regenerate the file and you can commit it.
+You will likely run into an issue with the `search.json` file, which is used to
+generate the search index. This file is generated automatically and should not
+be manually edited. A solution to this is to remove the `search.json` file and
+optionally run the search index generation script. This will regenerate the file
+and you can commit it.
 
 ```
 node run ./gen_search_indexes_node.js
@@ -69,4 +84,5 @@ bun ./gen_search_indexes.js
 
 - Make a description of your changes in your PR.
 - Reviewers: Proofread changes before approving them.
-- Reviewers: It's not required, but it's recommended the changes follow American English for consistency sake.
+- Reviewers: It's not required, but it's recommended the changes follow American
+  English for consistency sake.

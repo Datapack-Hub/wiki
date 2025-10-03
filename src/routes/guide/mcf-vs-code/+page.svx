@@ -1,33 +1,48 @@
 ---
 title: MCFunction vs Coding
-description: "Learn the differences between using MCFunctions and traditional coding."
+description:
+  "Learn the differences between using MCFunctions and traditional coding."
 version: 1.21.8
 ---
 
 # MCFunction vs Traditional Coding
 
-Many people will join the datapack community with experience with traditional programming languages. While this can be
-helpful for understanding topics, there are a lot of differences between the two, many of which can seem confusing when
-you are used to a more traditional programming language. In this guide we touch on some common questions and problems people run into when
-trying to apply traditional coding logic to MCFunction.
+Many people will join the datapack community with experience with traditional
+programming languages. While this can be helpful for understanding topics, there
+are a lot of differences between the two, many of which can seem confusing when
+you are used to a more traditional programming language. In this guide we touch
+on some common questions and problems people run into when trying to apply
+traditional coding logic to MCFunction.
 
 ## Q: How do you do variables in MCFunction?
 
-MCFunction isn't like most programming languages, MCFunction uses scoreboards, storages and macros (1.20.2+) as their variables.
+MCFunction isn't like most programming languages, MCFunction uses scoreboards,
+storages and macros (1.20.2+) as their variables.
 
-[Scoreboards](/wiki/nbt-scoreboards/scoreboards) are like a table. They store a name and a value which you can then retrieve and modify later. You can use both entity names/UUIDs and "fake player" 
-names (names not associated with any player), allowing for easy combination of variables and entity scores. Scoreboards can only hold 32-bit integers and other data 
-types (such as floats, doubles or strings) can not be stored this way.
+[Scoreboards](/wiki/nbt-scoreboards/scoreboards) are like a table. They store a
+name and a value which you can then retrieve and modify later. You can use both
+entity names/UUIDs and "fake player" names (names not associated with any
+player), allowing for easy combination of variables and entity scores.
+Scoreboards can only hold 32-bit integers and other data types (such as floats,
+doubles or strings) can not be stored this way.
 
-[Storages](/wiki/nbt-scoreboards/nbt#nbt-storages) are a way of storing [NBT data](/wiki/nbt-scoreboards/nbt) without attaching it to an entity or block. Storages are stored globally per 
-world and unlike scoreboards, don't need to be initialized beforehand. Unlike entity and block NBT, storages have no fixed structure, and can contain whichever 
-arbitrary keys are added to it.
+[Storages](/wiki/nbt-scoreboards/nbt#nbt-storages) are a way of storing
+[NBT data](/wiki/nbt-scoreboards/nbt) without attaching it to an entity or
+block. Storages are stored globally per world and unlike scoreboards, don't need
+to be initialized beforehand. Unlike entity and block NBT, storages have no
+fixed structure, and can contain whichever arbitrary keys are added to it.
 
-[Macros](/wiki/files/functions#macro-functions) are like fancy string templating, when a function is supplied with macros, it will go through the function file
-and replace the macro with its value (block, entity, storage). Interestingly, this also works function-wide, meaning you could use them as mock arguments.
+[Macros](/wiki/files/functions#macro-functions) are like fancy string
+templating, when a function is supplied with macros, it will go through the
+function file and replace the macro with its value (block, entity, storage).
+Interestingly, this also works function-wide, meaning you could use them as mock
+arguments.
 
 :::warning
-Macros can be significantly slower than other methods, it is best to only use them when necessary or in non-performance-critical code.
+
+Macros can be significantly slower than other methods, it is best to only use
+them when necessary or in non-performance-critical code.
+
 :::
 
 Below are some examples of their usage:
@@ -62,20 +77,24 @@ data modify storage example:main other_number set from storage example:main numb
 data modify storage example:main compound.array append value 42
 ```
 
-(Get more info on storages on [the wiki page](/wiki/nbt-scoreboards/nbt#nbt-storages))
+(Get more info on storages on
+[the wiki page](/wiki/nbt-scoreboards/nbt#nbt-storages))
 
 ## Q: How do you loop in MCFunction?
 
 Looping in most cases is done with 1 of 2 methods, depending on the use case:
 
-1. **Recursive Function Calls:** This is when a function calls itself which will loop until some end condition is met, or forever, if one is never met.
-2. **Tick Functions** (`#minecraft:tick`): This is a special tag you can declare that will run every function declared in it every tick, it is best
-practice to only have one of these function in a datapack at a time.
+1. **Recursive Function Calls:** This is when a function calls itself which will
+   loop until some end condition is met, or forever, if one is never met.
+2. **Tick Functions** (`#minecraft:tick`): This is a special tag you can declare
+   that will run every function declared in it every tick, it is best practice
+   to only have one of these function in a datapack at a time.
 
 ## Q: How do you make functions/methods?
 
-Every MCFunction file is its own function which you can run with the `function` command. MCFunction does not support inheritance and inherited functions, 
-but you can call any function from anywhere in your datapack.
+Every MCFunction file is its own function which you can run with the `function`
+command. MCFunction does not support inheritance and inherited functions, but
+you can call any function from anywhere in your datapack.
 
 ```mcfunction
 function <function> [...]
@@ -83,17 +102,25 @@ function <function> [...]
 
 ## Q: How do I do conditionals?
 
-You can also do some basic conditionals with [selectors](/wiki/concepts/target-selectors), but most if not all conditionals are done with the 
-[`execute if`](/wiki/command/execute#execute-ifunless-ltconditiongt-) subcommand, which accepts a variety of different inputs and check if they match/are equal. 
-You can learn more about `execute if` on the [execute page](/wiki/command/execute#execute-ifunless-ltconditiongt-).
+You can also do some basic conditionals with
+[selectors](/wiki/concepts/target-selectors), but most if not all conditionals
+are done with the
+[`execute if`](/wiki/command/execute#execute-ifunless-ltconditiongt-)
+subcommand, which accepts a variety of different inputs and check if they
+match/are equal. You can learn more about `execute if` on the
+[execute page](/wiki/command/execute#execute-ifunless-ltconditiongt-).
 
 ## Q: How do you do math/expressions?
 
-MCFunction does math in an interesting way; it uses scoreboard operations in order to do math. Using the `scoreboard players operation` subcommand, you can do a 
+MCFunction does math in an interesting way; it uses scoreboard operations in
+order to do math. Using the `scoreboard players operation` subcommand, you can
+do a
 [variety of math operations](https://minecraft.wiki/w/Scoreboard#Score_operations).
 
 :::note
-MCFunction does not come with complex math like trigonometry, absolutes, a pre-defined Pi, or even square root! These all must be implemented either by 
-hand or with a third-party library.
-:::
 
+MCFunction does not come with complex math like trigonometry, absolutes, a
+pre-defined Pi, or even square root! These all must be implemented either by
+hand or with a third-party library.
+
+:::

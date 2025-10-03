@@ -5,24 +5,41 @@ version: 1.21.8
 ---
 
 # Ranges
-A range specifies a set of values between two numbers. Ranges are used in some commands (such as `execute`) and selectors to specify a set of values to compare against.
 
-For example, the `distance=` selector accepts a range to select entities within a certain distance from the player. The range `distance=..10` selects entities within 10 blocks of the player.
+A range specifies a set of values between two numbers. Ranges are used in some
+commands (such as `execute`) and selectors to specify a set of values to compare
+against.
+
+For example, the `distance=` selector accepts a range to select entities within
+a certain distance from the player. The range `distance=..10` selects entities
+within 10 blocks of the player.
 
 ## Greater than (`x >= 10`)
-To specify a range of numbers such as "x or greater", we can use the `min..` syntax. The following range represents "10 or greater". Note that this range includes `10`.
+
+To specify a range of numbers such as "x or greater", we can use the `min..`
+syntax. The following range represents "10 or greater". Note that this range
+includes `10`.
+
 ```
 10..
 ```
 
 ## Less than (`x <= 10`)
-To specify a range of numbers such as "x or less", we can use the `..max` syntax. The following range represents "10 or less". Note that this range includes `10`.
+
+To specify a range of numbers such as "x or less", we can use the `..max`
+syntax. The following range represents "10 or less". Note that this range
+includes `10`.
+
 ```
 ..10
 ```
 
 ## Between (`10 <= x <= 20`)
-To specify a range of numbers between two values, we can use the `min..max` syntax. The following range represents "between 10 and 20". Like the other ranges, this range is inclusive: it includes both `10` and `20`.
+
+To specify a range of numbers between two values, we can use the `min..max`
+syntax. The following range represents "between 10 and 20". Like the other
+ranges, this range is inclusive: it includes both `10` and `20`.
+
 ```
 10..20
 ```

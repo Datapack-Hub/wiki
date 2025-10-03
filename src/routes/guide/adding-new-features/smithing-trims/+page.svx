@@ -1,28 +1,37 @@
 ---
 title: Adding Smithing Trims
-description: "Learn how to add custom smithing trims patterns to Minecraft just with a datapack and a resourcepack!"
+description:
+  "Learn how to add custom smithing trims patterns to Minecraft just with a
+  datapack and a resourcepack!"
 version: 1.21.8
 ---
 
 # How to add custom Smithing Trims
 
-This guide is split into three parts, adding a custom smithing trim pattern, adding a custom smithing trim color palette and adding a custom trimmable item. These parts can be seperately without following each other.
+This guide is split into three parts, adding a custom smithing trim pattern,
+adding a custom smithing trim color palette and adding a custom trimmable item.
+These parts can be seperately without following each other.
 
-:::info 
-This guide requires you
-to have at least a small understanding of datapacks. If you don't understand this guide, you can read the [Getting Started
-guide](/guide/getting-started). 
+:::info
+
+This guide requires you to have at least a small understanding of datapacks. If
+you don't understand this guide, you can read the
+[Getting Started guide](/guide/getting-started).
+
 :::
 
-To start you will need a basic datapack, if you don't know how to make one, see the
-[Getting Started](/guide/getting-started) guide.
+To start you will need a basic datapack, if you don't know how to make one, see
+the [Getting Started](/guide/getting-started) guide.
 
 ## Adding a smithing trim pattern
+
 ### Setting up the datapack - Smithing Trim Pattern
 
-To start, we are going to create the main trim pattern file in the directory `data/<namespace>/trim_pattern/`.
-You can name the file whatever you want, but it has to be in the `.json` file format. For the purposes of this tutorial, we're
-going to call it `example_pattern.json`. Inside, we will put and configure these settings:
+To start, we are going to create the main trim pattern file in the directory
+`data/<namespace>/trim_pattern/`. You can name the file whatever you want, but
+it has to be in the `.json` file format. For the purposes of this tutorial,
+we're going to call it `example_pattern.json`. Inside, we will put and configure
+these settings:
 
 ```json:example_pattern.json
 {
@@ -33,13 +42,18 @@ going to call it `example_pattern.json`. Inside, we will put and configure these
 ```
 
 This is a run-down of the fields in that file:
+
 - `description`: A text component to use as this trim's description name.
 - `asset_id`: The resource location which is used in the resourcepack.
-- `decal`: Whether or not the pattern texture should be masked based on the underlying armor. Optional, defaults to false.
+- `decal`: Whether or not the pattern texture should be masked based on the
+  underlying armor. Optional, defaults to false.
 
-If you are not sure what to put in `asset_id`, don't worry, the resource pack part is going to focus on that!
+If you are not sure what to put in `asset_id`, don't worry, the resource pack
+part is going to focus on that!
 
-Now, we are going to add the recipe file into `data/<namespace>/recipe/`. You can see more about the recipe's format [here](/wiki/files/recipes#smithing-fields).
+Now, we are going to add the recipe file into `data/<namespace>/recipe/`. You
+can see more about the recipe's format
+[here](/wiki/files/recipes#smithing-fields).
 
 ```json:example_armor_trim.json
 {
@@ -51,11 +65,16 @@ Now, we are going to add the recipe file into `data/<namespace>/recipe/`. You ca
 }
 ```
 
-Here we have to specify the template item which is going to be used for the pattern, and the trim pattern ID itself.
+Here we have to specify the template item which is going to be used for the
+pattern, and the trim pattern ID itself.
 
 ### Finishing up with the resourcepack - Smithing Trim Pattern
 
-To finish off, we'll need to add the actual definition for all the different colors and armor types. This can be done by changing the armor trim's atlas file. This file can be found in `assets/minecraft/atlases/armor_trims.json`. Please note that the exact spelling and the use of the Minecraft namespace is required here!
+To finish off, we'll need to add the actual definition for all the different
+colors and armor types. This can be done by changing the armor trim's atlas
+file. This file can be found in `assets/minecraft/atlases/armor_trims.json`.
+Please note that the exact spelling and the use of the Minecraft namespace is
+required here!
 
 ```json:armor_trims.json
 {
@@ -89,29 +108,42 @@ To finish off, we'll need to add the actual definition for all the different col
 }
 ```
 
-And now to finish, we'll need the actual trim textures. These should be grayscale images using the same colors as `textures/trims/color_palettes/trim_palette` (can be seen below).
+And now to finish, we'll need the actual trim textures. These should be
+grayscale images using the same colors as
+`textures/trims/color_palettes/trim_palette` (can be seen below).
 
 <img src="https://i.postimg.cc/tTyTmCMN/trim-palette.png" alt="Vanilla default trim material file" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 
-These black-and-white colors will be automatically replaced by the game when a trim color palette is applied. 
-An example file of `<namespace>/textures/trims/entity/humanoid/example_template` and `<namespace>/textures/trims/entity/humanoid_leggings/example_template` can also be found below.
+These black-and-white colors will be automatically replaced by the game when a
+trim color palette is applied. An example file of
+`<namespace>/textures/trims/entity/humanoid/example_template` and
+`<namespace>/textures/trims/entity/humanoid_leggings/example_template` can also
+be found below.
 
 <img src="https://i.imgur.com/PIW9bpM.png" alt="Example template" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 <img src="https://i.imgur.com/aTyP6pN.png" alt="Example leggings template" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 
-Once you save the above files, you need to reload the resource pack with the keybind **F3 + T**
-in-game. You will also need to leave and rejoin the world to update the datapack.
+Once you save the above files, you need to reload the resource pack with the
+keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
+update the datapack.
 
 :::warning
-For this to work, you will need to leave and rejoin the world, just using the `/reload` command won't do the trick here!
+
+For this to work, you will need to leave and rejoin the world, just using the
+`/reload` command won't do the trick here!
+
 :::
 
 ## Adding a smithing trim material
+
 ### Setting up the datapack - Smithing Trim Material
 
-For this example, we are going to add a new trim color palette. To start, we are going to create the main trim color palette file in the directory `data/<namespace>/trim_material/`.
-Once again, you can name the file whatever you want, but it has to be in the `.json` file format. For the purposes of this tutorial, we're
-going to call it `matexample.json`. Inside, we will put and configure these settings:
+For this example, we are going to add a new trim color palette. To start, we are
+going to create the main trim color palette file in the directory
+`data/<namespace>/trim_material/`. Once again, you can name the file whatever
+you want, but it has to be in the `.json` file format. For the purposes of this
+tutorial, we're going to call it `matexample.json`. Inside, we will put and
+configure these settings:
 
 ```json:matexample.json
 {
@@ -124,11 +156,19 @@ going to call it `matexample.json`. Inside, we will put and configure these sett
 ```
 
 This is a run-down of the fields in that file:
-- `description`: A text component to use as this trim's material description name.
-- `asset_name`: The resource location which is used in the resourcepack.
-- `override_armor_materials`: A list of optional armors which should have a different color palette. (E.g. Gold trim on gold armor has a darker color palette.)
 
-Next, we are going to add the `ingredient` item to the `#minecraft:trim_materials` item tag. This ensures the item can be used as an ingredient in the smithing table. This file is located in `data/minecraft/tags/item/`. Please note that the exact spelling and the use of the Minecraft namespace is required here!
+- `description`: A text component to use as this trim's material description
+  name.
+- `asset_name`: The resource location which is used in the resourcepack.
+- `override_armor_materials`: A list of optional armors which should have a
+  different color palette. (E.g. Gold trim on gold armor has a darker color
+  palette.)
+
+Next, we are going to add the `ingredient` item to the
+`#minecraft:trim_materials` item tag. This ensures the item can be used as an
+ingredient in the smithing table. This file is located in
+`data/minecraft/tags/item/`. Please note that the exact spelling and the use of
+the Minecraft namespace is required here!
 
 ```json:trim_materials.json
 {
@@ -138,7 +178,10 @@ Next, we are going to add the `ingredient` item to the `#minecraft:trim_material
 }
 ```
 
-As of 1.21.5, every item you want to work as a trim material, needs to have the [`provides_trim_material`](https://minecraft.wiki/w/Data_component_format#provides_trim_material) item component. So to give ourselfs a barrier which provides our custom trim material, we can use this `/give` command:
+As of 1.21.5, every item you want to work as a trim material, needs to have the
+[`provides_trim_material`](https://minecraft.wiki/w/Data_component_format#provides_trim_material)
+item component. So to give ourselfs a barrier which provides our custom trim
+material, we can use this `/give` command:
 
 ```mcfunction
 /give @s barrier[provides_trim_material="<namespace>:matexample"] 1
@@ -146,7 +189,10 @@ As of 1.21.5, every item you want to work as a trim material, needs to have the 
 
 ### Finishing up with the resourcepack - Smithing Trim Material
 
-To finish off, we'll need to add the material definition in the resourcepack. This can be done by changing the armor trim's atlas file. This file can be found in `assets/minecraft/atlases/armor_trims.json`. Please note that the exact spelling and the use of the Minecraft namespace is required here!
+To finish off, we'll need to add the material definition in the resourcepack.
+This can be done by changing the armor trim's atlas file. This file can be found
+in `assets/minecraft/atlases/armor_trims.json`. Please note that the exact
+spelling and the use of the Minecraft namespace is required here!
 
 ```json:armor_trims.json
 {
@@ -222,17 +268,24 @@ And next, we are going to modify `assets/minecraft/atlases/blocks.json`:
 }
 ```
 
-Here, the key-value pair under `permutations` should be the same as the `asset_name` field from the datapack file we created before.
+Here, the key-value pair under `permutations` should be the same as the
+`asset_name` field from the datapack file we created before.
 
-Now, we will need to create the actual material color palette texture. Since we are using Vanilla's default `palette_key`, this image needs to have a width of 8 and a height of 1. You can see an example palette below.
-This image should be saved in `assets/<namespace>/textures/trims/color_palettes/` as `matexample.png`.
+Now, we will need to create the actual material color palette texture. Since we
+are using Vanilla's default `palette_key`, this image needs to have a width of 8
+and a height of 1. You can see an example palette below. This image should be
+saved in `assets/<namespace>/textures/trims/color_palettes/` as
+`matexample.png`.
 
 <img src="https://i.postimg.cc/Yqyvq7vt/pallete.png" alt="Example color palette" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 
-Now comes the last and also hardest part, adding the item models and their definition for all the armor pieces. I will only show this on the diamond chestplate but **you will have to create a file for every single armor pieces!**
+Now comes the last and also hardest part, adding the item models and their
+definition for all the armor pieces. I will only show this on the diamond
+chestplate but **you will have to create a file for every single armor pieces!**
 
-To do this, create a new file in `assets/minecraft/models/item/` called `diamond_chestplate_matexample_trim.json`, where `matexample` is the name of your trim material.
-Inside that file, put this:
+To do this, create a new file in `assets/minecraft/models/item/` called
+`diamond_chestplate_matexample_trim.json`, where `matexample` is the name of
+your trim material. Inside that file, put this:
 
 ```json:diamond_chestplate_matexample_trim.json
 {
@@ -244,7 +297,8 @@ Inside that file, put this:
 }
 ```
 
-And inside `assets/minecraft/items/diamond_chestplate.json` put and configure this:
+And inside `assets/minecraft/items/diamond_chestplate.json` put and configure
+this:
 
 ```json:diamond_chestplate_matexample_trim.json
 {
@@ -345,19 +399,29 @@ And inside `assets/minecraft/items/diamond_chestplate.json` put and configure th
 }
 ```
 
-Here, the majority of the file remains the same as default, only the last trim model definition was added.
+Here, the majority of the file remains the same as default, only the last trim
+model definition was added.
 
-Once you save the above files, you need to reload the resource pack with the keybind **F3 + T**
-in-game. You will also need to leave and rejoin the world to update the datapack.
+Once you save the above files, you need to reload the resource pack with the
+keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
+update the datapack.
 
 :::warning
-For this to work, you will need to leave and rejoin the world, just using the `/reload` command won't do the trick here!
+
+For this to work, you will need to leave and rejoin the world, just using the
+`/reload` command won't do the trick here!
+
 :::
 
 ## Adding a trimmable item
+
 ### Setting up the datapack - Smithable Item
 
-This example will make the `diamond_pickaxe` a smithable item. This time, the datapack side of things is very simple. We only need to add the `diamond_pickaxe` to the `#minecraft:trimmable_armor` item tag, which is located in `data/minecraft/tags/item/`. Once again, the Minecraft directory is required here.
+This example will make the `diamond_pickaxe` a smithable item. This time, the
+datapack side of things is very simple. We only need to add the
+`diamond_pickaxe` to the `#minecraft:trimmable_armor` item tag, which is located
+in `data/minecraft/tags/item/`. Once again, the Minecraft directory is required
+here.
 
 ```json:trimmable_armor.json
 {
@@ -369,7 +433,8 @@ This example will make the `diamond_pickaxe` a smithable item. This time, the da
 
 ### Finishing up with the resourcepack - Smithable Item
 
-In the resourcepack, we'll need to customize the diamond pickaxe's item model definition. This is located inside of `assets/minecraft/items/`.
+In the resourcepack, we'll need to customize the diamond pickaxe's item model
+definition. This is located inside of `assets/minecraft/items/`.
 
 ```json:diamond_pickaxe.json
 {
@@ -463,7 +528,10 @@ In the resourcepack, we'll need to customize the diamond pickaxe's item model de
 }
 ```
 
-Next we will need to **create the following file for every single material listed in the file above**. All of the files need to be located inside `assets/minecraft/models/item/` directory. For the purpose of this guide, i will only create one for the resin material.
+Next we will need to **create the following file for every single material
+listed in the file above**. All of the files need to be located inside
+`assets/minecraft/models/item/` directory. For the purpose of this guide, i will
+only create one for the resin material.
 
 ```json:diamond_pickaxe_resin_trim.json
 {
@@ -475,7 +543,10 @@ Next we will need to **create the following file for every single material liste
 }
 ```
 
-You might have noticed that the file above mentions a `pickaxe_trim_resin` texture. Fortunately, we do not need to create this texture file as it is generated automatically by the game. But for it to work, we need to create the atlas file inside `assets/minecraft/atlases/blocks.json`.
+You might have noticed that the file above mentions a `pickaxe_trim_resin`
+texture. Fortunately, we do not need to create this texture file as it is
+generated automatically by the game. But for it to work, we need to create the
+atlas file inside `assets/minecraft/atlases/blocks.json`.
 
 ```json:blocks.json
 {
@@ -504,14 +575,25 @@ You might have noticed that the file above mentions a `pickaxe_trim_resin` textu
 }
 ```
 
-Now for the last step, we will need to create the `pickaxe_trim` texture. This is a black-and-white mask which is applied on-top of the diamond pickaxe when it has a trim applied. Please note that the file has to use the same colors as Vanillas `textures/trims/color_palettes/trim_palette` (this file can be seen in the [Smithing Trim Pattern](/guide/adding-new-features/smithing-trims#finishing-up-with-the-resourcepack---smithing-trim-pattern) chapter.)
-This image has to be located in `assets/minecraft/textures/trims/items/` with the name `pickaxe_trim.png` The texture I used can be found below:
+Now for the last step, we will need to create the `pickaxe_trim` texture. This
+is a black-and-white mask which is applied on-top of the diamond pickaxe when it
+has a trim applied. Please note that the file has to use the same colors as
+Vanillas `textures/trims/color_palettes/trim_palette` (this file can be seen in
+the
+[Smithing Trim Pattern](/guide/adding-new-features/smithing-trims#finishing-up-with-the-resourcepack---smithing-trim-pattern)
+chapter.) This image has to be located in
+`assets/minecraft/textures/trims/items/` with the name `pickaxe_trim.png` The
+texture I used can be found below:
 
 <img src="https://i.postimg.cc/J0FHgCJ7/pickaxe-trim.png" alt="Example color palette" width="100" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 
-Once you save the above files, you need to reload the resource pack with the keybind **F3 + T**
-in-game. You will also need to leave and rejoin the world to update the datapack.
+Once you save the above files, you need to reload the resource pack with the
+keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
+update the datapack.
 
 :::warning
-For this to work, you will need to leave and rejoin the world, just using the `/reload` command won't do the trick here!
+
+For this to work, you will need to leave and rejoin the world, just using the
+`/reload` command won't do the trick here!
+
 :::
