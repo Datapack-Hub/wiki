@@ -9,6 +9,48 @@ version: 1.21.8
 This is list of all breaking changes to datapacks (excluding resource packs). Special thanks to [Misode's Technical
 Changelog](https://misode.github.io/changelog/) and the [Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
 
+## [1.21.9](https://minecraft.wiki/w/Java_Edition_1.21.9#Command_format_2)
+You can also watch this video from Conure covering the breaking datapack changes: [Why Your Datapack Broke in 1.21.9](https://www.youtube.com/watch?v=9bpM26PXsj0)
+
+**Other**
+- The item `minecraft:chain` has been renamed to `minecraft:iron_chain`
+
+**Pack Format**
+- The entire pack format has been changed, and so were datapack versions.
+  - The `pack_format` and `supported_formats` fields were merged into `min_format` and `max_format` fields. These fields are a list of two integers or just a single integer. (e.g. `"min_format": 88` is the same as `"min_format": [88,0/1/2/...]`)
+  - If you also want your pack to be compatible with versions BEFORE 1.21.9, you will still need to include all of the old fields alongside the new ones.
+
+**Componenents**
+- The `minecraft:profile` component (and alongide it, player heads) now have two behaviours:
+  - Static - when it has `properties` field or when both `name` and `id` are present or when both are missing.
+    * This is the behaviours that has previously always been used, here, the heads WON'T update, even if the user changes it's skin (i.e. will be frozen as it was at the time of creation)
+  - Dynamic - when it has either `name` or `id` (but not both).
+    * This will awlays render the most recent value of the profile (i.e. will be updated if player changes their skin)
+    * This would happen if you gave yourself heads using the `/give @s player_head[profile="Notch"]`, if you want this static now, you will have to use the exact properties and id. (you can use the new `/fetchprofile` command)
+
+**Commands**
+- If you were specifying the rotation angle in the `/spawnpoint` or `/setworldspawn` command, you will now also have to add the yaw rotation at the end.
+  - To fix this, add a zero to the end of the commands, using a rotation angle. (`/spawnpoint @s ~ ~ ~ 69` would now be `/spawnpoint @s ~ ~ ~ 69 0`)
+  - This also affected player NBT data, for that, see the **NBT Data** section
+- The `/summon` now fails when trying to summon monsters while the difficulty is set to Peaceful.
+
+**Particles**
+- The `flash` particle now requires a color parameter
+  - Fix: You can replace all `particle flash ~ ~ ~` with `particle flash{color:0xffffffff} ~ ~ ~`, which will result in the same white flash as before
+
+**NBT Data**
+- The field `respawn.angle` has been replaced with `respawn.yaw`, to align with the command changes.
+
+**Game Rules**
+- The game rule `spawnChunkRadius` was removed, alongside the removal of "spawn chunks".
+
+**Worldgen**
+- The `initial_density_without_jaggedness` field in `noise_settings` definitions has been replaced with a `preliminary_surface_level` field
+  - To recreate the same behaviour, set `preliminary_surface_level` type to `minecraft:find_top_surface` and use the same values as you did in the `initial_density_without_jaggedness` object.
+
+**Entity Data**
+- The `minecraft:skull`'s `profile` field has been changed to match `minecraft:profile` component. See the **Components** section for more info.
+
 ## [1.21.6](https://minecraft.wiki/w/Java_Edition_1.21.6#Technical)
 
 **Other**
@@ -17,7 +59,7 @@ Changelog](https://misode.github.io/changelog/) and the [Minecraft Wiki](https:/
 - All JSON files (in worlds, packs, configuration, etc.) are now parsed in strict mode
 - Users will now be prompted for confirmation before executing a command from the `run_command` click action in books and chat if the command requires permissions higher than 0. This is not a breaking change, just a warning which shows to the player.
 
-**Item Componenents**
+**Componenents**
 - The `painting/variant` component no longer accepts inline variants
 
 **Entity Data**
