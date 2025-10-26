@@ -116,7 +116,7 @@ To get the music disc, you need to get an item which has the
 to necessarily be an already existing music disc (but you can if you want).
 
 ```mcfunction
-give @s minecraft:YOUR_ITEM[minecraft:jukebox_playable={song:"<datapack namespace>:example_jukebox_song"}]
+give @s minecraft:YOUR_ITEM[minecraft:jukebox_playable="<datapack namespace>:example_jukebox_song"]
 ```
 
 Then, you can use this item on a jukebox, and it should start playing your song!
