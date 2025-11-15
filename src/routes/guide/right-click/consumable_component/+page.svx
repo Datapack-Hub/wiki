@@ -53,7 +53,7 @@ run when the advancement is triggered.
 ```
 
 In the function (in this case,
-`/data/<namespace>/functions/rightclick_run.mcfunction`), you can put commands
+`/data/<namespace>/function/rightclick_run.mcfunction`), you can put commands
 that you want to run when the item is clicked. Make sure that this function also
 **revokes the advancement** so that it can be triggered again next tick.
 
