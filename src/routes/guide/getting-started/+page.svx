@@ -6,7 +6,7 @@ description:
   step-by-step tutorial will help you understand the basics of datapack
   creation, even if you have little coding knowledge. Start enhancing your
   Minecraft experience today!
-version: 1.21.8
+version: 1.21.10
 ---
 
 <script lang="ts">
@@ -65,12 +65,13 @@ or more difficult to work with. https://vscode.dev/
 
 The first step when creating a datapack is to **make a new world** to test it
 in. Go ahead and do that now - make sure that your world has **cheats enabled**
-and it is set to **creative mode**. In the world, run the command `/datapack
-create`. It will create a folder as well as the necessary metadata for you.
+and it is set to **creative mode**. In the world, run the command `/datapack create`.
+It will create your datapack folder as well as the necessary metadata for you.
 
-`/datapack create <your_id> <description>`
+`/datapack create <id> <description>`
+
 For example, to make a datapack with the ID of `exampledatapack` with the
-description "This is an example datapack", the command would look like
+description "This is an example datapack", the command would look like 
 `/datapack create exampledatapack "This is an example datapack"`
 
 Once you've created your empty datapack, the next step is to find and open the
@@ -84,7 +85,7 @@ The folder that opens contains all the data in your Minecraft world. You should
 see that there's lots of other subfolders in this folder. Find the one which is
 called `datapacks`, and open it. This folder is where the world's datapacks are
 stored. There you'll see your datapack in a folder which you made with `/datapack
-create ...`. It's named as the `<id>` you specified.
+create ...`. It's named after the `<id>` you specified.
 
 For versions below 1.21.6, you'll need to **set up the folder yourself** in your
 `datapacks` folder. Create a new folder - this will be the root folder of your
@@ -112,8 +113,8 @@ file and the empty `data` folder.
 
 :::
 
-To make a `pack.mcmeta`, create a **text document**, like `.txt`,and rename the
-`.txt` to `.mcmeta`. **Put this inside of your file**:
+To make a `pack.mcmeta`, create a **text document**, like a `.txt`, and replace the
+`.txt` with `.mcmeta`. **Put this inside of your file**:
 
 ```json
 {
@@ -182,20 +183,20 @@ title @s title "Hello World!"
 give @s diamond
 ```
 
+:::info
+
+Commands in functions shouldn't have the default slash `/` symbol which in-world
+commands have! Having the `/` before a command will make the mcfunction invalid
+and fail when it tries to run
+
+:::
+
 It's that simple! Once you **save that file**, **rejoin your world** or run
 `/reload`, you should be able to use the following command to run the function:
 
 ```mcfunction
 /function example:hello_world
 ```
-
-:::info
-
-The `@s` selector in functions targets the player who ran this function.
-If a command block ran this function, nothing would happen because the command
-block is not an entity. **Read below on target selectors**
-
-:::
 
 ## What's next?
 
@@ -241,7 +242,12 @@ Minecraft "run this command every tick" (every tick = 20 times per second)
 1. In the `data` folder, create the `minecraft` folder.
 2. In the `minecraft` folder, create a `tags` folder
 3. In the `tags` folder, create a `function` folder
-4. In the new `function` folder, create a new file: `tick.json`
+4. In the new `function` folder, create a new text file: `tick.json`
+
+The final path would look like this:
+```
+/world/datapacks/exampledatapack/data/minecraft/tags/function/tick.json
+```
 
 **`tick.json` is NOT a function**. In `tick.json`, we are going to put a **list
 of functions** which we want to run every tick. If you put any commands in
@@ -312,7 +318,7 @@ basic ones which you might see quite often:
 | `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimisation, you should use this often                                                                                                |
 | `[distance=..5]`         | **Distance to entity** - This criteria will only include entities based on their distance to their distance to the current position. `..` can be used to represent a greater/less than symbol - for example, `..5` means less than 5 blocks away                |
 | `[limit=2]`              | **Limit selection** - Using the `limit` criteria, you can make specify a max amount of entities to be selected. This is often used in conjunction with the `sort` criteria. For example, `@e[sort=nearest,limit=1]` would select the nearest entity of any type. |
-| `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern. This is very laggy for the server, but this is an example so don't worry for now                                                                             |
+| `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern. This is laggy for the server, but this is just an introduction so don't worry for now                                                                      |
 
 ### How are we going to use them?
 
@@ -325,7 +331,7 @@ This target selector can be used in an `execute` command to run a command as the
 entity. Try putting this in your `loop.mcfunction`:
 
 ```mcfunction:loop.mcfunction
-execute as @e[type=arrow,nbt={inGround:1b}] at @s run say I'm an arrow, I'm in the ground!
+execute as @e[type=arrow,nbt={inGround:1b}] run say I'm an arrow, I'm in the ground!
 ```
 
 `/reload` your datapack and fire an arrow at at a block. You should see that your
@@ -338,12 +344,15 @@ Now we can move onto the fun part! We have a simple command which will run
 another command as any arrow in the ground. We only need to do two things with
 this command:
 
+- Get the arrow's position
 - Spawn an explosion at the position of the arrow
 - Kill the arrow so that it only explodes once
 
 To create an explosion in Minecraft, we can simply summon a TNT entity that's
-about to blow up. For that let's summon it with a `fuse` NBT key at the arrow's
-position (`~ ~ ~` for its current X Y and Z in the world):
+about to blow up. For that let's summon it with a `fuse` NBT key as a low number at the arrow's
+position. We can get the position from this arrow from using `at @s`. This tells
+`execute` that this should be ran where the `as ...` entity is, instead of at the default `0 0 0`.
+You can then use the position with `~ ~ ~` for the arrow's current X Y and Z in the world:
 
 ```mcfunction
 execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt ~ ~ ~ {fuse:0}
@@ -362,8 +371,8 @@ kill @e[type=arrow,nbt={inGround:1b}]
 
 In reality, this method isn't the best one to use. Instead of having two
 commands for this, you can just execute a function as the arrow which will
-summon the TNT at @s's position, and then kill @s. By only using the @e selector
-once and then referring to @s, you remove extra stress from the computer. For
+summon the TNT at `@s`'s position, and then `kill @s`. By only using the `@e` selector
+once and then referring to `@s`, you remove extra stress from the computer. For
 now, it doesn't matter - this guide is designed to give you a better idea of the
 logic rather than the little details.
 
