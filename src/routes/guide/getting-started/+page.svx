@@ -6,7 +6,7 @@ description:
   step-by-step tutorial will help you understand the basics of datapack
   creation, even if you have little coding knowledge. Start enhancing your
   Minecraft experience today!
-version: 1.21.8
+version: 1.21.10
 ---
 
 <script lang="ts">
@@ -65,8 +65,17 @@ or more difficult to work with. https://vscode.dev/
 
 The first step when creating a datapack is to **make a new world** to test it
 in. Go ahead and do that now - make sure that your world has **cheats enabled**
-and it is set to **creative mode**. Once you've created the world, the next step
-is to find and open your world folder:
+and it is set to **creative mode**. In the world, run the command `/datapack create`.
+It will create your datapack folder as well as the necessary metadata for you.
+
+`/datapack create <id> <description>`
+
+For example, to make a datapack with the ID of `exampledatapack` with the
+description "This is an example datapack", the command would look like 
+`/datapack create exampledatapack "This is an example datapack"`
+
+Once you've created your empty datapack, the next step is to find and open the
+world folder:
 
 1. Save and quit your world
 2. Go to your world in the Singleplayer menu and hit "Edit"
@@ -75,9 +84,13 @@ is to find and open your world folder:
 The folder that opens contains all the data in your Minecraft world. You should
 see that there's lots of other subfolders in this folder. Find the one which is
 called `datapacks`, and open it. This folder is where the world's datapacks are
-stored. Create a folder - this will be the root folder of your datapack project.
-The name doesn't matter. I'm just going to call it `Example Datapack`. **Open
-this new folder**. Inside this folder is where all the data starts from.
+stored. There you'll see your datapack in a folder which you made with `/datapack
+create ...`. It's named after the `<id>` you specified.
+
+For versions below 1.21.6, you'll need to **set up the folder yourself** in your
+`datapacks` folder. Create a new folder - this will be the root folder of your
+datapack project. The name doesn't matter. I'm just going to call it `exampledatapack`.
+**Open this new folder**. Inside this folder is where all the data starts from.
 
 :::tip
 
@@ -88,15 +101,26 @@ datapack will be _so much easier_!
 
 :::
 
-The first file we want to create is the `pack.mcmeta` file. This file will tell
-Minecraft that the folder is a datapack, as well as holding the basic
-information of the pack. **Create `pack.mcmeta`, and put this inside it**:
+You'll see a file called `pack.mcmeta` and a folder called `data`. This is the
+working zone for your project
+The `.mcmeta` file will tell Minecraft that the folder is a datapack, as well as
+holding the basic information of the pack. 
+
+:::warning
+
+If you didn't use `/datapack create`, you'll need to manually set up the `pack.mcmeta`
+file and the empty `data` folder.
+
+:::
+
+To make a `pack.mcmeta`, create a **text document**, like a `.txt`, and replace the
+`.txt` with `.mcmeta`. **Put this inside of your file**:
 
 ```json
 {
   "pack": {
-    "description": "DATAPACK NAME HERE",
-    "pack_format": 81
+    "description": "This is an example datapack",
+    "pack_format": 88
   }
 }
 ```
@@ -106,8 +130,8 @@ If you're interested, here's what this file means:
 - `pack` is an object containing the metadata of the file.
   - `description` is the name of your datapack, usually along with a short
     description of what your pack does.
-  - `pack_format` tells Minecraft what versions this datapack works in. `81` is
-    the latest for 1.21.8
+  - `pack_format` tells Minecraft what versions this datapack works in. `88`
+    (or 88.0) is the latest for 1.21.10
 
 ## Writing your first function
 
@@ -123,18 +147,18 @@ as an entity (or as the Server) and at a position
 Let's get started by writing one simple function. In traditional programming
 fashion, let's make a function which sends "Hello World" to chat.
 
-1. Create a folder in your datapack called `data`.
+1. Open up your empty `data` folder.
 2. In the `data` folder, create a new folder. This folder is your
    **namespace** - it will contain all the data specific to your datapack.
    Usually this needs to have a **unique name** (one which other people would
    not have picked), but for this tutorial just call it `example`.
 3. In the `example` folder, create a folder called `function`. This folder will
-   contain all the **mcfunction** files.
+   contain all the **.mcfunction** files.
 
 You should now have a folder structure that looks something like this:
 
 ```
-/world/datapacks/Example Datapack/data/example/function
+/world/datapacks/exampledatapack/data/example/function
 ```
 
 :::warning
@@ -146,7 +170,7 @@ due to some pesky name changes Mojang introduced in a recent update.
 
 Once you're sure that's correct, you can start writing the actual function.
 
-In the `function` folder, create an empty file called `hello_world.mcfunction`.
+In the `function` folder, create an empty text file called `hello_world.mcfunction`.
 Open this file with any text editor (we recommend Visual Studio Code)
 
 Inside `hello_world.mcfunction`, put the following:
@@ -159,9 +183,16 @@ title @s title "Hello World!"
 give @s diamond
 ```
 
-It's that simple! Once you **save that file**, **rejoin your world** and then
-run `/reload`, you should be able to use the following command to run the
-function:
+:::info
+
+Commands in functions shouldn't have the default slash `/` symbol which in-world
+commands have! Having the `/` before a command will make the mcfunction invalid
+and fail when it tries to run
+
+:::
+
+It's that simple! Once you **save that file**, **rejoin your world** or run
+`/reload`, you should be able to use the following command to run the function:
 
 ```mcfunction
 /function example:hello_world
@@ -211,7 +242,12 @@ Minecraft "run this command every tick" (every tick = 20 times per second)
 1. In the `data` folder, create the `minecraft` folder.
 2. In the `minecraft` folder, create a `tags` folder
 3. In the `tags` folder, create a `function` folder
-4. In the new `function` folder, create a new file: `tick.json`
+4. In the new `function` folder, create a new text file: `tick.json`
+
+The final path would look like this:
+```
+/world/datapacks/exampledatapack/data/minecraft/tags/function/tick.json
+```
 
 **`tick.json` is NOT a function**. In `tick.json`, we are going to put a **list
 of functions** which we want to run every tick. If you put any commands in
@@ -279,10 +315,10 @@ basic ones which you might see quite often:
 
 | Criteria                 | Description                                                                                                                                                                                                                                                      |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimisation, you should use this often.                                                                                                |
-| `[distance=..5]`         | **Distance to entity** - This criteria will only include entities based on their distance to their distance to the current position. `..` can be used to represent a greater/less than symbol - for example, `..5` means less than 5 blocks away.                |
+| `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimisation, you should use this often                                                                                                |
+| `[distance=..5]`         | **Distance to entity** - This criteria will only include entities based on their distance to their distance to the current position. `..` can be used to represent a greater/less than symbol - for example, `..5` means less than 5 blocks away                |
 | `[limit=2]`              | **Limit selection** - Using the `limit` criteria, you can make specify a max amount of entities to be selected. This is often used in conjunction with the `sort` criteria. For example, `@e[sort=nearest,limit=1]` would select the nearest entity of any type. |
-| `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern.                                                                                                                                                               |
+| `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern. This is laggy for the server, but this is just an introduction so don't worry for now                                                                      |
 
 ### How are we going to use them?
 
@@ -295,10 +331,10 @@ This target selector can be used in an `execute` command to run a command as the
 entity. Try putting this in your `loop.mcfunction`:
 
 ```mcfunction:loop.mcfunction
-execute as @e[type=arrow,nbt={inGround:1b}] at @s run say I'm an arrow, I'm in the ground!
+execute as @e[type=arrow,nbt={inGround:1b}] run say I'm an arrow, I'm in the ground!
 ```
 
-Reload your datapack and fire an arrow at at a block. You should see that your
+`/reload` your datapack and fire an arrow at at a block. You should see that your
 chat is spammed with messages, meaning that we successfully selected arrows in
 the ground, and executed a command as them!
 
@@ -308,14 +344,18 @@ Now we can move onto the fun part! We have a simple command which will run
 another command as any arrow in the ground. We only need to do two things with
 this command:
 
+- Get the arrow's position
 - Spawn an explosion at the position of the arrow
 - Kill the arrow so that it only explodes once
 
-To create an explosion in Minecraft, we can simply summon a TNT entity. When a
-TNT entity is summoned, it will explode instantly.
+To create an explosion in Minecraft, we can simply summon a TNT entity that's
+about to blow up. For that let's summon it with a `fuse` NBT key as a low number at the arrow's
+position. We can get the position from this arrow from using `at @s`. This tells
+`execute` that this should be ran where the `as ...` entity is, instead of at the default `0 0 0`.
+You can then use the position with `~ ~ ~` for the arrow's current X Y and Z in the world:
 
 ```mcfunction
-execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt
+execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt ~ ~ ~ {fuse:0}
 ```
 
 Then, we just need to copy this command and make it kill the arrow after the
@@ -323,7 +363,7 @@ explosion has happened. This is as simple as it sounds - we can use `/kill` to
 remove the arrow. Your finished `loop.mcfunction` should look like this:
 
 ```mcfunction:loop.mcfunction
-execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt
+execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt ~ ~ ~ {fuse:0}
 kill @e[type=arrow,nbt={inGround:1b}]
 ```
 
@@ -331,8 +371,8 @@ kill @e[type=arrow,nbt={inGround:1b}]
 
 In reality, this method isn't the best one to use. Instead of having two
 commands for this, you can just execute a function as the arrow which will
-summon the TNT at @s's position, and then kill @s. By only using the @e selector
-once and then referring to @s, you remove extra stress from the computer. For
+summon the TNT at `@s`'s position, and then `kill @s`. By only using the `@e` selector
+once and then referring to `@s`, you remove extra stress from the computer. For
 now, it doesn't matter - this guide is designed to give you a better idea of the
 logic rather than the little details.
 
