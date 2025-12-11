@@ -3,7 +3,7 @@ title: Using COAS/WFOAS for RC detection
 description:
   "Using a carrot on a stick for right click detection is an easy way to detect
   right clicks with a datapack."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Carrot on a Stick Right Click Detection

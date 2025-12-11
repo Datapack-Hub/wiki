@@ -3,7 +3,7 @@ title: Using an Eye of Ender for RC detection
 description:
   "An intresting right click detection method for sure, due to the fact that it
   can only be used in worlds without strongholds!"
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Eye of Ender Right Click Detection
