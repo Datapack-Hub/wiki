@@ -12,7 +12,7 @@ version: 1.21.11
 
 This only works in world without strongholds, if you don't want that, you can
 either use a similiar method that works everywhere (using the Food Component
-method) or do some chnages to these functions, as specified at the end of this
+method) or do some changes to these functions, as specified at the end of this
 guide.
 
 :::
