@@ -294,5 +294,5 @@ Possible values for `condition`:
 `execute if items entity @s weapon.mainhand #minecraft:swords[minecraft:custom_data={foo:"bar"}] ...`  
 `execute if loaded 0 0 0 ...`  
 `execute if predicate example:check ...`  
-`execute if score @s score = @r score ...`
+`execute if score @s score = @r score ...`  
 `execute if stopwatch example:timer 10 ...`
