@@ -4,7 +4,7 @@ description:
   "Commands tell the game to do things. [Functions](/wiki/files/functions) are
   files which are made up of many commands. They form the basic building blocks
   for any function datapack."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Commands

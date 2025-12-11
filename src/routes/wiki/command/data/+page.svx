@@ -3,7 +3,7 @@ title: /data
 description:
   "The data command is used to modify and fetch NBT data of blocks, entities and
   storages."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # /data command

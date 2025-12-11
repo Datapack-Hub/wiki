@@ -6,7 +6,7 @@ description:
   functions are run independently and one after another - for example, if you
   run `function1` and then `function2`, then `function2` will only run once
   `function1` has finished."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # /function command

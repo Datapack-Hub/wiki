@@ -4,7 +4,7 @@ description:
   "Item components are data structures which can be applied to items in
   Minecraft to give them special attributes, such as a name, lore, being able to
   be eaten, etc."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Item Components

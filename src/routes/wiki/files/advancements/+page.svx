@@ -3,7 +3,7 @@ title: Advancements
 description:
   In a datapack, we can create advancements, which can additionally be used to
   detect events.
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Advancements

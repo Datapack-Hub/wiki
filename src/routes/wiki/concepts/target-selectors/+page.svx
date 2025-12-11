@@ -4,7 +4,7 @@ description:
   "Target Selectors are used as an argument in commands to select entities and
   players in the world. We use target selectors to find players or mobs and do
   things to them."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Target Selectors
