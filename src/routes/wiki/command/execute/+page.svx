@@ -5,7 +5,7 @@ description:
   different context. The execute command is made up of multiple subcommands,
   which can be chained repeatedly and in any order to modify context in various
   ways."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # /execute command
@@ -280,6 +280,7 @@ Possible values for `condition`:
   Checks whether a score is within a range (`matches`), or has a specified
   comparison to another score. `operator` can be on of: `<`, `<=`, `=`, `>=`,
   `>`.
+- **`stopwatch <id> <range>`**: Checks if the specified stopwatch matches the specified range.
 
 #### Examples:
 
@@ -294,3 +295,4 @@ Possible values for `condition`:
 `execute if loaded 0 0 0 ...`  
 `execute if predicate example:check ...`  
 `execute if score @s score = @r score ...`
+`execute if stopwatch example:timer 10 ...`
