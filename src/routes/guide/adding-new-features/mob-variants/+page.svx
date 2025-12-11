@@ -1,7 +1,7 @@
 ---
 title: Adding Mob Variants
 description: "Learn how to add custom mob variants with Minecraft datapacks"
-version: 1.21.8
+version: 1.21.11
 ---
 
 # How to add custom mob variants
@@ -94,6 +94,7 @@ You can also add variants for these mobs:
 - frog
 - pig
 - wolf
+- zombie nautilus
 
 For example, if you wanted to add a frog variant, you would:
 1. Create a variant file in `data/<namespace>/frog_variant`
@@ -128,7 +129,10 @@ If you want to add a chicken, cow, or pig variant, you'll also need to specify t
 }
 ```
 
-The `model` field can be `normal`, `cold` or `warm` for cows, and just `normal` or `cold` for chickens and pigs.
+The `model` field can be: 
+- `normal`, `cold` or `warm` for cows
+- `normal` or `cold` for chickens and pigs
+- `normal` or `warm` for zombie nautili
 
 If you want to add a wolf variant, you'll need to specify 3 textures, like this:
 

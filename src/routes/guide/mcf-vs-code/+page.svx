@@ -2,7 +2,7 @@
 title: MCFunction vs Coding
 description:
   "Learn the differences between using MCFunctions and traditional coding."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # MCFunction vs Traditional Coding

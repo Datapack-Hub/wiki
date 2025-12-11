@@ -3,7 +3,7 @@ title: Adding Smithing Trims
 description:
   "Learn how to add custom smithing trims patterns to Minecraft just with a
   datapack and a resourcepack!"
-version: 1.21.8
+version: 1.21.11
 ---
 
 # How to add custom Smithing Trims

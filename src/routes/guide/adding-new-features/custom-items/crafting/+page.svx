@@ -3,7 +3,7 @@ title: Recipes for your Custom Items
 description:
   "Learn how to make custom crafting recipes for custom items in Minecraft
   Datapacks."
-version: 1.21.8
+version: 1.21.11
 ---
 
 # Creating Recipes for your Custom Items
