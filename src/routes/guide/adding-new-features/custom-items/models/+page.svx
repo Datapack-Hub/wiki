@@ -92,7 +92,7 @@ Do **not** add `.png`!
 ### Adding the `item_model`
 
 Next, you'll have to make the item available in Minecraft. To do this, you create this file in
-`assets/namespace/items/your_item.json`:
+`assets/namespace/items/your_item.json` (back in the datapack directory, not the resource pack):
 
 ```json:assets/namespace/items/your_item.json
 {
