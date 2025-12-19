@@ -65,14 +65,15 @@ or more difficult to work with. https://vscode.dev/
 
 The first step when creating a datapack is to **make a new world** to test it
 in. Go ahead and do that now - make sure that your world has **cheats enabled**
-and it is set to **creative mode**. In the world, run the command `/datapack create`.
-It will create your datapack folder as well as the necessary metadata for you.
+and it is set to **creative mode**. In the world, you will need to run the `/datapack create` command - 
+it will create your datapack folder as well as the necessary metadata for you, which saves you a bunch of time.
 
-`/datapack create <id> <description>`
+For example, to make a datapack with the ID `ExampleDatapack` and the
+description "This is an example datapack", you would run the following command:
 
-For example, to make a datapack with the ID of `exampledatapack` with the
-description "This is an example datapack", the command would look like 
-`/datapack create exampledatapack "This is an example datapack"`
+```
+/datapack create ExampleDatapack "This is an example datapack"
+```
 
 Once you've created your empty datapack, the next step is to find and open the
 world folder:
@@ -81,16 +82,8 @@ world folder:
 2. Go to your world in the Singleplayer menu and hit "Edit"
 3. Press "Open World Folder"
 
-The folder that opens contains all the data in your Minecraft world. You should
-see that there's lots of other subfolders in this folder. Find the one which is
-called `datapacks`, and open it. This folder is where the world's datapacks are
-stored. There you'll see your datapack in a folder which you made with `/datapack
-create ...`. It's named after the `<id>` you specified.
-
-For versions below 1.21.6, you'll need to **set up the folder yourself** in your
-`datapacks` folder. Create a new folder - this will be the root folder of your
-datapack project. The name doesn't matter. I'm just going to call it `exampledatapack`.
-**Open this new folder**. Inside this folder is where all the data starts from.
+The folder that opens contains your Minecraft world's data. There will be loads of subfolders in
+this folder: find the one which is called `datapacks`, and open it. This folder is where the world's datapacks are stored. If you used `/datapack create`, you should see your datapack's folder here already. (If not, you'll have to create it yourself. This is explained in the "NOTE" box below)
 
 :::tip
 
@@ -101,22 +94,12 @@ datapack will be _so much easier_!
 
 :::
 
-You'll see a file called `pack.mcmeta` and a folder called `data`. This is the
-working zone for your project
-The `.mcmeta` file will tell Minecraft that the folder is a datapack, as well as
-holding the basic information of the pack. 
+The datapack folder will contain `pack.mcmeta` and a folder called `data`.
+`pack.mcmeta` tells Minecraft that the folder is a datapack, 
+as well as containing the basic information about the pack, such 
+as what versions it works in. `/datapack create` made this file automatically, but you can open the file like normal and view it if you want:
 
-:::warning
-
-If you didn't use `/datapack create`, you'll need to manually set up the `pack.mcmeta`
-file and the empty `data` folder.
-
-:::
-
-To make a `pack.mcmeta`, create a **text document**, like a `.txt`, and replace the
-`.txt` with `.mcmeta`. **Put this inside of your file**:
-
-```json
+```json:pack.mcmeta
 {
   "pack": {
     "description": "This is an example datapack",
@@ -133,6 +116,16 @@ If you're interested, here's what this file means:
   - `pack_format` tells Minecraft what versions this datapack works in. `88`
     (or 88.0) is the latest for 1.21.10
 
+
+
+:::note
+
+If you're in a version earlier than 1.21.6, you may notice that `/datapack create` doesn't 
+exist. You will have to create your datapack folder (inside `datapacks`) yourself. Just make
+a folder, and then inside that folder, create `pack.mcmeta` (as shown above) and the `data` folder.
+
+:::
+
 ## Writing your first function
 
 :::info
@@ -147,7 +140,7 @@ as an entity (or as the Server) and at a position
 Let's get started by writing one simple function. In traditional programming
 fashion, let's make a function which sends "Hello World" to chat.
 
-1. Open up your empty `data` folder.
+1. Open your empty `data` folder.
 2. In the `data` folder, create a new folder. This folder is your
    **namespace** - it will contain all the data specific to your datapack.
    Usually this needs to have a **unique name** (one which other people would
@@ -158,7 +151,7 @@ fashion, let's make a function which sends "Hello World" to chat.
 You should now have a folder structure that looks something like this:
 
 ```
-/world/datapacks/exampledatapack/data/example/function
+/world/datapacks/ExampleDatapack/data/example/function
 ```
 
 :::warning
@@ -191,8 +184,7 @@ and fail when it tries to run
 
 :::
 
-It's that simple! Once you **save that file**, **rejoin your world** or run
-`/reload`, you should be able to use the following command to run the function:
+It's that simple! Once you **save that file**, and then run `/reload` (or if that doesn't work, rejoin your world), you should be able to use the following command to run the function:
 
 ```mcfunction
 /function example:hello_world
@@ -246,7 +238,7 @@ Minecraft "run this command every tick" (every tick = 20 times per second)
 
 The final path would look like this:
 ```
-/world/datapacks/exampledatapack/data/minecraft/tags/function/tick.json
+/world/datapacks/ExampleDatapack/data/minecraft/tags/function/tick.json
 ```
 
 **`tick.json` is NOT a function**. In `tick.json`, we are going to put a **list
@@ -294,7 +286,7 @@ world. They all start with an `@` symbol. There are 6 base target selectors:
 
 | Target Selector | Description                                                                                                                                                                |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@e`            | **All Entities** - By itself, this selector will select every single entity which is currently loaded in the world                                                         |
+| `@e`            | **All Entities** - By itself, this selector will select every single entity which is currently loaded in the world.                                                         |
 | `@s`            | **This Entity** - This selector will select the entity which is currently running the command. For example, if I run a command as @s, then it will run the commands as me. |
 | `@a`            | **All Players** - This selects all currently online players. (All players are always loaded in the world).                                                                 |
 | `@r`            | **Random Player** - This selects one random player.                                                                                                                        |
@@ -315,10 +307,10 @@ basic ones which you might see quite often:
 
 | Criteria                 | Description                                                                                                                                                                                                                                                      |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimisation, you should use this often                                                                                                |
-| `[distance=..5]`         | **Distance to entity** - This criteria will only include entities based on their distance to their distance to the current position. `..` can be used to represent a greater/less than symbol - for example, `..5` means less than 5 blocks away                |
+| `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimisation, you should use this often.                                                                                                |
+| `[distance=..5]`         | **Distance to entity** - This criteria will only include entities based on their distance to their distance to the current position. `..` can be used to represent a greater/less than symbol - for example, `..5` means less than 5 blocks away.                |
 | `[limit=2]`              | **Limit selection** - Using the `limit` criteria, you can make specify a max amount of entities to be selected. This is often used in conjunction with the `sort` criteria. For example, `@e[sort=nearest,limit=1]` would select the nearest entity of any type. |
-| `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern. This is laggy for the server, but this is just an introduction so don't worry for now                                                                      |
+| `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern. (note: if you do this loads of times, it might start to be a bit laggy!) |
 
 ### How are we going to use them?
 
@@ -348,14 +340,10 @@ this command:
 - Spawn an explosion at the position of the arrow
 - Kill the arrow so that it only explodes once
 
-To create an explosion in Minecraft, we can simply summon a TNT entity that's
-about to blow up. For that let's summon it with a `fuse` NBT key as a low number at the arrow's
-position. We can get the position from this arrow from using `at @s`. This tells
-`execute` that this should be ran where the `as ...` entity is, instead of at the default `0 0 0`.
-You can then use the position with `~ ~ ~` for the arrow's current X Y and Z in the world:
+To create an explosion in Minecraft, we can simply summon a TNT entity that has an instant fuse length - we can do this by summoning `tnt` with the data `{fuse:0}` at the position of the arrow. We can do this using the `execute at` command, which tells the game that the `summon` command should be ran at the position of the entity, instead of at the world spawn (because all commands are run at a position in the world). This way, when we summon an entity at `~ ~ ~`, the game knows that it's referring to the position of the arrow. *This sounds complicated, but in reality, its a really easy and intuitive system when you understand it :P*
 
 ```mcfunction
-execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt ~ ~ ~ {fuse:0}
+execute at @e[type=arrow,nbt={inGround:1b}] run summon tnt ~ ~ ~ {fuse:0}
 ```
 
 Then, we just need to copy this command and make it kill the arrow after the
@@ -367,14 +355,9 @@ execute as @e[type=arrow,nbt={inGround:1b}] at @s run summon tnt ~ ~ ~ {fuse:0}
 kill @e[type=arrow,nbt={inGround:1b}]
 ```
 
-:::info
+:::note
 
-In reality, this method isn't the best one to use. Instead of having two
-commands for this, you can just execute a function as the arrow which will
-summon the TNT at `@s`'s position, and then `kill @s`. By only using the `@e` selector
-once and then referring to `@s`, you remove extra stress from the computer. For
-now, it doesn't matter - this guide is designed to give you a better idea of the
-logic rather than the little details.
+In reality, this method might be a bit laggy if there are a lot of `arrow`s in the world. A better system would involve creating a function which referenced `@s` (the "current" entity) instead of `@e[...]`, and then runnning that function as all `arrow`s in the ground. This way, we only use `@e[...]` once, which is a lot more efficient. However, for the purposes of this tutorial, it doesn't matter at all.
 
 :::
 
