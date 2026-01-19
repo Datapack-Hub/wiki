@@ -16,7 +16,7 @@ an item. They are extremely versatile and, in many cases, more optimised than
 
 :::info
 
-Although this page covers predicate files, predicates are also used within in
+Although this page covers predicate files, predicates are also used within
 advancements and loot table files. The structure of these predicates is the same
 as described here, although some fields may not be used in certain contexts.
 
