@@ -42,6 +42,9 @@
   import IconRuler2 from "~icons/tabler/ruler-2";
   import IconMathMaxMin from "~icons/tabler/math-max-min";
   import IconCat from "~icons/tabler/cat";
+  import IconClock from "~icons/tabler/clock";
+  import IconStar from "~icons/tabler/star";
+  import IconWorld from "~icons/tabler/world";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -69,6 +72,15 @@
     label="Custom Item Models and Textures"
     icon={IconPhotoPlus}
     page="/guide/adding-new-features/custom-items/models" />
+</SidebarCategory>
+
+<SidebarCategory name="Cooldown checks" icon={IconClock}>
+  <SidebarPage label="Introduction" icon={IconClock} page="/guide/cooldown" />
+
+  <SidebarHeading label="Techniques" />
+  <SidebarPage label="Scoreboard" icon={IconScoreboard} page="/guide/cooldown/scoreboard" />
+  <SidebarPage label="Advancement" icon={IconStar} page="/guide/cooldown/advancement" />
+  <SidebarPage label="Gametime" icon={IconWorld} page="/guide/cooldown/gametime" />
 </SidebarCategory>
 
 <SidebarCategory name="Right Click Detection" icon={IconMouse}>
