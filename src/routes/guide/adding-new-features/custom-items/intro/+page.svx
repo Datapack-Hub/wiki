@@ -18,8 +18,8 @@ the basis for how custom items work - we take an item which already exists, then
 add or remove item components from that item to give it the desired feel and
 functionality.
 
-In this guide we will create a custom edible item which can mine sand instantly
-and makes the player glow who eats it.
+In this guide, we will create a custom edible item which can mine sand instantly
+and makes the player who eats it glow.
 
 ## How do custom items work?
 
