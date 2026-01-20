@@ -6,55 +6,56 @@ version: 1.21.11
 
 # Gametime-based cooldown
 
-A gametime-based cooldown stores a **timestamp** (the world’s current `gametime`)
-instead of counting down every tick.
+A gametime-based cooldown stores a timestamp (the world’s current `gametime`)
+on a scoreboard objective.
 
-This is a **non-ticking** approach: your datapack only does work when the player
+This is a non-ticking approach: your datapack only does work when the player
 tries to use the action. That makes it a good fit for larger datapacks with many
-different cooldown checks.
+different cooldown to check.
 
 ## What you will build
 
-- A `last_used` scoreboard objective that stores the last time the player used an action
-- A shared `gametime` scoreboard objective that stores the current world gametime when needed
-- A `<namespace>:do_things` function that checks whether enough time has passed
+- A `last_used` scoreboard objective that stores the last timestamp when the player used an action.
+- A `gametime` scoreboard objective that stores the current world gametime.
+- A `<namespace>:do_things` function that checks whether enough time has passed and runs the action.
 
 ### 1) Create the scoreboard objectives
 
-`last_used` stores the last gametime (in ticks) when the player successfully used the action.
+The `last_used` score stores the last gametime when the player successfully used the action.
 
 ```mcfunction
 scoreboard objectives add last_used dummy
 ```
 
-You also need an objective to store the current gametime value while you do the calculation.
+You also need an score to store the current gametime value while you do the calculation.
 You only need to create this once, and you can reuse it for other cooldowns.
 
 ```mcfunction
 scoreboard objectives add gametime dummy
 ```
 
-### 2) Implement `<namespace>:do_things`
+### 2) Create the action function (`do_things.mcfunction`)
 
 This function checks the cooldown like this:
 
-- Store the current world `gametime` in the `gametime` score
-- Subtract `last_used` to get “ticks since last use”
-- Subtract the cooldown length (for example, `100` ticks = 5 seconds)
-- If the result is negative, the player is still on cooldown
-- Otherwise, store the current gametime into `last_used` and run the action
+- Store the current gametime in the `gametime` score.
+- Subtract `last_used` to get ticks since last use.
+- Subtract the cooldown length.
+- If the result is negative, the player is still on cooldown, stop the function.
+- Otherwise, store the current gametime into `last_used` and run the action.
 
 ```mcfunction:do_things.mcfunction
-# Store the current world gametime (in ticks)
+# Store the current gametime
 execute store result score @s gametime run time query gametime
 # gametime = gametime - last_used (ticks since last use)
 scoreboard players operation @s gametime -= @s last_used
 # gametime = gametime - 100 (100 ticks = 5 seconds)
 scoreboard players remove @s gametime 100
-# If the result is negative, the cooldown has not finished
+# If the result is negative, the cooldown has not finished and stop the function
 execute if score @s gametime matches ..-1 run return run tellraw @s {"text":"On cooldown!"}
 # Cooldown finished: save the current gametime as the new last_used timestamp
 execute store result score @s last_used run time query gametime
+# Do your stuff here
 tellraw @s {"text":"Action performed!"}
 ```
 

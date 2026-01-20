@@ -9,10 +9,16 @@ version: 1.21.11
 A scoreboard-based cooldown stores a number on each player (or entity) and
 changes that number over time.
 
-This guide uses a **ticking** approach, which means the datapack updates the
+This guide uses a ticking approach, which means the datapack updates the
 cooldown every game tick (20 ticks per second). Ticking cooldowns work well
 for small projects with only a few cooldowns. If you track many cooldowns or
 many entities, ticking can affect performance.
+
+## What you will build
+
+- A `my_cd` scoreboard objective
+- A `tick` function that reduces each player’s cooldown over time
+- A `do_things` function that checks the cooldown before doing anything
 
 :::tip
 
@@ -21,46 +27,37 @@ To learn how to trigger a function when a player uses an item, see the
 
 :::
 
-## What you will build
+### 1) Create the scoreboard objective.
 
-- A `cooldown` scoreboard objective
-- A `tick` function that reduces each player’s cooldown over time
-- A `do_things` function that checks the cooldown before doing anything
+Create a dummy objective named `my_cd`.
 
-### 1) Create the scoreboard objective (`load.mcfunction`)
-
-Create a dummy objective named `cooldown`.
-
-A **dummy** objective only changes when commands change it.
+A dummy objective only changes when commands change it.
 
 ```mcfunction:load.mcfunction
-scoreboard objectives add cooldown dummy
-function <namespace>:tick
+scoreboard objectives add my_cd dummy
 ```
 
-### 2) Decrease the cooldown every tick (`tick.mcfunction`)
+### 2) Create the `tick` function.
 
-In your `tick` function, schedule the next run, then reduce the `cooldown`
-score by `1` for any player who has `cooldown` ≥ 1
+In your `tick` function which runs every tick, reduce the `my_cd`
+score by 1 for any player who has `my_cd` ≥ 1
 
 ```mcfunction:tick.mcfunction
-# Run this function again next tick
-schedule function <namespace>:tick 1t
-# Reduce cooldown for players who are on cooldown
-execute as @a[scores={cooldown=1..}] run scoreboard players remove @s cooldown 1
+execute as @a[scores={my_cd=1..}] run scoreboard players remove @s my_cd 1
 ```
 
-### 3) Check the cooldown before running the action (`do_things.mcfunction`)
+### 3) Create the action function (`do_things.mcfunction`)
 
-In the function that performs the action, check the executor’s `cooldown` score.
+In this function, check the executor’s `my_cd` score.
 - If the score is 1 or higher, stop the function and tell the player.
 - If the score is 0 (or not set), set a new cooldown value and continue.
 
 ```mcfunction:do_things.mcfunction
 # If the player is still on cooldown, stop here
-execute if score @s cooldown matches 1.. run return run tellraw @s {"text":"On cooldown!"}
+execute if score @s my_cd matches 1.. run return run tellraw @s {"text":"On cooldown!"}
 # Set the cooldown to 5 seconds (100 ticks)
-scoreboard players set @s cooldown 100
+scoreboard players set @s my_cd 100
+# Do your stuff here
 tellraw @s {"text":"Action performed!"}
 ```
 
