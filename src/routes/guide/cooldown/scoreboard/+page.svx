@@ -64,17 +64,8 @@ scoreboard players set @s cooldown 100
 tellraw @s {"text":"Action performed!"}
 ```
 
-:::warning
-This function assumes it runs **as** the player (so `@s` is the player).
-If you call it in a different execution context, the scores will be stored on the wrong entity.
-:::
-
 ## Testing
-- Run `/reload`
-- Run `/function <namespace>:do_things`
 
-You should see `Used ability!`. If you run the command again before 5 seconds pass,
-you should see `On cooldown!`.
-
-To track more than one cooldown, create additional objectives (for example, `dash_cd`,
- `teleport_cd`) and use the same logic for each one.
+1. Run `/reload`.
+2. Run `/function <namespace>:do_things`.
+3. Run it again before 5 second passes to confirm it prints `On cooldown!`.

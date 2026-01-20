@@ -59,11 +59,6 @@ tellraw @s {"text":"Action performed!"}
 ```
 
 :::warning
-This function assumes it runs **as** the player (so `@s` is the player).
-If you call it in a different execution context, the scores will be stored on the wrong entity.
-:::
-
-:::warning
 Avoid changing the world’s `gametime`, your cooldown math can produce incorrect results and may
 let players bypass cooldowns or get stuck on cooldown.
 
@@ -73,3 +68,9 @@ let players bypass cooldowns or get stuck on cooldown.
 When players stuck on cooldown (most likely `gametime` being modified),
 you can use the `/scoreboard players reset @a <your_cooldown>` command to reset the cooldown for all player.
 :::
+
+## Testing
+
+1. Run `/reload`.
+2. Run `/function <namespace>:do_things`.
+3. Run it again before 5 second passes to confirm it prints `On cooldown!`.

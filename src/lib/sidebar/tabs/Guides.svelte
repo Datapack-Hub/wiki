@@ -44,7 +44,7 @@
   import IconCat from "~icons/tabler/cat";
   import IconClock from "~icons/tabler/clock";
   import IconStar from "~icons/tabler/star";
-  import IconWorld from "~icons/tabler/world";
+  import IconHourglass from "~icons/tabler/hourglass-empty";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -74,13 +74,13 @@
     page="/guide/adding-new-features/custom-items/models" />
 </SidebarCategory>
 
-<SidebarCategory name="Cooldown checks" icon={IconClock}>
-  <SidebarPage label="Introduction" icon={IconClock} page="/guide/cooldown" />
+<SidebarCategory name="Cooldown Checks" icon={IconHourglass}>
+  <SidebarPage label="Summary" icon={IconPennant} page="/guide/right-click" />
 
   <SidebarHeading label="Techniques" />
   <SidebarPage label="Scoreboard" icon={IconScoreboard} page="/guide/cooldown/scoreboard" />
   <SidebarPage label="Advancement" icon={IconStar} page="/guide/cooldown/advancement" />
-  <SidebarPage label="Gametime" icon={IconWorld} page="/guide/cooldown/gametime" />
+  <SidebarPage label="Gametime" icon={IconClock} page="/guide/cooldown/gametime" />
 </SidebarCategory>
 
 <SidebarCategory name="Right Click Detection" icon={IconMouse}>

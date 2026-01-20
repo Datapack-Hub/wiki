@@ -59,7 +59,6 @@ This function runs once per tick for players who do not have the advancement gra
 ```mcfunction:my_cd.mcfunction
 # Reduce the cooldown by 1 tick
 scoreboard players remove @s my_cd 1
-
 # Keep the advancement un-granted while the cooldown is active
 execute if score @s my_cd matches 1.. run advancement revoke @s only <namespace>:my_cd
 ```
@@ -89,21 +88,8 @@ advancement revoke @s only <namespace>:my_cd
 tellraw @s {"text":"Action performed!"}
 ```
 
-:::warning
-
-This function assumes it runs **as** the player (so `@s` is the player).
-If you call it in a different execution context, the scores will be stored on the wrong entity.
-
-:::
-
 ## Testing
 
 1. Run `/reload`.
 2. Run `/function <namespace>:do_things`.
 3. Run it again before 5 second passes to confirm it prints `On cooldown!`.
-
-To add another cooldown, repeat the same pattern with:
-
-- a new scoreboard objective (for example, `dash_cd`)
-- a new tick advancement (for example, `<namespace>:dash_cd`)
-- a new countdown function (for example, `<namespace>:dash_cd`)
