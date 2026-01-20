@@ -75,7 +75,7 @@
 </SidebarCategory>
 
 <SidebarCategory name="Cooldown Checks" icon={IconHourglass}>
-  <SidebarPage label="Summary" icon={IconPennant} page="/guide/right-click" />
+  <SidebarPage label="Summary" icon={IconPennant} page="/guide/cooldown" />
 
   <SidebarHeading label="Techniques" />
   <SidebarPage label="Scoreboard" icon={IconScoreboard} page="/guide/cooldown/scoreboard" />
