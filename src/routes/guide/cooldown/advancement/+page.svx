@@ -22,8 +22,8 @@ the amount of work your datapack does when most players are not on cooldown.
 ## What you will build
 
 - A `my_cd` scoreboard objective to store the cooldown value (in ticks).
-- A tick advancement (`<namespace>:my_cd`) that runs a tick function.
-- A `<namespace>:my_cd` function that counts the cooldown down.
+- A tick advancement (`<namespace>:my_cd_adv`) that runs a tick function.
+- A `<namespace>:reduce_my_cd` function that counts the cooldown down.
 - A `<namespace>:do_things` function that checks the cooldown before running your action.
 
 :::tip
