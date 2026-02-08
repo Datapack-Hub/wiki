@@ -69,7 +69,6 @@ item:
 
 `minecraft:stick` can be any item you want. All custom items need to be based on
 an existing item. We do not yet have the functionality to create our own item
-IDs. However, we can make use of the `custom_model_data` (or `custom_model` in
-recent snapshots) component to change the model or texture of the item.
+IDs. However, we can make use of the `item_model` component to change the model or texture of an item as explained in [this guide](/guide/adding-new-features/custom-items/models).
 
 :::

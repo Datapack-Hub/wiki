@@ -27,7 +27,7 @@ function in chat, all the commands in the function will have the same context as
 if you ran them in chat.
 
 Functions ran by the game, for instance tick, load, and scheduled functions,
-will have the follwing context:
+will have the following context:
 
 - the executor is the game server. If you use `@s` in a command, it will not
   refer to any entity.
