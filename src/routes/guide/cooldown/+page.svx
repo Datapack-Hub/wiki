@@ -1,0 +1,45 @@
+---
+title: Cooldown System
+description: Learn how to create and check cooldown timers using several common methods.
+version: 1.21.11
+---
+
+# Cooldown checks
+
+A **cooldown** prevents something from running too often. In a datapack,
+the “something” is usually a function or command that you run when a player
+performs an action.
+
+For example, you might detect when a player uses an item (for example, with
+an advancement) and run a `do_things` function. A cooldown ensures `do_things`
+only runs again after a set amount of time has passed.
+
+:::info
+
+In this guide, cooldown values are measured in **ticks** (1 tick = 1/20 second).
+The value represents how many ticks must pass after the cooldown function runs.
+For example, a cooldown of `1` means the action becomes available again on the next tick.
+
+:::
+
+Here are some common ways to implement cooldowns:
+
+## [Scoreboard-based cooldown](/guide/cooldown/scoreboard)
+
+Use a scoreboard objective to store how much time remaining until the cooldown expires.
+
+This method works well for small datapacks, or when you only need a few different cooldowns.
+
+## [Advancement-based cooldown](/guide/cooldown/advancement)
+
+Use advancement to tick the cooldown.
+
+This method only ticks the cooldown while the player is on cooldown, making it ideal
+for performance-sensitive projects.
+
+## [Gametime-based cooldown](/guide/cooldown/gametime)
+
+Use the world’s gametime to measure elapsed time.
+
+This is a non-ticking approach that works well for large datapacks or any setup
+that needs many cooldown timers.
