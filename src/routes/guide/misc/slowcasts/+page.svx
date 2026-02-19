@@ -132,7 +132,7 @@ execute as @e[type=!player,type=!marker,dx=0] positioned ~-.99 ~-.99 ~-.99 if en
 
 tp ~ ~ ~
 
-execute if score slowcast.steps temp matches 1.. positioned ^ ^ ^.1 run function <namespace>:step
+execute if score steps temp matches 1.. positioned ^ ^ ^.1 run function <namespace>:step
 ```
 
 The hit function called in the hit detection does whatever you want it to do
