@@ -8,7 +8,7 @@ description:
 # Credits
 
 The Datapack Wiki is managed by [Datapack Hub](https://datapackhub.net), based
-on an original design and idea by [Aandeel](https://aandeel.co.uk). All of the
+on an original design and idea by [Aandeel](https://x.com/aandeel_). All of the
 content on this wiki is made possible thanks to the dedication of our awesome
 contributors! You can contribute to this wiki on our GitHub - click the `Edit`
 button on any page.
@@ -19,7 +19,7 @@ These people run and develop the site, making any and all important decisions.
 
 - [Silabear](https://silabear.carrd.co)
 - [Cobblestone](https://madefrom.rocks)
-- [Aandeel](https://aandeel.co.uk/)
+- [Aandeel](https://x.com/aandeel_)
 
 ### Editors
 
