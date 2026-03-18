@@ -103,7 +103,7 @@ as what versions it works in. `/datapack create` made this file automatically, b
 {
   "pack": {
     "description": "This is an example datapack",
-    "pack_format": 88
+    "pack_format": 94
   }
 }
 ```
