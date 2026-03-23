@@ -25,7 +25,8 @@
   const images = $derived(getImages(captcha));
 </script>
 
-<div class="top-0 left-0 z-60 fixed flex justify-center items-center bg-black/50 p-4 w-screen h-screen">
+<div
+  class="top-0 left-0 z-60 fixed flex justify-center items-center bg-black/50 backdrop-blur-sm p-4 w-screen h-screen">
   <form
     method="POST"
     action="/?/solveCaptcha"
