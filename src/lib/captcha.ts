@@ -20,6 +20,13 @@ const captchas = [
     keepImageOrder: true,
     correct: [false, false, false, true, true, false, false, false, false],
   },
+  {
+    name: "pregnancy",
+    preheading: "Select all squares with",
+    heading: "Flyrr.",
+    keepImageOrder: true,
+    correct: [false, true, true, false, true, true, false, true, true],
+  },
 ];
 
 function shuffle(arr: any[]) {
