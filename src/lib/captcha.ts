@@ -11,7 +11,7 @@ function shuffle(arr: any[]) {
 export const getRandomCaptcha = async () => {
   const captcha = captchas[Math.floor(Math.random() * captchas.length)];
   return {
-    captcha: captcha.name,
+    name: captcha.name,
     images: shuffle(
       Array.from({ length: 9 }, (_, i) => ({
         id: i,

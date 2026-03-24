@@ -16,7 +16,7 @@
       action="/?/solveCaptcha"
       class="space-y-6 bg-stone-800 p-4 border border-stone-700 rounded-md w-sm max-h-full overflow-scroll"
       use:enhance>
-      <input type="hidden" name="captcha" value={captcha.captcha} />
+      <input type="hidden" name="name" value={captcha.name} />
       <input type="hidden" name="redirectTo" value={location.href} />
       <div>
         <p class="mx-2 text-stone-400">Select all squares with a</p>
@@ -28,7 +28,7 @@
             <img
               src={image.url}
               alt=""
-              class="opacity-25 border border-stone-600 rounded-md h-auto object-cover aspect-square" />
+              class="border border-stone-600 rounded-md h-auto object-cover aspect-square" />
             <input type="checkbox" name={`checked-${image.id}`} class="peer hidden" />
             <IconCheck
               class="hidden peer-checked:block top-0 left-0 absolute bg-stone-800 border border-stone-600 rounded-md size-6 text-orange-400 -translate-2" />

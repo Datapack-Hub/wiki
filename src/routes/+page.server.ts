@@ -2,12 +2,12 @@ import { getCorrect } from "$lib/captcha";
 import { redirect, type Actions } from "@sveltejs/kit";
 
 const isCorrect = async (formData: FormData) => {
-  const captcha = formData.get("captcha");
-  if (!captcha) return false;
+  const name = formData.get("name");
+  if (!name) return false;
 
   const checked = Array.from({ length: 9 }, (_, i) => formData.get(`checked-${i}`) === "on");
 
-  const correct = await getCorrect(captcha.toString());
+  const correct = await getCorrect(name.toString());
   if (!correct) return false;
 
   return checked.every((e, i) => e === correct[i]);
