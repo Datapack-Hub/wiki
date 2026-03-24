@@ -19,16 +19,13 @@
       <input type="hidden" name="name" value={captcha.name} />
       <input type="hidden" name="redirectTo" value={location.href} />
       <div>
-        <p class="mx-2 text-stone-400">Select all squares with a</p>
-        <h1 class="mx-2 font-bold text-2xl">valid Jigsaw Block placement.</h1>
+        <p class="mx-2 text-stone-400">{captcha.preheading}</p>
+        <h1 class="mx-2 font-bold text-2xl">{captcha.heading}</h1>
       </div>
       <div class="gap-1.5 grid grid-cols-3">
         {#each captcha.images as image}
           <label class="relative bg-stone-900 rounded-md has-checked:scale-85 transition cursor-pointer">
-            <img
-              src={image.url}
-              alt=""
-              class="border border-stone-600 rounded-md h-auto object-cover aspect-square" />
+            <img src={image.url} alt="" class="border border-stone-600 rounded-md h-auto object-cover aspect-square" />
             <input type="checkbox" name={`checked-${image.id}`} class="peer hidden" />
             <IconCheck
               class="hidden peer-checked:block top-0 left-0 absolute bg-stone-800 border border-stone-600 rounded-md size-6 text-orange-400 -translate-2" />
