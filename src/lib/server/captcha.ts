@@ -8,7 +8,7 @@ export type Captcha = {
   }[];
 };
 
-const captchas = [
+const captchas: { name: string; preheading: string; heading: string; shuffle?: boolean; correct: boolean[] }[] = [
   {
     name: "jigsaw",
     preheading: "Select all squares with a",
