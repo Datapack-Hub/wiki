@@ -34,6 +34,13 @@ const captchas: { name: string; preheading: string; heading: string; shuffle?: b
     heading: "Flyrr.",
     correct: [false, true, true, false, true, true, false, true, true],
   },
+  {
+    name: "creeper",
+    preheading: "Select all squares with a",
+    heading: "Creeper.",
+    shuffle: true,
+    correct: [false, true, true, true, true, true, false, true, false],
+  },
 ];
 
 function shuffle(arr: any[]) {
