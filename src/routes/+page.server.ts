@@ -1,25 +1,21 @@
-import { getCorrect } from "$lib/captcha";
-import { redirect, type Actions } from "@sveltejs/kit";
-
-const isCorrect = async (formData: FormData) => {
-  const name = formData.get("name");
-  if (!name) return false;
-
-  const checked = Array.from({ length: 9 }, (_, i) => formData.get(`checked-${i}`) === "on");
-
-  const correct = await getCorrect(name.toString());
-  if (!correct) return false;
-
-  return checked.every((e, i) => e === correct[i]);
-};
+import { getCorrect } from "$lib/server/captcha";
+import { fail, type Actions } from "@sveltejs/kit";
 
 export const actions = {
-  solveCaptcha: async ({ cookies, request, url }) => {
-    const formData = await request.formData();
-    if (await isCorrect(formData)) {
-      cookies.set("captchaSolved", "true", { path: "/" });
-    }
-    const redirectTo = formData.get("redirectTo");
-    if (redirectTo) redirect(303, redirectTo.toString());
+  solveCaptcha: async ({ cookies, request }) => {
+    const data = await request.formData();
+    const name = data.get("name")?.toString();
+    const checked = Array.from({ length: 9 }, (_, i) => data.get(`checked-${i}`) === "on");
+
+    if (!name) return fail(400, { name, missing: true });
+    if (!checked) return fail(400, { checked, missing: true });
+
+    const correct = await getCorrect(name);
+
+    if (!correct || !checked.every((e, i) => e === correct[i])) return fail(400, { incorrect: true });
+
+    cookies.set("captchaSolved", "true", { path: "/" });
+
+    return { success: true };
   },
 } satisfies Actions;

@@ -33,9 +33,10 @@
 </script>
 
 <div class="flex flex-col h-full min-h-dvh font-lexend text-stone-200">
-  {#if !data.captchaSolved}
-    <Captcha />
-  {/if}
+  <Captcha
+    solved={data.captchaSolved}
+    fetchCaptcha={async (exclude: string) =>
+      await fetch(exclude ? `/captcha?exclude=${exclude}` : "/captcha").then(e => e.json())} />
   <Navbar />
   <div class="flex w-full h-full">
     <Sidebar />

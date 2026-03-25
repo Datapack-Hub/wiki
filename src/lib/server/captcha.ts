@@ -1,30 +1,37 @@
+export type Captcha = {
+  name: string;
+  preheading: string;
+  heading: string;
+  images: {
+    id: number;
+    url: string;
+  }[];
+};
+
 const captchas = [
   {
     name: "jigsaw",
     preheading: "Select all squares with a",
     heading: "valid Jigsaw Block placement.",
-    keepImageOrder: false,
+    shuffle: true,
     correct: [true, true, true, true, true, true, false, false, false],
   },
   {
     name: "typo",
     preheading: "Select all squares with a",
     heading: "typo.",
-    keepImageOrder: true,
     correct: [true, false, true, true, false, true, false, false, false],
   },
   {
     name: "herobrine",
     preheading: "Select all squares with",
     heading: "Herobrine.",
-    keepImageOrder: true,
     correct: [false, false, false, true, true, false, false, false, false],
   },
   {
     name: "pregnancy",
     preheading: "Select all squares with",
     heading: "Flyrr.",
-    keepImageOrder: true,
     correct: [false, true, true, false, true, true, false, true, true],
   },
 ];
@@ -37,18 +44,20 @@ function shuffle(arr: any[]) {
   return arr;
 }
 
-export const getRandomCaptcha = async () => {
-  const captcha = captchas[Math.floor(Math.random() * captchas.length)];
+export const getRandomCaptcha = async (exclude?: string) => {
+  const filteredCaptchas = captchas.filter(e => e.name !== exclude);
+  const captcha = filteredCaptchas[Math.floor(Math.random() * filteredCaptchas.length)];
   const unshuffledImages = Array.from({ length: 9 }, (_, i) => ({
     id: i,
     url: `/captcha/images/${captcha.name}/${i}.png`,
   }));
+
   return {
     name: captcha.name,
     preheading: captcha.preheading,
     heading: captcha.heading,
-    images: captcha.keepImageOrder ? unshuffledImages : shuffle(unshuffledImages),
-  };
+    images: captcha.shuffle ? shuffle(unshuffledImages) : unshuffledImages,
+  } satisfies Captcha;
 };
 
 export const getCorrect = async (name: string) => captchas.find(e => e.name === name)?.correct;
