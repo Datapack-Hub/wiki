@@ -31,8 +31,8 @@ const captchas: { name: string; preheading: string; heading: string; shuffle?: b
   {
     name: "pregnancy",
     preheading: "Select all squares with",
-    heading: "Flyrr.",
-    correct: [false, true, true, false, true, true, false, true, true],
+    heading: "abusive parents.",
+    correct: [false, true, true, true, true, true, true, true, true],
   },
   {
     name: "creeper",
