@@ -1,0 +1,74 @@
+---
+title: Worldclock-based cooldown
+description: Learn how to create and check cooldown timers using the world clock.
+version: 26.1
+---
+
+# Worldclock-based cooldown
+
+A worldclock cooldown stores a timestamp of when an action was last used in a scoreboard objective.
+Your datapack compares this stored time with the current time to determine if the cooldown has ended.
+
+This is a non-ticking approach: your datapack only does work when the player
+tries to use the action. This makes it a good fit for larger datapacks with many
+different cooldowns to check.
+
+## What you will build
+- A `cooldown.json` clock in the world clock folder.
+- A `timespan` scoreboard objective that stores when the action was last used.
+- A `<namespace>:check_cooldown` function that checks whether enough time has passed.
+
+### 1) Setup the world clock
+In your datapack namespace, create a folder named `world_clock`. Then, create a file named
+`cooldown.json` inside the folder.
+```json:cooldown.json
+{}
+```
+Restart your world/server, then run `/time of <namespace>:cooldown query time` to verify.
+(`/reload` won't work).
+
+### 2) Create the scoreboard objectives
+
+The `timespan` scoreboard objective stores the last time the action was used in the `cooldown` world clock.
+
+```mcfunction
+scoreboard objectives add timespan dummy
+```
+
+### 3) Create the action function (`do_things.mcfunction`)
+
+When you trigger this function, this is what happens:
+
+- Store the current time in the `#current` score.
+- Subtract `timespan` from `#current` to get ticks since last use.
+- Subtract the cooldown length from the result.
+- If the result is negative, the player is still on cooldown, return fail.
+- Otherwise, store the current time into `timespan` and return 1 (success).
+
+```mcfunction:cooldown.mcfunction
+# Store the current timespan
+execute store result score #current timespan run time of <namespace>:cooldown query time
+# ticks since last use = #current - timespan
+scoreboard players operation #current timespan -= @s timespan
+# cooldown = ticks since last use - cooldown duration (change 100 to your cooldown length in ticks)
+scoreboard players remove #current timespan 100
+# If the result is negative, the cooldown is still active, return fail.
+execute if score #current timespan matches ..-1 run return fail
+# Cooldown finished: save the current gametime as the new last_used timestamp
+execute store result score @s timespan run time of <namespace>:cooldown query time
+# Return success
+return 1
+```
+
+:::warning
+
+Do not modify the `cooldown` world clock; it will break the cooldown calculations.
+
+:::
+
+## Testing
+
+Check the cooldown in your function:
+```mcfunction:my_function
+execute if function <namespace>:cooldown run tellraw @a {"text": "Cooldown Ready!"}
+```

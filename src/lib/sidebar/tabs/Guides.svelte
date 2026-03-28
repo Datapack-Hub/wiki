@@ -80,7 +80,7 @@
   <SidebarHeading label="Techniques" />
   <SidebarPage label="Scoreboard" icon={IconScoreboard} page="/guide/cooldown/scoreboard" />
   <SidebarPage label="Advancement" icon={IconStar} page="/guide/cooldown/advancement" />
-  <SidebarPage label="Gametime" icon={IconClock} page="/guide/cooldown/gametime" />
+  <SidebarPage label="Worldclock" icon={IconClock} page="/guide/cooldown/worldclock" />
 </SidebarCategory>
 
 <SidebarCategory name="Right Click Detection" icon={IconMouse}>

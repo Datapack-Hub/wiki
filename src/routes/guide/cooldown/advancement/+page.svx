@@ -1,8 +1,8 @@
 ---
 title: Advancement-based cooldown
-description: Learn how to create and check cooldown timer using an advancement and a
+description: Learn how to create and check a cooldown timer using an advancement and a
 scoreboard objective.
-version: 1.21.11
+version: 26.1
 ---
 
 # Advancement-based cooldown
@@ -24,17 +24,17 @@ the amount of work your datapack does when most players are not on cooldown.
 - A `my_cd` scoreboard objective to store the cooldown value (in ticks).
 - A tick advancement (`<namespace>:my_cd_adv`) that runs a tick function.
 - A `<namespace>:reduce_my_cd` function that counts the cooldown down.
-- A `<namespace>:do_things` function that checks the cooldown before running your action.
+- A `<namespace>:cooldown` function that checks the cooldown before running your action.
 
 :::tip
 
-If you don't know what an advancement is, learn about it ([Advancement](/wiki/files/advancements))
+To learn about advancements, see the [Advancement guide](/wiki/files/advancements).
 
 :::
 
-## 1) Create the tick advancement (`my_cd_adv.json`)
+### 1) Create the tick advancement (`my_cd_adv.json`)
 
-Create an advancement that triggers on `minecraft:tick` and runs `<namespace>:reduce_my_cd`
+Create an advancement that triggers every tick and runs `<namespace>:reduce_my_cd`
 as a reward.
 
 ```json:my_cd_adv.json
@@ -49,7 +49,9 @@ as a reward.
   }
 }
 ```
-Function `<namespace>:reduce_my_cd` only runs when this advancement is not granted.
+The function `<namespace>:reduce_my_cd` only runs when the advancement
+is not granted. This happens because advancements only grant their
+rewards to players who don't already have them.
 
 ### 2) Create the scoreboard objective.
 
@@ -62,38 +64,39 @@ Create a dummy objective named `my_cd` to store the cooldown value.
 
 This function runs once per tick for players who do not have the advancement granted.
 
-- While the cooldown is active (`my_cd` ≥ 1), revoke the advancement so it stays
-un-granted and keeps ticking.
+- While the cooldown is active (`my_cd` ≥ 1), revoke the advancement
+  to keep it un-granted so the tick function continues to run.
 - Reduce the score by 1 each tick.
 
-```mcfunction:my_cd.mcfunction
+```mcfunction:reduce_my_cd.mcfunction
 # Reduce the cooldown by 1 tick
 scoreboard players remove @s my_cd 1
 # Keep the advancement un-granted while the cooldown is active
 execute if score @s my_cd matches 1.. run advancement revoke @s only <namespace>:my_cd_adv
 ```
 
-### 4) Create the action function (`do_things.mcfunction`)
+### 4) Create the `cooldown` function
 
-This function checks the cooldown like this:
+This function checks the cooldown as follows:
 
-- If the score `my_cd` ≥ 1, stop and tell the player.
-- Set the cooldown to 5 seconds (100 ticks).
+- If the player's `my_cd` score ≥ 1, the cooldown has not ended, return fail.
+- Set the player's cooldown to 5 seconds (100 ticks).
 - Make `<namespace>:my_cd_adv` advancement un-granted.
 
-```mcfunction:do_things.mcfunction
-# If the player is on cooldown, stop here
-execute if score @s my_cd matches 1.. run return run tellraw @s {"text":"On cooldown!"}
-# Set the cooldown to 5 seconds (100 ticks)
+```mcfunction:cooldown.mcfunction
+# If the player is on cooldown, return fail
+execute if score @s my_cd matches 1.. run return fail
+# Reset the cooldown (change "100" to your cooldown length in ticks)
 scoreboard players set @s my_cd 100
 # Make the advancement un-granted
 advancement revoke @s only <namespace>:my_cd_adv
-# Do your stuff here
-tellraw @s {"text":"Action performed!"}
+# Return success
+return 1
 ```
 
 ## Testing
 
-1. Run `/reload`.
-2. Run `/function <namespace>:do_things`.
-3. Run it again before 5 second passes to confirm it prints `On cooldown!`.
+Check the cooldown in your function:
+```mcfunction:my_function
+execute if function <namespace>:cooldown run tellraw @a {"text": "Cooldown Ready!"}
+```
