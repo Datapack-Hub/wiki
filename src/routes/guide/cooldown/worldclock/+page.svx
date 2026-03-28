@@ -16,7 +16,7 @@ different cooldowns to check.
 ## What you will build
 - A `cooldown.json` clock in the world clock folder.
 - A `timespan` scoreboard objective that stores when the action was last used.
-- A `<namespace>:check_cooldown` function that checks whether enough time has passed.
+- A `<namespace>:cooldown` function that checks whether enough time has passed.
 
 ### 1) Setup the world clock
 In your datapack namespace, create a folder named `world_clock`. Then, create a file named
