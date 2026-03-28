@@ -8,35 +8,33 @@ export type Captcha = {
   }[];
 };
 
-const captchas: { name: string; preheading: string; heading: string; shuffle?: boolean; correct: boolean[] }[] = [
+const captchas: { name: string; prefix?: string; heading: string; shuffle?: boolean; correct: boolean[] }[] = [
   {
     name: "jigsaw",
-    preheading: "Select all squares with a",
+    prefix: "a",
     heading: "valid Jigsaw Block placement.",
     shuffle: true,
     correct: [true, true, true, true, true, true, false, false, false],
   },
   {
     name: "typo",
-    preheading: "Select all squares with a",
+    prefix: "a",
     heading: "typo.",
     correct: [true, false, true, true, false, true, false, false, false],
   },
   {
     name: "herobrine",
-    preheading: "Select all squares with",
     heading: "Herobrine.",
     correct: [false, false, false, true, true, false, false, false, false],
   },
   {
     name: "pregnancy",
-    preheading: "Select all squares with",
     heading: "abusive parents.",
     correct: [false, true, true, true, true, true, true, true, true],
   },
   {
     name: "creeper",
-    preheading: "Select all squares with a",
+    prefix: "a",
     heading: "Creeper.",
     shuffle: true,
     correct: [false, true, true, true, true, true, false, true, false],
@@ -61,7 +59,7 @@ export const getRandomCaptcha = async (exclude?: string) => {
 
   return {
     name: captcha.name,
-    preheading: captcha.preheading,
+    preheading: `Select all squares with ${captcha.prefix ?? ""}`,
     heading: captcha.heading,
     images: captcha.shuffle ? shuffle(unshuffledImages) : unshuffledImages,
   } satisfies Captcha;
