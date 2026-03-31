@@ -60,7 +60,7 @@ export const getRandomCaptcha = async (exclude?: string) => {
   const captcha = filteredCaptchas[Math.floor(Math.random() * filteredCaptchas.length)];
   const unshuffledImages = Array.from({ length: 9 }, (_, i) => ({
     id: i,
-    url: `/captcha/images/${captcha.name}/${i}.png`,
+    url: `/captchas/${captcha.name}/${i}.png`,
   }));
 
   return {
