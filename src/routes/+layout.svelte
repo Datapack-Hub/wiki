@@ -11,7 +11,6 @@
   import type { Snippet } from "svelte";
   import { innerWidth } from "svelte/reactivity/window";
   import type { PageData } from "./$types";
-  import Captcha from "$lib/Captcha.svelte";
   interface Props {
     children: Snippet;
     data: PageData;
@@ -32,15 +31,11 @@
   });
 </script>
 
-<div class="flex flex-col h-full min-h-dvh font-lexend text-stone-200">
-  <Captcha
-    solved={data.captchaSolved}
-    fetchCaptcha={async (exclude: string) =>
-      await fetch(exclude ? `/captcha?exclude=${exclude}` : "/captcha").then(e => e.json())} />
+<div class="font-lexend h-full min-h-dvh flex flex-col text-stone-200">
   <Navbar />
-  <div class="flex w-full h-full">
+  <div class="flex w-full h-[93%]">
     <Sidebar />
-    <div id="content" class="bg-stone-900 py-12 w-full min-h-dvh text-stone-200">
+    <div id="content" class="py-12 w-full min-h-dvh text-stone-200 bg-stone-900">
       {@render children()}
     </div>
   </div>
