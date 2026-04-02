@@ -6,7 +6,7 @@ type PackFormatEntry = {
   id: string;
 };
 
-export const load = (async ({ cookies }) => {
+export const load = (async () => {
   const url = "https://raw.githubusercontent.com/misode/mcmeta/summary/versions/data.min.json";
 
   const data: PackFormatEntry[] = await fetch(url).then(r => r.json());
@@ -15,6 +15,5 @@ export const load = (async ({ cookies }) => {
   return {
     packFormat: filtered[0].data_pack_version,
     gameVersion: filtered[0].id,
-    captchaSolved: (await cookies.get("captchaSolved")) === "true",
   };
 }) satisfies LayoutServerLoad;
