@@ -117,7 +117,7 @@ pages. As of the time of writing, we have the following features:
 Admonitions are a way to warnings, info or tips, or other important information
 to your page.
 
-> :::info
+:::info
 
 This is an example of an info box.
 
