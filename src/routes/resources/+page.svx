@@ -83,10 +83,12 @@ Datapacks.
 
 ## Tools
 
+<!---
 - <Highlight color="#C44500">Tool</Highlight>
   <a href="https://github.com/StickyPiston-Hosting/Easy-Map-Updater">Easy Map
   Updater</a> - A toolset for automatically updating Minecraft maps (including
   datapacks) to the latest version.
+-->
 - <Highlight color="#C44500">Tool</Highlight>
   <a href="https://weld.smithed.dev/">Weld</a> - The fastest data and resource
   pack merger in the west.
