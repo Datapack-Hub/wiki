@@ -147,6 +147,10 @@ exists.
 
 > <Highlight color="#DC2626">Highlighted Text</Highlight> like this.
 
+```js
+<Highlight color="#DC2626">Highlighted Text</Highlight>
+```
+
 ## Standardized Elements
 
 The wiki uses a few elements that are standardized across the entire wiki. Right
