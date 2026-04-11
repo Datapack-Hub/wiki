@@ -6,7 +6,7 @@ description:
   step-by-step tutorial will help you understand the basics of datapack
   creation, even if you have little coding knowledge. Start enhancing your
   Minecraft experience today!
-version: 1.21.10
+version: 1.21.11
 ---
 
 <script lang="ts">
@@ -113,8 +113,8 @@ If you're interested, here's what this file means:
 - `pack` is an object containing the metadata of the file.
   - `description` is the name of your datapack, usually along with a short
     description of what your pack does.
-  - `pack_format` tells Minecraft what versions this datapack works in. `88`
-    (or 88.0) is the latest for 1.21.10
+  - `pack_format` tells Minecraft what versions this datapack works in. `94`
+    (or 94.0) for 1.21.11 (Most recent pack_format for the latest Minecraft Release can be found at the bottom of the nav bar).
 
 
 
