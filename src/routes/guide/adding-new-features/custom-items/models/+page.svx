@@ -1,28 +1,36 @@
 ---
 title: Creating Custom Item Models and Textures
-description: "Learn how to make custom item models and textures with Minecraft Java resource packs"
-version: 1.21.11
+description:
+  "Learn how to make custom item models and textures with Minecraft Java
+  resource packs"
+version: 26.1.2
 ---
 
 # Creating Custom Item Models and Textures
 
-This guide uses the `item_model` item component to change the model and texture of items with that component. It does not replace any vanilla items. It also goes over [spawning custom models in your world as an entity](#spawning-the-items-as-entities-in-game).
+This guide uses the `item_model` item component to change the model and texture
+of items with that component. It does not replace any vanilla items. It also
+goes over
+[spawning custom models in your world as an entity](#spawning-the-items-as-entities-in-game).
 
 :::warning
 
-Before Minecraft version 1.21., `CustomModelData` was used to change the look of items. It was replaced with item models
-in Minecraft version 1.21.4, so it won't work in later versions. Item Models use a **completely different method**
+Before Minecraft version 1.21., `CustomModelData` was used to change the look of
+items. It was replaced with item models in Minecraft version 1.21.4, so it won't
+work in later versions. Item Models use a **completely different method**
 compared to Custom Model Data.
 
 :::
 
-To add custom models or textures to the game, you will need a resouce pack. If you already have a resource pack or know
-how to create one, you can skip to [Adding custom items](#adding-custom-items). If not, just continue reading.
+To add custom models or textures to the game, you will need a resouce pack. If
+you already have a resource pack or know how to create one, you can skip to
+[Adding custom items](#adding-custom-items). If not, just continue reading.
 
 ## Creating an empty resource pack
 
-Before creating your custom item, you will have to create a basic resource pack. For that, create an empty folder in
-your `minecraft/resourcepacks` directory. Create a new file in that folder called `pack.mcmeta` and add the following
+Before creating your custom item, you will have to create a basic resource pack.
+For that, create an empty folder in your `minecraft/resourcepacks` directory.
+Create a new file in that folder called `pack.mcmeta` and add the following
 text:
 
 ```json:minecraft/resourcepacks/my_pack/pack.mcmeta
@@ -34,23 +42,27 @@ text:
 }
 ```
 
-Add a new folder named `assets`, and a folder inside with the name of your **namespace**. This should be the name of
-your resource pack, in small letters and with underscores (**\_**) as spaces.
+Add a new folder named `assets`, and a folder inside with the name of your
+**namespace**. This should be the name of your resource pack, in small letters
+and with underscores (**\_**) as spaces.
 
 Now to the fun part.
 
 ## Adding custom items
 
-You will now have to decide it you want a simple, [2d item](#adding-custom-2d-items) (like for example a Totem of
-Undying) or a custom [3d model](#adding-custom-3d-models).
+You will now have to decide it you want a simple,
+[2d item](#adding-custom-2d-items) (like for example a Totem of Undying) or a
+custom [3d model](#adding-custom-3d-models).
 
 ### Adding custom **2d** items
 
-To add a custom texture, make sure it's a **png** and place it in the `assets/namespace/textures/item` directory. You
-can give it any name, but it makes sense to keep it lowercase and without spaces. Your texture will also have to have a
-16x16 size.
+To add a custom texture, make sure it's a **png** and place it in the
+`assets/namespace/textures/item` directory. You can give it any name, but it
+makes sense to keep it lowercase and without spaces. Your texture will also have
+to have a 16x16 size.
 
-Now, you will add the default Minecraft model for 2-dimensional items to your custom item. To do that, create a file in
+Now, you will add the default Minecraft model for 2-dimensional items to your
+custom item. To do that, create a file in
 `assets/namespace/models/item/your_item.json` with the following contents:
 
 ```json:assets/namespace/models/item/your_item.json
@@ -62,26 +74,30 @@ Now, you will add the default Minecraft model for 2-dimensional items to your cu
 }
 ```
 
-You can now continue reading at [Adding the `item_model`](#adding-the-item_model)
+You can now continue reading at
+[Adding the `item_model`](#adding-the-item_model)
 
 ### Adding custom 3d models
 
-For creating your custom model, I recommend using [Blockbench](https://www.blockbench.net/). It's the most popular
-Minecraft model creation tool and even used by Minecraft itself. Export both the texture and the model as a
-`Block/Item model`.
+For creating your custom model, I recommend using
+[Blockbench](https://www.blockbench.net/). It's the most popular Minecraft model
+creation tool and even used by Minecraft itself. Export both the texture and the
+model as a `Block/Item model`.
 
-When you have your model and texture file, you will have to place your model in the
-`assets/namespace/models/item/your_model.json` folder and your texture in
-`assets/namespace/textures/item/your_item.json`. You can use any name, but it makes sense to keep it lowercase and with
-underscores (**\_**) instead of spaces.
+When you have your model and texture file, you will have to place your model in
+the `assets/namespace/models/item/your_model.json` folder and your texture in
+`assets/namespace/textures/item/your_item.json`. You can use any name, but it
+makes sense to keep it lowercase and with underscores (**\_**) instead of
+spaces.
 
 - Textures
 
 Your model file will now probably look like this:
 
-![Image](https://i.imgur.com/O0YBPuU.png)
+![JSON of the model file](https://i.imgur.com/O0YBPuU.png)
 
-Replace all the values inside the `textures` bracket with `namespace:item/your_texture`.
+Replace all the values inside the `textures` bracket with
+`namespace:item/your_texture`.
 
 :::warning
 
@@ -91,8 +107,8 @@ Do **not** add `.png`!
 
 ### Adding the `item_model`
 
-Next, you'll have to make the item available in Minecraft. To do this, you create this file in
-`assets/namespace/items/your_item.json`:
+Next, you'll have to make the item available in Minecraft. To do this, you
+create this file in `assets/namespace/items/your_item.json`:
 
 ```json:assets/namespace/items/your_item.json
 {
@@ -113,8 +129,9 @@ You can now add your texture to any item using this command:
 
 :::info
 
-This command can also be used to change the texture of any item to another vanilla item texture without a resource pack
-nor a data pack using a command like this:
+This command can also be used to change the texture of any item to another
+vanilla item texture without a resource pack nor a data pack using a command
+like this:
 
 ```mcfunction
 /give @s <any_item> [item_model="minecraft:vanilla_item"]
@@ -124,12 +141,16 @@ nor a data pack using a command like this:
 
 ## Spawning the items as entities in-game
 
-You can spawn your created models in-game using an entity called an **Item Display**. An item display does what the name suggests: It displays items. And since you can change the model and texture of an item, you can also change them on an item display. You can spawn an item displays with your custom model/texture like this:
+You can spawn your created models in-game using an entity called an **Item
+Display**. An item display does what the name suggests: It displays items. And
+since you can change the model and texture of an item, you can also change them
+on an item display. You can spawn an item displays with your custom
+model/texture like this:
 
 ```mcfunction
 /summon item_display ~ ~ ~ {item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"namespace:your_item"}}}
 ```
 
-:::info
-In Minecraft: Java Edition, there is no good or simple way to animate your models. The best you can do is using multiple item displays and teleporting them/changing their `transformation` data.
-:::
+:::info In Minecraft: Java Edition, there is no good or simple way to animate
+your models. The best you can do is using multiple item displays and teleporting
+them/changing their `transformation` data. :::

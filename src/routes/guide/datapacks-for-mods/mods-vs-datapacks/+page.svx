@@ -2,7 +2,7 @@
 title: MCFunction vs Coding
 description:
   "Learn the differences between using MCFunctions and traditional coding."
-version: 1.21.11
+version: 26.1.2
 ---
 
 # Mods vs Datapacks
@@ -15,9 +15,11 @@ integrated with the base game and rely on the server environment.
 
 ## What is a mod?
 
-Simply put, mods are modifications to the base game, which includes [Java code mods](https://minecraft.wiki/w/Mod),
-datapacks, resource packs and Bukkit plugins. In this guide, we will only address two of these topics, Java code mods
-and datapacks. _For the remainder of this guide, when you read mod, we will be referring to Java code mods._
+Simply put, mods are modifications to the base game, which includes
+[Java code mods](https://minecraft.wiki/w/Mod), datapacks, resource packs and
+Bukkit plugins. In this guide, we will only address two of these topics, Java
+code mods and datapacks. _For the remainder of this guide, when you read mod, we
+will be referring to Java code mods._
 
 ## Datapacks
 
@@ -28,9 +30,14 @@ or block displays. For these reasons, datapacks make an excellent addition for a
 vanilla server or even some modded servers, who don't want to worry about
 incompatibilities or dealing with broken plugins/mods.
 
-Datapacks can be used to define custom world generation, [advancements](/wiki/files/advancements), enchantments, loot
-tables, [recipes](/wiki/files/recipes) and many contain [command functions](/wiki/files/functions); small scripts which run Minecraft commands (with some small caveats). Datapacks use these functions to create unique mod-like features or add interactivity in maps. Many impressive datapacks can be so well made they are confused for mods, which is
-where some of the confusion between them and mods stem from.
+Datapacks can be used to define custom world generation,
+[advancements](/wiki/files/advancements), enchantments, loot tables,
+[recipes](/wiki/files/recipes) and many contain
+[command functions](/wiki/files/functions); small scripts which run Minecraft
+commands (with some small caveats). Datapacks use these functions to create
+unique mod-like features or add interactivity in maps. Many impressive datapacks
+can be so well made they are confused for mods, which is where some of the
+confusion between them and mods stem from.
 
 Due to how they work, datapacks can be more limited compared to mods. New
 features have to be added by Mojang themselves before they can be used in

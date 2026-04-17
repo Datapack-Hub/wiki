@@ -1,7 +1,7 @@
 ---
 title: Write Optimized Code
 description: "Learn how to optimize a minecraft datapack."
-version: 1.21.11
+version: 26.1.2
 ---
 
 # How To Write Optimized Code
@@ -12,25 +12,25 @@ seamless user experience, you should write optimized code.
 ## Identify the Bottlenecks
 
 First step to writing optimized code is to identify the bottlenecks. A
-bottleneck is a specific part of your code that hinders performance.
-Then, you need to replace performance heavy implementations with faster
-variations.
+bottleneck is a specific part of your code that hinders performance. Then, you
+need to replace performance heavy implementations with faster variations.
 Below - we will identify and address every major performance bottleneck.
 
 ## Forking
 
-:::info
-The concept of forking is explained on [the execute page](/wiki/command/execute#forking) itself.
+:::info 
+The concept of forking is explained on
+[the execute page](/wiki/command/execute#forking) itself.
 :::
 
-Forking is the *biggest* performance bottleneck.
-Some execute subcommands like `execute as` fork the command execution into
-multiple branches, executing every branch one by one.
+Forking is the _biggest_ performance bottleneck. Some execute subcommands like
+`execute as` fork the command execution into multiple branches, executing every
+branch one by one.
 
 ### Minimize the Amount of Forking
 
-If you want to run multiple commands using the same selector and condition,
-you should avoid writing code in the following way:
+If you want to run multiple commands using the same selector and condition, you
+should avoid writing code in the following way:
 
 ```mcfunction:tick.mcfunction
 execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run say I acquired my first apple
@@ -39,7 +39,8 @@ execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run t
 ```
 
 This code above **forks multiple times** for the same selector and condition.
-This is very inefficient. Instead, you should fork once, and call a function. Like this:
+This is very inefficient. Instead, you should fork once, and call a function.
+Like this:
 
 ```mcfunction:tick.mcfunction
 execute as @a[tag=!already_acquired_apple] if items entity @s weapon apple run function acquired_apple
@@ -64,9 +65,9 @@ arguments.
 
 ### Nested Forking
 
-Sometimes, every branch that was already forked, gets forked again. That is called
-nested forking. If forking is nested, the total amount of branches is going to
-be equal to `<branches from first fork> * <branches from second fork>`.
+Sometimes, every branch that was already forked, gets forked again. That is
+called nested forking. If forking is nested, the total amount of branches is
+going to be equal to `<branches from first fork> * <branches from second fork>`.
 
 ```mcfunction
 execute as @e[type=pig] at @e[type=cow] run say hello
@@ -74,24 +75,24 @@ execute as @e[type=pig] at @e[type=cow] run say hello
 
 Let's explore an example where in a world with 100 pigs and 200 cows you run the
 command above. Since the execution forks twice, first after `as @e` and then
-after `at @e` that leads to *nested forking*. Resulting in a total of `100 * 200
-= 20,000` branches. That is equivalent of 20.000 `say` commands ran at the same
-time.
+after `at @e` that leads to _nested forking_. Resulting in a total of
+`100 * 200 = 20,000` branches. That is equivalent of 20.000 `say` commands ran
+at the same time.
 
-Notice how rapidly that amplifies the amount of commands. This is precisely
-why you should always keep track of execute subcommands that fork the execution,
-because even the smallest mistake can cause *exponential* growth.
+Notice how rapidly that amplifies the amount of commands. This is precisely why
+you should always keep track of execute subcommands that fork the execution,
+because even the smallest mistake can cause _exponential_ growth.
 
-That also means, you shouldn't [ID search](/guide/nbt-and-scores/player-id-system#find-the-playerentity-with-a-specific-id)
-for all entities. ID search itself already forks once. Therefore, running an ID search
-for all entities, would result in nested forking.
+That also means, you shouldn't
+[ID search](/guide/nbt-and-scores/player-id-system#find-the-playerentity-with-a-specific-id)
+for all entities. ID search itself already forks once. Therefore, running an ID
+search for all entities, would result in nested forking.
 
 ## Slow Operations
 
-[Macro functions](/wiki/files/functions#macro-functions)
-and
-entity / block [NBT](/wiki/nbt-scoreboards/nbt) operations
-are two of the slowest operations in the game.
+[Macro functions](/wiki/files/functions#macro-functions) and entity / block
+[NBT](/wiki/nbt-scoreboards/nbt) operations are two of the slowest operations in
+the game.
 
 Macro functions are very slow, because they have to be re-evaluated every time
 you run them. It is best that you avoid any macro functions, unless absolutely
@@ -124,25 +125,23 @@ the tag, so that we dont run the NBT operations twice on the same pig.
 
 ## Scoreboard Event Detection
 
-Using scoreboards to detect events (such as breaking a block), requires
-running a condition check every tick. Detecting many events like this may cause
-lag.
+Using scoreboards to detect events (such as breaking a block), requires running
+a condition check every tick. Detecting many events like this may cause lag.
 
-Instead, [use advancements to detect events](/wiki/files/advancements#using-advancements-to-detect-events)
+Instead,
+[use advancements to detect events](/wiki/files/advancements#using-advancements-to-detect-events)
 whenever possible. Advancements do not have to check for condition every tick to
 detect an event, unlike scoreboards.
 
 ## Recursion
 
-:::info
-A recursive function is a function that runs itself repeatedly.
-:::
+:::info A recursive function is a function that runs itself repeatedly. :::
 
-Any recursive functions, whether a 
+Any recursive functions, whether a
 [loop](/guide/mcf-vs-code#q-how-do-you-loop-in-mcfunction),
-[raycast](/guide/misc/raycasts),
-or an [array iteration](/guide/nbt-and-scores/array-iteration)
-should be used carefully.
+[raycast](/guide/misc/raycasts), or an
+[array iteration](/guide/nbt-and-scores/array-iteration) should be used
+carefully.
 
 Avoid the following:
 

@@ -3,11 +3,15 @@ title: /data
 description:
   "The data command is used to modify and fetch NBT data of blocks, entities and
   storages."
-version: 1.21.11
+version: 26.1.2
 ---
 
 # /data command
-The `/data` command is used to modify and fetch NBT data of [blocks](/wiki/nbt-scoreboards/block-nbt), [entities](/wiki/nbt-scoreboards/entity-nbt) and [storages](/wiki/nbt-scoreboards/nbt#nbt-storages).
+
+The `/data` command is used to modify and fetch NBT data of
+[blocks](/wiki/nbt-scoreboards/block-nbt),
+[entities](/wiki/nbt-scoreboards/entity-nbt) and
+[storages](/wiki/nbt-scoreboards/nbt#nbt-storages).
 
 :::warning
 
@@ -19,11 +23,19 @@ to modify player data.
 ## Subcommands
 
 ### `get <source> [path] [scale]`
-Gets the data from a data source, and a `path`, if specified. Multiplies the resulting value by `scale`, if specified.  
-`source` is a [data source](#data-source), `path` is an [nbt path](/wiki/nbt-scoreboards/nbt#nbt-paths) and `scale` is a number.  
+
+Gets the data from a data source, and a `path`, if specified. Multiplies the
+resulting value by `scale`, if specified.  
+`source` is a [data source](#data-source), `path` is an
+[nbt path](/wiki/nbt-scoreboards/nbt#nbt-paths) and `scale` is a number.  
 If `scale` is set, and the data at that path it not a number, the command fails.
 
-After fetching the NBT at the path, if it exists, it prints the data in [SNBT](/wiki/nbt-scoreboards/nbt#snbt-format) format in the chat. Therefore, its main use is manually inspecting NBT data. However, it also returns the integer representation <!-- TODO: we probably want to explain ths somewhere --> of the fetched data, so it can be used in combination with `execute store` or `return run` to convert NBT into an integer.
+After fetching the NBT at the path, if it exists, it prints the data in
+[SNBT](/wiki/nbt-scoreboards/nbt#snbt-format) format in the chat. Therefore, its
+main use is manually inspecting NBT data. However, it also returns the integer
+representation <!-- TODO: we probably want to explain ths somewhere --> of the
+fetched data, so it can be used in combination with `execute store` or
+`return run` to convert NBT into an integer.
 
 #### Examples
 
@@ -32,8 +44,12 @@ After fetching the NBT at the path, if it exists, it prints the data in [SNBT](/
 ### `merge <target> <nbt>`
 
 [Merges](#data-merging) data with the given data source.  
-`target` is a [data source](#data-source) and `nbt` is an [SNBT compound](/wiki/nbt-scoreboards/nbt#snbt-format).  
-This command fails if the given entity or block does exist, or if the block is not a block entity and cannot hold NBT data. However, if the data source is a storage, and that storage does no exist yet, the storage is automatically created. 
+`target` is a [data source](#data-source) and `nbt` is an
+[SNBT compound](/wiki/nbt-scoreboards/nbt#snbt-format).  
+This command fails if the given entity or block does exist, or if the block is
+not a block entity and cannot hold NBT data. However, if the data source is a
+storage, and that storage does no exist yet, the storage is automatically
+created.
 
 #### Examples
 
@@ -41,19 +57,34 @@ This command fails if the given entity or block does exist, or if the block is n
 `data merge storage example:data {a: 1, b: "b", c: [41b, 0b]}`
 
 ### `modify <target> <path> <action> <source>`
-Modifies the NBT data at the specified path of the given data source. This gives more fine-grained control that `data merge`.  
-`target` is the [data source](#data-source) to modify and `path` is an [NBT path](/wiki/nbt-scoreboards/nbt#nbt-paths), the specific sub-path of that data source.  
-`action` determines what kind of modification occurs. There are 5 possible actions, as below.  
-`source` determines the source of the data being used to modify the `target`. See [source](#source) below.
+
+Modifies the NBT data at the specified path of the given data source. This gives
+more fine-grained control that `data merge`.  
+`target` is the [data source](#data-source) to modify and `path` is an
+[NBT path](/wiki/nbt-scoreboards/nbt#nbt-paths), the specific sub-path of that
+data source.  
+`action` determines what kind of modification occurs. There are 5 possible
+actions, as below.  
+`source` determines the source of the data being used to modify the `target`.
+See [source](#source) below.
 
 #### `append`
-Appends an NBT value to a [list or a typed array](/wiki/nbt-scoreboards/nbt#listsarrays), making the value the last element.  
-If the specified path does not exist in the data source, it is created and initialized as a list containing the value just appended.  
+
+Appends an NBT value to a
+[list or a typed array](/wiki/nbt-scoreboards/nbt#listsarrays), making the value
+the last element.  
+If the specified path does not exist in the data source, it is created and
+initialized as a list containing the value just appended.  
 This is equivalent to `data modify ... insert 0 ...`.
 
 #### `insert <index>`
-Inserts an NBT value into a [list or array](/wiki/nbt-scoreboards/nbt#listsarrays) at a specific index, shifting all proceeding elements to the right. Negative indices may be used to indicate inserting values from the end.  
-If the index specified would cause the inserted item to be further than one after the first or last element of the list, the command fails.  
+
+Inserts an NBT value into a
+[list or array](/wiki/nbt-scoreboards/nbt#listsarrays) at a specific index,
+shifting all proceeding elements to the right. Negative indices may be used to
+indicate inserting values from the end.  
+If the index specified would cause the inserted item to be further than one
+after the first or last element of the list, the command fails.  
 Inserting creates list if it doesn't exist in the same way as `append`.
 
 #### `merge`
@@ -63,7 +94,10 @@ Inserting creates list if it doesn't exist in the same way as `append`.
 merging from more than just hardcoded NBT values.
 
 #### `prepend`
-Prepends an NBT value to a [list or a typed array](/wiki/nbt-scoreboards/nbt#listsarrays), making the value the first element.  
+
+Prepends an NBT value to a
+[list or a typed array](/wiki/nbt-scoreboards/nbt#listsarrays), making the value
+the first element.  
 Lists are created in the same wat as `append`.  
 This is equivalent to `data modify ... insert -1 ...`.
 
@@ -86,13 +120,26 @@ The `example:main` storage looks like this: `{a: {b: {c: {d: 10}}}}`.
 
 `source` determines the value modifying `target`. It can be one of:
 
-- `value <value>` - Gets the value from an [SNBT literal](/wiki/nbt-scoreboards/nbt#snbt-format).
-- `from <data-source> [path]` - Gets the data from the specified [data source](#data-source) and [path](/wiki/nbt-scoreboards/nbt#nbt-paths).
-- `string <data-source> [path] [start] [end]` - Gets the data from the specified [data source](#data-source) and ensures that it's a string. If `start` or `end` is specified, truncates the string using those values. `start` is inclusive, while `end` is exclusive. Both numbers are allowed to be negative, counting from the end of the string. For example, the indices `1 -1` remove one character from each end of the string, while `0 1` takes the first character.
+- `value <value>` - Gets the value from an
+  [SNBT literal](/wiki/nbt-scoreboards/nbt#snbt-format).
+- `from <data-source> [path]` - Gets the data from the specified
+  [data source](#data-source) and [path](/wiki/nbt-scoreboards/nbt#nbt-paths).
+- `string <data-source> [path] [start] [end]` - Gets the data from the specified
+  [data source](#data-source) and ensures that it's a string. If `start` or
+  `end` is specified, truncates the string using those values. `start` is
+  inclusive, while `end` is exclusive. Both numbers are allowed to be negative,
+  counting from the end of the string. For example, the indices `1 -1` remove
+  one character from each end of the string, while `0 1` takes the first
+  character.
 
 ### `remove <source> <path>`
-Removes the NBT data from `source` at `path`. `source` is a [data source](#data-source) and `path` is an [NBT path](/wiki/nbt-scoreboards/nbt#nbt-paths).  
-This deletes compound keys, and removes array and list elements, shifting proceeding elements left. It cannot, however, be used to delete an entire storage using the special `{}` path; only single keys of the root storage.
+
+Removes the NBT data from `source` at `path`. `source` is a
+[data source](#data-source) and `path` is an
+[NBT path](/wiki/nbt-scoreboards/nbt#nbt-paths).  
+This deletes compound keys, and removes array and list elements, shifting
+proceeding elements left. It cannot, however, be used to delete an entire
+storage using the special `{}` path; only single keys of the root storage.
 
 :::tip
 
@@ -111,9 +158,12 @@ data remove storage example:main temp
 ## Data source
 
 The place to get data from or store data to. One of:
-- `entity <selector>` - The [NBT of an entity](/wiki/nbt-scoreboards/entity-nbt).
+
+- `entity <selector>` - The
+  [NBT of an entity](/wiki/nbt-scoreboards/entity-nbt).
 - `block <pos>` - The [NBT of a block entity](/wiki/nbt-scoreboards/block-nbt).
-- `storage <name>` - The NBT from a [data storage](/wiki/nbt-scoreboards/nbt#nbt-storages).
+- `storage <name>` - The NBT from a
+  [data storage](/wiki/nbt-scoreboards/nbt#nbt-storages).
 
 ## Data merging
 

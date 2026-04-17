@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/create-github-app-token@v1
+      - uses: actions/create-github-app-token@v2
         id: app-token
         with:
           app-id: ${{ secrets.INDEX_BOT_ID }}
@@ -23,7 +23,7 @@ jobs:
           ref: ${{ github.head_ref }}
           # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
           persist-credentials: false
-      - uses: oven-sh/setup-bun@v2.0.1
+      - uses: oven-sh/setup-bun@v2
       - run: bun install
       - run: bun ./gen_search_indexes.js
       - run: git add .

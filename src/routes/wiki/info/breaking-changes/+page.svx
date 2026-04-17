@@ -11,6 +11,10 @@ Special thanks to
 [Misode's Technical Changelog](https://misode.github.io/changelog/) and the
 [Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
 
+:::warning
+This list will no longer be updated! Please consult [Misode's Technical Changelog](https://misode.github.io/changelog/) for future updates!
+:::
+
 ## [1.21.6](https://minecraft.wiki/w/Java_Edition_1.21.6#Technical)
 
 **Other**

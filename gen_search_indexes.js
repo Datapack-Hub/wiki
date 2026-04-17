@@ -1,8 +1,7 @@
-import { file as defineFile, Glob, write } from "bun";
+import { file as defineFile, Glob, write, markdown } from "bun";
 import matter from "gray-matter";
 import { stripHtml } from "string-strip-html";
 import { createConsola } from "consola";
-import RemoveMarkdown from "remove-markdown";
 
 const log = createConsola({
   formatOptions: {
@@ -29,7 +28,7 @@ for await (const file of matchingFiles) {
 
   // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
-  const strippedMarkdown = RemoveMarkdown(contentNoHtml)
+  const strippedMarkdown = markdown.render(contentNoHtml, {})
     .replaceAll(/:::.*/g, "")
     .replaceAll(/:::/g, "") // remove admonitions
     .replaceAll(/[^\S\r\n]{2,}/g, ""); // remove extra spaces
@@ -52,4 +51,4 @@ for await (const file of matchingFiles) {
 log.start("Writing to file...");
 await write("./src/routes/search.json/meta.json", JSON.stringify(posts));
 
-log.success("Done!");
+log.success("Done! Finished in " + Bun.nanoseconds() / 1e6 + " milliseconds.");

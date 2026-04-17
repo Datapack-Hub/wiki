@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["tabler"]
+  "cSpell.words": ["tabler"],
+  // set default language mode of .svx files to markdown
+  "files.associations": {
+    "*.svx": "markdown"
+  }
 }

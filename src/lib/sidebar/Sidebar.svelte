@@ -3,8 +3,8 @@
 
   // ! IMPORTANT: If you want to add pages or categories, this is not the place to do it!
 
-  import GuidePages from "$lib/sidebar/tabs/Guides.svelte";
-  import WikiPages from "$lib/sidebar/tabs/WikiPages.svelte";
+  import GuidePages from "$lib/sidebar/tabs/latest/Guides.svelte";
+  import WikiPages from "$lib/sidebar/tabs/latest/WikiPages.svelte";
   import { latestMCData, windowInfo } from "$lib/stores.svelte";
 
   import IconCredits from "~icons/tabler/address-book";
@@ -17,11 +17,12 @@
 
   import SidebarPage from "./navigation/SidebarPage.svelte";
   import SidebarCategory from "./navigation/SidebarCategory.svelte";
+  import VersionPicker from "./tabs/VersionPicker.svelte";
 
-  let page = $state("wiki");
+  let page: "wiki" | "guides" = $state("wiki");
 
   $effect(() => {
-    page = sessionStorage.getItem("page") || "wiki";
+    page = (sessionStorage.getItem("page") as "wiki" | "guides") || "wiki";
   });
 
   export async function handleKeyInput(
@@ -76,11 +77,7 @@
     {/if}
     <div class="flex flex-col h-full">
       <div class="grow">
-        {#if page == "wiki"}
-          <WikiPages />
-        {:else}
-          <GuidePages />
-        {/if}
+        <VersionPicker page={page} />
       </div>
       <div class="mt-5">
         <SidebarCategory name="Contribution" icon={IconWiki}>

@@ -5,7 +5,7 @@ description:
   different context. The execute command is made up of multiple subcommands,
   which can be chained repeatedly and in any order to modify context in various
   ways."
-version: 1.21.11
+version: 26.1.2
 ---
 
 # /execute command
@@ -33,10 +33,10 @@ the context in which other commands are run. The context includes:
 
 ## Forking
 
-Some subcommands can split the command execution into multiple branches. This
-is called forking. This means any subcommands that follow will be executed
-multiple times, once for each branch. Minecraft will finish executing all
-subcommands in the first branch before moving on to the next.
+Some subcommands can split the command execution into multiple branches. This is
+called forking. This means any subcommands that follow will be executed multiple
+times, once for each branch. Minecraft will finish executing all subcommands in
+the first branch before moving on to the next.
 
 For example, if there are two markers A and B, and the following command is run:
 `execute as @e[type=marker] run function example`  
@@ -280,7 +280,8 @@ Possible values for `condition`:
   Checks whether a score is within a range (`matches`), or has a specified
   comparison to another score. `operator` can be on of: `<`, `<=`, `=`, `>=`,
   `>`.
-- **`stopwatch <id> <range>`**: Checks if the specified stopwatch matches the specified range.
+- **`stopwatch <id> <range>`**: Checks if the specified stopwatch matches the
+  specified range.
 
 #### Examples:
 

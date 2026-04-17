@@ -14,10 +14,12 @@
 
   const { children, title, description, version, tags = "" }: Props = $props();
 
-  let tagsArr = tags
-    .split(",")
-    .map(el => el.trim())
-    .filter(String);
+  let tagsArr = $derived(
+    tags
+      .split(",")
+      .map(el => el.trim())
+      .filter(String)
+  );
 </script>
 
 <Seo

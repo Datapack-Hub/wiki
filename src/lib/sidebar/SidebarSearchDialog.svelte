@@ -8,7 +8,7 @@
   };
 
   let { results = $bindable([]), keyActivated }: Props = $props();
-  let dialog: HTMLDialogElement;
+  let dialog: HTMLDialogElement = $state()!;
 
   let searchTerm = $state("");
   let searchState: "waiting" | "done" = $state("waiting");
@@ -50,10 +50,9 @@
     <input
       class="bg-stone-900 w-full rounded-sm focus:outline-0 text-white p-2 placeholder:text-stone-500 disabled:cursor-not-allowed disabled:bg-stone-900/50"
       disabled={searchState === "waiting"}
-      id="search-box"
+      name="search-box"
       autocomplete="off"
       spellcheck="false"
-      type="search"
       placeholder="Search for a page..."
       bind:value={searchTerm} />
     <div class="overflow-y-auto max-h-[50vh]">

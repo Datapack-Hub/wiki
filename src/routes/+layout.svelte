@@ -18,8 +18,10 @@
 
   let { children, data }: Props = $props();
 
-  latestMCData.packFormat = data.packFormat || 0;
-  latestMCData.gameVersion = data.gameVersion || "1.0";
+  $effect(() => {
+    latestMCData.packFormat = data.packFormat || 0;
+    latestMCData.gameVersion = data.gameVersion || "1.0";
+  })
 
   windowInfo.width = innerWidth.current || 1920;
   windowInfo.isNavOpen = (innerWidth.current || 1920) >= 768;
