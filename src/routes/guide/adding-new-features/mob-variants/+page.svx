@@ -30,6 +30,7 @@ settings:
 ```json:example_cat.json
 {
   "asset_id": "example:entity/cat/example_cat",
+  "baby_asset_id": "example:entity/cat/custom_baby_cat",
   "spawn_conditions": [
     {
       "priority": 0
@@ -70,6 +71,7 @@ field in the .json file you created earlier.
 ```json:example_cat.json
 {
   "asset_id": "example:entity/cat/custom",
+  "baby_asset_id": "example:entity/cat/custom_baby_cat",
   "spawn_conditions": [
     {
       "condition": {
@@ -137,6 +139,7 @@ the `model` field, like this:
 ```json:example_cow.json
 {
   "asset_id": "example:entity/cow/example_cow",
+  "baby_asset_id": "example:entity/cow/example_cow_baby",
   "model": "normal",
   "spawn_conditions": [
     {
@@ -160,6 +163,11 @@ If you want to add a wolf variant, you'll need to specify 3 textures, like this:
     "angry": "example:entity/wolf/example_wolf_angry",
     "tame": "minecraft:entity/wolf/example_wolf_tame",
     "wild": "minecraft:entity/wolf/example_wolf"
+  },
+  "baby_assets": {
+    "angry": "example:entity/wolf/example_baby_wolf_angry",
+    "tame": "minecraft:entity/wolf/example_baby_wolf_tame",
+    "wild": "minecraft:entity/wolf/example_baby_wolf"
   },
   "spawn_conditions": [
     {

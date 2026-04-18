@@ -1,21 +1,205 @@
 ---
 title: Breaking Changes
 description: "A list of breaking changes to datapacks."
-version: 1.21.8
+version: 21.1.2
 ---
 
 # List of breaking changes
 
-This is list of all breaking changes to datapacks (excluding resource packs).
-Special thanks to
-[Misode's Technical Changelog](https://misode.github.io/changelog/) and the
-[Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
+This is a list of all breaking changes to datapacks (excluding resource packs). Special thanks to [Conure's How To Upgrade Your Datapacks Series](https://www.youtube.com/playlist?list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l), [Misode's Technical Changelog](https:/misode.github.io/changelog/) and the [Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
 
-:::warning
-This list will no longer be updated! Please consult [Misode's Technical Changelog](https://misode.github.io/changelog/) for future updates!
-:::
+## [26.1](https://minecraft.wiki/w/Java_Edition_26.1)
 
-## [1.21.6](https://minecraft.wiki/w/Java_Edition_1.21.6#Technical)
+**Other**
+- The default value of the `rotation` property on banners and signs has been changed from `0` to `8`.
+  - To fix this, just add a [rotation=0].
+- The `villager.*` slots have been removed. You can now access them using `mob.inventory.*`.
+- The field `ignore_fall_damage_from_current_explosion` field on players has been removed.
+- The `minecraft:post_piercing_attack` no longer requires the player to have 7+ hunger to work. If you want it to retain its previous functionality, you must now add a predicate testing for the player's hunger.
+- A new required field `has_ender_dragon_fight` has been added to Dimension Type files.
+
+**Time**
+- There have been multiple changes to the `/time`.
+  - The `time` command now affects time per dimension, as there is now no universal time for all dimensions. Previously, it affected the time of the overworld, no matter where it was ran from.
+    - To fix this, add `of minecraft:overworld` to all `time` commands. (e.g. `/time of minecraft:overworld set 1500`). This only applies if the command is not being run from the overworld.
+  - `/time (of minecraft:overworld) set <day|night|noon|midnight>` now advanced the time to the next day/night/moon/midnight, instead of setting it to a constant value (e.g. 18000 was previous midnight)
+  - `/time query daytime` is now `/time query minecraft:day`
+  - `/time query day` is now `/time query minecraft:day repetition`
+- A new field `default_clock` has been added to Dimension Type files, and while it isn't required, omitting it will result in there being no time in that dimension.
+  - You can just set `default_clock` to `minecraft:overworld` to restore its previous behaviour.
+- The `time_check` predicate condition, [Timelines](https://minecraft.wiki/w/Timeline) and `time_of_day` [Game Test environments](https://minecraft.wiki/w/GameTest#Test_environment) now have a required field `clock`.
+  - You can just set `clock` to `minecraft:overworld` to restore its previous behaviour.
+
+**Mob Variations**
+- For cats, chickens, cows and pigs, a new field `baby_asset_id` is now required.
+- For wolfs, a new field `baby_asset` is now required. It has the same format as the `asset` field.
+- Wolf sound variants in `wolf_sound_variant` have been moved into a new field `adult_sounds`, as a new field `baby_sounds` was added.
+
+**Worldgen**
+- Several [worldgen features](/wiki/worldgen/custom-worldgen#features) have been renamed and are now configurable
+  - The `forest_rock` configured feature has been renamed to `block_blob`.
+    - Has a new required block predicate field `can_place_on`.
+  - The `ice_spike` configured feature has been renamed to `spike`.
+    - Has new required block state provider field `state`.
+    - Has new required block predicate fields `can_place_on` and `can_replace`.
+  - The `huge_red_mushroom` and `huge_brown_mushroom` configured features have a new required block predicate field `can_place_on`.
+  - In the `tree` feature the `force_dirt` and `dirt_provider` parameters were replaced with a `below_trunk_provider` rule-based block state provider.
+  - The `state_provider` under the `disk` feature is now a block state provider. This means you must add a `"type": "minecraft:rule_based_state_provider"` to it. 
+  - Features spawned from Bone Meal are no longer restricted to the flower feature type, and instead controlled by the `#can_spawn_from_bone_meal` configured feature tag.
+  - The `flower`, `flower_no_bonemeal`, and `random_patch` feature types have been removed, instead patches can now be expressed as a sequence of `count` and `random_offset` placement modifiers.
+- The `alter_ground` tree decorator configuration has changed so that provider is now a rule-based block state provider.
+
+**Block Tags**
+- `#dry_vegetation_may_place_on` has been renamed to `#supports_dry_vegetation`
+- `#bamboo_plantable_on` has been renamed to `#supports_bamboo`
+- `#small_dripleaf_placeable` has been renamed to `#supports_small_dripleaf`
+- `#big_dripleaf_placeable` has been renamed to `#supports_big_dripleaf`
+- `#mushroom_grow_block` has been renamed to `#overrides_mushroom_light_requirement` (Mushrooms cannot survive without a light level below 13 if not in the above tag.)
+- `#snow_layer_can_survive_on` has been renamed to `#support_override_snow_layer` (Snow layers can be placed on blocks in this tag even if they do not have a top full face.)
+- `#snow_layer_cannot_survive_on` has been renamed to `#cannot_support_snow_layer`
+- `#dirt` has been split into multiple other tags, and now only contains dirt blocks. To keep its previous functionality, use the new `#substrate_overworld` block tag.
+
+**Item Tags**
+- The `#dyeable` item tag has been removed, as it's now controlled by the `crafting_dye` recipe type.
+
+**Enchantment Tags**
+- Removed the `#trades/desert_special`, `#trades/jungle_special`, `#trades/plains_special`, `#trades/savanna_special`, `#trades/snow_special`, `#trades/swamp_special`, `#trades/taiga_special`.
+  - These only exist if you are using the "Villager Trade Rebalance" experimental datapack.
+
+**Recipes**
+- Renamed the following stonecutter recipes, alongside their relevant advancements
+  - `minecraft:chiseled_stone_bricks_stone_from_stonecutting` → `minecraft:chiseled_stone_bricks_from_stone_stonecutting`
+  - `minecraft:end_stone_brick_slab_from_end_stone_brick_stonecutting` → `minecraft:end_stone_brick_slab_from_end_stone_bricks_stonecutting`
+  - `minecraft:end_stone_brick_stairs_from_end_stone_brick_stonecutting` → `minecraft:end_stone_brick_stairs_from_end_stone_bricks_stonecutting`
+  - `minecraft:end_stone_brick_wall_from_end_stone_brick_stonecutting` → `minecraft:end_stone_brick_wall_from_end_stone_bricks_stonecutting`
+  - `minecraft:mossy_stone_brick_slab_from_mossy_stone_brick_stonecutting` → `minecraft:mossy_stone_brick_slab_from_mossy_stone_bricks_stonecutting`
+  - `minecraft:mossy_stone_brick_stairs_from_mossy_stone_brick_stonecutting` → `minecraft:mossy_stone_brick_stairs_from_mossy_stone_bricks_stonecutting`
+  - `minecraft:mossy_stone_brick_wall_from_mossy_stone_brick_stonecutting` → `minecraft:mossy_stone_brick_wall_from_mossy_stone_bricks_stonecutting`
+  - `minecraft:prismarine_brick_slab_from_prismarine_stonecutting` → `minecraft:prismarine_brick_slab_from_prismarine_bricks_stonecutting`
+  - `minecraft:prismarine_brick_stairs_from_prismarine_stonecutting` → `minecraft:prismarine_brick_stairs_from_prismarine_bricks_stonecutting`
+  - `minecraft:quartz_slab_from_stonecutting` → `minecraft:quartz_slab_from_quartz_block_stonecutting`
+  - `minecraft:stone_brick_walls_from_stone_stonecutting` → `minecraft:stone_brick_wall_from_stone_stonecutting`
+
+## [1.21.11](https://minecraft.wiki/w/Java_Edition_1.21.11)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21.11](https://www.youtube.com/watch?v=9QuRZOP3Gcw&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=7)
+
+**Commands**
+- All gamerules have been moved to a registry, this mainly means that they now use the `minecraft:` prefix and are now in `snake_case`, though some have been renamed.
+  - <details><summary>There are some exceptions to the generic renames. Click to see them all.</summary>
+      <ul>
+        <li><code>disableElytraMovementCheck</code> → <code>minecraft:elytra_movement_check</code> (the value was inverted)</li>
+        <li><code>disablePlayerMovementCheck</code> → <code>minecraft:player_movement_check</code> (the value was inverted)</li>
+        <li><code>disableRaids</code> → <code>minecraft:raids</code> (the value was inverted)</li>
+        <li><code>command_modification_block_limit</code> → <code>minecraft:max_block_modifications</code></li>
+        <li><code>doDaylightCycle</code> → <code>minecraft:advance_time</code></li>
+        <li><code>doMobLoot</code> → <code>minecraft:mob_drops</code></li>
+        <li><code>announceAdvancements</code> → <code>minecraft:show_advancement_messages</code></li>
+        <li><code>commandBlocksEnabled</code> → <code>minecraft:command_blocks_work</code></li>
+        <li><code>doEntityDrops</code> → <code>minecraft:entity_drops</code></li>
+        <li><code>doImmediateRespawn</code> → <code>minecraft:immediate_respawn</code></li>
+        <li><code>doInsomnia</code> → <code>minecraft:spawn_phantoms</code></li>
+        <li><code>doLimitedCrafting</code> → <code>minecraft:limited_crafting</code></li>
+        <li><code>doMobSpawning</code> → <code>minecraft:spawn_mobs</code></li>
+        <li><code>doPatrolSpawning</code> → <code>minecraft:spawn_patrols</code></li>
+        <li><code>doTileDrops</code> → <code>minecraft:block_drops</code></li>
+        <li><code>doTraderSpawning</code> → <code>minecraft:spawn_wandering_traders</code></li>
+        <li><code>doVinesSpread</code> → <code>minecraft:spread_vines</code></li>
+        <li><code>doWardenSpawning</code> → <code>minecraft:spawn_wardens</code></li>
+        <li><code>doWeatherCycle</code> → <code>minecraft:advance_weather</code></li>
+        <li><code>maxCommandChainLength</code> → <code>minecraft:max_command_sequence_length</code></li>
+        <li><code>maxCommandForkCount</code> → <code>minecraft:max_command_forks</code></li>
+        <li><code>naturalRegeneration</code> → <code>minecraft:natural_health_regeneration</code></li>
+        <li><code>snowAccumulationHeight</code> → <code>minecraft:max_snow_accumulation_height</code></li>
+        <li><code>spawnRadius</code> → <code>minecraft:respawn_radius</code></li>
+        <li><code>spawnerBlocksEnabled</code> → <code>minecraft:spawner_blocks_work</code></li>
+      </ul></details>
+  - <details><summary>Some gamerules now have a limited value range. Click to see them all.</summary>
+      <ul>
+        <li><code>max_block_modifications</code> - Minimum 1</li>
+        <li><code>max_command_forks</code> - Minimum 1</li>
+        <li><code>max_command_sequence_length</code> - Minimum 0</li>
+        <li><code>max_entity_cramming</code> - Minimum 0</li>
+        <li><code>max_snow_accumulation_height</code> - Minimum 0 | Maximum 8</li>
+        <li><code>players_nether_portal_creative_delay</code> - Minimum 0</li>
+        <li><code>players_nether_portal_default_delay</code> - Minimum 0</li>
+        <li><code>players_sleeping_percentage</code> - Minimum 0</li>
+        <li><code>random_tick_speed</code> - Minimum 0</li>
+        <li><code>respawn_radius</code> - Minimum 0</li>
+      </ul>
+    </details>
+  - The gamerule `doFireTick` and `allowFireTicksAwayFromPlayer` have been removed and replaced with `minecraft:fire_spread_radius_around_player`, which controls the maximum distance in blocks that fire can spread around the player.
+    - Setting it to `0` disables fire spreading.
+    - Setting it to `-1` will allow fire to spread even without players around.
+  - In [Game Tests](https://minecraft.wiki/w/GameTest), in the `game_rules` test environment the `bool_rule` and `int_rule` have been replaced with a single `rules` field.
+    - The `rules` field is a list of key-value pairs with the key being the gamerule's name and the value being the value (bool or int). (`"minecraft:random_tick_speed": 62`)
+- Many fields from Biome and Dimension Type files have been removed and replaced by [Environment Attributes](https://minecraft.wiki/w/Environment_attribute).
+  - Because this change is so huge, and covers so many fields, I won't list out all the changes here. I recommend just reading the wiki page about them.
+- If you were using the world border to track real time, it won't work now, as it uses game time now.
+  - You can now get the real time using the (`/stopwatch`)[https://minecraft.wiki/w/Commands/stopwatch] command.
+- The `/worldborder` command is now specified in ticks by default, rather than the previous seconds.
+  - To restore its previous functionality, add an `s` suffix to the end. (`/worldborder set 620 20s`)
+
+**Items**
+- The `spear` animation in the `consumable` item component has been renamed to `trident`, the `spear` animation still exists, but now uses a different animation. (the same as vanilla spears)
+- If you are using the `filtered` item modifier, rename the field `modifier` with `on_pass`. (as a new `on_fail` field was also added)
+
+**Tags**
+- Renamed item tag `#enchantable/sword` to `#enchantable/sweeping`.
+  - This only controls enchantability for the sweeping edge enchant. May be preferable to use the `#minecraft:enchantable/meele_weapon`, which includes spears and swords.
+- Removed some biome tags, depending on your use for them, follow the steps below:
+  - If you were only referencing them in your code, and not editing them:
+    - Create these tags yourself with their previous values.
+    - If you were using them to edit biome properties, this funcionality has been replaced with new [Environment Attributes](https://minecraft.wiki/w/Environment_attribute).
+      - Removed `#snow_golem_melts` biome tag - replaced by `gameplay/snow_golem_melts` environment attribute.
+      - Removed `#increased_fire_burnout` biome tag - replaced by `gameplay/increased_fire_burnout` environment attribute.
+      - Removed `#plays_underwater_music` biome tag - replaced by `only_underwater` field in the `audio/background_music` environment Attribute.
+      - Removed `#has_closer_water_fog` biome tag - replaced by `visual/water_fog_radius` environment Attribute.
+      - Removed `#without_patrol_spawns` biome tag - replaced by `gameplay/can_pillager_patrol_spawn` environment Attribute.
+
+**Entity Data**
+- The `AngryAt` field has been renamed to `angry_at`.
+- The `AngerTime` field has been removed, as it has been replaced by an `anger_end_time` field, stored as a long, which is the number of the tick the anger ends at.
+  - If you NEED to only make the mob angry for a certain amount of time, you will have to get the game's tick number with `/time query gametime`, store that, add to it the amount of ticks you want and then set the `anger_end_time` to that.
+
+**Other**
+- The minecraft texture atlas `minecraft:blocks` no longer stores blocks & items, as items are now stored in the `minecraft:items` atlas.
+
+## [1.21.9 - 10](https://minecraft.wiki/w/Java_Edition_1.21.9)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21.9](https://www.youtube.com/watch?v=9bpM26PXsj0&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=6)
+
+**Other**
+- The `pack.mcmeta` format has been completely changed. Pack versions now have major and minor changes. Based on which versions you plan to support, folow the steps below to update it. (also applied to resource packs)
+  - If you only plan to support 1.21.9 and newer:
+    - The `supported_formats` field has been removed and replaced by `min_format` and `max_format`, which are specified as a list of two integers ([major, minor]) or one integer (makes it support any minor version).
+    - The same applies for the `formats` field in the overlay section, it has also been replaced by `min_format` and `max_format`
+  - If you plan to support older versions too (1.21.8 and below):
+    - You must keep the `supported_formats` field in addition to the new `min_format` and `max_format`, which are specified as a list of two integers ([major, minor]) or one integer (makes it support any minor version).
+    - The same applies for the `formats` field in the overlay section, which you must also keep in addition to the new `min_format` and `max_format`.
+- The `flash` particle now requires a `color` parameter.
+  - To fix this, and restore its original white, just add `{color:[1.000,1.000,1.000,1.00]}` to the end, like any other particle parameter.
+- The item and block `minecarft:chain` has been renamed to `minecraft:iron_chain`
+- The field `respawn.angle` on the player has been renamed to `respawn.yaw` (now you can also get `respawn.pitch`)
+
+**Commands**
+- The gamerule `spawnChunkRadius` has been removed, as "loaded" spawn chunks no longer exist.
+- The `spawnpoint` and `setworldspawn` commands require an additional pitch parameter, IF you also specified the yaw parameter.
+  - If you didn't specify any, you can just ignore this, if you did have yaw, just add a 0 to the end of the command.
+
+**Worldgen**
+- The `initial_density_without_jaggednes`s field in `noise_settings` definitions has been replaced with a `preliminary_surface_level` field.
+  - The `minecraft:find_top_surface` density function can be used to replicate the previous scanning.
+
+## [1.21.6 - 8](https://minecraft.wiki/w/Java_Edition_1.21.6#Technical)
+
+You can also watch this video from Conure covering the breaking datapack
+changes:
+[Why Your Datapack Broke in 1.21.6-8](https://www.youtube.com/watch?v=w26d8BGp404&list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l&index=6)
 
 **Other**
 
@@ -442,7 +626,7 @@ changes:
   - `killer` → `attacker`
   - `direct_killer` → `direct_attacker`
   - `killer_player` → `attacking_player`
-- The `random_chance_with_looting` has been renamed (because it's now controlled
+- The `random_chance_with_looting` has been renamed (because its now controlled
   by enchantments) to `random_chance_with_enchanted_bonus`. The fields were
   updated accordingly:
   - The `looting_multiplier` field has been removed
