@@ -1,7 +1,7 @@
 ---
 title: Breaking Changes
 description: "A list of breaking changes to datapacks."
-version: 21.1.2
+version: 26.1.2
 ---
 
 # List of breaking changes
@@ -12,7 +12,7 @@ This is a list of all breaking changes to datapacks (excluding resource packs). 
 
 **Other**
 - The default value of the `rotation` property on banners and signs has been changed from `0` to `8`.
-  - To fix this, just add a [rotation=0].
+  - To fix this, just add a `[rotation=0]`.
 - The `villager.*` slots have been removed. You can now access them using `mob.inventory.*`.
 - The field `ignore_fall_damage_from_current_explosion` field on players has been removed.
 - The `minecraft:post_piercing_attack` no longer requires the player to have 7+ hunger to work. If you want it to retain its previous functionality, you must now add a predicate testing for the player's hunger.
