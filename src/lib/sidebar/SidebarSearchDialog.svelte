@@ -9,6 +9,7 @@
 
   let { results = $bindable([]), keyActivated }: Props = $props();
   let dialog: HTMLDialogElement = $state()!;
+  let diagInput: HTMLInputElement = $state()!;
 
   let searchTerm = $state("");
   let searchState: "waiting" | "done" = $state("waiting");
@@ -28,6 +29,8 @@
       createSearchIndex(posts);
     }
     searchState = "done";
+    diagInput.focus();
+    diagInput.select();
   }
 
   $effect(() => {
@@ -54,6 +57,7 @@
       autocomplete="off"
       spellcheck="false"
       placeholder="Search for a page..."
+      bind:this={diagInput}
       bind:value={searchTerm} />
     <div class="overflow-y-auto max-h-[50vh]">
       {#each results as result}
