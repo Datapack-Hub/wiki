@@ -69,11 +69,11 @@ and it is set to **creative mode**. In the world, you will need to run the
 `/datapack create` command - it will create your datapack folder as well as the
 necessary metadata for you, which saves you a bunch of time.
 
-For example, to make a datapack with the ID `ExampleDatapack` and the
+For example, to make a datapack with the ID `example_datapack` and the
 description "This is an example datapack", you would run the following command:
 
 ```
-/datapack create ExampleDatapack "This is an example datapack"
+/datapack create example_datapack "This is an example datapack"
 ```
 
 Once you've created your empty datapack, the next step is to find and open the
@@ -156,7 +156,7 @@ fashion, let's make a function which sends "Hello World" to chat.
 You should now have a folder structure that looks something like this:
 
 ```
-/world/datapacks/ExampleDatapack/data/example/function
+/world/datapacks/example_datapack/data/example/function
 ```
 
 :::warning
@@ -247,7 +247,7 @@ Minecraft "run this command every tick" (every tick = 20 times per second)
 The final path would look like this:
 
 ```
-/world/datapacks/ExampleDatapack/data/minecraft/tags/function/tick.json
+/world/datapacks/example_datapack/data/minecraft/tags/function/tick.json
 ```
 
 **`tick.json` is NOT a function**. In `tick.json`, we are going to put a **list
