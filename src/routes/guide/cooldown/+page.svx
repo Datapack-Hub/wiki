@@ -1,0 +1,48 @@
+---
+title: Cooldown checks
+description: Learn how to create and check cooldown timers using several common methods.
+version: 26.1
+---
+
+# Cooldown checks
+
+A cooldown restricts how frequently a player triggers a custom action. In most
+datapacks, these actions involve running functions or commands.
+
+For example, consider a custom wand that shoots fireballs when a player
+right clicks. Without a cooldown, players could spam the wand, resulting
+in lag or unbalanced gameplay. Adding a cooldown ensures the player waits a few
+seconds before shooting another fireball.
+
+## Core concepts
+- **Cooldown**: A timer that prevents an action from running again until a specified
+amount of time has elapsed since the last execution.
+- **Action**: The command or function the cooldown restricts.
+- **Namespace**: A unique identifier for your datapack that prevents conflicts with other
+datapacks. Use it as a prefix for all functions and resources (for example, `mypack:my_function`).
+
+
+## Implementation methods
+
+This guide covers three common methods for implementing cooldowns in Minecraft datapacks:
+scoreboard-based, advancement-based, and worldclock-based.
+
+### [Scoreboard-based cooldown](/guide/cooldown/scoreboard)
+
+Use a scoreboard objective to store how much time remaining until the cooldown expires.
+
+This method works well for small datapacks, or when you only need a few different cooldowns.
+
+### [Advancement-based cooldown](/guide/cooldown/advancement)
+
+Use an advancement to tick the cooldown.
+
+This method only ticks the cooldown when the player is using the action, making it ideal
+for performance-sensitive projects.
+
+### [Worldclock-based cooldown](/guide/cooldown/worldclock)
+
+Use a timespan on a worldclock to measure elapsed time.
+
+This is a non-ticking approach that works well for large datapacks or any setup
+that needs many cooldown timers.
