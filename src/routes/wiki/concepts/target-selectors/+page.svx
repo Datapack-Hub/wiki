@@ -200,7 +200,7 @@ the given value in blocks.
 
 Any entity fully or partially inside the cuboid will be selected.
 
-You can mix and match `dx`, `dz`, and `dz` however you want. To create the
+You can mix and match `dx`, `dy`, and `dz` however you want. To create the
 cuboid at least 1 of the three has to be there.
 
 :::info
