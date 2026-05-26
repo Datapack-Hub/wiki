@@ -77,7 +77,7 @@
     {/if}
     <div class="flex flex-col h-full">
       <div class="grow">
-        <VersionPicker page={page} />
+        <VersionPicker {page} />
       </div>
       <div class="mt-5">
         <SidebarCategory name="Contribution" icon={IconWiki}>

@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Contributing to the Datapack Wiki is very easy. We use MDSveX to integrate
+Contributing to the Datapack Wiki is designed to be very easy. We use MDSveX to integrate
 markdown pages with the SvelteKit backend, so to add or edit pages you only need
 to know how to write Markdown, and very limited HTML knowledge.
 
@@ -20,8 +20,8 @@ few requirements:
 
 - [Node](https://nodejs.org/en)
 - A package manager (`npm`, the default with node.js, is more than enough)
-- [Bun (optional)](https://bun.sh) - we use this to generate our search indexes,
-  it can also be used to run the project
+- [Bun (optional)](https://bun.sh) - we use this to generate our search indexes faster and for package management,
+  but it can also be used to run the project
 
 ### Installing
 
@@ -38,11 +38,11 @@ the dev URL.
 
 `$ npm run dev`
 
-### Checking for errors (optional)
+### Checking for errors
 
 It's recommended before you make your pull request that you run the `build` and
-`check` commands with your package manager. These will check for common issues
-you may run into.
+`check` commands with your preferred script runner (e.g. `npm run ...`). These will check for common issues
+you may run into. In addition, check that there are no spelling or grammatical mistakes you can see
 
 ## Adding a page
 
@@ -54,15 +54,17 @@ you may run into.
 
    ```yml
    ---
-   title: Page title
+   title: <page title>
    description: "Here is a short description!"
+   version: <minecraft version> (optional, only needed if you have a version component)
    ---
    ```
 
-3. Import the reusable components that you want to use in your page. Put the
-   following after the metadata:
+3. Import the reusable components that you want to use in your page. 
+   We recommend the version component for guide and wiki pages if they are subject to change.
+   Put the following after the metadata:
 
-   ```svelte
+   ```html
    <script lang="ts">
      import { Version } from "$lib/reusables";
    </script>
@@ -76,24 +78,7 @@ you may run into.
    This command runs any `.mcfunction` file when called. You can also pass in a NBT
    compound or NBT source path.
 
-   :::info 
-
-   I am a very important piece of information. Please dont ignore me. I'm
-   only smol. 
-   
-   :::
-
-   :::warning 
-   
-   The stuff in this box is probably very important.
-   
-   :::
-
-   :::tip 
-   
-   You can do this really cool thing. It'll make your life a lot better!
-   
-    :::
+   ...
    ```
 
 > [!TIP]

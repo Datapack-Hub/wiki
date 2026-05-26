@@ -21,5 +21,6 @@
   "svelteAllowShorthand": true,
   "svelteIndentScriptAndStyle": true,
   "tabWidth": 2,
-  "proseWrap": "always"
+  "proseWrap": "always",
+  "useTabs": false
 }
