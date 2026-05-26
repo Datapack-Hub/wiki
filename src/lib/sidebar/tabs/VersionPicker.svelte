@@ -19,7 +19,7 @@
   id="version"
   aria-label="Version Selector"
   bind:value={version}
-  class="bg-stone-900 p-2 w-full rounded-lg focus-visible:outline-2 accent-dph-orange focus-visible:outline-dph-orange mt-1 mb-2 border-r-8 border-stone-900 {windowInfo.isNavOpen
+  class="bg-stone-900 hover:bg-stone-950 hover:border-stone-950 p-2 w-full rounded-lg focus-visible:outline-2 accent-dph-orange focus-visible:outline-dph-orange mt-1 mb-2 border-r-8 border-stone-900 {windowInfo.isNavOpen
     ? ''
     : 'hidden'}">
   <option value="latest">Latest</option>

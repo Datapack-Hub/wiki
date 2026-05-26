@@ -89,7 +89,7 @@
       </div>
     </div>
   </div>
-  <div class="flex text-sm text-stone-600 p-3 items-center w-full">
+  <div class="flex text-sm text-stone-400 p-3 items-center w-full">
     {#if windowInfo.isNavOpen}
       <span class="grow flex flex-col">pack_format: {latestMCData.packFormat} ({latestMCData.gameVersion})</span>
     {/if}
@@ -103,6 +103,6 @@
     </button>
   </div>
   {#if windowInfo.isNavOpen}
-    <span class="text-xs px-3 pb-3 text-stone-600">DATAPACK WIKI IS NOT AFFILIATED OR ENDORSED BY MOJANG STUDIOS</span>
+    <span class="text-xs px-3 pb-3 text-stone-400">DATAPACK WIKI IS NOT AFFILIATED OR ENDORSED BY MOJANG STUDIOS</span>
   {/if}
 </aside>
