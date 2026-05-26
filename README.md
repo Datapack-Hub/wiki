@@ -20,4 +20,4 @@ Pull requests are welcome! We would love to have you join our team of editors an
 ---
 
 ## License
-This project is licensed under the GNU General Public License v3.0. See [LICENSE](/LICENSE) for more information.
+This project is licensed under the MIT License. See [LICENSE](/LICENSE) for more information.
