@@ -74,7 +74,7 @@ be manually edited. A solution to this is to remove the `search.json` file and
 optionally run the search index generation script. This will regenerate the file
 and you can commit it.
 
-```sh
+```
 node run ./gen_search_indexes_node.js
 
 OR
