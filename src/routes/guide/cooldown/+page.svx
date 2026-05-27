@@ -18,8 +18,6 @@ seconds before shooting another fireball.
 - **Cooldown**: A timer that prevents an action from running again until a specified
 amount of time has elapsed since the last execution.
 - **Action**: The command or function the cooldown restricts.
-- **Namespace**: A unique identifier for your datapack that prevents conflicts with other
-datapacks. Use it as a prefix for all functions and resources (for example, `mypack:my_function`).
 
 
 ## Implementation methods
