@@ -22,25 +22,9 @@ amount of time has elapsed since the last execution.
 
 ## Implementation methods
 
-This guide covers three common methods for implementing cooldowns in Minecraft datapacks:
-scoreboard-based, advancement-based, and worldclock-based.
+There are two main ways to implement a cooldown mechanic in your project:
 
-### [Scoreboard-based cooldown](/guide/cooldown/scoreboard)
-
-Use a scoreboard objective to store how much time remaining until the cooldown expires.
-
-This method works well for small datapacks, or when you only need a few different cooldowns.
-
-### [Advancement-based cooldown](/guide/cooldown/advancement)
-
-Use an advancement to tick the cooldown.
-
-This method only ticks the cooldown when the player is using the action, making it ideal
-for performance-sensitive projects.
-
-### [Worldclock-based cooldown](/guide/cooldown/worldclock)
-
-Use a timespan on a worldclock to measure elapsed time.
-
-This is a non-ticking approach that works well for large datapacks or any setup
-that needs many cooldown timers.
+- [Scoreboard-based cooldown](/guide/cooldown/scoreboard) - Uses a scoreboard objective to store how 
+much time remaining until the cooldown expires. This is the simplest and the easiest to understand version, 
+but if you're creating a larger datapack, or intend on using it with multiple players, you may prefer to use an alternative version to minimise system lag.
+- [Worldclock-based cooldown](/guide/cooldown/worldclock) - Uses the time on a worldclock to measure the elapsed time since an action was last used. This is a non-ticking approach that works well for large datapacks, or any project that uses many cooldown timers.
