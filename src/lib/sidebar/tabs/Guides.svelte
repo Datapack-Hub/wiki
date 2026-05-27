@@ -74,12 +74,11 @@
     page="/guide/adding-new-features/custom-items/models" />
 </SidebarCategory>
 
-<SidebarCategory name="Cooldown Checks" icon={IconHourglass}>
+<SidebarCategory name="Cooldowns" icon={IconHourglass}>
   <SidebarPage label="Summary" icon={IconPennant} page="/guide/cooldown" />
 
   <SidebarHeading label="Techniques" />
   <SidebarPage label="Scoreboard" icon={IconScoreboard} page="/guide/cooldown/scoreboard" />
-  <SidebarPage label="Advancement" icon={IconStar} page="/guide/cooldown/advancement" />
   <SidebarPage label="Worldclock" icon={IconClock} page="/guide/cooldown/worldclock" />
 </SidebarCategory>
 
