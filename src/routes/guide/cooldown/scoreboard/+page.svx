@@ -10,11 +10,11 @@ A scoreboard-based cooldown stores a number on each player (or entity) and
 changes that number over time.
 
 This guide uses a ticking approach, which means the datapack updates the
-cooldown every game tick (20 ticks per second). This works well
-for small projects with only a few cooldowns and short durations. If you track many cooldowns or
+cooldown every game tick (20 ticks per second). This works well 
+for small projects with only a few cooldowns and short durations. If you track many cooldowns or 
 many entities, this negatively affects performance, because the game has to run loads of commands.
 
-In summary, this approach sets a player's score on a scoreboard, and then decreases that score every
+In summary, this approach sets a player's score on a scoreboard, and then decreases that score every 
 tick. This means that, when we need to do something which requires a cooldown, we can just check the 
 score to see if the player has an active cooldown or not.
 
@@ -26,7 +26,7 @@ score to see if the player has an active cooldown or not.
 
 :::tip
 
-To learn how to trigger a function when a player uses an item, see the
+To learn how to trigger a function when a player uses an item, see the 
 [Right-click menu](/guide/right-click) guide.
 
 :::
@@ -49,10 +49,19 @@ score by 1 for any player with `my_cd` ≥ 1.
 scoreboard players remove @a[scores={my_cd=1..}] my_cd 1
 ```
 
+:::note
+
+Alternatively, if optimisation is an concern, you can decrease the commands used, and use a `minecraft:tick` advancement so that 
+it only runs the command when the player has an active cooldown. To do this, you would need a tick advancement which runs a function - 
+in that function, you would decrease the player's score and then revoke the advancement only if their score is 1 or more. This would replace 
+the commands in the tick function, and slightly help to minimise lag.
+
+:::
+
 ### 3. Create the `check_cooldown` function
 
 You will run this function whenever you want to do something which is on a cooldown. For example, 
-if you have a special item which you only want the player to be able to use once every 5 seconds,
+if you have a special item which you only want the player to be able to use once every 5 seconds, 
 you would run this function to check if the player is on cooldown or not.
 
 In this function, we check the executor's `my_cd` score to tell whether they have an active cooldown. 
@@ -73,8 +82,8 @@ return 1
 
 ## 4. Using the `check_cooldown` function
 
-Whenever the player does something that needs a cooldown, you can use `execute if function` with the `check_cooldown` function. If the
-player still is on a cooldown, then the function will fail and the command will not run. If the player isn't on a cooldown, then
+Whenever the player does something that needs a cooldown, you can use `execute if function` with the `check_cooldown` function. If the 
+player still is on a cooldown, then the function will fail and the command will not run. If the player isn't on a cooldown, then 
 the function will set the cooldown and then return a success, so the command WILL run.
 
 In this example, a creeper will only be summoned when the player has no active cooldown (in which case, the cooldown will be set).
