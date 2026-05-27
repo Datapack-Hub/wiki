@@ -1,0 +1,89 @@
+---
+title: Worldclock-based cooldown
+description: Learn how to create and check cooldown timers using the world clock.
+version: 26.1
+---
+
+# Worldclock-based cooldown
+
+A worldclock cooldown works by storing a timestamp of when an action was last used in a scoreboard objective.
+Your datapack compares this stored time with the current time to determine if the cooldown has ended.
+
+Although this is more complicated, this function doesn't rely on any ticking commands. This is especially
+good for much larger datapacks because it is the most performance-efficient method.
+
+## What you will create
+- A `cooldown.json` clock in the world clock folder.
+- A `last_used` scoreboard objective (this stores when the action was last used).
+- A `<namespace>:check_cooldown` function (this is used to check the cooldown)
+
+### 1. Setup the world clock
+In your datapack namespace, create a folder named `world_clock`. Then, create a file named `cooldown.json` inside the folder. This 
+basically just registers a new world clock (think of this as a special type of stopwatch). This file needs no data, other than `{}`. 
+
+```json:/world_clock/cooldown.json
+{}
+```
+
+Restart your world/server (`/reload` isn't enough here), then run `/time of <namespace>:cooldown query time` to verify that the clock exists.
+
+### 2. Create the scoreboard objective
+
+You will need a scoreboard objective stores the last time the action was used in the `cooldown` world clock. You can call this scoreboard
+anything - for simplicity, here we will call it `last_used`. You should create this scoreboard objective in your load function.
+
+```mcfunction:load.mcfunction
+scoreboard objectives add last_used dummy
+```
+
+### 3. Create the `check_cooldown` function
+
+You will run this function whenever you want to do something which is on a cooldown. For example, 
+if you have a special item which you only want the player to be able to use once every 5 seconds,
+you would run this function to check if the player is on cooldown or not.
+
+In this function, we check the executor's `last_used` score against the current time on the `cooldown` clock. If the
+difference between the times is less than 100 ticks (5 seconds), then the function will return a **failure**. If not,
+then the function will return a **success** and the `last_used` will be set to the current time. 
+
+```mcfunction:check_cooldown.mcfunction
+# Temporarily store the current time on the cooldown clock
+execute store result score #current_time last_used run time of <namespace>:cooldown query time
+
+# Calculate the difference in times (i.e. the time since the action was last used)
+# basically: "#current_time" = "#current_time" - time of last use
+scoreboard players operation #current_time last_used -= @s last_used
+
+# If the difference is less than 100 ticks, then not enough time has passed, so we tell the player and then return a failure
+execute if score #current_time last_used matches ..100 run tellraw @s {color:"red",text:"This is on cooldown! Wait before you try again."}
+execute if score #current_time last_used matches ..100 run return fail
+
+# If the function hasn't yet been stopped, then the player is not on a cooldown
+# so we can update the last_used time and then return a success. 
+
+execute store result score @s last_used run time of <namespace>:cooldown query time
+return 1
+```
+
+:::warning
+Don't modify the `cooldown` world clock; it will break the cooldown calculations.
+:::
+
+## 4. Using the `check_cooldown` function
+
+Whenever the player does something that needs a cooldown, you can use `execute if function` with the `check_cooldown` function. If the
+player still is on a cooldown, then the function will fail and the command will not run. If the player isn't on a cooldown, then
+the function will set the cooldown and then return a success, so the command WILL run.
+
+In this example, a creeper will only be summoned when the player has no active cooldown (in which case, the cooldown will be set).
+If the player has an active cooldown, then the creeper will not be summoned, and instead the error message in `check_cooldown.mcfunction` 
+will be sent.
+
+```mcfunction
+execute as <player> if function <namespace>:check_cooldown run summon creeper
+```
+
+## Using multiple cooldowns
+
+If you want to have multiple different cooldowns for different items, then you will need a different `last_used` scoreboard and `check_cooldown`
+function for each cooldown. However, you can re-use the `cooldown` world clock for as many cooldowns as you wish. 

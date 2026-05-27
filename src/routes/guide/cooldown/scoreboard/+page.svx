@@ -1,0 +1,100 @@
+---
+title: Scoreboard-based cooldown
+description: Learn how to create and check cooldown timers using a scoreboard objective.
+version: 26.1
+---
+
+# Scoreboard-based cooldown
+
+A scoreboard-based cooldown stores a number on each player (or entity) and
+changes that number over time.
+
+This guide uses a ticking approach, which means the datapack updates the
+cooldown every game tick (20 ticks per second). This works well 
+for small projects with only a few cooldowns and short durations. If you track many cooldowns or 
+many entities, this negatively affects performance, because the game has to run loads of commands.
+
+In summary, this approach sets a player's score on a scoreboard, and then decreases that score every 
+tick. This means that, when we need to do something which requires a cooldown, we can just check the 
+score to see if the player has an active cooldown or not.
+
+## What you will create
+
+- A `my_cd` scoreboard objective (this tracks the actual cooldown for each plalyer)
+- A `tick` function (this reduces each player's cooldown score)
+- A `check_cooldown` function (this will be used to check and reset the player's cooldown)
+
+:::tip
+
+To learn how to trigger a function when a player uses an item, see the 
+[Right-click menu](/guide/right-click) guide.
+
+:::
+
+### 1. Create the scoreboard objective
+
+In your load function, create a dummy objective named `my_cd`. A dummy 
+objective is just a scoreboard which can only be changed by commands.
+
+```mcfunction:load.mcfunction
+scoreboard objectives add my_cd dummy
+```
+
+### 2. Reduce the score in the `tick` function
+
+In your `tick` function (which runs every tick), reduce the `my_cd`
+score by 1 for any player with `my_cd` ≥ 1.
+
+```mcfunction:tick.mcfunction
+scoreboard players remove @a[scores={my_cd=1..}] my_cd 1
+```
+
+:::note
+
+Alternatively, if optimisation is an concern, you can decrease the commands used, and use a `minecraft:tick` advancement so that 
+it only runs the command when the player has an active cooldown. To do this, you would need a tick advancement which runs a function - 
+in that function, you would decrease the player's score and then revoke the advancement only if their score is 1 or more. This would replace 
+the commands in the tick function, and slightly help to minimise lag.
+
+:::
+
+### 3. Create the `check_cooldown` function
+
+You will run this function whenever you want to do something which is on a cooldown. For example, 
+if you have a special item which you only want the player to be able to use once every 5 seconds, 
+you would run this function to check if the player is on cooldown or not.
+
+In this function, we check the executor's `my_cd` score to tell whether they have an active cooldown. 
+- If the score is 1 or higher (i.e. they haven't reached the end of the cooldown), then the function will return a **failure**..
+- If the score is 0 or doesn't exist yet (i.e. they do not have an active cooldown), then the function will return a **success**.
+
+```mcfunction:check_cooldown.mcfunction
+# If the player is still on cooldown, tell the player and stop here.
+execute if score @s my_cd matches 1.. run tellraw @s {color:"red",text:"This is on cooldown! Wait before you try again."}
+execute if score @s my_cd matches 1.. run return fail
+
+# If the function hasn't yet been stopped, then the player is not on a cooldown
+# so we can set the cooldown and then return a success. 
+
+scoreboard players set @s my_cd 100
+return 1
+```
+
+## 4. Using the `check_cooldown` function
+
+Whenever the player does something that needs a cooldown, you can use `execute if function` with the `check_cooldown` function. If the 
+player still is on a cooldown, then the function will fail and the command will not run. If the player isn't on a cooldown, then 
+the function will set the cooldown and then return a success, so the command WILL run.
+
+In this example, a creeper will only be summoned when the player has no active cooldown (in which case, the cooldown will be set).
+If the player has an active cooldown, then the creeper will not be summoned, and instead the error message in `check_cooldown.mcfunction` 
+will be sent.
+
+```mcfunction
+execute as <player> if function <namespace>:check_cooldown run summon creeper
+```
+
+## Using multiple cooldowns
+
+If you want to have multiple different cooldowns for different items, then you will need a different `cooldown` scoreboard and `check_cooldown`
+function for each cooldown. You will also need to decrease the score for each cooldown in the tick function. 

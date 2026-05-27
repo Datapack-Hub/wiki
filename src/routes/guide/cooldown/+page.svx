@@ -1,0 +1,30 @@
+---
+title: Cooldown checks
+description: Learn how to create and check cooldown timers using several common methods.
+version: 26.1
+---
+
+# Cooldown checks
+
+A cooldown restricts how frequently a player triggers a custom action. In most
+datapacks, these actions involve running functions or commands.
+
+For example, consider a custom wand that shoots fireballs when a player
+right clicks. Without a cooldown, players could spam the wand, resulting
+in lag or unbalanced gameplay. Adding a cooldown ensures the player waits a few
+seconds before shooting another fireball.
+
+## Core concepts
+- **Cooldown**: A timer that prevents an action from running again until a specified
+amount of time has elapsed since the last execution.
+- **Action**: The command or function the cooldown restricts.
+
+
+## Implementation methods
+
+There are two main ways to implement a cooldown mechanic in your project:
+
+- [Scoreboard-based cooldown](/guide/cooldown/scoreboard) - Uses a scoreboard objective to store how 
+much time remaining until the cooldown expires. This is the simplest and the easiest to understand version, 
+but if you're creating a larger datapack, or intend on using it with multiple players, you may prefer to use an alternative version to minimise system lag.
+- [Worldclock-based cooldown](/guide/cooldown/worldclock) - Uses the time on a worldclock to measure the elapsed time since an action was last used. This is a non-ticking approach that works well for large datapacks, or any project that uses many cooldown timers.
