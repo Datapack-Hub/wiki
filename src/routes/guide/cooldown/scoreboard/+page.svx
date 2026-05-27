@@ -81,11 +81,11 @@ In this example, a creeper will only be summoned when the player has no active c
 If the player has an active cooldown, then the creeper will not be summoned, and instead the error message in `check_cooldown.mcfunction` 
 will be sent.
 
-```mcfunction:my_function.mcfunction
-execute as <player> if function <namespace>:cooldown run summon creeper
+```mcfunction
+execute as <player> if function <namespace>:check_cooldown run summon creeper
 ```
 
 ## Using multiple cooldowns
 
-If you want to have multiple different cooldowns for different items, then you will need a different cooldown scoreboard and check_cooldown
+If you want to have multiple different cooldowns for different items, then you will need a different `cooldown` scoreboard and `check_cooldown`
 function for each cooldown. You will also need to decrease the score for each cooldown in the tick function. 
