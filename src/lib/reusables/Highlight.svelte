@@ -6,7 +6,7 @@
   const { children, color = "FFFF00" }: Props = $props();
 </script>
 
-<span style="--background-color: {color}BB;" class="dph-highlight">
+<span style="--background-color: {color}BB;" class="dph-highlight text-white">
   {@render children()}
 </span>
 

@@ -5,7 +5,7 @@ description:
   different context. The execute command is made up of multiple subcommands,
   which can be chained repeatedly and in any order to modify context in various
   ways."
-version: 26.1.2
+version: 26.2
 ---
 
 # /execute command

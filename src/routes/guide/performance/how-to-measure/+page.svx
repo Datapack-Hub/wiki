@@ -10,11 +10,8 @@ Datapacks are server side - they run on the server. The "server" is the brain of
 the world. It handles all the logic of the world. 
 
 - Generating new chunks as players explore the world.
-
 - Validating player interactions such as mining blocks.
-
 - Mob behaviour. All mob AI, pathfinding, targeting, etc.
-
 - And so on...
 
 Server performance is measured in [TPS](https://minecraft.wiki/w/Tick#Game_tick) - ticks per second.
@@ -39,11 +36,8 @@ There are a total of 4 possible colors, stacked onto each other like layers.
 Each color serves it's own purpose.
 
 - **Layer 1** Dark red is time spent for the main logic of the tick. Bottom layer.
-
 - **Layer 2** Light brown is time spent running [scheduled tasks](https://minecraft.wiki/w/Tick#Scheduled_tick).
-
 - **Layer 3** Purple is time spent executing all other code.
-
 - **Layer 4** Green / Yellow / Red (depending on lag) is time spent waiting for the next tick. Top layer.
 
 Then, on top of the graph you can see 3 numbers: min, avg, max. They show the
@@ -80,10 +74,8 @@ possible, for 40ms every tick.
 High level overview of the implementation:
 
 - Move world border by a 1000 blocks in 1 second.
-
 - Start recursively running the function, until the world border has moved by 40
 blocks
-
 - Repeat this cycle for a 100 more ticks (5 seconds)
 
 Then, measure the average amount of iterations across the 100 ticks. This works,
@@ -140,9 +132,7 @@ time a function was ran. Bigger number - faster execution, better performance.
 
 - **Function 0:** This is the control function. It is always empty, and is only
   here to provide a baseline to compare to.
-
 - **Function 1:** This is the `test` function, the one with scoreboard check.
-
 - **Function 2:** This is the `test2` function, the one with entity NBT check.
 
 Since the `test` function executed more frequently, it has better

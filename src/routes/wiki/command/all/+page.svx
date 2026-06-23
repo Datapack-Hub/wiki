@@ -1,6 +1,6 @@
 ---
 title: All Commands List
-version: 1.21.8
+version: "26.2"
 ---
 
 # List of all commands
@@ -90,6 +90,9 @@ These commands require a permission level same or bigger than 2 to run them.
   [/execute](/wiki/command/execute))
 - `/experience <add|set|query <targets>> ...` - Adds, removes or gets the
   players experience points. (ALIAS: `/xp`)
+- `/fetchprofile <name <player_name>|id <player_uuid>|entity <player_entity>>` - Fetches the profile of the target. It works asynchronously as the operation might take some time.
+  After successful completion, a message will be printed that lets users copy the contents of a fully resolved minecraft:profile component or /give @s minecraft:player_head with said component.
+  For the entity subcommand, the player must be online, and will fail if they are not.
 - `/fill <from-XYZ> <to-XYZ> <block> [destroy|hollow|keep|outline|replace [filter]]` -
   Fills the defined region with selected blocks
 - `/fillbiome <from-XYZ> <to-XYZ> <biome> [replace [filter]]` - Fills the
@@ -143,16 +146,16 @@ These commands require a permission level same or bigger than 2 to run them.
 - `/spreadplayers <center> <spreadDistance> <maxRange> [under <maxHeight>] <respectTeams> <targets>` -
   Teleport entities randomly across a specified area
 - `/stopsound <targets> [<source>] [<sound>]` - Stops any playing sound
+- `/stopwatch <create <id>|query <id> <scale>|restart <id>|remove <id>>` - Keeps track of real time (not game time), and is not affected by game tick rates or speeds. 
+  Time is calculated to millisecond precision
 - `/summon <entity> [<pos>] [<nbt>]` - Summons an entity
+- `/swing <entity_selector> <mainhand|offhand>` - Swings (animation only) the hand of an entity, mostly used for [mannequins](https://minecraft.wiki/w/Mannequin)
 - `/tag <targets> add <name>|remove <name>| list` - Adds, removes or lists
   entities tags
-- `/team <list|add|remove|empty|join|leave|modify> ...` - Modifies and creates
-  teams
-- `/teleport [<targets>] <destination|location [<rotation>|facing <location|entity <facingTarget> [<facingAnchor>]>]> ...` -
-  Teleport entities to a specified location. (ALIAS: `/tp`)
+- `/team <list|add|remove|empty|join|leave|modify> ...` - Modifies and creates teams
+- `/teleport [<targets>] <destination|location [<rotation>|facing <location|entity <facingTarget> [<facingAnchor>]>]> ...` - Teleport entities to a specified location. (ALIAS: `/tp`)
 - `/tellraw <targets> <message>` - Sends a JSON message to players
-- `/time <add <time>|query <daytime|gametime|day>|set <daytime|gametime|day|time>>` -
-  Controls or checks the time
+- `/time <add <time>|query <daytime|gametime|day>|set <daytime|gametime|day|time>>` - Controls or checks the time
 - `/title <targets> (times <fadeIn> <stay> <fadeOut>clear|reset|title <title>|subtitle <title>|actionbar <title>)` -
   Displays text on the player's screen
 - `/weather weather <clear|rain|thunder> [<duration>]` - Changes the weather

@@ -3,7 +3,7 @@ title: Scoreboards
 description:
   Scoreboards are a way of storing numerical data attributed to a player or
   entity in a Minecraft Datapack.
-version: 26.1.2
+version: 26.2
 ---
 
 # Scoreboards

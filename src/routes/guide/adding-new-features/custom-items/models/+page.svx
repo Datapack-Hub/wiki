@@ -3,7 +3,7 @@ title: Creating Custom Item Models and Textures
 description:
   "Learn how to make custom item models and textures with Minecraft Java
   resource packs"
-version: 26.1.2
+version: 26.2
 ---
 
 # Creating Custom Item Models and Textures
