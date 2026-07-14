@@ -6,7 +6,7 @@ description:
   step-by-step tutorial will help you understand the basics of datapack
   creation, even if you have little coding knowledge. Start enhancing your
   Minecraft experience today!
-version: 26.1.2
+version: 26.2
 ---
 
 <script lang="ts">

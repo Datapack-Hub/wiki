@@ -1,7 +1,7 @@
 ---
 title: Write Optimized Code
 description: "Learn how to optimize a minecraft datapack."
-version: 26.1.2
+version: 26.2
 ---
 
 # How To Write Optimized Code

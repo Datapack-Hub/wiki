@@ -2,7 +2,7 @@
 title: MCFunction vs Coding
 description:
   "Learn the differences between using MCFunctions and traditional coding."
-version: 26.1.2
+version: 26.2
 ---
 
 # MCFunction vs Traditional Coding
@@ -39,10 +39,8 @@ Interestingly, this also works function-wide, meaning you could use them as mock
 arguments.
 
 :::warning
-
 Macros can be significantly slower than other methods, it is best to only use
 them when necessary or in non-performance-critical code.
-
 :::
 
 Below are some examples of their usage:
@@ -118,9 +116,7 @@ do a
 [variety of math operations](https://minecraft.wiki/w/Scoreboard#Score_operations).
 
 :::note
-
-MCFunction does not come with complex math like trigonometry, absolutes, a
+MCFunction does not come with complex math operations like trig functions, absolutes, a
 pre-defined Pi, or even square root! These all must be implemented either by
 hand or with a third-party library.
-
 :::

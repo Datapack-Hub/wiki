@@ -3,7 +3,7 @@ title: Slowcast
 description:
   "Like a raycast but in slow. Useful if simply using tp every tick skips over
   too much when making it fast."
-version: 26.1.2
+version: 26.2
 ---
 
 # Slowcasting

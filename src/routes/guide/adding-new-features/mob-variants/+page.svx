@@ -1,7 +1,7 @@
 ---
 title: Adding Mob Variants
 description: "Learn how to add custom mob variants with Minecraft datapacks"
-version: 26.1.2
+version: 26.2
 ---
 
 # How to add custom mob variants

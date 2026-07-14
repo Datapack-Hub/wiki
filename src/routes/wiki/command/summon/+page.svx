@@ -3,7 +3,7 @@ title: /summon
 description:
   "The /summon command is used to summon an entity at a position, along with any
   entity NBT."
-version: 26.1.2
+version: 26.2
 ---
 
 # /summon command

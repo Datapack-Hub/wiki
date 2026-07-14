@@ -24,7 +24,7 @@
         This page is validated and up to date with Minecraft Java: {version}
       {:else}
         This page was last updated with information for Minecraft {version}, and may be missing new features and
-        changes.
+        changes. There is a chance it still works, but try it at your own risk!
       {/if}
     </span>
   </div>
