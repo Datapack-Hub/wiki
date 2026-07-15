@@ -1,7 +1,7 @@
 ---
 title: Using the on_consume advancement criteria for right click detection.
 description:
-  "Using the on_consumde advancement criteria to detect when a player right clicks in a datapack."
+  "Using the on_consume advancement criteria to detect when a player right clicks in a datapack."
 version: 26.2
 ---
 
