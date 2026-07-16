@@ -44,9 +44,6 @@ Any item can be used here, but it is recommended to not already have a right cli
 
 Now that we have the item, we must write the right click detection.
 This method uses the on_consume advancement criteria, which detects when an item is consumed, we then check if the item has the custom data value we assigned.
-
-
-
 ``` json:consume.json
 {
   "criteria": {
