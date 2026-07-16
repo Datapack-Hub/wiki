@@ -24,7 +24,6 @@ Pros :
 
 Cons : 
 - If the player somehow picks up an item before the item is given back, the item can drop on the floor.
-- If the item is in the offhand it will move to a different inventory slot once consumed.
 - If the player modifies any item NBT, it will not carry over.
 
 ## Method
