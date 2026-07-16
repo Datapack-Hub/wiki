@@ -20,7 +20,7 @@ rightclick functionality.
 Pros : 
 - Can have visual cooldowns (akin to those of an ender pearl). 
 - Doesn’t require a scoreboard value for a cooldown.
-- Doesn’t require a scoreboard to create a startup (a use time before activating the ability) without a scoreboard.
+- Doesn’t require a scoreboard to create a windup without a scoreboard.
 
 Cons : 
 - If the player somehow picks up an item before the item is given back, the item can drop on the floor.
