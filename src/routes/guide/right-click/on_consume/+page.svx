@@ -6,9 +6,7 @@ version: 26.2
 ---
 
 # On Consume Right Click Detection
-
-
-A second method for right-click detection using the consumable components is the on_consume method, which requires the player to actually consume the item before using it.
+A second method for right-click detection using the consumable components is the `on_consume method`, which requires the player to actually consume the item before using it.
 
 :::warning
 
@@ -20,30 +18,28 @@ rightclick functionality.
 :::
 
 Pros : 
-Can have visual cooldowns (akin to those of an ender pearl). 
-Doesn’t require a scoreboard value for a cooldown.
-Doesn’t require a scoreboard to create a startup (a use time before activating the ability) without a scoreboard.
+- Can have visual cooldowns (akin to those of an ender pearl). 
+- Doesn’t require a scoreboard value for a cooldown.
+- Doesn’t require a scoreboard to create a startup (a use time before activating the ability) without a scoreboard.
 
 Cons : 
-If the player somehow picks up an item before the item is given back, the item can drop on the floor.
-If the item is in the offhand it will move to a different inventory slot once consumed.
-If the player modifies any item NBT, it will not carry over.
+- If the player somehow picks up an item before the item is given back, the item can drop on the floor.
+- If the item is in the offhand it will move to a different inventory slot once consumed.
+- If the player modifies any item NBT, it will not carry over.
 
-## Method 
+## Method
 
-First we need to create a give function, this can also be done with a recipe or a loot table, if you wish to use one of these I would recommend converting your item component with https://misode.github.io/convert/ to maintain the same values.
+First we need to create a give function, this can also be done with a recipe or a loot table, if you wish to use one of these I would recommend converting your item component with [Misode's converter](<https://misode.github.io/convert/>) to maintain the same values.
 
 ::: info
 
-Misode’s converter is a tool used to convert /give commands into loot tables and recipes or vise versa
+[Misode's converter](<https://misode.github.io/convert/>) is a tool used to convert /give commands into loot tables and recipes or vise versa
 
 :::
 
 
 ``` mcfunction:give.mcfunction
-
-
-#any item can be used here, it is recommended to not already have a right click function, the custom data is the value we will be using to separate our item, if you wish to give your item a windup time, change the consume seconds (it can be 0 for no windup), the cooldown group is the global group used for the item cooldown, any item in this group will go on cooldown for the value of seconds set after it is used.
+# Any item can be used here, it is recommended to not already have a right click function, the custom data is the value we will be using to separate our item, if you wish to give your item a windup time, change the consume seconds (it can be 0 for no windup), the cooldown group is the global group used for the item cooldown, any item in this group will go on cooldown for the value of seconds set after it is used.
 
 give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
 ```
@@ -84,10 +80,10 @@ This method uses the on_consume advancement criteria, which detects when an item
 
 ``` mcfunction:consume.mcfunction
 
-#code goes here
+# Custom logic
 say Right click detected.
 
-#give back the item as it was consumed
+# Give back the item as it was consumed
 give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
 
 #revoke the advancement
