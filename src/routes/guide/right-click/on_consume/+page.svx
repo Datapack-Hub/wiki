@@ -70,10 +70,9 @@ This method uses the on_consume advancement criteria, which detects when an item
   }
 }
 ```
+Finally, let's write the function that will run on right click.
 
-
-``` mcfunction:consume.mcfunction
-
+``` mcfunction:right_click.mcfunction
 # Custom logic
 say Right click detected.
 
