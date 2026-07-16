@@ -28,7 +28,7 @@ However, this method triggers once per tick, not just once per right click.
 ### Using [the on_consume advancement criteria](/guide/right-click/on_consume)
 
 With the item changes added in 1.20.5, we can now detect right clicks on any
-item using the on_consume advancement criteria, which detects when an item is consumed.
+item using the `on_consume` advancement criteria, which detects when an item is consumed.
 This method is quite similar to the consumable component method, with a few advantages and disadvantages.
 
 
