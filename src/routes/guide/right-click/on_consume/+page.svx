@@ -86,7 +86,7 @@ say Right click detected.
 # Give back the item as it was consumed
 give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
 
-#revoke the advancement
+# Revoke the advancement
 advancement revoke @s only tutorial:consume
 ```
 
