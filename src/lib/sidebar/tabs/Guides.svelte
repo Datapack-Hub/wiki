@@ -89,6 +89,7 @@
   <SidebarPage label="Carrot on a Stick" icon={IconCarrot} page="/guide/right-click/coas" />
   <SidebarPage label="Eye of Ender" icon={IconEye} page="/guide/right-click/eoe" />
   <SidebarPage label="Consumable Component" icon={IconApple} page="/guide/right-click/consumable_component" />
+  <SidebarPage label="On Consume" icon={IconApple} page="/guide/right-click/on_consume" />
   <SidebarPage label="Interaction Entity" icon={IconSelection} page="/guide/right-click/interaction" />
 </SidebarCategory>
 
