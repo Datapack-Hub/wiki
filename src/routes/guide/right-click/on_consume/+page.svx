@@ -28,7 +28,7 @@ Cons:
 
 ## Method
 
-First we need to create a give function, this can also be done with a recipe or a loot table, if you wish to use one of these I would recommend converting your item component with [Misode's converter](<https://misode.github.io/convert/>) to maintain the same values.
+First we need to create a give function. This can also be done with a recipe or a loot table, if you wish to use one of these I would recommend converting your item component with [Misode's converter](<https://misode.github.io/convert/>) to maintain the same values.
 
 :::info
 
