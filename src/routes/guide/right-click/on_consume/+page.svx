@@ -6,14 +6,14 @@ version: 26.2
 ---
 
 # On Consume Right Click Detection
-A second method for right-click detection using the consumable components is the `on_consume method`, which requires the player to actually consume the item before using it.
+A second method for right click detection using the consumable components is the `on_consume method`, which requires the player to actually consume the item before using it.
 
 :::warning
 
 This method will work for any type of item. However, if the item type already
-has a default rightclick functionality (such as placing a block), it will keep
+has a default right click functionality (such as placing a block), it will keep
 that functionality. This method is best used for items that don't have a default
-rightclick functionality.
+right click functionality.
 
 :::
 
