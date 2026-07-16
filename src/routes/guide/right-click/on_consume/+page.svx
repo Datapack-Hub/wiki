@@ -36,7 +36,6 @@ First we need to create a give function. This can also be done with a recipe or 
 
 :::
 
-
 ``` mcfunction:give.mcfunction
 give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
 ```
