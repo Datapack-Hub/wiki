@@ -45,7 +45,7 @@
   import IconClock from "~icons/tabler/clock";
   import IconStar from "~icons/tabler/star";
   import IconHourglass from "~icons/tabler/hourglass-empty";
-  import IconBaguette from "~icons/tabler/baguette"
+  import IconBaguette from "~icons/tabler/baguette";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
 </script>
 
