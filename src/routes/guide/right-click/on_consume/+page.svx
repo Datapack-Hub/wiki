@@ -1,0 +1,84 @@
+---
+title: Using the on_consume advancement criteria for right click detection.
+description:
+  "Using the on_consume advancement criteria to detect when a player right clicks in a datapack."
+version: 26.2
+---
+
+# On Consume Right Click Detection
+A second method for right click detection using the consumable components is the `on_consume method`, which requires the player to actually consume the item before using it.
+
+:::warning
+
+This method will work for any type of item. However, if the item type already
+has a default right click functionality (such as placing a block), it will keep
+that functionality. This method is best used for items that don't have a default
+right click functionality.
+
+:::
+
+Pros: 
+- Can have visual cooldowns (akin to those of an ender pearl). 
+- Doesn’t require a scoreboard value for a cooldown.
+- Doesn’t require a scoreboard to create a windup without a scoreboard.
+- If you don't include the give back command, you can create custom consumables.
+
+Cons: 
+- If the player somehow picks up an item before the item is given back, the item can drop on the floor.
+- If the player modifies any item NBT, it will not carry over.
+
+## Method
+
+First we need to create a give function. This can also be done with a recipe or a loot table, if you wish to use one of these I would recommend converting your item component with [Misode's converter](<https://misode.github.io/convert/>) to maintain the same values.
+
+:::info
+
+[Misode's converter](<https://misode.github.io/convert/>) is a tool used to convert /give commands into loot tables and recipes or vise versa
+
+:::
+
+``` mcfunction:give.mcfunction
+give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
+```
+Any item can be used here, but it is recommended to not already have a right click function. The custom data is the value we will be using to separate our item. Ff you wish to give your item a windup time, change the consume seconds (it can be 0 for no windup). The cooldown group is the global group used for the item cooldown, any item in this group will go on cooldown for the value of seconds set after it is used.
+
+Now that we have the item, we must write the right click detection.
+This method uses the on_consume advancement criteria, which detects when an item is consumed, we then check if the item has the custom data value we assigned.
+``` json:consume.json
+{
+  "criteria": {
+    "right_click": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "components": {
+            "minecraft:custom_data": {
+              "tutorial": "item"
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "right_click"
+    ]
+  ],
+  "rewards": {
+    "function": "tutorial:right_click"
+  }
+}
+```
+Finally, let's write the function that will run on right click.
+``` mcfunction:right_click.mcfunction
+# Custom logic
+say Right click detected.
+
+# Give back the item as it was consumed
+give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
+
+# Revoke the advancement
+advancement revoke @s only tutorial:consume
+```
+
