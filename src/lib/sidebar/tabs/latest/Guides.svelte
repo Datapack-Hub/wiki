@@ -43,6 +43,7 @@
   import IconMathMaxMin from "~icons/tabler/math-max-min";
   import IconCat from "~icons/tabler/cat";
   import IconBaguette from "~icons/tabler/baguette";
+  import IconMacro from "~icons/tabler/file-dollar";
   import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -106,4 +107,5 @@
   <SidebarPage label="Debugging" icon={IconBug} page="/guide/misc/debugging" />
   <SidebarPage label="Raycasts" icon={IconArrow} page="/guide/misc/raycasts" />
   <SidebarPage label="Slowcasts" icon={IconArrow} page="/guide/misc/slowcasts" />
+  <SidebarPage label="Macros" icon={IconMacro} page="/guide/misc/macros" />
 </SidebarCategory>

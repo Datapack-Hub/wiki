@@ -1,0 +1,64 @@
+---
+title: Macros
+description:
+  "Learn what a macro is and how to use it"
+version: 26.2
+---
+
+# Macros
+
+A macro, often described as a function with parameters, is a function that allows
+you to pass it an nbt object which you can use inside the function to fill in placeholders
+to dynamically create commands.
+
+This however is where the description, function with parameters, isn't fully correct.
+Macros are much more powerful. They allow you to insert any text in any part of any
+command in that function. In other programming languages better known under the names
+string interpolation and code generation.
+
+## How to use a macro
+
+To mark a command in a function as a macro command, you have to put a dollar sign($) at the start
+of the line and to for the placeholder, you use this: `$(<key>)`.
+
+```mcfunction:example_func.mcfunction
+$tellraw @a Hello $(text) 
+```
+On its own though, this is not a valid function and cannot be executed. For that, you need to
+give it something to fill in the placeholder so it becomes a valid command.
+
+This can be any nbt from either a block, an entity, or a storage.
+
+For this example, we will add some data to a storage that we can use in our macro:
+```mcfunction
+data merge storage example_storage {tellraw_msg:"World"}
+```
+Now we run our function and pass it the data from the storage. For that we use the `with` sub command.
+
+```mcfunction
+function namespace:example_func with storage example_storage
+
+# Outputs in chat -> Hello World
+```
+
+You can also use multiple placeholders. A real world example that gets used frequently in datapacks is
+dynamically inserting x, y, and z coordinates in a tp command.
+
+```mcfunction
+data merge storage example_storage {x:10, y:55, z:18}
+```
+
+```mcfunction:example_func.mcfunction
+$tp $(x) $(y) $(z)
+```
+
+:::warning
+Be careful when using macros. Due to it's dynamic nature, minecraft can't read and evaluate the code
+up front. It has to do that when the code gets called which takes a lot longer than which makes this
+the most expensive operation you can do in datapacks. Try to avoid it when possible.
+:::
+
+:::info
+Note, the last 8 inputs to a function get saved by the game, making a repeated call to a macro with the
+same input just as fast as any other function.
+:::
