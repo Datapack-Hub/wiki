@@ -1,57 +1,118 @@
 ---
 title: Home
 description:
-  "Welcome to the Datapack Wiki, a resource for everything related to Minecraft
-  Datapacks. We've got guides, tutorials, and documentation to help you build
-  your knowledge about data packs."
+  "Learn how to build Minecraft datapacks with practical guides, clear command
+  references, and community-maintained documentation."
 ---
 
 <script lang="ts">
-import { Discord } from '$lib/reusables';
 import SearchBox from '$lib/sidebar/SearchBox.svelte';
+import IconArrowRight from '~icons/tabler/arrow-right';
+import IconBraces from '~icons/tabler/braces';
+import IconCode from '~icons/tabler/code';
+import IconFiles from '~icons/tabler/folders';
+import IconDiscord from '~icons/tabler/brand-discord';
+import IconGithub from '~icons/tabler/brand-github';
+import IconSparkles from '~icons/tabler/sparkles';
 </script>
 
-# Welcome to the Datapack Wiki!
+<div class="home-landing not-prose">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div class="home-hero__copy">
+      <p class="home-eyebrow">
+        <span class="home-eyebrow__dot"></span>
+        Community-built Minecraft knowledge
+      </p>
+      <h1 id="home-title">
+        Build better
+        <span>Minecraft datapacks.</span>
+      </h1>
+      <p class="home-hero__lede">
+        Practical guides and precise references for turning your ideas into
+        polished vanilla Minecraft experiences.
+      </p>
 
-Welcome to the Datapack Wiki, a resource for everything related to Minecraft
-Datapacks. This community-built wiki has got guides, tutorials, and
-documentation to help you create and modify Minecraft Datapacks.
+      <div class="home-hero__search">
+        <SearchBox variant="hero" />
+      </div>
 
-<SearchBox />
+      <div class="home-actions">
+        <a class="home-button home-button--primary" href="/guide/getting-started">
+          Start learning <IconArrowRight />
+        </a>
+        <a class="home-button home-button--secondary" href="/wiki/concepts/commands">
+          Browse the reference
+        </a>
+      </div>
+    </div>
 
-## New to Minecraft Datapacks?
+    <div class="home-code-card" aria-label="Example datapack function">
+      <div class="home-code-card__bar">
+        <div class="home-code-card__dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <span>data/wiki/function/tick.mcfunction</span>
+      </div>
+      <pre><code><span class="code-comment"># Run once every game tick</span>
+<span class="code-command">execute</span> <span class="code-keyword">as</span> @a <span class="code-keyword">run function</span> wiki:tick
 
-Don't worry! You're in the right place. We've got a guide on
-[how to make a datapack](/guide/getting-started) for those of you with no or
-little experience. If you get stuck, don't hesitate to ask in our Discord
-Server. Pages on this wiki have been written with beginners in mind - you should
-have no trouble working through these resources.
+<span class="code-command">scoreboard</span> players add @s play_time <span class="code-number">1</span></code></pre>
+      <div class="home-code-card__status">
+        <span><i></i> Ready to run</span>
+        <span>Minecraft Java</span>
+      </div>
+    </div>
+  </section>
 
-## What are Minecraft Datapacks?
+  <section class="home-section home-explore" aria-labelledby="explore-wiki">
+    <div class="home-section__heading">
+      <div>
+        <p class="home-kicker">Popular topics</p>
+        <h2 id="explore-wiki">Explore the wiki</h2>
+      </div>
+      <p>The foundations you’ll reach for in almost every datapack project.</p>
+    </div>
 
-Minecraft Datapacks are like addons - they are a Minecraft feature that lets you
-customize Minecraft worlds without mods. They allow you to modify and enhance
-the game by adding new features and mechanics by using Minecraft commands,
-advancements, worldgen, and more!
+    <div class="home-topic-grid">
+      <a class="home-topic" href="/wiki/concepts/commands">
+        <span class="home-topic__icon"><IconCode /></span>
+        <span><strong>Commands</strong><small>Syntax, execution, and context</small></span>
+        <IconArrowRight />
+      </a>
+      <a class="home-topic" href="/wiki/files/functions">
+        <span class="home-topic__icon"><IconFiles /></span>
+        <span><strong>Datapack files</strong><small>Functions, recipes, tags, and more</small></span>
+        <IconArrowRight />
+      </a>
+      <a class="home-topic" href="/wiki/nbt-scoreboards/nbt">
+        <span class="home-topic__icon"><IconBraces /></span>
+        <span><strong>NBT & scoreboards</strong><small>Store and manipulate game data</small></span>
+        <IconArrowRight />
+      </a>
+      <a class="home-topic" href="/wiki/worldgen/custom-worldgen">
+        <span class="home-topic__icon"><IconSparkles /></span>
+        <span><strong>World generation</strong><small>Shape custom Minecraft worlds</small></span>
+        <IconArrowRight />
+      </a>
+    </div>
+  </section>
 
-With datapacks, you can:
-
-- Add and modify custom recipes
-- Modify existing or create new loot tables
-- Add new advancements and enchantments
-- Create unique structures
-- And much more!
-
-## Contribute
-
-This project wouldn't be possible without the support of community members. We
-encourage you to contribute to this wiki if you want to write any pages, correct
-any mistakes, or share any of your knowledge!
-
-You can hit the `Edit` button on any page to open the GitHub page for the
-current wiki page. All our contributions are done via GitHub and are written in
-Markdown. For more information, find the Contribution section of this page, or
-read our contribution guide on our
-[GitHub repo](https://github.com/Datapack-Hub/wiki/).
-
-<Discord />
+  <section class="home-community" aria-labelledby="community-heading">
+    <div class="home-community__copy">
+      <p class="home-kicker">Built in the open</p>
+      <h2 id="community-heading">Learn with the community.</h2>
+      <p>
+        Get help when you’re stuck, share what you know, or help us make the
+        next page better.
+      </p>
+    </div>
+    <div class="home-community__actions">
+      <a class="home-button home-button--primary" href="https://discord.gg/xHTHbZqXr6">
+        <IconDiscord /> Join Discord
+      </a>
+      <a class="home-button home-button--secondary" href="https://github.com/Datapack-Hub/wiki/">
+        <IconGithub /> Contribute on GitHub
+      </a>
+    </div>
+  </section>
+</div>
