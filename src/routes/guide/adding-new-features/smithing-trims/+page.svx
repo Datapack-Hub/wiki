@@ -6,6 +6,10 @@ description:
 version: 26.2
 ---
 
+<script lang="ts">
+  import ArticleImage from "$lib/reusables/ArticleImage.svelte";
+</script>
+
 # How to add custom Smithing Trims
 
 This guide is split into three parts, adding a custom smithing trim pattern,
@@ -112,7 +116,7 @@ And now to finish, we'll need the actual trim textures. These should be
 grayscale images using the same colors as
 `textures/trims/color_palettes/trim_palette` (can be seen below).
 
-<img src="https://i.postimg.cc/tTyTmCMN/trim-palette.png" alt="Vanilla default trim material file" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+<ArticleImage src="https://i.postimg.cc/tTyTmCMN/trim-palette.png" alt="Vanilla default trim material file" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;" />
 
 These black-and-white colors will be automatically replaced by the game when a
 trim color palette is applied. An example file of
@@ -120,8 +124,8 @@ trim color palette is applied. An example file of
 `<namespace>/textures/trims/entity/humanoid_leggings/example_template` can also
 be found below.
 
-<img src="https://i.imgur.com/PIW9bpM.png" alt="Example template" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
-<img src="https://i.imgur.com/aTyP6pN.png" alt="Example leggings template" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+<ArticleImage src="https://i.imgur.com/PIW9bpM.png" alt="Example template" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;" />
+<ArticleImage src="https://i.imgur.com/aTyP6pN.png" alt="Example leggings template" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;" />
 
 Once you save the above files, you need to reload the resource pack with the
 keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
@@ -277,7 +281,7 @@ and a height of 1. You can see an example palette below. This image should be
 saved in `assets/<namespace>/textures/trims/color_palettes/` as
 `matexample.png`.
 
-<img src="https://i.postimg.cc/Yqyvq7vt/pallete.png" alt="Example color palette" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+<ArticleImage src="https://i.postimg.cc/Yqyvq7vt/pallete.png" alt="Example color palette" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;" />
 
 Now comes the last and also hardest part, adding the item models and their
 definition for all the armor pieces. I will only show this on the diamond
@@ -585,7 +589,7 @@ chapter.) This image has to be located in
 `assets/minecraft/textures/trims/items/` with the name `pickaxe_trim.png` The
 texture I used can be found below:
 
-<img src="https://i.postimg.cc/J0FHgCJ7/pickaxe-trim.png" alt="Example color palette" width="100" style="image-rendering: pixelated; image-rendering: crisp-edges;">
+<ArticleImage src="https://i.postimg.cc/J0FHgCJ7/pickaxe-trim.png" alt="Example color palette" width="100" style="image-rendering: pixelated; image-rendering: crisp-edges;" />
 
 Once you save the above files, you need to reload the resource pack with the
 keybind **F3 + T** in-game. You will also need to leave and rejoin the world to

@@ -1,31 +1,367 @@
 @plugin "@tailwindcss/typography";
 
-.md {
-  @apply prose prose-stone prose-sm max-w-full md:prose-base prose-invert!;
-  @apply prose-img:my-1;
-  @apply prose-headings:mb-2 prose-h2:text-2xl prose-h2:mt-7 prose-headings:scroll-mt-16 prose-headings:text-stone-200;
-  @apply prose-p:my-3;
-  @apply prose-a:text-orange-300 prose-a:hover:text-orange-400;
-  @apply prose-blockquote:prose-blockquote:font-normal prose-blockquote:not-italic;
-  @apply prose-strong:text-stone-100;
+.article-shell {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 3rem) var(--page-gutter) 4rem;
+}
 
-  /* inline code blocks below */
-  @apply prose-code:bg-stone-800 prose-code:rounded-sm prose-code:border prose-code:text-orange-300 prose-code:border-stone-700 prose-code:font-thin prose-code:before:content-none prose-code:after:content-none prose-code:break-all;
-  @apply prose-headings:scroll-mt-20;
-  @apply prose-ol:mt-0 prose-ul:mt-0 prose-li:my-1;
-  @apply prose-h2:border-b prose-h2:pb-2 prose-h2:border-white/20;
-  @apply prose-h3:border-b prose-h3:pb-2 prose-h3:border-white/20;
-  @apply prose-th:p-2 prose-th:text-left prose-thead:bg-stone-800 prose-td:p-2 even:prose-tr:bg-stone-500/10 odd:prose-tr:bg-stone-700/10 prose-table:border prose-table:border-stone-700 prose-table:m-0 prose-table:w-auto;
-  /* multi-line code blocks below */
-  @apply prose-pre:bg-stone-900 prose-code:prose-pre:p-0 prose-pre:prose-code:border-0! prose-pre:overflow-x-auto;
+.article-shell.home-page {
+  max-width: 78rem;
+  padding-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+.md.article-shell {
+  max-width: 68rem;
+}
+
+.md.article-shell.home-page {
+  max-width: 78rem;
+}
+
+.md {
+  @apply prose prose-invert max-w-none;
+  --tw-prose-body: var(--text-secondary);
+  --tw-prose-headings: var(--text-primary);
+  --tw-prose-lead: var(--text-secondary);
+  --tw-prose-links: #ffad7d;
+  --tw-prose-bold: var(--text-primary);
+  --tw-prose-counters: var(--text-muted);
+  --tw-prose-bullets: #696b73;
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--text-secondary);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-captions: var(--text-muted);
+  --tw-prose-code: #ffb68e;
+  --tw-prose-pre-code: #dedbd5;
+  --tw-prose-pre-bg: #101116;
+  --tw-prose-th-borders: var(--border-strong);
+  --tw-prose-td-borders: var(--border);
+  color: var(--text-secondary);
+  font-size: 1.03rem;
+  line-height: 1.72;
+}
+
+.md :where(h1, h2, h3, h4):not(:where(.not-prose *)) {
+  color: var(--text-primary);
+  font-weight: 660;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.md :where(h1):not(:where(.not-prose *)) {
+  margin: 0 0 1rem;
+  font-size: clamp(2.25rem, 5vw, 3.35rem);
+  line-height: 1.06;
+}
+
+.md :where(h2):not(:where(.not-prose *)) {
+  margin: 3.25rem 0 0.9rem;
+  padding: 0;
+  border: 0;
+  font-size: clamp(1.65rem, 3vw, 2rem);
+  line-height: 1.18;
+  scroll-margin-top: 5.5rem;
+}
+
+.md :where(h3):not(:where(.not-prose *)) {
+  margin: 2.35rem 0 0.7rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  scroll-margin-top: 5.5rem;
+}
+
+.md :where(h4):not(:where(.not-prose *)) {
+  margin-top: 1.8rem;
+  font-size: 1.08rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.md :where(p):not(:where(.not-prose *)) {
+  margin-block: 0.85rem;
+}
+
+.md :where(a):not(:where(.not-prose *)) {
+  color: #ffad7d;
+  font-weight: 500;
+  text-decoration-color: rgb(255 122 50 / 38%);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition:
+    color 140ms ease,
+    text-decoration-color 140ms ease;
+}
+
+.md :where(a):not(:where(.not-prose *)):hover {
+  color: #ffc7a8;
+  text-decoration-color: currentColor;
+}
+
+.md :where(strong):not(:where(.not-prose *)) {
+  color: var(--text-primary);
+  font-weight: 650;
+}
+
+.md :where(ul, ol):not(:where(.not-prose *)) {
+  margin-block: 0.75rem 1rem;
+  padding-left: 1.45rem;
+}
+
+.md :where(li):not(:where(.not-prose *)) {
+  margin-block: 0.25rem;
+  padding-left: 0.2rem;
+}
+
+.md :where(li)::marker {
+  color: #6d6f77;
+}
+
+.md :where(blockquote):not(:where(.not-prose *)) {
+  margin-block: 1.5rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 0.65rem 0.65rem 0;
+  background: var(--accent-soft);
+  padding: 0.85rem 1rem;
+  color: var(--text-secondary);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.md :where(hr):not(:where(.not-prose *)) {
+  margin-block: 2.5rem;
+  border-color: var(--border);
+}
+
+.md :where(:not(pre) > code):not(:where(.not-prose *)) {
+  border: 1px solid rgb(255 122 50 / 18%);
+  border-radius: 0.35rem;
+  background: var(--accent-soft);
+  padding: 0.12em 0.35em;
+  color: #ffb68e;
+  font-size: 0.87em;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.md :where(:not(pre) > code):not(:where(.not-prose *))::before,
+.md :where(:not(pre) > code):not(:where(.not-prose *))::after {
+  content: none;
+}
+
+.md :where(pre):not(:where(.not-prose *)) {
+  margin-block: 1.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: #101116 !important;
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 14%);
+}
+
+.version-callout::after,
+.discord-callout::after {
+  position: absolute;
+  inset: 0;
+  background: var(--pixel-frame-outline);
+  color: var(--pixel-frame-color, var(--border));
+  content: "";
+  pointer-events: none;
+}
+
+.md :where(pre code):not(:where(.not-prose *)) {
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 0.9rem;
 }
 
 .remark-code-title {
-  @apply text-sm font-mono font-bold uppercase bg-[#1F1F28] py-1 px-2 rounded-md
-    -mb-4 w-fit;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 1.4rem 0 0;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: #181a21;
+  padding: 0.55rem 0.9rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
-.autolink {
-  @apply inline-block ml-2 stroke-stone-700 focus:stroke-stone-400
-    hover:stroke-stone-400 z-0 motion-safe:transition-colors;
+.md .remark-code-title + :where(pre):not(:where(.not-prose *)) {
+  margin-top: 0;
+  border-top: 0;
+  border-radius: 0;
+}
+
+.md :where(table):not(:where(.not-prose *)) {
+  display: block;
+  width: 100%;
+  margin-block: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+}
+
+.md :where(th):not(:where(.not-prose *)) {
+  background: var(--surface);
+  padding: 0.7rem 0.85rem;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.md :where(td):not(:where(.not-prose *)) {
+  padding: 0.7rem 0.85rem;
+}
+
+.md :where(tbody tr):not(:where(.not-prose *)):nth-child(even) {
+  background: rgb(255 255 255 / 2%);
+}
+
+.md :where(h1, h2, h3, h4) > a[title="Copy Link"] {
+  display: inline-flex;
+  margin-left: 0.45rem;
+  color: #595b62;
+  opacity: 0;
+  translate: 0 0.1em;
+  transition:
+    color 140ms ease,
+    opacity 140ms ease;
+}
+
+.md :where(h1, h2, h3, h4):hover > a[title="Copy Link"],
+.md :where(h1, h2, h3, h4) > a[title="Copy Link"]:focus-visible {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.md :where(h1, h2, h3, h4) > a[title="Copy Link"] svg {
+  width: 0.9em;
+  height: 0.9em;
+  stroke: currentColor;
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.article-tags__label {
+  margin-right: 0.15rem;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.article-tag {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.25rem 0.55rem;
+  color: #aaa9ad;
+  font-size: 0.76rem;
+}
+
+.version-callout {
+  --pixel-frame-color: var(--border);
+  position: relative;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-bottom: 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: var(--surface);
+  padding: 0.55rem 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  clip-path: var(--pixel-corners);
+}
+
+.version-callout--current svg {
+  color: var(--success);
+}
+
+.version-callout--outdated svg {
+  color: var(--warning);
+}
+
+.version-callout svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  margin-top: 0.08rem;
+}
+
+.discord-callout {
+  --pixel-frame-color: var(--border);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 8% 20%, rgb(255 122 50 / 10%) 0, rgb(255 122 50 / 4%) 9rem, rgb(255 122 50 / 0%) 18rem),
+    var(--surface);
+  padding: 1rem;
+  clip-path: var(--pixel-corners);
+}
+
+.discord-callout__logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: none;
+}
+
+.discord-callout__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.2rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.discord-callout p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.discord-callout a {
+  color: #ffad7d;
+}
+
+@media (max-width: 640px) {
+  .md {
+    font-size: 1rem;
+  }
+
+  .discord-callout__logo {
+    display: none;
+  }
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import IconChevronDown from "~icons/tabler/chevron-down";
   import IconLoader from "~icons/tabler/loader2";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
   import { windowInfo } from "$lib/stores.svelte";
@@ -14,21 +15,17 @@
   let version: Versions = $state("latest");
 </script>
 
-<select
-  name="version"
-  id="version"
-  aria-label="Version Selector"
-  bind:value={version}
-  class="bg-stone-900 hover:bg-stone-950 hover:border-stone-950 p-2 w-full rounded-lg focus-visible:outline-2 accent-dph-orange focus-visible:outline-dph-orange mt-1 mb-2 border-r-8 border-stone-900 {windowInfo.isNavOpen
-    ? ''
-    : 'hidden'}">
-  <option value="latest">Latest</option>
-  <option value="pre-1_21_11">1.21.10</option>
-</select>
+<div class="version-picker-frame {windowInfo.isNavOpen ? '' : 'hidden'}">
+  <select name="version" id="version" aria-label="Version Selector" bind:value={version} class="version-picker">
+    <option value="latest">Latest</option>
+    <option value="pre-1_21_11">1.21.10</option>
+  </select>
+  <IconChevronDown class="version-picker__chevron" aria-hidden="true" />
+</div>
 
 {#if page == "wiki"}
   {#await import(`./${version}/WikiPages.svelte`)}
-    <div class="cursor-not-allowed py-1 rounded-lg flex gap-2 pl-1 items-center text-stone-500">
+    <div class="nav-item nav-item--placeholder">
       <IconLoader class="animate-spin" />
 
       {#if windowInfo.isNavOpen}
@@ -42,7 +39,7 @@
   {/await}
 {:else if page == "guides"}
   {#await import(`./${version}/Guides.svelte`)}
-    <div class="cursor-not-allowed py-1 rounded-lg flex gap-2 pl-1 items-center text-stone-500">
+    <div class="nav-item nav-item--placeholder">
       <IconLoader class="animate-spin" />
 
       {#if windowInfo.isNavOpen}

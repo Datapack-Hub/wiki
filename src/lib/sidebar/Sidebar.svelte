@@ -1,10 +1,9 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+  import { page as appPage } from "$app/state";
   import SearchBox from "./SearchBox.svelte";
 
   // ! IMPORTANT: If you want to add pages or categories, this is not the place to do it!
-
-  import GuidePages from "$lib/sidebar/tabs/latest/Guides.svelte";
-  import WikiPages from "$lib/sidebar/tabs/latest/WikiPages.svelte";
   import { latestMCData, windowInfo } from "$lib/stores.svelte";
 
   import IconCredits from "~icons/tabler/address-book";
@@ -14,18 +13,46 @@
   import IconWiki from "~icons/tabler/globe";
   import IconMarkdown from "~icons/tabler/markdown";
   import IconBranch from "~icons/tabler/git-branch";
+  import IconX from "~icons/tabler/x";
 
   import SidebarPage from "./navigation/SidebarPage.svelte";
   import SidebarCategory from "./navigation/SidebarCategory.svelte";
   import VersionPicker from "./tabs/VersionPicker.svelte";
 
-  let page: "wiki" | "guides" = $state("wiki");
+  type ContentPage = "wiki" | "guides";
 
-  $effect(() => {
-    page = (sessionStorage.getItem("page") as "wiki" | "guides") || "wiki";
+  function contentPageFromPath(pathname: string): ContentPage | null {
+    if (pathname === "/guide" || pathname.startsWith("/guide/")) return "guides";
+    if (pathname === "/wiki" || pathname.startsWith("/wiki/")) return "wiki";
+    return null;
+  }
+
+  let page: ContentPage = $state(contentPageFromPath(appPage.url.pathname) || "wiki");
+  let mounted = $state(false);
+
+  onMount(() => {
+    mounted = true;
   });
 
-  export async function handleKeyInput(
+  $effect(() => {
+    const routePage = contentPageFromPath(appPage.url.pathname);
+
+    if (routePage) {
+      page = routePage;
+      sessionStorage.setItem("page", routePage);
+    } else {
+      page = (sessionStorage.getItem("page") as ContentPage) || "wiki";
+    }
+  });
+
+  $effect(() => {
+    const shouldLock = windowInfo.width < 768 && windowInfo.isNavOpen;
+    document.body.classList.toggle("nav-open", shouldLock);
+
+    return () => document.body.classList.remove("nav-open");
+  });
+
+  export function handleKeyInput(
     e: KeyboardEvent & {
       currentTarget: EventTarget & Window;
     }
@@ -33,53 +60,56 @@
     const doc = e.currentTarget.document;
     const notAnInput =
       !(doc.activeElement instanceof HTMLInputElement) && !(doc.activeElement instanceof HTMLTextAreaElement);
-    if (e.key == "ArrowLeft" && windowInfo.isNavOpen && notAnInput) {
-      windowInfo.isNavOpen = false;
-    }
 
-    if (e.key == "ArrowRight" && !windowInfo.isNavOpen && notAnInput) {
-      windowInfo.isNavOpen = true;
-    }
+    if (e.key === "ArrowLeft" && windowInfo.isNavOpen && notAnInput) windowInfo.isNavOpen = false;
+    if (e.key === "ArrowRight" && !windowInfo.isNavOpen && notAnInput) windowInfo.isNavOpen = true;
+  }
+
+  function choosePage(nextPage: ContentPage) {
+    page = nextPage;
+    sessionStorage.setItem("page", nextPage);
   }
 </script>
 
-<svelte:window on:keydown={handleKeyInput} />
+<svelte:window onkeydown={handleKeyInput} />
+
+{#if windowInfo.isNavOpen}
+  <button
+    class="sidebar-backdrop md:hidden"
+    aria-label="Close navigation"
+    onclick={() => (windowInfo.isNavOpen = false)}></button>
+{/if}
 
 <aside
-  class="{windowInfo.isNavOpen
-    ? 'fixed w-full sm:w-80'
-    : 'w-fit hidden sm:flex'} flex flex-col bg-stone-800 items-center h-[calc(100dvh-3rem)] sm:sticky top-12 z-50 border-r border-stone-700">
-  <div class="flex flex-col p-2 pt-1 grow overflow-y-auto w-full" id="nav_side">
-    {#if windowInfo.isNavOpen}
-      <SearchBox keyActivated />
-      <div class="flex items-center mb-2 gap-1">
-        <button
-          class="{page == 'wiki'
-            ? 'bg-stone-700'
-            : 'bg-stone-800'} cursor-pointer hover:text-white hover:font-medium px-2 py-1 rounded-md flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-dph-orange"
-          onclick={() => {
-            page = "wiki";
-            sessionStorage.setItem("page", "wiki");
-          }}>
-          <IconWiki /><span>Wiki</span>
-        </button>
-        <button
-          class="{page == 'guides'
-            ? 'bg-stone-700'
-            : 'bg-stone-800'} cursor-pointer hover:text-white hover:font-medium px-2 py-1 rounded-md flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-dph-orange"
-          onclick={() => {
-            page = "guides";
-            sessionStorage.setItem("page", "guides");
-          }}>
-          <IconGuides /><span>Guides</span>
-        </button>
-      </div>
-    {/if}
-    <div class="flex flex-col h-full">
-      <div class="grow">
+  aria-label="Documentation navigation"
+  inert={!windowInfo.isNavOpen && windowInfo.width < 768}
+  class="sidebar {windowInfo.isNavOpen ? 'sidebar--open' : 'sidebar--collapsed'} {mounted ? 'sidebar--ready' : ''}">
+  <div class="sidebar__mobile-header">
+    <span>Browse documentation</span>
+    <button class="icon-button" aria-label="Close navigation" onclick={() => (windowInfo.isNavOpen = false)}>
+      <IconX />
+    </button>
+  </div>
+
+  <div class="sidebar__scroll">
+    <nav class="sidebar__nav" id="nav_side" aria-label="Wiki sections">
+      {#if windowInfo.isNavOpen}
+        <SearchBox keyActivated />
+        <div class="sidebar-switcher" aria-label="Content type">
+          <button aria-pressed={page === "wiki"} onclick={() => choosePage("wiki")}>
+            <IconWiki /><span>Wiki</span>
+          </button>
+          <button aria-pressed={page === "guides"} onclick={() => choosePage("guides")}>
+            <IconGuides /><span>Guides</span>
+          </button>
+        </div>
+      {/if}
+
+      <div class="sidebar__primary sidebar-nav-list">
         <VersionPicker {page} />
       </div>
-      <div class="mt-5">
+
+      <div class="sidebar__secondary sidebar-nav-list">
         <SidebarCategory name="Contribution" icon={IconWiki}>
           <SidebarPage label="Formatting" icon={IconMarkdown} page="/contribute/formatting" />
           <SidebarPage label="Git Practices" icon={IconBranch} page="/contribute/git-practices" />
@@ -87,22 +117,26 @@
         <SidebarPage label="Resources" icon={IconResources} page="/resources" />
         <SidebarPage label="Credits" icon={IconCredits} page="/credits" />
       </div>
+    </nav>
+  </div>
+
+  <div class="sidebar__footer">
+    <div class="sidebar__status">
+      {#if windowInfo.isNavOpen}
+        <span class="sidebar__status-text">
+          <span>pack_format: {latestMCData.packFormat}</span>
+          <span>Minecraft Java {latestMCData.gameVersion}</span>
+        </span>
+      {/if}
+      <button
+        aria-label="{windowInfo.isNavOpen ? 'Collapse' : 'Expand'} sidebar"
+        class="icon-button sidebar__collapse hidden md:inline-flex"
+        onclick={() => (windowInfo.isNavOpen = !windowInfo.isNavOpen)}>
+        <IconCollapse />
+      </button>
     </div>
-  </div>
-  <div class="flex text-sm text-stone-400 p-3 items-center w-full">
     {#if windowInfo.isNavOpen}
-      <span class="grow flex flex-col">pack_format: {latestMCData.packFormat} ({latestMCData.gameVersion})</span>
+      <p class="sidebar__legal">Not affiliated with or endorsed by Mojang Studios.</p>
     {/if}
-    <button
-      aria-label="{windowInfo.isNavOpen ? 'Collapse' : 'Expand'} Sidebar"
-      class="hidden sm:block rounded-lg cursor-pointer text-stone-200 text-lg hover:bg-stone-700 hover:text-white motion-safe:transition-all focus-visible:outline-2 focus-visible:outline-dph-orange {windowInfo.isNavOpen
-        ? 'rotate-0'
-        : 'rotate-180'}"
-      onclick={() => (windowInfo.isNavOpen = !windowInfo.isNavOpen)}>
-      <IconCollapse />
-    </button>
   </div>
-  {#if windowInfo.isNavOpen}
-    <span class="text-xs px-3 pb-3 text-stone-400">DATAPACK WIKI IS NOT AFFILIATED OR ENDORSED BY MOJANG STUDIOS</span>
-  {/if}
 </aside>
