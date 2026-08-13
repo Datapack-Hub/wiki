@@ -4,4 +4,4 @@
   const { label } = $props();
 </script>
 
-<span class="nav-heading {windowInfo.isNavOpen ? 'block' : 'hidden'}">{label}</span>
+<span class="uppercase text-sm mt-4 text-stone-400 {windowInfo.isNavOpen ? 'block' : 'hidden'}">{label}</span>

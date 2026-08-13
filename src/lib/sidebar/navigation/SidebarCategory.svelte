@@ -14,20 +14,17 @@
   const Icon = $derived(icon);
 </script>
 
-<details
-  ontoggle={event => {
-    if (event.currentTarget.open) windowInfo.isNavOpen = true;
-  }}
-  class="nav-category">
-  <summary class="nav-item" title={windowInfo.isNavOpen ? undefined : name}>
+<details ontoggle={() => (windowInfo.isNavOpen = true)} class="w-full group marker:hidden">
+  <summary
+    class="rounded-lg cursor-pointer p-1 flex gap-2 items-center text-left hover:bg-stone-700 hover:text-white hover:font-medium marker:hidden focus-visible:outline-2 focus-visible:outline-dph-orange">
     <Icon />
     {#if windowInfo.isNavOpen}
-      <span class="nav-category__label">{name}</span>
-      <IconExpand class="nav-category__chevron" />
+      <p class="grow">{name}</p>
+      <IconExpand class="motion-safe:transition-all group-open:rotate-90 rotate-0 select-none" />
     {/if}
   </summary>
   {#if windowInfo.isNavOpen}
-    <div class="nav-category__children">
+    <div class="flex flex-col ml-4 pb-2">
       {@render children()}
     </div>
   {/if}

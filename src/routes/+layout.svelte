@@ -5,7 +5,7 @@
   import "../styles/fonts.css";
 
   import Sidebar from "$lib/sidebar/Sidebar.svelte";
-  import Topbar from "../lib/Topbar.svelte";
+  import Navbar from "../lib/Topbar.svelte";
 
   import { latestMCData, windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
@@ -23,19 +23,8 @@
     latestMCData.gameVersion = data.gameVersion || "1.0";
   });
 
-  let initialized = false;
-
-  $effect(() => {
-    const width = innerWidth.current || 1920;
-    const wasDesktop = windowInfo.width >= 768;
-    const isDesktop = width >= 768;
-
-    windowInfo.width = width;
-    if (!initialized || wasDesktop !== isDesktop) {
-      windowInfo.isNavOpen = isDesktop;
-      initialized = true;
-    }
-  });
+  windowInfo.width = innerWidth.current || 1920;
+  windowInfo.isNavOpen = (innerWidth.current || 1920) >= 768;
 
   $effect(() => {
     console.log("%c📦 Datapack Wiki", `color: oklch(69.27% 0.2042 40.82); font-size: 24pt; font-weight: 600;`);
@@ -44,11 +33,11 @@
   });
 </script>
 
-<div class="app-shell">
-  <Topbar />
-  <div class="app-frame">
+<div class="font-lexend h-full min-h-dvh flex flex-col text-stone-200">
+  <Navbar />
+  <div class="flex w-full h-[93%]">
     <Sidebar />
-    <div id="content" class="content-shell">
+    <div id="content" class="py-12 w-full min-h-dvh text-stone-200 bg-stone-900">
       {@render children()}
     </div>
   </div>

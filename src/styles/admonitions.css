@@ -1,85 +1,53 @@
-.admonition {
-  --pixel-frame-color: var(--border);
-  position: relative;
-  width: 100%;
-  margin-block: 1.35rem;
-  border: 1px solid transparent;
-  border-radius: 0;
-  padding: 0.9rem 1rem;
-  clip-path: var(--pixel-corners);
-}
+/* Admonition styles */
+@import "tailwindcss";
 
-.admonition::after {
-  position: absolute;
-  inset: 0;
-  background: var(--pixel-frame-outline);
-  color: var(--pixel-frame-color, var(--border));
-  content: "";
-  pointer-events: none;
+.admonition {
+  @apply w-fit min-w-[25%] border-l-4 p-3 my-2;
 }
 
 .admonition-heading h5 {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin: 0 0 0.35rem;
-  font-size: 0.75rem;
-  font-weight: 680;
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
+  @apply flex text-sm gap-2 items-center mb-1 uppercase;
 }
-
-.admonition-heading h5 a[aria-hidden="true"],
-.admonition-heading h5 > a[title="Copy Link"] {
-  display: none;
+.admonition-heading h5 a[aria-hidden="true"] {
+  @apply hidden;
 }
 
 .admonition-content p {
-  margin: 0;
+  @apply m-0;
 }
 
 .admonition-icon {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
+  @apply w-4 h-4 inline-block;
 }
 
 .admonition-note {
-  --pixel-frame-color: rgb(142 146 156 / 42%);
-  background: rgb(142 146 156 / 10%);
-  fill: #a9acb4;
+  @apply bg-slate-500/25 border-slate-600 fill-slate-400;
 }
 
 .admonition-note .admonition-heading h5 {
-  color: #b8bac1;
+  @apply text-slate-400;
 }
 
 .admonition-info {
-  --pixel-frame-color: rgb(114 167 248 / 48%);
-  background: rgb(114 167 248 / 10%);
-  fill: var(--info);
+  @apply bg-blue-500/25 border-blue-600 fill-blue-400;
 }
 
 .admonition-info .admonition-heading h5 {
-  color: #9fc4ff;
+  @apply text-blue-400;
 }
 
 .admonition-tip {
-  --pixel-frame-color: rgb(240 185 94 / 48%);
-  background: rgb(240 185 94 / 10%);
-  fill: var(--warning);
+  @apply bg-yellow-400/25 border-yellow-500 fill-yellow-300;
 }
 
 .admonition-tip .admonition-heading h5 {
-  color: #f5cc88;
+  @apply text-yellow-300;
 }
 
 .admonition-warning {
-  --pixel-frame-color: rgb(239 115 115 / 48%);
-  background: rgb(239 115 115 / 10%);
-  fill: var(--danger);
+  @apply bg-red-500/25 border-red-600 fill-red-400;
 }
 
 .admonition-warning .admonition-heading h5 {
-  color: #f5a0a0;
+  @apply text-red-400;
 }

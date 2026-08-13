@@ -108,7 +108,7 @@ like normal and view it if you want:
 {
   "pack": {
     "description": "This is an example datapack",
-    "pack_format": 107
+    "pack_format": 94
   }
 }
 ```
@@ -118,8 +118,8 @@ If you're interested, here's what this file means:
 - `pack` is an object containing the metadata of the file.
   - `description` is the name of your datapack, usually along with a short
     description of what your pack does.
-  - `pack_format` tells Minecraft what versions this datapack works in. `107` (or
-    107.0) for 1.21.11 (Most recent pack_format for the latest Minecraft Release
+  - `pack_format` tells Minecraft what versions this datapack works in. `94` (or
+    94.0) for 1.21.11 (Most recent pack_format for the latest Minecraft Release
     can be found at the bottom of the nav bar).
 
 :::note
@@ -392,6 +392,4 @@ to join our Discord server for extra support from our team of helpers. We're
 more than happy to help you on your journey to creating awesome Minecraft
 datapacks!
 
-<div class="not-prose">
-  <Discord />
-</div>
+<Discord />
