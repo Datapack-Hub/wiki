@@ -41,7 +41,7 @@ import IconSparkles from '~icons/tabler/sparkles';
           Start learning <IconArrowRight />
         </a>
         <a class="home-button home-button--secondary" href="/wiki/concepts/commands">
-          Browse the wiki
+          Browse the reference
         </a>
       </div>
     </div>
