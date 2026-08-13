@@ -1,7 +1,7 @@
 ---
 title: Floating Point Division
 description: Learn how to divide numbers in Minecraft which have decimal points.
-version: 1.21.8
+version: 26.2
 ---
 
 # Division with floating points
@@ -23,17 +23,17 @@ scoreboard players set #dividend math 10
 scoreboard players set #divisor math 3
 
 # Multiply the dividend by 1000000
-execute store result storage temp minecraft:math int 1000000 run scoreboard players get #dividend math
-execute store result score #dividend math run scoreboard players get storage temp minecraft:math
+execute store result storage minecraft:math temp int 1000000 run scoreboard players get #dividend math
+execute store result score #dividend math run data get storage minecraft:math temp
 
 # Divide the numbers
 scoreboard players operation #dividend math /= #divisor math
 
 # Store the result to a data storage
-execute store result storage result minecraft:math float 0.000001 run scoreboard players get #dividend math
+execute store result storage minecraft:math result float 0.000001 run scoreboard players get #dividend math
 
 # Display the result
-tellraw @a {"nbt":"result","storage":"temp"}
+tellraw @a {"nbt":"result","storage":"minecraft:math"}
 ```
 
 Alternatively, you can scale by `1/n` to divide by `n`. For instance, if you
@@ -44,8 +44,8 @@ want to divide by 2, you can scale by `1/2` which is `0.5`:
 scoreboard players set #dividend math 10
 
 # Scale down by 0.5 (divide by 2)
-execute store result storage result minecraft:math float 0.5 run scoreboard players get #dividend math
+execute store result storage minecraft:math result float 0.5 run scoreboard players get #dividend math
 
 # Display the result
-tellraw @a {"nbt":"result","storage":"temp"}
+tellraw @a {"nbt":"result","storage":"minecraft:math"}
 ```
