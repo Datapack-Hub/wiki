@@ -45,7 +45,7 @@
   <SidebarPage label="JSON format" icon={IconBraces} page="/wiki/info/json" />
 </SidebarCategory>
 
-<SidebarCategory name="Concepts" icon={IconConcepts}>
+<SidebarCategory name="Concepts" icon={IconConcepts} activePath="/wiki/concepts">
   <SidebarPage label="Commands" icon={IconCommand} page="/wiki/concepts/commands" />
   <SidebarPage label="Target Selectors" icon={IconAt} page="/wiki/concepts/target-selectors" />
   <SidebarPage label="Coordinates" icon={IconTilde} page="/wiki/concepts/coordinates" />
