@@ -4,7 +4,7 @@
   import SearchBox from "./SearchBox.svelte";
 
   // ! IMPORTANT: If you want to add pages or categories, this is not the place to do it!
-  import { latestMCData, windowInfo } from "$lib/stores.svelte";
+  import { windowInfo } from "$lib/stores.svelte";
 
   import IconCredits from "~icons/tabler/address-book";
   import IconResources from "~icons/tabler/book";
@@ -57,12 +57,14 @@
       currentTarget: EventTarget & Window;
     }
   ) {
-    const doc = e.currentTarget.document;
-    const notAnInput =
-      !(doc.activeElement instanceof HTMLInputElement) && !(doc.activeElement instanceof HTMLTextAreaElement);
+    const isInteractive =
+      e.target instanceof Element &&
+      Boolean(e.target.closest("button, input, textarea, select, [contenteditable='true'], [data-keyboard-scope]"));
 
-    if (e.key === "ArrowLeft" && windowInfo.isNavOpen && notAnInput) windowInfo.isNavOpen = false;
-    if (e.key === "ArrowRight" && !windowInfo.isNavOpen && notAnInput) windowInfo.isNavOpen = true;
+    if (e.defaultPrevented || isInteractive) return;
+
+    if (e.key === "ArrowLeft" && windowInfo.isNavOpen) windowInfo.isNavOpen = false;
+    if (e.key === "ArrowRight" && !windowInfo.isNavOpen) windowInfo.isNavOpen = true;
   }
 
   function choosePage(nextPage: ContentPage) {
@@ -110,7 +112,7 @@
       </div>
 
       <div class="sidebar__secondary sidebar-nav-list">
-        <SidebarCategory name="Contribution" icon={IconWiki}>
+        <SidebarCategory name="Contribution" icon={IconWiki} activePath="/contribute">
           <SidebarPage label="Formatting" icon={IconMarkdown} page="/contribute/formatting" />
           <SidebarPage label="Git Practices" icon={IconBranch} page="/contribute/git-practices" />
         </SidebarCategory>
@@ -124,8 +126,8 @@
     <div class="sidebar__status">
       {#if windowInfo.isNavOpen}
         <span class="sidebar__status-text">
-          <span>pack_format: {latestMCData.packFormat}</span>
-          <span>Minecraft Java {latestMCData.gameVersion}</span>
+          <span>pack_format: {appPage.data.packFormat}</span>
+          <span>Minecraft Java {appPage.data.gameVersion}</span>
         </span>
       {/if}
       <button

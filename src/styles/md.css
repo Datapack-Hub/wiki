@@ -28,14 +28,14 @@
   --tw-prose-links: #ffad7d;
   --tw-prose-bold: var(--text-primary);
   --tw-prose-counters: var(--text-muted);
-  --tw-prose-bullets: #696b73;
+  --tw-prose-bullets: #786b62;
   --tw-prose-hr: var(--border);
   --tw-prose-quotes: var(--text-secondary);
   --tw-prose-quote-borders: var(--accent);
   --tw-prose-captions: var(--text-muted);
   --tw-prose-code: #ffb68e;
   --tw-prose-pre-code: #dedbd5;
-  --tw-prose-pre-bg: #101116;
+  --tw-prose-pre-bg: #0f0b09;
   --tw-prose-th-borders: var(--border-strong);
   --tw-prose-td-borders: var(--border);
   color: var(--text-secondary);
@@ -46,8 +46,12 @@
 .md :where(h1, h2, h3, h4):not(:where(.not-prose *)) {
   color: var(--text-primary);
   font-weight: 660;
-  letter-spacing: -0.025em;
+  letter-spacing: var(--heading-letter-spacing);
   text-wrap: balance;
+}
+
+.md :where(h5, h6):not(:where(.not-prose *)) {
+  letter-spacing: var(--heading-letter-spacing);
 }
 
 .md :where(h1):not(:where(.not-prose *)) {
@@ -116,7 +120,7 @@
 }
 
 .md :where(li)::marker {
-  color: #6d6f77;
+  color: #786b62;
 }
 
 .md :where(blockquote):not(:where(.not-prose *)) {
@@ -156,7 +160,7 @@
   overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: 0;
-  background: #101116 !important;
+  background: #0f0b09 !important;
   box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 14%);
 }
 
@@ -183,7 +187,7 @@
   margin: 1.4rem 0 0;
   border: 1px solid var(--border);
   border-radius: 0;
-  background: #181a21;
+  background: #1e1712;
   padding: 0.55rem 0.9rem;
   color: var(--text-muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -229,7 +233,7 @@
 .md :where(h1, h2, h3, h4) > a[title="Copy Link"] {
   display: inline-flex;
   margin-left: 0.45rem;
-  color: #595b62;
+  color: #695d56;
   opacity: 0;
   translate: 0 0.1em;
   transition:
@@ -273,7 +277,7 @@
   border-radius: 999px;
   background: var(--surface);
   padding: 0.25rem 0.55rem;
-  color: #aaa9ad;
+  color: var(--text-muted);
   font-size: 0.76rem;
 }
 

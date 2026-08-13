@@ -7,21 +7,14 @@
   import Sidebar from "$lib/sidebar/Sidebar.svelte";
   import Topbar from "../lib/Topbar.svelte";
 
-  import { latestMCData, windowInfo } from "$lib/stores.svelte";
+  import { windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
   import { innerWidth } from "svelte/reactivity/window";
-  import type { PageData } from "./$types";
   interface Props {
     children: Snippet;
-    data: PageData;
   }
 
-  let { children, data }: Props = $props();
-
-  $effect(() => {
-    latestMCData.packFormat = data.packFormat || 0;
-    latestMCData.gameVersion = data.gameVersion || "1.0";
-  });
+  let { children }: Props = $props();
 
   let initialized = false;
 

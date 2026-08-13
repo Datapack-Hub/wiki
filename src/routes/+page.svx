@@ -6,7 +6,9 @@ description:
 ---
 
 <script lang="ts">
+import { page } from '$app/state';
 import SearchBox from '$lib/sidebar/SearchBox.svelte';
+import IconArrowDown from '~icons/tabler/arrow-down';
 import IconArrowRight from '~icons/tabler/arrow-right';
 import IconBraces from '~icons/tabler/braces';
 import IconCode from '~icons/tabler/code';
@@ -18,59 +20,55 @@ import IconSparkles from '~icons/tabler/sparkles';
 
 <div class="home-landing not-prose">
   <section class="home-hero" aria-labelledby="home-title">
-    <div class="home-hero__copy">
+    <header class="home-hero__heading">
       <p class="home-eyebrow">
         <span class="home-eyebrow__dot"></span>
-        Community-built Minecraft knowledge
+        Minecraft Java · Community wiki
       </p>
-      <h1 id="home-title">
-        Build better
-        <span>Minecraft datapacks.</span>
-      </h1>
+      <h1 id="home-title">Datapacking Explained</h1>
+    </header>
+
+    <div class="home-hero__intro">
       <p class="home-hero__lede">
-        Practical guides and precise references for turning your ideas into
-        polished vanilla Minecraft experiences.
+        Guides, examples, and references for Minecraft Java datapacks. Find
+        what you need, fix what broke, and get back to your pack.
       </p>
 
       <div class="home-hero__search">
         <SearchBox variant="hero" />
       </div>
-
-      <div class="home-actions">
-        <a class="home-button home-button--primary" href="/guide/getting-started">
-          Start learning <IconArrowRight />
-        </a>
-        <a class="home-button home-button--secondary" href="/wiki/concepts/commands">
-          Browse the wiki
-        </a>
-      </div>
     </div>
 
     <div class="home-code-card" aria-label="Example datapack function">
       <div class="home-code-card__bar">
-        <div class="home-code-card__dots" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
-        <span>data/wiki/function/tick.mcfunction</span>
+        <span class="home-code-card__language">mcfunction</span>
+        <span class="home-code-card__path">data/wiki/function/tick.mcfunction</span>
       </div>
       <pre><code><span class="code-comment"># Run once every game tick</span>
 <span class="code-command">execute</span> <span class="code-keyword">as</span> @a <span class="code-keyword">run function</span> wiki:tick
 
 <span class="code-command">scoreboard</span> players add @s play_time <span class="code-number">1</span></code></pre>
       <div class="home-code-card__status">
-        <span><i></i> Ready to run</span>
-        <span>Minecraft Java</span>
+        <span><i></i> pack_format: {page.data.packFormat}</span>
+        <span class="home-code-card__version">
+          <span>Minecraft Java {page.data.gameVersion}</span>
+        </span>
       </div>
     </div>
+
   </section>
 
-  <section class="home-section home-explore" aria-labelledby="explore-wiki">
+  <a class="home-scroll-cue" href="#quick-links">
+    <span>More to explore</span>
+    <IconArrowDown aria-hidden="true" />
+  </a>
+
+  <section class="home-section home-explore" id="quick-links" aria-labelledby="explore-wiki">
     <div class="home-section__heading">
       <div>
-        <p class="home-kicker">Popular topics</p>
+        <p class="home-kicker">Quick links</p>
         <h2 id="explore-wiki">Explore the wiki</h2>
       </div>
-      <p>The foundations you’ll reach for in almost every datapack project.</p>
     </div>
 
     <div class="home-topic-grid">
@@ -99,11 +97,11 @@ import IconSparkles from '~icons/tabler/sparkles';
 
   <section class="home-community" aria-labelledby="community-heading">
     <div class="home-community__copy">
-      <p class="home-kicker">Built in the open</p>
-      <h2 id="community-heading">Learn with the community.</h2>
+      <p class="home-kicker">Open source, always</p>
+      <h2 id="community-heading">Built by the people who use it.</h2>
       <p>
-        Get help when you’re stuck, share what you know, or help us make the
-        next page better.
+        Every page is written and reviewed by datapackers. Ask a question on
+        Discord, fix a mistake, or add the guide you wish you’d had.
       </p>
     </div>
     <div class="home-community__actions">
@@ -113,6 +111,70 @@ import IconSparkles from '~icons/tabler/sparkles';
       <a class="home-button home-button--secondary" href="https://github.com/Datapack-Hub/wiki/">
         <IconGithub /> Contribute on GitHub
       </a>
+    </div>
+  </section>
+
+  <section class="home-contribute" aria-labelledby="contribute-heading">
+    <header class="home-contribute__intro">
+      <p class="home-kicker">Contribute</p>
+      <h2 id="contribute-heading">Share what you know.</h2>
+      <p>
+        This project wouldn’t be possible without the support of community
+        members. We encourage you to contribute if you want to write a page,
+        correct a mistake, or share your knowledge.
+      </p>
+      <p>
+        Use the <strong>Edit</strong> button on any page to open that page’s
+        source on GitHub. Contributions are written in Markdown and submitted
+        through GitHub as pull requests, where a wiki contributor will review
+        them.
+      </p>
+
+      <nav class="home-contribute__links" aria-label="Contribution resources">
+        <a href="/contribute/formatting">Page formatting <IconArrowRight /></a>
+        <a href="/contribute/git-practices">Git practices <IconArrowRight /></a>
+        <a href="https://github.com/Datapack-Hub/wiki/blob/main/CONTRIBUTING.md">
+          Full contributing guide <IconArrowRight />
+        </a>
+      </nav>
+    </header>
+
+    <div class="home-contribute__process">
+      <ol class="home-contribute__steps">
+        <li>
+          <div>
+            <h3>Choose a page</h3>
+            <p>
+              Edit an existing page, or
+              <a href="https://github.com/Datapack-Hub/wiki/fork">fork the repository</a>
+              to add something new.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Write clearly</h3>
+            <p>
+              Follow the <a href="/contribute/formatting">formatting guide</a>
+              for Markdown, examples, and the wiki’s writing style.
+            </p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Open a pull request</h3>
+            <p>
+              Describe your change and submit it for review using our
+              <a href="/contribute/git-practices">Git practices</a>.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="home-contribute__help">
+        New to GitHub or Markdown?
+        <a href="https://discord.datapackhub.net">Ask for help on Discord.</a>
+      </p>
     </div>
   </section>
 </div>

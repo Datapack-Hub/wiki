@@ -8,7 +8,7 @@
     name: string;
     icon: any;
     children: Snippet;
-    activePath?: string;
+    activePath?: string | string[];
   };
 
   const { children, name, icon, activePath }: Props = $props();
@@ -16,13 +16,16 @@
   const Icon = $derived(icon);
 
   function matchesActivePath(pathname: string) {
-    return activePath !== undefined && (pathname === activePath || pathname.startsWith(`${activePath}/`));
+    const paths = typeof activePath === "string" ? [activePath] : (activePath ?? []);
+
+    return paths.some(path => pathname === path || pathname.startsWith(`${path}/`));
   }
 
+  const isActive = $derived(matchesActivePath(page.url.pathname));
   let isOpen = $state(matchesActivePath(page.url.pathname));
 
   $effect(() => {
-    if (matchesActivePath(page.url.pathname)) isOpen = true;
+    if (isActive) isOpen = true;
   });
 
   function handleSummaryClick(event: MouseEvent) {
@@ -35,7 +38,12 @@
 </script>
 
 <details bind:open={isOpen} class="nav-category">
-  <summary class="nav-item" title={windowInfo.isNavOpen ? undefined : name} onclick={handleSummaryClick}>
+  <summary
+    class="nav-item"
+    class:nav-item--active={isActive && !windowInfo.isNavOpen}
+    aria-label={windowInfo.isNavOpen ? undefined : name}
+    title={windowInfo.isNavOpen ? undefined : name}
+    onclick={handleSummaryClick}>
     <Icon />
     {#if windowInfo.isNavOpen}
       <span class="nav-category__label">{name}</span>

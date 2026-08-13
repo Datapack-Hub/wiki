@@ -5,3 +5,11 @@
   font-display: swap;
   src: url("/fonts/Outfit-VariableFont_wght.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "Lexend";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/lexend-v19-latin-600.woff2") format("woff2");
+}

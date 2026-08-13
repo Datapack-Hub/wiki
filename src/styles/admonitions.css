@@ -45,13 +45,13 @@
 }
 
 .admonition-note {
-  --pixel-frame-color: rgb(142 146 156 / 42%);
-  background: rgb(142 146 156 / 10%);
-  fill: #a9acb4;
+  --pixel-frame-color: rgb(157 143 132 / 42%);
+  background: rgb(157 143 132 / 10%);
+  fill: #b4a69b;
 }
 
 .admonition-note .admonition-heading h5 {
-  color: #b8bac1;
+  color: #c8bbb1;
 }
 
 .admonition-info {

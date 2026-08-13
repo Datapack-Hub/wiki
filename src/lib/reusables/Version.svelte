@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { latestMCData } from "$lib/stores.svelte";
+  import { page } from "$app/state";
   import IconTick from "~icons/tabler/rosette-discount-check";
   import IconPencil from "~icons/tabler/pencil";
 
@@ -11,10 +11,10 @@
 </script>
 
 <div
-  class="version-callout {version == latestMCData.gameVersion
+  class="version-callout {version == page.data.gameVersion
     ? 'version-callout--current'
     : 'version-callout--outdated'} not-prose">
-  {#if version == latestMCData.gameVersion}
+  {#if version == page.data.gameVersion}
     <IconTick />
     <span>Validated for Minecraft Java {version}</span>
   {:else}

@@ -40,7 +40,7 @@
 
 <SidebarPage label="Home" icon={IconHome} page="/" />
 
-<SidebarCategory name="Info" icon={IconInfo}>
+<SidebarCategory name="Info" icon={IconInfo} activePath="/wiki/info">
   <SidebarPage label="Breaking Changes" icon={IconBreak} page="/wiki/info/breaking-changes" />
   <SidebarPage label="JSON format" icon={IconBraces} page="/wiki/info/json" />
 </SidebarCategory>
@@ -55,7 +55,7 @@
   <SidebarPage label="Ranges" icon={IconRange} page="/wiki/concepts/ranges" />
 </SidebarCategory>
 
-<SidebarCategory name="Datapack Files" icon={IconZip}>
+<SidebarCategory name="Datapack Files" icon={IconZip} activePath="/wiki/files">
   <SidebarPage label="Functions" icon={IconPennant} page="/wiki/files/functions" />
   <SidebarPage label="Predicates" icon={IconPredicate} page="/wiki/files/predicates" />
   <SidebarPage label="Advancements" icon={IconStar} page="/wiki/files/advancements" />
@@ -65,7 +65,7 @@
   <SidebarPage label="Tags" icon={IconFilters} page="/wiki/files/tags" />
 </SidebarCategory>
 
-<SidebarCategory name="Command Reference" icon={IconCommands}>
+<SidebarCategory name="Command Reference" icon={IconCommands} activePath="/wiki/command">
   <SidebarPage label="Commands List" icon={IconList} page="/wiki/command/all" />
 
   <SidebarHeading label="Commonly Used" />
@@ -75,12 +75,12 @@
   <SidebarPage label="data" icon={IconCommand} page="/wiki/command/data" />
 </SidebarCategory>
 
-<SidebarCategory name="NBT and Scoreboards" icon={IconBraces}>
+<SidebarCategory name="NBT and Scoreboards" icon={IconBraces} activePath="/wiki/nbt-scoreboards">
   <SidebarPage label="NBT data" icon={IconBraces} page="/wiki/nbt-scoreboards/nbt" />
   <SidebarPage label="Scoreboards" icon={IconScoreboard} page="/wiki/nbt-scoreboards/scoreboards" />
 </SidebarCategory>
 
-<SidebarCategory name="World Generation" icon={IconBackhoe}>
+<SidebarCategory name="World Generation" icon={IconBackhoe} activePath="/wiki/worldgen">
   <SidebarPage label="Custom World Generation" icon={IconMountain} page="/wiki/worldgen/custom-worldgen"></SidebarPage>
   <SidebarPlaceholder label="Custom Structures" icon={IconBuildingCastle}></SidebarPlaceholder>
 </SidebarCategory>
