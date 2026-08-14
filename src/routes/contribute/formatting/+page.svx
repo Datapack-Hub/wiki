@@ -35,7 +35,6 @@ page's URL:
 | ----------- | --------------------------------------------------------- | ------------------------------ |
 | Wiki        | `src/routes/wiki/<category>/<page-slug>/+page.svx`        | `/wiki/<category>/<page-slug>` |
 | Guide       | `src/routes/guide/<category>/<page-slug>/+page.svx`       | `/guide/<category>/<page-slug>` |
-| Contribution | `src/routes/contribute/<page-slug>/+page.svx`             | `/contribute/<page-slug>`      |
 
 Use lowercase, descriptive, kebab-case folder names such as
 `custom-worldgen` or `installing-a-datapack`.
@@ -129,7 +128,6 @@ site and the page that owns them:
 ```
 static/images/guides/<page-slug>/<filename>.png
 static/images/wiki/<page-slug>/<filename>.png
-static/images/contribute/<page-slug>/<filename>.png
 ```
 
 Add another route folder when it helps avoid ambiguous names. For example:
