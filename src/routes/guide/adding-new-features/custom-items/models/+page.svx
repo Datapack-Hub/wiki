@@ -94,7 +94,7 @@ spaces.
 
 Your model file will now probably look like this:
 
-![JSON of the model file](https://i.imgur.com/O0YBPuU.png)
+![JSON of the model file](/images/guides/models/model-file-json.png)
 
 Replace all the values inside the `textures` bracket with
 `namespace:item/your_texture`.

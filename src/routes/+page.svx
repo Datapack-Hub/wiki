@@ -131,7 +131,7 @@ import IconSparkles from '~icons/tabler/sparkles';
       </p>
 
       <nav class="home-contribute__links" aria-label="Contribution resources">
-        <a href="/contribute/formatting">Page formatting <IconArrowRight /></a>
+        <a href="/contribute/formatting">Writing pages <IconArrowRight /></a>
         <a href="/contribute/git-practices">Git practices <IconArrowRight /></a>
         <a href="https://github.com/Datapack-Hub/wiki/blob/main/CONTRIBUTING.md">
           Full contributing guide <IconArrowRight />
@@ -155,8 +155,8 @@ import IconSparkles from '~icons/tabler/sparkles';
           <div>
             <h3>Write clearly</h3>
             <p>
-              Follow the <a href="/contribute/formatting">formatting guide</a>
-              for Markdown, examples, and the wiki’s writing style.
+              Follow the <a href="/contribute/formatting">page-writing guide</a>
+              for structure, images, Markdown, and the wiki’s writing style.
             </p>
           </div>
         </li>

@@ -113,7 +113,7 @@
 
       <div class="sidebar__secondary sidebar-nav-list">
         <SidebarCategory name="Contribution" icon={IconWiki} activePath="/contribute">
-          <SidebarPage label="Formatting" icon={IconMarkdown} page="/contribute/formatting" />
+          <SidebarPage label="Writing Pages" icon={IconMarkdown} page="/contribute/formatting" />
           <SidebarPage label="Git Practices" icon={IconBranch} page="/contribute/git-practices" />
         </SidebarCategory>
         <SidebarPage label="Resources" icon={IconResources} page="/resources" />

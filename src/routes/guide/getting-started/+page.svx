@@ -94,7 +94,7 @@ you'll have to create it yourself. This is explained in the "NOTE" box below)
 If you are using Visual Studio Code, at this point you should open it, find
 `Open Folder`, and open the newly created folder. Navigating through your
 datapack will be _so much easier_!
-![open folder location](https://i.postimg.cc/6ptvVNMj/image.png)
+![open folder location](/images/guides/getting-started/open-folder-location.png)
 
 :::
 
