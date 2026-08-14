@@ -14,21 +14,24 @@ const log = createConsola({
 
 const posts = [];
 const fileGlob = new Glob("./**/+page.svx");
-const matchingFiles = fileGlob.scan("./src/routes");
+const matchingFiles = fileGlob.scan("./src/pages");
 
-// read all routes
+// read all pages
 for await (const file of matchingFiles) {
-
   log.info("Transforming", file);
-  const rawContent = await defineFile(`./src/routes/${file}`).text();
+  const rawContent = await defineFile(`./src/pages/${file}`).text();
 
   const frontmatter = matter(rawContent); // parse markdown front matter
 
-  const filePath = file.slice(0, -9).slice(2); // remove the file name and extension and leading slash
+  // file like: ./en/wiki/files/tags/+page.svx
+  const normalized = file.replaceAll("\\", "/").replace(/^\.\//, "");
+  const withoutFile = normalized.slice(0, -"+page.svx".length).replace(/\/$/, "");
+  // withoutFile: en/wiki/files/tags  OR  en
+  const url = "/" + withoutFile;
 
-  // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
-  const strippedMarkdown = markdown.render(contentNoHtml, {})
+  const strippedMarkdown = markdown
+    .render(contentNoHtml, {})
     .replaceAll(/:::.*/g, "")
     .replaceAll(/:::/g, "") // remove admonitions
     .replaceAll(/[^\S\r\n]{2,}/g, ""); // remove extra spaces
@@ -39,10 +42,10 @@ for await (const file of matchingFiles) {
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
-    url: "/" + filePath,
+    url,
     tags: tags
       .split(",")
-      .map((el) => el.trim())
+      .map(el => el.trim())
       .filter(String),
   });
 }

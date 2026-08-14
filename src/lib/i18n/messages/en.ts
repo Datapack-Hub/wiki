@@ -1,0 +1,27 @@
+export const en = {
+  "nav.wiki": "Wiki",
+  "nav.guides": "Guides",
+  "nav.contribution": "Contribution",
+  "nav.formatting": "Formatting",
+  "nav.gitPractices": "Git Practices",
+  "nav.resources": "Resources",
+  "nav.credits": "Credits",
+  "nav.goToNav": "Go To Nav",
+  "nav.goToContent": "Go To Content",
+  "nav.collapseSidebar": "Collapse Sidebar",
+  "nav.expandSidebar": "Expand Sidebar",
+  "topbar.edit": "Edit",
+  "topbar.share": "Share",
+  "topbar.copied": "Copied!",
+  "topbar.discord": "Discord",
+  "topbar.language": "Language",
+  "version.loadingWiki": "Loading Wiki Pages...",
+  "version.loadingGuides": "Loading Guide Pages...",
+  "version.failed": "Failed to load pages.",
+  "version.selector": "Version Selector",
+  "search.placeholder": "Search...",
+  "brand.name": "Datapack Wiki",
+  "footer.disclaimer": "DATAPACK WIKI IS NOT AFFILIATED OR ENDORSED BY MOJANG STUDIOS",
+} as const;
+
+export type MessageKey = keyof typeof en;

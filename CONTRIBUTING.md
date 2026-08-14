@@ -44,11 +44,32 @@ It's recommended before you make your pull request that you run the `build` and
 `check` commands with your preferred script runner (e.g. `npm run ...`). These will check for common issues
 you may run into. In addition, check that there are no spelling or grammatical mistakes you can see
 
+## Languages
+
+The site uses URL language prefixes such as `/en/wiki/...` and `/fr/guide/...`.
+
+- English content lives in `src/pages/en/`
+- Other languages use the same relative path under `src/pages/{lang}/`
+- If a translation is missing, the English page is shown while keeping the
+  selected language in the URL (UI chrome stays localized)
+- Unprefixed URLs (e.g. `/wiki/...`) redirect based on the `datapack-wiki-lang`
+  cookie, then the browser `Accept-Language` header, then English
+
+### Adding a language
+
+1. Add the language code to `SUPPORTED_LANGS` in `src/lib/i18n/langs.ts`
+2. Add UI strings in `src/lib/i18n/messages/{lang}.ts` and register them in
+   `src/lib/i18n/index.ts`
+3. Optionally add translated pages under `src/pages/{lang}/...`
+
 ## Adding a page
 
-1. Create your page .svx file. If I want to make a page at `/wiki/command/say`,
-   I would create the file at `/src/routes/wiki/command/say/+page.svx`. \*\*All
-   pages should be in either the `wiki` or `guide` folder
+1. Create your page .svx file under `src/pages/{lang}/`. If I want to make an
+   English page at `/en/wiki/command/say`, I would create the file at
+   `/src/pages/en/wiki/command/say/+page.svx`. **All pages should be in either
+   the `wiki` or `guide` folder** (within a language directory). To translate an
+   existing page, copy the English file into `src/pages/{lang}/` with the same
+   path and translate the content.
 
 2. Add the page metadata by putting the following at the top of the .svx file:
 

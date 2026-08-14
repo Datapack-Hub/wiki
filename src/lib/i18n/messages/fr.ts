@@ -1,0 +1,27 @@
+import type { MessageKey } from "./en";
+
+export const fr: Record<MessageKey, string> = {
+  "nav.wiki": "Wiki",
+  "nav.guides": "Guides",
+  "nav.contribution": "Contribution",
+  "nav.formatting": "Mise en forme",
+  "nav.gitPractices": "Pratiques Git",
+  "nav.resources": "Ressources",
+  "nav.credits": "Crédits",
+  "nav.goToNav": "Aller à la navigation",
+  "nav.goToContent": "Aller au contenu",
+  "nav.collapseSidebar": "Réduire la barre latérale",
+  "nav.expandSidebar": "Développer la barre latérale",
+  "topbar.edit": "Modifier",
+  "topbar.share": "Partager",
+  "topbar.copied": "Copié !",
+  "topbar.discord": "Discord",
+  "topbar.language": "Langue",
+  "version.loadingWiki": "Chargement des pages Wiki...",
+  "version.loadingGuides": "Chargement des guides...",
+  "version.failed": "Échec du chargement des pages.",
+  "version.selector": "Sélecteur de version",
+  "search.placeholder": "Rechercher...",
+  "brand.name": "Datapack Wiki",
+  "footer.disclaimer": "DATAPACK WIKI N'EST PAS AFFILIÉ NI APPROUVÉ PAR MOJANG STUDIOS",
+};

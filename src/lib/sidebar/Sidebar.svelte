@@ -3,9 +3,9 @@
 
   // ! IMPORTANT: If you want to add pages or categories, this is not the place to do it!
 
-  import GuidePages from "$lib/sidebar/tabs/latest/Guides.svelte";
-  import WikiPages from "$lib/sidebar/tabs/latest/WikiPages.svelte";
   import { latestMCData, windowInfo } from "$lib/stores.svelte";
+  import { page } from "$app/state";
+  import { DEFAULT_LANG, isLang, t } from "$lib/i18n";
 
   import IconCredits from "~icons/tabler/address-book";
   import IconResources from "~icons/tabler/book";
@@ -19,10 +19,12 @@
   import SidebarCategory from "./navigation/SidebarCategory.svelte";
   import VersionPicker from "./tabs/VersionPicker.svelte";
 
-  let page: "wiki" | "guides" = $state("wiki");
+  let tab: "wiki" | "guides" = $state("wiki");
+
+  const lang = $derived(isLang(page.params.locale) ? page.params.locale : DEFAULT_LANG);
 
   $effect(() => {
-    page = (sessionStorage.getItem("page") as "wiki" | "guides") || "wiki";
+    tab = (sessionStorage.getItem("page") as "wiki" | "guides") || "wiki";
   });
 
   export async function handleKeyInput(
@@ -54,38 +56,38 @@
       <SearchBox keyActivated />
       <div class="flex items-center mb-2 gap-1">
         <button
-          class="{page == 'wiki'
+          class="{tab == 'wiki'
             ? 'bg-stone-700'
             : 'bg-stone-800'} cursor-pointer hover:text-white hover:font-medium px-2 py-1 rounded-md flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-dph-orange"
           onclick={() => {
-            page = "wiki";
+            tab = "wiki";
             sessionStorage.setItem("page", "wiki");
           }}>
-          <IconWiki /><span>Wiki</span>
+          <IconWiki /><span>{t(lang, "nav.wiki")}</span>
         </button>
         <button
-          class="{page == 'guides'
+          class="{tab == 'guides'
             ? 'bg-stone-700'
             : 'bg-stone-800'} cursor-pointer hover:text-white hover:font-medium px-2 py-1 rounded-md flex items-center gap-1 focus-visible:outline-2 focus-visible:outline-dph-orange"
           onclick={() => {
-            page = "guides";
+            tab = "guides";
             sessionStorage.setItem("page", "guides");
           }}>
-          <IconGuides /><span>Guides</span>
+          <IconGuides /><span>{t(lang, "nav.guides")}</span>
         </button>
       </div>
     {/if}
     <div class="flex flex-col h-full">
       <div class="grow">
-        <VersionPicker {page} />
+        <VersionPicker page={tab} />
       </div>
       <div class="mt-5">
-        <SidebarCategory name="Contribution" icon={IconWiki}>
-          <SidebarPage label="Formatting" icon={IconMarkdown} page="/contribute/formatting" />
-          <SidebarPage label="Git Practices" icon={IconBranch} page="/contribute/git-practices" />
+        <SidebarCategory name={t(lang, "nav.contribution")} icon={IconWiki}>
+          <SidebarPage label={t(lang, "nav.formatting")} icon={IconMarkdown} page="/contribute/formatting" />
+          <SidebarPage label={t(lang, "nav.gitPractices")} icon={IconBranch} page="/contribute/git-practices" />
         </SidebarCategory>
-        <SidebarPage label="Resources" icon={IconResources} page="/resources" />
-        <SidebarPage label="Credits" icon={IconCredits} page="/credits" />
+        <SidebarPage label={t(lang, "nav.resources")} icon={IconResources} page="/resources" />
+        <SidebarPage label={t(lang, "nav.credits")} icon={IconCredits} page="/credits" />
       </div>
     </div>
   </div>
@@ -94,7 +96,7 @@
       <span class="grow flex flex-col">pack_format: {latestMCData.packFormat} ({latestMCData.gameVersion})</span>
     {/if}
     <button
-      aria-label="{windowInfo.isNavOpen ? 'Collapse' : 'Expand'} Sidebar"
+      aria-label="{windowInfo.isNavOpen ? t(lang, 'nav.collapseSidebar') : t(lang, 'nav.expandSidebar')}"
       class="hidden sm:block rounded-lg cursor-pointer text-stone-200 text-lg hover:bg-stone-700 hover:text-white motion-safe:transition-all focus-visible:outline-2 focus-visible:outline-dph-orange {windowInfo.isNavOpen
         ? 'rotate-0'
         : 'rotate-180'}"
@@ -103,6 +105,6 @@
     </button>
   </div>
   {#if windowInfo.isNavOpen}
-    <span class="text-xs px-3 pb-3 text-stone-400">DATAPACK WIKI IS NOT AFFILIATED OR ENDORSED BY MOJANG STUDIOS</span>
+    <span class="text-xs px-3 pb-3 text-stone-400">{t(lang, "footer.disclaimer")}</span>
   {/if}
 </aside>

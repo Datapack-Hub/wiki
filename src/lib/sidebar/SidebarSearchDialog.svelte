@@ -1,6 +1,8 @@
 <script lang="ts">
   import { windowInfo } from "$lib/stores.svelte";
   import { createSearchIndex, search } from "../search";
+  import { page } from "$app/state";
+  import { DEFAULT_LANG, isLang, localizeHref, stripLangPrefix, t } from "$lib/i18n";
 
   type Props = {
     results: any[];
@@ -13,6 +15,8 @@
 
   let searchTerm = $state("");
   let searchState: "waiting" | "done" = $state("waiting");
+
+  const lang = $derived(isLang(page.params.locale) ? page.params.locale : DEFAULT_LANG);
 
   export async function showModalWithEvent(e: KeyboardEvent) {
     if (!keyActivated) {
@@ -38,6 +42,10 @@
       results = search(searchTerm);
     }
   });
+
+  function resultHref(url: string) {
+    return localizeHref(stripLangPrefix(url), lang);
+  }
 </script>
 
 <svelte:window
@@ -56,7 +64,7 @@
       name="search-box"
       autocomplete="off"
       spellcheck="false"
-      placeholder="Search for a page..."
+      placeholder={t(lang, "search.placeholder")}
       bind:this={diagInput}
       bind:value={searchTerm} />
     <div class="overflow-y-auto max-h-[50vh]">
@@ -68,11 +76,11 @@
               windowInfo.isNavOpen = false;
             }
           }}
-          href={result.url}>
+          href={resultHref(result.url)}>
           <div class="p-2 my-2 rounded-sm hover:bg-black/20 motion-safe:transition-all">
             <p class="text-stone-200 text-lg">
               {@html result.title}
-              <span class="text-stone-400 text-xs">{result.url}</span>
+              <span class="text-stone-400 text-xs">{resultHref(result.url)}</span>
             </p>
             <p class="text-stone-400 line-clamp-2">{@html result.content}</p>
           </div>

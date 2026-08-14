@@ -10,10 +10,10 @@
   import { latestMCData, windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
   import { innerWidth } from "svelte/reactivity/window";
-  import type { PageData } from "./$types";
+  import type { LayoutData } from "./$types";
   interface Props {
     children: Snippet;
-    data: PageData;
+    data: LayoutData;
   }
 
   let { children, data }: Props = $props();

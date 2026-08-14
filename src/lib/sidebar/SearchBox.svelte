@@ -4,12 +4,16 @@
   import IconSearch from "~icons/tabler/search";
   import type { SvelteComponent } from "svelte";
   import SidebarSearchDialog from "./SidebarSearchDialog.svelte";
+  import { page } from "$app/state";
+  import { DEFAULT_LANG, isLang, t } from "$lib/i18n";
 
   let dialog: SvelteComponent;
 
   let results: Page[] = $state([]);
 
   let { keyActivated }: { keyActivated?: boolean } = $props();
+
+  const lang = $derived(isLang(page.params.locale) ? page.params.locale : DEFAULT_LANG);
 </script>
 
 <button
@@ -18,7 +22,7 @@
   onclick={async () => await dialog.showModal()}>
   <div class="flex items-center gap-2">
     <IconSearch />
-    <span class="py-1 text-stone-400">Search...</span>
+    <span class="py-1 text-stone-400">{t(lang, "search.placeholder")}</span>
   </div>
   <p class="text-stone-400 text-xs md:block hidden font-mono">
     <span class="bg-stone-800 px-1.5 py-1 rounded-sm">Ctrl</span>

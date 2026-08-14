@@ -15,18 +15,20 @@ const log = createConsola({
 });
 
 const posts = [];
-const matchingFiles = fg.stream("**/+page.svx", { dot: true });
+const matchingFiles = fg.stream("src/pages/**/+page.svx", { dot: true });
 
-// read all routes
+// read all pages
 for await (const file of matchingFiles) {
   const rawContent = await readFile(file);
 
   log.info("Transforming", file);
   const frontmatter = matter(rawContent); // parse markdown front matter
 
-  const filePath = file.slice(0, -9).slice(2); // remove the file name and extension and leading slash
+  const normalized = String(file).replaceAll("\\", "/");
+  const withoutRoot = normalized.replace(/^src\/pages\//, "");
+  const withoutFile = withoutRoot.slice(0, -"+page.svx".length).replace(/\/$/, "");
+  const url = "/" + withoutFile;
 
-  // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
   const strippedMarkdown = RemoveMarkdown(contentNoHtml)
     .replaceAll(/:::.*/g, "")
@@ -39,7 +41,7 @@ for await (const file of matchingFiles) {
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
-    url: "/" + filePath,
+    url,
     tags: tags
       .split(",")
       .map(el => el.trim())
