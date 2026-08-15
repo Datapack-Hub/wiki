@@ -22,9 +22,7 @@
           // Storage can be unavailable in privacy-restricted contexts.
         }
 
-        if (!theme) {
-          theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-        }
+        if (!theme) theme = "dark";
 
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;

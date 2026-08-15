@@ -12,19 +12,12 @@
   type Props = {
     title: string;
     description: string;
-    tags: string;
+    tags?: string;
     version: string;
     children: Snippet;
   };
 
-  const { children, title, description, version, tags = "" }: Props = $props();
-
-  let tagsArr = $derived(
-    tags
-      .split(",")
-      .map(el => el.trim())
-      .filter(String)
-  );
+  const { children, title, description, version }: Props = $props();
 </script>
 
 <Seo
@@ -49,12 +42,4 @@
     <Version {version} />
   {/if}
   {@render children()}
-  {#if tags}
-    <div class="article-tags not-prose">
-      <span class="article-tags__label">Tags</span>
-      {#each tagsArr as tag}
-        <span class="article-tag">{tag}</span>
-      {/each}
-    </div>
-  {/if}
 </main>

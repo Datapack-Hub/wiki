@@ -1,12 +1,12 @@
 <script lang="ts">
-  import IconDiscord from "~icons/tabler/brand-discord";
+  import IconBrandDiscord from "~icons/tabler/brand-discord";
 </script>
 
 <aside class="discord-callout not-prose" aria-label="Datapack Hub community">
   <img alt="" src="/logos/dph.webp" class="discord-callout__logo" />
   <div>
     <div class="discord-callout__eyebrow">
-      <IconDiscord />
+      <IconBrandDiscord />
       <span>Datapack Hub community</span>
     </div>
     <p>

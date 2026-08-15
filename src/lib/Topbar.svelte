@@ -1,5 +1,5 @@
 <script lang="ts">
-  import IconDiscord from "~icons/tabler/brand-discord";
+  import IconBrandDiscord from "~icons/tabler/brand-discord";
   import IconMoon from "~icons/tabler/moon";
   import IconShare from "~icons/tabler/share";
   import IconSun from "~icons/tabler/sun";
@@ -30,32 +30,18 @@
   onMount(() => {
     applyTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
 
-    const colorScheme = window.matchMedia("(prefers-color-scheme: light)");
-    const hasSavedTheme = () => {
-      try {
-        const savedTheme = localStorage.getItem(themeStorageKey);
-        return savedTheme === "light" || savedTheme === "dark";
-      } catch {
-        return false;
-      }
-    };
-    const handleColorSchemeChange = (event: MediaQueryListEvent) => {
-      if (!hasSavedTheme()) applyTheme(event.matches ? "light" : "dark");
-    };
     const handleStorage = (event: StorageEvent) => {
       if (event.key !== themeStorageKey) return;
       if (event.newValue === "light" || event.newValue === "dark") {
         applyTheme(event.newValue);
       } else {
-        applyTheme(colorScheme.matches ? "light" : "dark");
+        applyTheme("dark");
       }
     };
 
-    colorScheme.addEventListener("change", handleColorSchemeChange);
     window.addEventListener("storage", handleStorage);
 
     return () => {
-      colorScheme.removeEventListener("change", handleColorSchemeChange);
       window.removeEventListener("storage", handleStorage);
     };
   });
@@ -91,7 +77,7 @@
           clipPath,
         },
         {
-          duration: 900,
+          duration: 500,
           easing: "ease-in-out",
           pseudoElement: "::view-transition-new(root)",
         }
@@ -187,7 +173,7 @@
         class="icon-button"
         aria-label="Join the Datapack Hub Discord"
         title="Join Discord">
-        <IconDiscord />
+        <IconBrandDiscord />
         <span class="icon-button__label">Discord</span>
       </a>
       <button

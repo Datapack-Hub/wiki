@@ -352,7 +352,6 @@ mark {
     width: 2.2rem;
     height: 2.2rem;
     image-rendering: pixelated;
-    filter: drop-shadow(3px 3px 0 rgb(0 0 0 / 35%));
     transition: transform 180ms ease;
 }
 
@@ -994,9 +993,15 @@ mark {
     color: var(--text-primary);
 }
 
+.version-picker__option:hover,
+.version-picker__option:has(input:focus-visible) {
+    clip-path: var(--pixel-corners);
+}
+
 .version-picker__option--selected,
 .version-picker__option--selected:hover,
 .version-picker__option--selected:has(input:focus-visible) {
+    clip-path: var(--pixel-corners);
     background: linear-gradient(
             90deg,
             color-mix(in srgb, var(--accent) 20%, transparent) 0,

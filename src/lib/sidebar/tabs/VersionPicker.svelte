@@ -4,7 +4,7 @@
   import { windowInfo } from "$lib/stores.svelte";
   import IconChevronDown from "~icons/tabler/chevron-down";
   import IconCheck from "~icons/tabler/check";
-  import IconLoader from "~icons/tabler/loader2";
+  import IconLoader from "~icons/tabler/loader-2";
   import SidebarPlaceholder from "../navigation/SidebarPlaceholder.svelte";
 
   interface Props {

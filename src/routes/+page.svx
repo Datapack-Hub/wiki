@@ -13,7 +13,7 @@ import IconArrowRight from '~icons/tabler/arrow-right';
 import IconBraces from '~icons/tabler/braces';
 import IconCode from '~icons/tabler/code';
 import IconFiles from '~icons/tabler/folders';
-import IconDiscord from '~icons/tabler/brand-discord';
+import IconBrandDiscord from '~icons/tabler/brand-discord';
 import IconGithub from '~icons/tabler/brand-github';
 import IconSparkles from '~icons/tabler/sparkles';
 </script>
@@ -106,7 +106,7 @@ import IconSparkles from '~icons/tabler/sparkles';
     </div>
     <div class="home-community__actions">
       <a class="home-button home-button--primary" href="https://discord.gg/xHTHbZqXr6">
-        <IconDiscord /> Join Discord
+        <IconBrandDiscord /> Join Discord
       </a>
       <a class="home-button home-button--secondary" href="https://github.com/Datapack-Hub/wiki/">
         <IconGithub /> Contribute on GitHub
@@ -114,67 +114,4 @@ import IconSparkles from '~icons/tabler/sparkles';
     </div>
   </section>
 
-  <section class="home-contribute" aria-labelledby="contribute-heading">
-    <header class="home-contribute__intro">
-      <p class="home-kicker">Contribute</p>
-      <h2 id="contribute-heading">Share what you know.</h2>
-      <p>
-        This project wouldn’t be possible without the support of community
-        members. We encourage you to contribute if you want to write a page,
-        correct a mistake, or share your knowledge.
-      </p>
-      <p>
-        Use the <strong>Edit</strong> button on any page to open that page’s
-        source on GitHub. Contributions are written in Markdown and submitted
-        through GitHub as pull requests, where a wiki contributor will review
-        them.
-      </p>
-
-      <nav class="home-contribute__links" aria-label="Contribution resources">
-        <a href="/contribute/formatting">Writing pages <IconArrowRight /></a>
-        <a href="/contribute/git-practices">Git practices <IconArrowRight /></a>
-        <a href="https://github.com/Datapack-Hub/wiki/blob/main/CONTRIBUTING.md">
-          Full contributing guide <IconArrowRight />
-        </a>
-      </nav>
-    </header>
-
-    <div class="home-contribute__process">
-      <ol class="home-contribute__steps">
-        <li>
-          <div>
-            <h3>Choose a page</h3>
-            <p>
-              Edit an existing page, or
-              <a href="https://github.com/Datapack-Hub/wiki/fork">fork the repository</a>
-              to add something new.
-            </p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Write clearly</h3>
-            <p>
-              Follow the <a href="/contribute/formatting">page-writing guide</a>
-              for structure, images, Markdown, and the wiki’s writing style.
-            </p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Open a pull request</h3>
-            <p>
-              Describe your change and submit it for review using our
-              <a href="/contribute/git-practices">Git practices</a>.
-            </p>
-          </div>
-        </li>
-      </ol>
-
-      <p class="home-contribute__help">
-        New to GitHub or Markdown?
-        <a href="https://discord.datapackhub.net">Ask for help on Discord.</a>
-      </p>
-    </div>
-  </section>
 </div>

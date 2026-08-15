@@ -241,34 +241,6 @@
   stroke: currentColor;
 }
 
-.article-tags {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 3.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-}
-
-.article-tags__label {
-  margin-right: 0.15rem;
-  color: var(--text-muted);
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.article-tag {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  padding: 0.25rem 0.55rem;
-  color: var(--text-muted);
-  font-size: 0.76rem;
-}
-
 .version-callout {
   --pixel-frame-color: var(--border);
   position: relative;
