@@ -57,7 +57,7 @@
   border-left: 3px solid var(--resource-color);
   background: color-mix(in srgb, var(--resource-color) 22%, transparent);
   padding: 0.22rem 0.48rem;
-  color: color-mix(in srgb, var(--resource-color) 48%, white);
+  color: color-mix(in srgb, var(--resource-color) var(--resource-label-weight), var(--resource-label-base));
   font-size: 0.68rem;
   font-weight: 720;
   line-height: 1.2;
@@ -104,12 +104,12 @@
         transparent 76%
       ),
       var(--surface-raised);
-    filter: drop-shadow(3px 3px 0 rgb(0 0 0 / 22%));
+    filter: drop-shadow(3px 3px 0 var(--soft-shadow));
     translate: 0 -2px;
   }
 
   .resource-card:hover .resource-card__arrow {
-    color: color-mix(in srgb, var(--resource-color) 72%, white);
+    color: color-mix(in srgb, var(--resource-color) 72%, var(--resource-label-base));
     translate: 0.12rem -0.12rem;
   }
 }
@@ -125,7 +125,7 @@
       transparent 76%
     ),
     var(--surface-raised);
-  filter: drop-shadow(3px 3px 0 rgb(0 0 0 / 22%));
+  filter: drop-shadow(3px 3px 0 var(--soft-shadow));
   translate: 0 -2px;
 }
 

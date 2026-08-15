@@ -26,8 +26,6 @@ message to players within 10 blocks.
 
 In Java Edition, there are 6 base target selectors:
 
-<div class="overflow-x-auto">
-
 | Target Selector | Description                                                                                                                                                                |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | @**e**          | **All Entities** - By itself, this selector will select every single entity which is currently loaded in the world                                                         |
@@ -36,8 +34,6 @@ In Java Edition, there are 6 base target selectors:
 | @**r**          | **Random Player** - This selects one random player.                                                                                                                        |
 | @**p**          | **Nearest Player** - This selects the nearest player to the position this command is ran from.                                                                             |
 | @**n**          | **Nearest Entity** - This selects the nearest entity (player or non-player) to the position this command is ran from.                                                      |
-
-</div>
 
 :::warning
 
@@ -66,8 +62,6 @@ select every entity that is NOT a creeper)
 
 :::
 
-<div class="overflow-x-auto">
-
 | Argument           | Example                                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `type`             | `@e[type=minecraft:pig]`                                   | Filters to only include entities of a certain type or entity_type tag. Valid with `@e`, `@s` and `@n`. `type` can be any entity ID or entity_type tag.                                                                                                                                                                                                                                                                                                                                        |
@@ -84,8 +78,6 @@ select every entity that is NOT a creeper)
 | `gamemode`         | `@a[gamemode=creative]`                                    | Selects players in a specific game mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `advancements`     | `@a[advancements={minecraft:story/follow_ender_eye=true}]` | Selects players based on whether they have unlocked a specific advancement.                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `level`            | `@a[level=10]`                                             | Selects players based on their current XP level (not amount of points).                                                                                                                                                                                                                                                                                                                                                                                                                       |
-
-</div>
 
 More information about the arguments:
 

@@ -47,7 +47,6 @@
 
 <!-- ADD PAGES AND CATEGORIES BELOW -->
 
-<SidebarPage label="Home" icon={IconHome} page="/" />
 <SidebarPage label="Getting Started" icon={IconPennant} page="/guide/getting-started" />
 
 <SidebarCategory

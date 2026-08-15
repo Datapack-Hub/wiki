@@ -38,8 +38,6 @@
 
 <!-- ADD PAGES AND CATEGORIES BELOW -->
 
-<SidebarPage label="Home" icon={IconHome} page="/" />
-
 <SidebarCategory name="Info" icon={IconInfo} activePath="/wiki/info">
   <SidebarPage label="Breaking Changes" icon={IconBreak} page="/wiki/info/breaking-changes" />
   <SidebarPage label="JSON format" icon={IconBraces} page="/wiki/info/json" />

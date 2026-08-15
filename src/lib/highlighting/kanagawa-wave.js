@@ -1,4 +1,5 @@
 export const theme = {
+  name: "kanagawa-wave",
   colors: {
     "activityBar.background": "#2A2A37",
     "activityBar.foreground": "#DCD7BA",

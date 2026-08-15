@@ -9,7 +9,30 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#0c0d10" />
+    <meta name="theme-color" content="#0c0908" />
+    <script>
+      (() => {
+        const storageKey = "datapack-wiki-theme";
+        let theme;
+
+        try {
+          const savedTheme = localStorage.getItem(storageKey);
+          if (savedTheme === "light" || savedTheme === "dark") theme = savedTheme;
+        } catch {
+          // Storage can be unavailable in privacy-restricted contexts.
+        }
+
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        }
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document
+          .querySelector('meta[name="theme-color"]')
+          ?.setAttribute("content", theme === "light" ? "#e9e1da" : "#0c0908");
+      })();
+    </script>
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Datapack Wiki" />
     <meta

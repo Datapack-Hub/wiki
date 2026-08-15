@@ -45,41 +45,42 @@
 }
 
 .admonition-note {
-  --pixel-frame-color: rgb(157 143 132 / 42%);
-  background: rgb(157 143 132 / 10%);
-  fill: #b4a69b;
+  --admonition-color: var(--text-muted);
+  --pixel-frame-color: color-mix(in srgb, var(--admonition-color) 42%, var(--surface));
+  background: color-mix(in srgb, var(--admonition-color) 10%, transparent);
+  fill: var(--admonition-color);
 }
 
 .admonition-note .admonition-heading h5 {
-  color: #c8bbb1;
+  color: color-mix(in srgb, var(--admonition-color) 72%, var(--text-primary));
 }
 
 .admonition-info {
-  --pixel-frame-color: rgb(114 167 248 / 48%);
-  background: rgb(114 167 248 / 10%);
+  --pixel-frame-color: color-mix(in srgb, var(--info) 48%, var(--surface));
+  background: color-mix(in srgb, var(--info) 10%, transparent);
   fill: var(--info);
 }
 
 .admonition-info .admonition-heading h5 {
-  color: #9fc4ff;
+  color: color-mix(in srgb, var(--info) 78%, var(--text-primary));
 }
 
 .admonition-tip {
-  --pixel-frame-color: rgb(240 185 94 / 48%);
-  background: rgb(240 185 94 / 10%);
+  --pixel-frame-color: color-mix(in srgb, var(--warning) 48%, var(--surface));
+  background: color-mix(in srgb, var(--warning) 10%, transparent);
   fill: var(--warning);
 }
 
 .admonition-tip .admonition-heading h5 {
-  color: #f5cc88;
+  color: color-mix(in srgb, var(--warning) 78%, var(--text-primary));
 }
 
 .admonition-warning {
-  --pixel-frame-color: rgb(239 115 115 / 48%);
-  background: rgb(239 115 115 / 10%);
+  --pixel-frame-color: color-mix(in srgb, var(--danger) 48%, var(--surface));
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
   fill: var(--danger);
 }
 
 .admonition-warning .admonition-heading h5 {
-  color: #f5a0a0;
+  color: color-mix(in srgb, var(--danger) 78%, var(--text-primary));
 }

@@ -49,7 +49,7 @@ import IconSparkles from '~icons/tabler/sparkles';
 
 <span class="code-command">scoreboard</span> players add @s play_time <span class="code-number">1</span></code></pre>
       <div class="home-code-card__status">
-        <span><i></i> pack_format: {page.data.packFormat}</span>
+        <span><i></i> <span class="code-keyword">pack_format:</span> <span class="code-number">{page.data.packFormat}</span></span>
         <span class="home-code-card__version">
           <span>Minecraft Java {page.data.gameVersion}</span>
         </span>

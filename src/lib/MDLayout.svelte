@@ -1,5 +1,6 @@
 <script module lang="ts">
   export { default as img } from "./reusables/ArticleImage.svelte";
+  export { default as table } from "./reusables/ArticleTable.svelte";
 </script>
 
 <script lang="ts">

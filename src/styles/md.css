@@ -21,21 +21,21 @@
 }
 
 .md {
-  @apply prose prose-invert max-w-none;
+  @apply prose max-w-none;
   --tw-prose-body: var(--text-secondary);
   --tw-prose-headings: var(--text-primary);
   --tw-prose-lead: var(--text-secondary);
-  --tw-prose-links: #ffad7d;
+  --tw-prose-links: var(--link);
   --tw-prose-bold: var(--text-primary);
   --tw-prose-counters: var(--text-muted);
-  --tw-prose-bullets: #786b62;
+  --tw-prose-bullets: var(--list-marker);
   --tw-prose-hr: var(--border);
   --tw-prose-quotes: var(--text-secondary);
   --tw-prose-quote-borders: var(--accent);
   --tw-prose-captions: var(--text-muted);
-  --tw-prose-code: #ffb68e;
-  --tw-prose-pre-code: #dedbd5;
-  --tw-prose-pre-bg: #0f0b09;
+  --tw-prose-code: var(--inline-code);
+  --tw-prose-pre-code: var(--text-primary);
+  --tw-prose-pre-bg: var(--code-bg);
   --tw-prose-th-borders: var(--border-strong);
   --tw-prose-td-borders: var(--border);
   color: var(--text-secondary);
@@ -89,9 +89,9 @@
 }
 
 .md :where(a):not(:where(.not-prose *)) {
-  color: #ffad7d;
+  color: var(--link);
   font-weight: 500;
-  text-decoration-color: rgb(255 122 50 / 38%);
+  text-decoration-color: color-mix(in srgb, var(--accent) 38%, transparent);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
   transition:
@@ -100,7 +100,7 @@
 }
 
 .md :where(a):not(:where(.not-prose *)):hover {
-  color: #ffc7a8;
+  color: var(--link-hover);
   text-decoration-color: currentColor;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .md :where(li)::marker {
-  color: #786b62;
+  color: var(--list-marker);
 }
 
 .md :where(blockquote):not(:where(.not-prose *)) {
@@ -140,11 +140,11 @@
 }
 
 .md :where(:not(pre) > code):not(:where(.not-prose *)) {
-  border: 1px solid rgb(255 122 50 / 18%);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
   border-radius: 0.35rem;
   background: var(--accent-soft);
   padding: 0.12em 0.35em;
-  color: #ffb68e;
+  color: var(--inline-code);
   font-size: 0.87em;
   font-weight: 500;
   overflow-wrap: anywhere;
@@ -158,10 +158,10 @@
 .md :where(pre):not(:where(.not-prose *)) {
   margin-block: 1.25rem;
   overflow-x: auto;
-  border: 1px solid var(--border);
+  border: 1px solid var(--code-border);
   border-radius: 0;
-  background: #0f0b09 !important;
-  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 14%);
+  background: var(--code-bg) !important;
+  box-shadow: var(--floating-shadow);
 }
 
 .version-callout::after,
@@ -185,11 +185,11 @@
   box-sizing: border-box;
   width: 100%;
   margin: 1.4rem 0 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--code-border);
   border-radius: 0;
-  background: #1e1712;
+  background: var(--code-title-bg);
   padding: 0.55rem 0.9rem;
-  color: var(--text-muted);
+  color: var(--code-ui-muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.74rem;
   font-weight: 600;
@@ -201,18 +201,6 @@
   margin-top: 0;
   border-top: 0;
   border-radius: 0;
-}
-
-.md :where(table):not(:where(.not-prose *)) {
-  display: block;
-  width: 100%;
-  margin-block: 1.5rem;
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: 0;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 0.92rem;
 }
 
 .md :where(th):not(:where(.not-prose *)) {
@@ -227,13 +215,13 @@
 }
 
 .md :where(tbody tr):not(:where(.not-prose *)):nth-child(even) {
-  background: rgb(255 255 255 / 2%);
+  background: var(--table-stripe);
 }
 
 .md :where(h1, h2, h3, h4) > a[title="Copy Link"] {
   display: inline-flex;
   margin-left: 0.45rem;
-  color: #695d56;
+  color: var(--copy-link);
   opacity: 0;
   translate: 0 0.1em;
   transition:
@@ -325,7 +313,12 @@
   border: 1px solid transparent;
   border-radius: 0;
   background:
-    radial-gradient(circle at 8% 20%, rgb(255 122 50 / 10%) 0, rgb(255 122 50 / 4%) 9rem, rgb(255 122 50 / 0%) 18rem),
+    radial-gradient(
+      circle at 8% 20%,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0,
+      color-mix(in srgb, var(--accent) 4%, transparent) 9rem,
+      transparent 18rem
+    ),
     var(--surface);
   padding: 1rem;
   clip-path: var(--pixel-corners);
@@ -357,7 +350,7 @@
 }
 
 .discord-callout a {
-  color: #ffad7d;
+  color: var(--link);
 }
 
 @media (max-width: 640px) {
