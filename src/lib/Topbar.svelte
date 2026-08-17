@@ -14,6 +14,7 @@
 
   const themeStorageKey = "datapack-wiki-theme";
   let currentTheme = $state<Theme>("dark");
+  let themeTransitionActive = false;
 
   let shareText = $state("Share");
   let editPath = $derived(page.url.pathname === "/" ? "" : page.url.pathname.replace(/\/$/, ""));
@@ -46,32 +47,80 @@
     };
   });
 
+  function persistTheme(theme: Theme) {
+    try {
+      localStorage.setItem(themeStorageKey, theme);
+    } catch {}
+  }
+
+  function getThemeTransitionOrigin(event: MouseEvent) {
+    const button = event.currentTarget instanceof HTMLElement ? event.currentTarget : null;
+    const bounds = button?.getBoundingClientRect();
+    const width = document.documentElement.clientWidth || window.innerWidth;
+    const height = document.documentElement.clientHeight || window.innerHeight;
+    const fallbackX = bounds ? bounds.left + bounds.width / 2 : width / 2;
+    const fallbackY = bounds ? bounds.top + bounds.height / 2 : height / 2;
+    const x = event.detail === 0 ? fallbackX : event.clientX;
+    const y = event.detail === 0 ? fallbackY : event.clientY;
+
+    return {
+      x: Math.min(Math.max(x, 0), width),
+      y: Math.min(Math.max(y, 0), height),
+      width,
+      height,
+    };
+  }
+
   function toggleTheme(event: MouseEvent) {
     const theme: Theme = currentTheme === "light" ? "dark" : "light";
+    const updateTheme = () => {
+      applyTheme(theme);
+      persistTheme(theme);
+    };
 
     // @ts-ignore
     if (!document.startViewTransition) {
-      applyTheme(theme);
-      try {
-        localStorage.setItem(themeStorageKey, theme);
-      } catch {}
+      updateTheme();
       return;
     }
 
-    const x = event.clientX;
-    const y = event.clientY;
-    const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    if (themeTransitionActive) return;
+    themeTransitionActive = true;
 
-    // @ts-ignore
-    const transition = document.startViewTransition(() => {
-      applyTheme(theme);
-      try {
-        localStorage.setItem(themeStorageKey, theme);
-      } catch {}
-    });
+    let transition;
+    try {
+      // @ts-ignore
+      transition = document.startViewTransition(updateTheme);
+    } catch {
+      themeTransitionActive = false;
+      updateTheme();
+      return;
+    }
+
+    const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    const origin = getThemeTransitionOrigin(event);
 
     transition.ready.then(() => {
-      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
+      if (isTouchDevice) {
+        document.documentElement.animate(
+          { opacity: [0, 1] },
+          {
+            duration: 500,
+            easing: "ease-in-out",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+        return;
+      }
+
+      const endRadius = Math.hypot(
+        Math.max(origin.x, origin.width - origin.x),
+        Math.max(origin.y, origin.height - origin.y)
+      );
+      const clipPath = [
+        `circle(0px at ${origin.x}px ${origin.y}px)`,
+        `circle(${endRadius}px at ${origin.x}px ${origin.y}px)`,
+      ];
       document.documentElement.animate(
         {
           clipPath,
@@ -82,7 +131,12 @@
           pseudoElement: "::view-transition-new(root)",
         }
       );
-    });
+    }).catch(() => {});
+
+    transition.finished.then(
+      () => (themeTransitionActive = false),
+      () => (themeTransitionActive = false)
+    );
   }
 
   async function copyUrl() {

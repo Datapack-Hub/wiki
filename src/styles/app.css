@@ -187,15 +187,17 @@
   filter: drop-shadow(0 0 5px var(--canvas));
 }
 
+@media (hover: none) and (pointer: coarse) {
+    ::view-transition-new(root) {
+        filter: none;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     ::view-transition-old(root),
     ::view-transition-new(root) {
         animation-duration: 1ms !important;
     }
-}
-
-.theme-toggle {
-    view-transition-name: theme-toggle;
 }
 
 @theme {
