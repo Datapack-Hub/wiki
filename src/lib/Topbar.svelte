@@ -1,5 +1,6 @@
 <script lang="ts">
   import IconBrandDiscord from "~icons/tabler/brand-discord";
+  import IconBrandGithub from "~icons/tabler/brand-github";
   import IconMoon from "~icons/tabler/moon";
   import IconShare from "~icons/tabler/share";
   import IconSun from "~icons/tabler/sun";
@@ -18,6 +19,38 @@
 
   let shareText = $state("Share");
   let editPath = $derived(page.url.pathname === "/" ? "" : page.url.pathname.replace(/\/$/, ""));
+  let editHref = $derived(`https://github.com/Datapack-Hub/wiki/blob/main/src/routes${editPath}/%2Bpage.svx`);
+  let editNoticeOpen = $state(false);
+  let editNoticePath = $state<string | null>(null);
+
+  const editNoticeStorageKey = "datapack-wiki-edit-notice";
+
+  function hasSeenEditNotice() {
+    try {
+      return sessionStorage.getItem(editNoticeStorageKey) === page.url.pathname;
+    } catch {
+      return false;
+    }
+  }
+
+  function rememberEditNotice() {
+    try {
+      sessionStorage.setItem(editNoticeStorageKey, page.url.pathname);
+    } catch {}
+  }
+
+  function handleEditClick(event: MouseEvent) {
+    if (hasSeenEditNotice()) return;
+
+    event.preventDefault();
+    editNoticePath = page.url.pathname;
+    editNoticeOpen = true;
+  }
+
+  function closeEditNotice() {
+    rememberEditNotice();
+    editNoticeOpen = false;
+  }
 
   function applyTheme(theme: Theme) {
     currentTheme = theme;
@@ -25,7 +58,7 @@
     document.documentElement.style.colorScheme = theme;
     document
       .querySelector<HTMLMetaElement>('meta[name="theme-color"]')
-      ?.setAttribute("content", theme === "light" ? "#e9e1da" : "#0c0908");
+      ?.setAttribute("content", theme === "light" ? "#ebece6" : "#0c0908");
   }
 
   onMount(() => {
@@ -207,10 +240,11 @@
 
     <div class="topbar__actions">
       <a
-        href="https://github.com/Datapack-Hub/wiki/blob/main/src/routes{editPath}/%2Bpage.svx"
+        href={editHref}
         class="icon-button"
         aria-label="Edit this page on GitHub"
-        title="Edit this page">
+        title="Edit this page"
+        onclick={handleEditClick}>
         <IconEdit />
         <span class="icon-button__label">Edit</span>
       </a>
@@ -244,3 +278,31 @@
     </div>
   </div>
 </header>
+
+{#if editNoticeOpen && editNoticePath === page.url.pathname}
+  <div class="edit-notice-backdrop" role="presentation" onclick={closeEditNotice}></div>
+  <dialog
+    open
+    class="edit-notice"
+    aria-modal="true"
+    aria-labelledby="edit-notice-title"
+    aria-describedby="edit-notice-description">
+    <div class="edit-notice__header">
+      <div>
+        <p class="edit-notice__eyebrow">Before you contribute</p>
+        <h2 id="edit-notice-title">Ready to edit this page?</h2>
+      </div>
+      <button class="icon-button edit-notice__close" type="button" aria-label="Close" onclick={closeEditNotice}>×</button>
+    </div>
+    <p id="edit-notice-description">
+      These two short guides explain the page structure and the Git workflow used by the wiki.
+    </p>
+    <div class="edit-notice__links">
+      <a href="/contribute/formatting" onclick={closeEditNotice}>Page Formatting <span aria-hidden="true">→</span></a>
+      <a href="/contribute/git-practices" onclick={closeEditNotice}>Git Practices <span aria-hidden="true">→</span></a>
+    </div>
+    <a class="edit-notice__continue" href={editHref} onclick={closeEditNotice}>
+      Continue to edit on <IconBrandGithub aria-hidden="true" /> GitHub
+    </a>
+  </dialog>
+{/if}

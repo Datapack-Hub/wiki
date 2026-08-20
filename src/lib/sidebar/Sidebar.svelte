@@ -13,7 +13,6 @@
   import IconWiki from "~icons/tabler/globe";
   import IconMarkdown from "~icons/tabler/markdown";
   import IconBranch from "~icons/tabler/git-branch";
-  import IconX from "~icons/tabler/x";
 
   import SidebarPage from "./navigation/SidebarPage.svelte";
   import SidebarCategory from "./navigation/SidebarCategory.svelte";
@@ -86,13 +85,6 @@
   aria-label="Documentation navigation"
   inert={!windowInfo.isNavOpen && windowInfo.width < 768}
   class="sidebar {windowInfo.isNavOpen ? 'sidebar--open' : 'sidebar--collapsed'} {mounted ? 'sidebar--ready' : ''}">
-  <div class="sidebar__mobile-header">
-    <span>Browse documentation</span>
-    <button class="icon-button" aria-label="Close navigation" onclick={() => (windowInfo.isNavOpen = false)}>
-      <IconX />
-    </button>
-  </div>
-
   <div class="sidebar__scroll">
     <nav class="sidebar__nav" id="nav_side" aria-label="Wiki sections">
       {#if windowInfo.isNavOpen}
@@ -126,7 +118,8 @@
     <div class="sidebar__status">
       {#if windowInfo.isNavOpen}
         <span class="sidebar__status-text">
-          <span>pack_format: {appPage.data.packFormat}</span>
+          <span>Data Pack Format: {appPage.data.packFormat}</span>
+          <span>Resource Pack Format: {appPage.data.resourcePackFormat}</span>
           <span>Minecraft Java {appPage.data.gameVersion}</span>
         </span>
       {/if}

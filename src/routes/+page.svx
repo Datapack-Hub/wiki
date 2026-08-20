@@ -16,13 +16,13 @@ import IconFiles from '~icons/tabler/folders';
 import IconBrandDiscord from '~icons/tabler/brand-discord';
 import IconGithub from '~icons/tabler/brand-github';
 import IconSparkles from '~icons/tabler/sparkles';
+
 </script>
 
 <div class="home-landing not-prose">
   <section class="home-hero" aria-labelledby="home-title">
     <header class="home-hero__heading">
       <p class="home-eyebrow">
-        <span class="home-eyebrow__dot"></span>
         Minecraft Java · Community wiki
       </p>
       <h1 id="home-title">Datapacking Explained</h1>
@@ -30,8 +30,8 @@ import IconSparkles from '~icons/tabler/sparkles';
 
     <div class="home-hero__intro">
       <p class="home-hero__lede">
-        Guides, examples, and references for Minecraft Java datapacks. Find
-        what you need, fix what broke, and get back to your pack.
+        Guides, examples, and references for Minecraft Java data packs. Find
+        the information you need, troubleshoot problems, and get back to building.
       </p>
 
       <div class="home-hero__search">
@@ -49,7 +49,14 @@ import IconSparkles from '~icons/tabler/sparkles';
 
 <span class="code-command">scoreboard</span> players add @s play_time <span class="code-number">1</span></code></pre>
       <div class="home-code-card__status">
-        <span><i></i> <span class="code-keyword">pack_format:</span> <span class="code-number">{page.data.packFormat}</span></span>
+        <span>
+          <i></i>
+          <span class="code-keyword">Data Pack Format:</span>
+          <span class="code-number">{page.data.packFormat}</span>
+          <span aria-hidden="true"> · </span>
+          <span class="code-keyword">Resource Pack Format:</span>
+          <span class="code-number">{page.data.resourcePackFormat}</span>
+        </span>
         <span class="home-code-card__version">
           <span>Minecraft Java {page.data.gameVersion}</span>
         </span>

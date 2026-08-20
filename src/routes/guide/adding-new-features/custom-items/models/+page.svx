@@ -36,7 +36,7 @@ text:
 ```json:minecraft/resourcepacks/my_pack/pack.mcmeta
 {
   "pack": {
-    "pack_format": 69,
+    "pack_format": 88,
     "description": "<Description of your pack (optional)>"
   }
 }

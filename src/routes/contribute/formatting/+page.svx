@@ -12,9 +12,8 @@ tags: contribution, writing, formatting, images
 
 # Page Structure & Formatting
 
-This guide covers the complete structure of a wiki page: where its file lives,
-which metadata it needs, how to add local images and links, how to format its
-content, and how to make it appear in the sidebar.
+This guide explains how to structure a wiki page, add its metadata, include
+images and links, format its content, and place it in the sidebar.
 
 If you are new to Git or pull requests, read [Git Practices](/contribute/git-practices)
 alongside this page.
@@ -302,7 +301,7 @@ and `javascript`. Add a filename after the language to give the block a title:
 ```json:pack.mcmeta
 {
   "pack": {
-    "pack_format": 107,
+    "pack_format": 107.1,
     "description": "Example datapack"
   }
 }
