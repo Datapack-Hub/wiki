@@ -12,13 +12,10 @@ This guide is split into three parts, adding a custom smithing trim pattern,
 adding a custom smithing trim color palette and adding a custom trimmable item.
 These parts can be seperately without following each other.
 
-:::info
-
-This guide requires you to have at least a small understanding of datapacks. If
-you don't understand this guide, you can read the
-[Getting Started guide](/guide/getting-started).
-
-:::
+> [!INFO]  
+> This guide requires you to have at least a small understanding of datapacks.
+> If you don't understand this guide, you can read the
+> [Getting Started guide](/guide/getting-started).
 
 To start you will need a basic datapack, if you don't know how to make one, see
 the [Getting Started](/guide/getting-started) guide.
@@ -127,12 +124,9 @@ Once you save the above files, you need to reload the resource pack with the
 keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
 update the datapack.
 
-:::warning
-
-For this to work, you will need to leave and rejoin the world, just using the
-`/reload` command won't do the trick here!
-
-:::
+> [!WARNING]  
+> For this to work, you will need to leave and rejoin the world, just using the
+> `/reload` command won't do the trick here!
 
 ## Adding a smithing trim material
 
@@ -406,12 +400,9 @@ Once you save the above files, you need to reload the resource pack with the
 keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
 update the datapack.
 
-:::warning
-
-For this to work, you will need to leave and rejoin the world, just using the
-`/reload` command won't do the trick here!
-
-:::
+> [!WARNING]  
+> For this to work, you will need to leave and rejoin the world, just using the
+> `/reload` command won't do the trick here!
 
 ## Adding a trimmable item
 
@@ -591,9 +582,6 @@ Once you save the above files, you need to reload the resource pack with the
 keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
 update the datapack.
 
-:::warning
-
-For this to work, you will need to leave and rejoin the world, just using the
-`/reload` command won't do the trick here!
-
-:::
+> [!WARNING]  
+> For this to work, you will need to leave and rejoin the world, just using the
+> `/reload` command won't do the trick here!

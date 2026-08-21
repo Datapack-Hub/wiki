@@ -7,8 +7,6 @@
 
 :root {
   scroll-behavior: smooth;
-  text-rendering: optimizeLegibility;
-  image-rendering: optimizeQuality;
 }
 
 @theme {

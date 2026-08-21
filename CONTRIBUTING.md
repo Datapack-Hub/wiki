@@ -82,27 +82,7 @@ you may run into. In addition, check that there are no spelling or grammatical m
    ```
 
 > [!TIP]
-> You can create info, warning, or tip boxes using the following syntax:
->
-> ```md
-> :::info
->
-> This is an info box!
->
-> :::
->
-> :::warning
->
-> This is a warning box!
->
-> :::
->
-> :::tip
-> 
-> This is a tip box!
->
-> :::
-> ```
+> You can create info, warning, or tip boxes using the gitHub syntax (see the source for this file)
 
 ## Adding a page to the sidebar
 

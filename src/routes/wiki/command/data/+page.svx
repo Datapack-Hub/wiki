@@ -13,12 +13,9 @@ The `/data` command is used to modify and fetch NBT data of
 [entities](/wiki/nbt-scoreboards/entity-nbt) and
 [storages](/wiki/nbt-scoreboards/nbt#nbt-storages).
 
-:::warning
-
-Player data cannot be modified using commands. All subcommands fail when trying
-to modify player data.
-
-:::
+> [!WARNING]  
+> Player data cannot be modified using commands. All subcommands fail when
+> trying to modify player data.
 
 ## Subcommands
 
@@ -141,19 +138,16 @@ This deletes compound keys, and removes array and list elements, shifting
 proceeding elements left. It cannot, however, be used to delete an entire
 storage using the special `{}` path; only single keys of the root storage.
 
-:::tip
-
-If you would like to be able to remove an entire storage in one go, put all your
-NBT data in a sub-path of it, for example:
-
-```mcfunction
-data modify storage example:main temp.a set value 1
-data modify storage example:main temp.b set value 2
-# Removes both keys
-data remove storage example:main temp
-```
-
-:::
+> [!TIP]  
+> If you would like to be able to remove an entire storage in one go, put all
+> your NBT data in a sub-path of it, for example:
+>
+> ```mcfunction
+> data modify storage example:main temp.a set value 1
+> data modify storage example:main temp.b set value 2
+> # Removes both keys
+> data remove storage example:main temp
+> ```
 
 ## Data source
 

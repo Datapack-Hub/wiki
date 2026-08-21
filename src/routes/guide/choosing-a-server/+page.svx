@@ -53,29 +53,28 @@ all.
 | Designed with exclusively datapacks in mind     | Limited customizations  |
 | No additional bug fixes                         | No additional bug fixes |
 
-:::info
-For some, a lack of bug fixes can be both positive and negative. Mileage may
-vary!
-:::
+> [!INFO]  
+> For some, a lack of bug fixes can be both positive and negative. Mileage may
+> vary!
 
-:::info
-Even though the list mentions bad performace, the vanilla server still performs well. 
-For small servers on decent hardware, it doesn't really matter what you choose.
-:::
+> [!INFO]  
+> Even though the list mentions bad performace, the vanilla server still
+> performs well. For small servers on decent hardware, it doesn't really matter
+> what you choose.
 
 ## Spigot
 
 [Spigot](https://www.spigotmc.org/) is another popular server software, it comes
-with some basic performance optimizations, Bukkit plugin support, and some customization.
-It *can* cause some issues with datapacks but mitigating datapack-related bugs is
-significantly easier when compared to Paper. If you want plugins _and_
-datapacks, this is likely the one you want.
+with some basic performance optimizations, Bukkit plugin support, and some
+customization. It _can_ cause some issues with datapacks but mitigating
+datapack-related bugs is significantly easier when compared to Paper. If you
+want plugins _and_ datapacks, this is likely the one you want.
 
-| Pros                                       | Cons                                                |
-| ------------------------------------------ | --------------------------------------------------- |
-| Popular and well-supported                 | Bad datapack support by default (but fixable)       |
-| Comes with some performance optimizations  | May be lacking Bukkit APIs other servers have       |
-| Datapack bugs are less common              | Not as customizable as other server softwares       |
+| Pros                                      | Cons                                          |
+| ----------------------------------------- | --------------------------------------------- |
+| Popular and well-supported                | Bad datapack support by default (but fixable) |
+| Comes with some performance optimizations | May be lacking Bukkit APIs other servers have |
+| Datapack bugs are less common             | Not as customizable as other server softwares |
 
 ## Paper
 
@@ -93,19 +92,19 @@ performance, modernity and bug fixes.
 | Modern and forward-looking, provides many new Bukkit APIs    | Some useful bugs are fixed by default (TNT duping, sand duping, etc.) |
 | Comes with extensive documentation and configuration options |                                                                       |
 
-:::note
-Until recently, Paper was based Spigot, but recently, the devs converted the project
-into a hard fork (no longer based on Spigot), allowing for quicker update times, 
-however, stable releases can still be slow to release.
-:::
+> [!NOTE]  
+> Until recently, Paper was based Spigot, but recently, the devs converted the
+> project into a hard fork (no longer based on Spigot), allowing for quicker
+> update times, however, stable releases can still be slow to release.
 
 ## Forge
 
 [Forge](https://minecraftforge.net/) is a mod-based server software used
 primarily by older Minecraft servers. Forge is the gold standard for mods for
-versions >1.13 while still offering support for latest versions. Many mods and modpacks
-such as RLCraft, Pixelmon, ATM (All The Mods) will **only** run on Forge. Forge
-is still updated to latest versions, however, newer loaders are recommended.
+versions >1.13 while still offering support for latest versions. Many mods and
+modpacks such as RLCraft, Pixelmon, ATM (All The Mods) will **only** run on
+Forge. Forge is still updated to latest versions, however, newer loaders are
+recommended.
 
 | Pros                                  | Cons                                                          |
 | ------------------------------------- | ------------------------------------------------------------- |
@@ -113,18 +112,17 @@ is still updated to latest versions, however, newer loaders are recommended.
 | Large mod catalog spanning many years | Different mod loaders are recommended and used nowadays       |
 | Many mods do not affect DP features   |                                                               |
 
-:::note
-It's recommended to use [NeoForge](#neoforge) on the latest version when
-possible. This will offer the bestest of Datapack features and the most modern
-mods
-:::
+> [!NOTE]  
+> It's recommended to use [NeoForge](#neoforge) on the latest version when
+> possible. This will offer the bestest of Datapack features and the most modern
+> mods
 
 ## NeoForge
 
 [NeoForge](https://neoforged.net) is a mod-based server software used by many
 Minecraft servers. It is a fork of Forge designed to be cleaner and more modern,
 with significant reworks to many bloated parts of Forge. It is designed to be
-used with new versions of Minecraft and many mods that *did* target the latest
+used with new versions of Minecraft and many mods that _did_ target the latest
 version of Forge will now target both or exclusively NeoForge!
 
 | Pros                                | Cons                                                             |
@@ -146,13 +144,12 @@ due to how it injects its code.
 | Mods rarely affect datapacks       | Hard to troubleshoot mod errors sometimes       |
 | Great for newer Minecraft versions | Support for older Minecraft versions is limited |
 
-:::tip
-You may see people talk about Cardboard. It's a mod that can add the Paper API
-to your Fabric server, however the actual functionality is limited and its slow
-to update.
-
-We do not recommend you use it! Instead, try find native Fabric alternatives!
-:::
+> [!TIP]  
+> You may see people talk about Cardboard. It's a mod that can add the Paper API
+> to your Fabric server, however the actual functionality is limited and its
+> slow to update.
+>
+> We do not recommend you use it! Instead, try find native Fabric alternatives!
 
 ## SpongeVanilla
 
@@ -186,23 +183,23 @@ rarely used due to the lack of mods supporting it.
 Minestom is a very high performance, lightweight server jar designed for extreme
 customizability at the expense of doing everything yourself.
 
-:::warning
-This server jar is basically an empty shell and is only recommended for highly
-technical purposes. You need to program everything you want into this server
-yourself, including features you may expect to come with the jar (lighting). You
-have been warned!
-:::
+> [!WARNING]  
+> This server jar is basically an empty shell and is only recommended for highly
+> technical purposes. You are expected to program everything your self,
+> including things that you expect would be in a jar, such as lighting. You have
+> been warned!
 
 | Pros                                                | Cons                                           |
 | --------------------------------------------------- | ---------------------------------------------- |
-| Extremely high performance                          | Almost everything must be manually implemented |
+| Extremely high performance in theory                | Almost everything must be manually implemented |
 | Uber customizable, anything you dream is possible!  | HIGHLY TECHNICAL! Expect many errors with DIY  |
 | Absolutely no obfuscation, the protocol is readable | An understanding of networking may be required |
 
 ### Proxies (BungeeCord, Velocity, Waterfall, etc.)
 
-These "servers" are different from the rest, as they themselves are not Minecraft servers,
-but rather [proxies](https://simple.wikipedia.org/wiki/Proxy_server).
+These "servers" are different from the rest, as they themselves are not
+Minecraft servers, but rather
+[proxies](https://simple.wikipedia.org/wiki/Proxy_server).
 
 Most Minecraft servers can't handle more than a hundred-or-so people at once, so
 how do giant servers like Hypixel have tens of thousands of people on at one

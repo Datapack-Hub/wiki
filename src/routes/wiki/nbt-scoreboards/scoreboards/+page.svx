@@ -97,13 +97,10 @@ the `option` objective.
 - `/trigger option set 5` will set the player's score to 5.
 - `/trigger option add 3` will add 3 to the player's score.
 
-:::tip
-
-There is also a way to disable a scoreboard objective for players, so that they
-cannot trigger it until it is re-enabled:
-
-```mcfunction
-scoreboard players reset @a option
-```
-
-:::
+> [!TIP]  
+> There is also a way to disable a scoreboard objective for players, so that
+> they cannot trigger it until it is re-enabled:
+>
+> ```mcfunction
+> scoreboard players reset @a option
+> ```

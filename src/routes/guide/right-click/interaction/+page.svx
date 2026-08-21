@@ -87,9 +87,6 @@ data remove entity @s interaction
 say I was right clicked!
 ```
 
-:::tip
-
-If you want to detect left clicks instead, then instead of checking and removing
-the `interaction` NBT, use the `attack` NBT.
-
-:::
+> [!TIP]  
+> If you want to detect left clicks instead, then instead of checking and
+> removing the `interaction` NBT, use the `attack` NBT.

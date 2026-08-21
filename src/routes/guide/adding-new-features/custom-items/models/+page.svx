@@ -13,14 +13,11 @@ of items with that component. It does not replace any vanilla items. It also
 goes over
 [spawning custom models in your world as an entity](#spawning-the-items-as-entities-in-game).
 
-:::warning
-
-Before Minecraft version 1.21., `CustomModelData` was used to change the look of
-items. It was replaced with item models in Minecraft version 1.21.4, so it won't
-work in later versions. Item Models use a **completely different method**
-compared to Custom Model Data.
-
-:::
+> [!WARNING]  
+> Before Minecraft version 1.21, `CustomModelData` was used to change the look
+> of items. It was replaced with item models in Minecraft version 1.21.4, so it
+> won't work in later versions. Item Models use a **completely different
+> method** compared to Custom Model Data.
 
 To add custom models or textures to the game, you will need a resouce pack. If
 you already have a resource pack or know how to create one, you can skip to
@@ -99,11 +96,8 @@ Your model file will now probably look like this:
 Replace all the values inside the `textures` bracket with
 `namespace:item/your_texture`.
 
-:::warning
-
-Do **not** add `.png`!
-
-:::
+> [!WARNING]  
+> Do **not** add `.png`!
 
 ### Adding the `item_model`
 
@@ -127,17 +121,14 @@ You can now add your texture to any item using this command:
 /give @s <any_item> [item_model="namespace:your_item"]
 ```
 
-:::info
-
-This command can also be used to change the texture of any item to another
-vanilla item texture without a resource pack nor a data pack using a command
-like this:
-
-```mcfunction
-/give @s <any_item> [item_model="minecraft:vanilla_item"]
-```
-
-:::
+> [!INFO]  
+> This command can also be used to change the texture of any item to another
+> vanilla item texture without a resource pack nor a data pack using a command
+> like this:
+>
+> ```mcfunction
+> /give @s <any_item> [item_model="minecraft:vanilla_item"]
+> ```
 
 ## Spawning the items as entities in-game
 
@@ -151,6 +142,7 @@ model/texture like this:
 /summon item_display ~ ~ ~ {item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"namespace:your_item"}}}
 ```
 
-:::info In Minecraft: Java Edition, there is no good or simple way to animate
-your models. The best you can do is using multiple item displays and teleporting
-them/changing their `transformation` data. :::
+> [!INFO]  
+> In Minecraft: Java Edition, there is no good or simple way to animate your
+> models. The best you can do is using multiple item displays and teleporting
+> them/changing their `transformation` data.

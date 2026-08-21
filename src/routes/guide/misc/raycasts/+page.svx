@@ -13,12 +13,9 @@ Raycasting is when we shoot a line from the player's eyes in the direction they
 are looking. We use this to get what the player is looking at and do something
 to it, such as spawning an explosion.
 
-:::info
-
-This tutorial uses a neat thing called a **_recursive function_**. A recursive
-function is a function that runs itself over and over again.
-
-:::
+> [!INFO]  
+> This tutorial uses a neat thing called a **_recursive function_**. A recursive
+> function is a function that runs itself over and over again.
 
 This method works due to a special behaviour of Minecraft functions - functions
 are always run at a position and rotation. This means that we can run a function

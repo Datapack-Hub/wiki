@@ -38,10 +38,9 @@ function file and replace the macro with its value (block, entity, storage).
 Interestingly, this also works function-wide, meaning you could use them as mock
 arguments.
 
-:::warning
-Macros can be significantly slower than other methods, it is best to only use
-them when necessary or in non-performance-critical code.
-:::
+> [!WARNING]  
+> Macros can be significantly slower than other methods, it is best to only use
+> them when necessary or in non-performance-critical code.
 
 Below are some examples of their usage:
 
@@ -115,8 +114,7 @@ order to do math. Using the `scoreboard players operation` subcommand, you can
 do a
 [variety of math operations](https://minecraft.wiki/w/Scoreboard#Score_operations).
 
-:::note
-MCFunction does not come with complex math operations like trig functions, absolutes, a
-pre-defined Pi, or even square root! These all must be implemented either by
-hand or with a third-party library.
-:::
+> [!NOTE]  
+> MCFunction does not come with complex math operations like trig functions,
+> absolutes, a pre-defined Pi, or even square root! These all must be
+> implemented either by hand or with a third-party library.

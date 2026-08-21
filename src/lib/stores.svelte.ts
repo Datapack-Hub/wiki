@@ -13,6 +13,6 @@ export const windowInfo = $state({
  */
 export let latestMCData = $state({
   packFormat: 57,
-  gameVersion: "1.21.1",
+  gameVersion: "26.1",
   changed: false,
 });

@@ -90,10 +90,12 @@ We try to keep the front matter as minimal as possible, but it is still
 required. Without it, the page will not display correctly on search engines or
 other sites. The front matter for this page looks like this:
 
-```md
-title: "Site Development" description: "This page is meant to be an introduction
-to formatting a page for the wiki. In it is multiple examples which you can
-examine raw in the [site source code](https://github.com/Datapack-Hub/wiki)."
+```yml
+title: "Site Development"
+description:
+  "This page is meant to be an introduction to formatting a page for the wiki.
+  In it is multiple examples which you can examine raw in the [site source
+  code](https://github.com/Datapack-Hub/wiki)."
 version: 26.2
 ```
 
@@ -121,18 +123,12 @@ pages. As of the time of writing, we have the following features:
 Admonitions are a way to warnings, info or tips, or other important information
 to your page.
 
-:::info
-
-This is an example of an info box.
-
-:::
+> [!NOTE]  
+> This is an example of an info box.
 
 ```md
-:::info
-
-This is an example of an info box.
-
-:::
+> [!INFO]  
+> This is an example of an info box.
 ```
 
 Code blocks are a way to format code in your page. These code blocks come with

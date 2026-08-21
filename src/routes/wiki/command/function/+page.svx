@@ -28,8 +28,5 @@ are run independently and one after another - for example, if you run
   Runs the `.mcfunction` file at `data/<namespace>/function/<function>`, and
   uses the NBT source if the function is a macro function.
 
-:::tip
-
-You can stop a function running in real-time using the return command.
-
-:::
+> [!TIP]  
+> You can stop a function running in real-time using the return command.

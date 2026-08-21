@@ -6,7 +6,11 @@ description:
 ---
 
 # JSON Format
-JSON is a data storage type used by Minecraft Datapacks for files such as [predicates](/wiki/files/predicates) and [tags](/wiki/files/tags), as well as in [Styled Text](/wiki/concepts/json-text). JSON is a way of storing data, usually used in `.json` files but is also seen in `.mcmeta` files too.
+
+JSON is a data storage type used by Minecraft Datapacks for files such as
+[predicates](/wiki/files/predicates) and [tags](/wiki/files/tags), as well as in
+[Styled Text](/wiki/concepts/json-text). JSON is a way of storing data, usually
+used in `.json` files but is also seen in `.mcmeta` files too.
 
 ## How JSON works
 
@@ -107,11 +111,10 @@ following paths can be used:
 In datapacks, you will not use JSON paths often, but you will use
 [NBT paths](/wiki/nbt-scoreboards/nbt#nbt-paths), which are very similar.
 
-:::note
-
-The format for paths above is only the most commonly seen path format. Other
-languages, such as Python, use a different format, such as:
-
-```json
-root["login_details"]["password"]
-```
+> [!NOTE]  
+> The format for paths above is only the most commonly seen path format. Other
+> languages, such as Python, use a different format, such as:
+>
+> ```json
+> root["login_details"]["password"]
+> ```

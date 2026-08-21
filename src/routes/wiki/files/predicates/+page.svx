@@ -3,7 +3,7 @@ title: Predicates
 description:
   Predicates are a type of file which can be called to check if a certain
   condition is true.
-version: 1.21.5
+version: 26.2
 ---
 
 # Predicates
@@ -14,13 +14,11 @@ is walking, if an entity is above a specific Y level, or if a player is holding
 an item. They are extremely versatile and, in many cases, more optimised than
 `execute if` commands.
 
-:::info
-
-Although this page covers predicate files, predicates are also used within
-advancements and loot table files. The structure of these predicates is the same
-as described here, although some fields may not be used in certain contexts.
-
-:::
+> [!INFO]  
+> Although this page covers predicate files, predicates are also used within
+> advancements and loot table files. The structure of these predicates is the
+> same as described here, although some fields may not be used in certain
+> contexts.
 
 ## Examples
 

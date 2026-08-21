@@ -1,7 +1,12 @@
-import { file as defineFile, Glob, write, markdown } from "bun";
-import matter from "gray-matter";
-import { stripHtml } from "string-strip-html";
+// Compatibility for Node.js
+// Use the Bun script if you are using Bun
+
 import { createConsola } from "consola";
+import fg from "fast-glob";
+import matter from "gray-matter";
+import { readFile, writeFile } from "node:fs/promises";
+import { stripHtml } from "string-strip-html";
+import RemoveMarkdown from "remove-markdown";
 
 const log = createConsola({
   formatOptions: {
@@ -9,28 +14,19 @@ const log = createConsola({
   },
 });
 
-// Requires Bun to be installed
-// Sorry!
-
 const posts = [];
-const fileGlob = new Glob("./**/+page.svx");
-const matchingFiles = fileGlob.scan("./src/routes");
+const matchingFiles = fg.stream("**/+page.svx", { dot: true });
 
 // read all routes
 for await (const file of matchingFiles) {
-
   log.info("Transforming", file);
-  const rawContent = await defineFile(`./src/routes/${file}`).text();
-
+  const rawContent = await readFile(file);
   const frontmatter = matter(rawContent); // parse markdown front matter
-
-  const filePath = file.slice(0, -9).slice(2); // remove the file name and extension and leading slash
+  const filePath = file.slice(11).slice(0, -9); // remove the file name and extension and src/routes prefix
 
   // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
-  const strippedMarkdown = markdown.render(contentNoHtml, {})
-    .replaceAll(/:::.*/g, "")
-    .replaceAll(/:::/g, "") // remove admonitions
+  const strippedMarkdown = RemoveMarkdown(contentNoHtml)
     .replaceAll(/[^\S\r\n]{2,}/g, ""); // remove extra spaces
 
   const tags = frontmatter.data.tags || "";
@@ -42,13 +38,13 @@ for await (const file of matchingFiles) {
     url: "/" + filePath,
     tags: tags
       .split(",")
-      .map((el) => el.trim())
+      .map(el => el.trim())
       .filter(String),
   });
 }
 
 // write to file
 log.start("Writing to file...");
-await write("./src/routes/search.json/meta.json", JSON.stringify(posts));
+await writeFile("./src/routes/search.json/meta.json", JSON.stringify(posts));
 
-log.success("Done! Finished in " + Bun.nanoseconds() / 1e6 + " milliseconds.");
+log.success("Done!");

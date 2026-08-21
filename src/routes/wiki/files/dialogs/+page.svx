@@ -37,13 +37,10 @@ whether there are buttons in the footer) depends on the type:
 - **Server Links** (`minecraft:server_links`): This type of dialog will display
   the server's preset custom links.
 
-:::info
-
-The **body** can contain items as well as text. If an item is used, then it will
-display graphically, and will look as if it is in the inventory when it is
-hovered over by the cursor.
-
-:::
+> [!INFO]  
+> The **body** can contain items as well as text. If an item is used, then it
+> will display graphically, and will look as if it is in the inventory when it
+> is hovered over by the cursor.
 
 ## Inputs
 
@@ -89,13 +86,10 @@ the user has entered the value `Silabear`, and the action is a
 when the action is clicked, the player will run the command
 `kill @a[name=Silabear]`.
 
-:::warning
-
-Note that the player needs permission to run the command. This means that, if
-the player does not have operator status, then most useful commands cannot be
-run.
-
-:::
+> [!WARNING]  
+> Note that the player needs permission to run the command. This means that, if
+> the player does not have operator status, then most useful commands cannot be
+> run.
 
 ## JSON Format
 

@@ -15,11 +15,8 @@ wiki consistent and reputable, we have a few rules that we follow.
 Git provides a lot of features that are great for collaboration, and we try to
 use them as much as possible.
 
-:::info
-
-This guide assumes you already have experience using Git before.
-
-:::
+> [!NOTE]  
+> This guide assumes you already have experience using Git before.
 
 ## Forking and PRs
 

@@ -2,7 +2,7 @@
 title: Styled Text
 description:
   Styled text in Minecraft commands is done through an NBT text format.
-version: 1.21.8
+version: 26.2
 ---
 
 # Styled Text
@@ -63,12 +63,17 @@ such as NBT or scoreboard. Every object requires one of the following:
 - `keybind:"<keybind id>"`: The key which a player has bound to a keybind. (For
   example, `key.jump` would show the text `Space`, assuming the player has not
   changed the keybind).
-- `object:"[player|atlas]"`: Displays a Minecraft texture or player head. If not provided defaults to atlas mode
-  - `sprite`: The name of the sprite to display, typically in `<atlas_name>/<texture_name>` format
-  - `atlas`: The atlas to look through, if not provided it will default to the blocks atlas
-  - `player`: If in player mode, this is an object that holds the name of the player
+- `object:"[player|atlas]"`: Displays a Minecraft texture or player head. If not
+  provided defaults to atlas mode
+  - `sprite`: The name of the sprite to display, typically in
+    `<atlas_name>/<texture_name>` format
+  - `atlas`: The atlas to look through, if not provided it will default to the
+    blocks atlas
+  - `player`: If in player mode, this is an object that holds the name of the
+    player
     - `name`: The name of the player
-  - `hat`: If in player mode, this is a boolean that represents whether to display the player's hat layer
+  - `hat`: If in player mode, this is a boolean that represents whether to
+    display the player's hat layer
 
 **Example**: This text component will display the value of the path
 `ShopData.Name` in the NBT storage `minecraft:xyz`:
@@ -153,16 +158,15 @@ run the command `/say Hello`:
   should be a string value.
 
 ## Text component generators
-Writing text components manually is tedious - there are numerous generators which can be used to quickly create text components. We recommend [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy UI, cool features like gradient creators, and is updated for modern versions.
 
 Writing text components manually is tedious - there are numerous generators
-which can be used to quickly create text components. We reccomend
+which can be used to quickly create text components. We recommend
 [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy
 UI, cool features like gradient creators, and is updated for modern versions.
 
 If you are a more advanced datapacker and want full control over the output,
 these let you create text components one component at a time, with support for
-more advanced features
+more advanced features and formats, we recommend the following:
 
 - [Misode](https://misode.github.io/text-component)
 - [MinecraftJSON.com](https://minecraftjson.com/)

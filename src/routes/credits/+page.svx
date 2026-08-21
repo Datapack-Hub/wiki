@@ -40,9 +40,6 @@ These people have written or edited pages for the wiki or guides.
 - Amandin
 - Subzeroditto
 
-:::note
-
-If you're contributing, feel free to add your username to this page! You can
-contribute by clicking the Edit button on any page.
-
-:::
+> [!NOTE]  
+> If you're contributing, feel free to add your username to this page!  
+> You can contribute by clicking the Edit button on any page.

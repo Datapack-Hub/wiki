@@ -73,16 +73,13 @@ Tag files follow a very simple format, with two fields.
     `{"required": false, "id":"minecraft:stick"}`). If `required` is `false`,
     the tag will still skip nonexistent ids.
 
-:::info
-
-Tags can also reference other tags. For example, if a tag file contains
-`#minecraft:logs`, it will also contain the entire contents of the
-`minecraft:logs` tag. A tag is represented by an ID beginning with a `#`. For
-more information, refer to the
-[resource locations](/wiki/concepts/resource-locations#resource-locations-for-tags)
-page.
-
-:::
+> [!INFO]  
+> Tags can also reference other tags. For example, if a tag file contains
+> `#minecraft:logs`, it will also contain the entire contents of the
+> `minecraft:logs` tag. A tag is represented by an ID beginning with a `#`. For
+> more information, refer to the
+> [resource locations](/wiki/concepts/resource-locations#resource-locations-for-tags)
+> page.
 
 ### Example
 

@@ -1,53 +1,53 @@
-/* Admonition styles */
+/* markdown-alert styles */
 @import "tailwindcss";
 
-.admonition {
+.markdown-alert {
   @apply w-fit min-w-[25%] border-l-4 p-3 my-2;
 }
 
-.admonition-heading h5 {
+.markdown-alert-title p {
   @apply flex text-sm gap-2 items-center mb-1 uppercase;
 }
-.admonition-heading h5 a[aria-hidden="true"] {
+.markdown-alert-title p a[aria-hidden="true"] {
   @apply hidden;
 }
 
-.admonition-content p {
+.markdown-alert-content p {
   @apply m-0;
 }
 
-.admonition-icon {
+.markdown-alert-icon {
   @apply w-4 h-4 inline-block;
 }
 
-.admonition-note {
+.markdown-alert-note {
   @apply bg-slate-500/25 border-slate-600 fill-slate-400;
 }
 
-.admonition-note .admonition-heading h5 {
+.markdown-alert-note .markdown-alert-heading h5 {
   @apply text-slate-400;
 }
 
-.admonition-info {
+.markdown-alert-info {
   @apply bg-blue-500/25 border-blue-600 fill-blue-400;
 }
 
-.admonition-info .admonition-heading h5 {
+.markdown-alert-info .markdown-alert-heading h5 {
   @apply text-blue-400;
 }
 
-.admonition-tip {
+.markdown-alert-tip {
   @apply bg-yellow-400/25 border-yellow-500 fill-yellow-300;
 }
 
-.admonition-tip .admonition-heading h5 {
+.markdown-alert-tip .markdown-alert-heading h5 {
   @apply text-yellow-300;
 }
 
-.admonition-warning {
+.markdown-alert-warning {
   @apply bg-red-500/25 border-red-600 fill-red-400;
 }
 
-.admonition-warning .admonition-heading h5 {
+.markdown-alert-warning .markdown-alert-heading h5 {
   @apply text-red-400;
 }

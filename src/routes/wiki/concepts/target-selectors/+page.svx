@@ -39,12 +39,9 @@ In Java Edition, there are 6 base target selectors:
 
 </div>
 
-:::warning
-
-@e only selects entities in a loaded chunk. If an entity exists but is not
-currently being loaded, it will not select that entity.
-
-:::
+> [!WARNING]  
+> @e only selects entities in a loaded chunk. If an entity exists but is not
+> currently being loaded, it will not select that entity.
 
 ## Additional arguments
 
@@ -58,13 +55,10 @@ selector arguments are contained within square brackets after the base selector
 `distance=..10` to specify that we only want to target entities which are less
 than 10 blocks away.
 
-:::tip
-
-Most target selectors can be inverted by using =! meaning it will only select
-entities who do not match the argument. (E.g. @e[type=!minecraft:creeper] will
-select every entity that is NOT a creeper)
-
-:::
+> [!TIP]  
+> Most target selectors can be inverted by using =! meaning it will only select
+> entities who do not match the argument. (E.g. @e[type=!minecraft:creeper] will
+> select every entity that is NOT a creeper)
 
 <div class="overflow-x-auto">
 
@@ -116,11 +110,8 @@ entities who have a specific name.
 - `@e[name=Aaron]`: Selects all entities named `Aaron`
 - `@e[name="Aaron Aaronson"]`: Selects entities named `Aaron Aaronson`
 
-:::tip
-
-Note that names with more than one word need to be surrounded by quotes.
-
-:::
+> [!TIP]  
+> Note that names with more than one word need to be surrounded by quotes.
 
 ### `distance` argument
 
@@ -203,18 +194,12 @@ Any entity fully or partially inside the cuboid will be selected.
 You can mix and match `dx`, `dy`, and `dz` however you want. To create the
 cuboid at least 1 of the three has to be there.
 
-:::info
+> [!INFO]  
+> The generated cuboid does not snap to the block grid
 
-The generated cuboid does not snap to the block grid
-
-:::
-
-:::info
-
-The base cuboid that gets generated with dx/dz/dz=0 will always stretch from the
-command origin to positive x/y/z
-
-:::
+> [!INFO]  
+> The base cuboid that gets generated with dx/dz/dz=0 will always stretch from
+> the command origin to positive x/y/z
 
 **Examples**:
 

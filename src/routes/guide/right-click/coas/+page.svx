@@ -13,12 +13,9 @@ simplest methods of right-click detection, requiring only a single tick command
 and a scoreboard. This method works due to the `used:carrot_on_a_stick`
 statistic detecting right clicks on any `carrot_on_a_stick` item.
 
-:::info
-
-For the sake of simplicity, we will use a carrot on a stick, **shortened to
-COAS**. This method also works with warped fungus on a stick (WFOAS) items.
-
-:::
+> [!INFO]  
+> For the sake of simplicity, we will use a carrot on a stick, **shortened to
+> COAS**. This method also works with warped fungus on a stick (WFOAS) items.
 
 COAS and WFOAS items have a unique property that means that right clicking the
 item counts as "using" an item, and will therefore increase the

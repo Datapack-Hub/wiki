@@ -14,13 +14,10 @@ paintings, which will show up in the creative inventory.
 This will only work in 1.21+, as custom painting variants were added in the
 snapshot 24w18a.
 
-:::info
-
-This guide requires you to have at least a small understanding of datapacks. If
-you don't understand this guide, you can read the
-[Getting Started guide](/guide/getting-started).
-
-:::
+> [!INFO]  
+> This guide requires you to have at least a small understanding of datapacks.
+> If you don't understand this guide, you can read the
+> [Getting Started guide](/guide/getting-started).
 
 ## Setting up the datapack
 
@@ -91,12 +88,9 @@ Once you save the above files, you need to reload the resource pack with the
 keybind **F3 + T** in-game. You will also need to leave and rejoin the world to
 update the datapack.
 
-:::warning
-
-For this to work, you will need to leave and rejoin the world, just using the
-`/reload` command won't do the trick here!
-
-:::
+> [!WARNING]  
+> For this to work, you will need to leave and rejoin the world, just using the
+> `/reload` command won't do the trick here!
 
 You can either get the painting by using the normal painting item and placing it
 into a 1x1 spot, or by searching for "Example Painting" in the creative
