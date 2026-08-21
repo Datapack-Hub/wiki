@@ -52,13 +52,14 @@
     --scrollbar-hover: #5a453a;
     --mark-bg: rgb(255 122 50 / 24%);
     --mark-text: #ffd4bc;
+    --inline-code-bg: #21150e;
     --hero-search-bg: rgb(12 9 8 / 86%);
     --hero-search-hover: rgb(12 9 8 / 96%);
     --hero-search-frame: rgb(255 255 255 / 13%);
     --code-ui-muted: #988b82;
     --code-accent: #ff7a32;
-    --code-bg: #0f0b09;
-    --code-title-bg: #1e1712;
+    --code-bg: #120d0a;
+    --code-title-bg: #1e1410;
     --code-border: rgb(255 255 255 / 13%);
     --code-fg: #d5d2cc;
     --code-keyword: #7fb4ca;
@@ -143,6 +144,7 @@
     --scrollbar-hover: #939b8d;
     --mark-bg: rgb(52 58 48 / 11%);
     --mark-text: var(--text-primary);
+    --inline-code-bg: rgb(200 75 18 / 11%);
     --hero-search-bg: rgb(240 241 235 / 96%);
     --hero-search-hover: #f7f7f1;
     --hero-search-frame: rgb(52 58 48 / 25%);
@@ -527,6 +529,10 @@ mark {
 
 .topbar__actions .icon-button {
     border-radius: 0;
+}
+
+.topbar .icon-button {
+    clip-path: none;
 }
 
 .theme-toggle__icon {

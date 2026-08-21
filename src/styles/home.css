@@ -31,29 +31,43 @@
   inset: 1px;
   z-index: 0;
   background:
-    repeating-linear-gradient(0deg, rgb(255 255 255 / 7%) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(90deg, rgb(255 255 255 / 7%) 0 1px, transparent 1px 4px);
+    repeating-linear-gradient(
+      30deg,
+      transparent 0 11px,
+      color-mix(in srgb, var(--accent) 13%, transparent) 11px 12px,
+      transparent 12px 24px
+    ),
+    repeating-linear-gradient(
+      150deg,
+      transparent 0 11px,
+      color-mix(in srgb, var(--accent) 13%, transparent) 11px 12px,
+      transparent 12px 24px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 20px,
+      color-mix(in srgb, var(--accent) 10%, transparent) 20px 21px,
+      transparent 21px 40px
+    );
   content: "";
-  opacity: 0.16;
+  opacity: 0.1;
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(
-    ellipse 90% 70% at 50% 100%,
-    #000 0 22%,
-    rgb(0 0 0 / 88%) 38%,
-    rgb(0 0 0 / 36%) 58%,
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    rgb(0 0 0 / 72%) 38%,
     transparent 76%
   );
-  mask-image: radial-gradient(
-    ellipse 90% 70% at 50% 100%,
-    #000 0 22%,
-    rgb(0 0 0 / 88%) 38%,
-    rgb(0 0 0 / 36%) 58%,
+  mask-image: linear-gradient(
+    to top,
+    #000 0%,
+    rgb(0 0 0 / 72%) 38%,
     transparent 76%
   );
 }
 
 :root[data-theme="light"] .home-hero::before {
-  opacity: 0.1;
+  opacity: 0.07;
 }
 
 .home-hero::after,

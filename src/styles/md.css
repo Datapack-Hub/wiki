@@ -142,7 +142,7 @@
 .md :where(:not(pre) > code):not(:where(.not-prose *)) {
   border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
   border-radius: 0.35rem;
-  background: var(--accent-soft);
+  background: var(--inline-code-bg);
   padding: 0.12em 0.35em;
   color: var(--inline-code);
   font-size: 0.87em;

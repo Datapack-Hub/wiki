@@ -156,6 +156,12 @@
   --group-accent: var(--warning);
 }
 
+.credits-group--administrators,
+.credits-group--editors {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
 .credits-group--contributors {
   --group-accent: var(--success);
   grid-column: 1 / -1;

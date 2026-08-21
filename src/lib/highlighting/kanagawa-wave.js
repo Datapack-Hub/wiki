@@ -715,3 +715,45 @@ export const theme = {
   ],
   type: "dark",
 };
+
+/** @type {Record<string, string>} */
+const darkCodePalette = {
+  "#1F1F28": "#120d0a",
+  "#16161D": "#100c0a",
+  "#1A1A22": "#15100d",
+  "#2A2A37": "#1b1410",
+  "#363646": "#231a14",
+  "#DCD7BA": "#f6efe8",
+  "#C8C093": "#d1c6bc",
+  "#727169": "#988b82",
+  "#FF9E3B": "#ff7a32",
+  "#FFA066": "#ff945d",
+  "#E6C384": "#f0b95e",
+  "#957FB8": "#d59a72",
+  "#7E9CD8": "#c99a78",
+  "#7FB4CA": "#d7a27d",
+  "#7AA89F": "#8fba9e",
+  "#E82424": "#ef7373",
+  "#D27E99": "#d98c79",
+  "#FF5D62": "#ef7373",
+  "#C34043": "#c75a4a",
+  "#76946A": "#62c98b",
+  "#C0A36E": "#d4a15d",
+  "#6A9589": "#72a7f8",
+  "#223249": "#241913",
+  "#2D4F67": "#4a2b1d",
+  "#54546D": "#604333",
+};
+
+/** @param {any} value */
+const retintTheme = (value) => {
+  if (typeof value === "string") return darkCodePalette[value] ?? value;
+  if (!value || typeof value !== "object") return value;
+
+  Object.entries(value).forEach(([key, child]) => {
+    value[key] = retintTheme(child);
+  });
+  return value;
+};
+
+retintTheme(theme);

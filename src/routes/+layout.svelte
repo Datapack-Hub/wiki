@@ -10,6 +10,7 @@
   import { windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
   import { innerWidth } from "svelte/reactivity/window";
+  import { onMount } from "svelte";
   interface Props {
     children: Snippet;
   }
@@ -17,6 +18,43 @@
   let { children }: Props = $props();
 
   let initialized = false;
+
+  onMount(() => {
+    const openLinksInNewTabs = (root: ParentNode) => {
+      const links = [
+        ...(root instanceof HTMLAnchorElement ? [root] : []),
+        ...root.querySelectorAll<HTMLAnchorElement>("a[href]"),
+      ];
+
+      links.forEach((link) => {
+        const url = new URL(link.href, window.location.href);
+        const isExternal =
+          (url.protocol === "http:" || url.protocol === "https:") &&
+          url.origin !== window.location.origin;
+
+        if (isExternal) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        } else if (link.target === "_blank") {
+          link.removeAttribute("target");
+          link.removeAttribute("rel");
+        }
+      });
+    };
+
+    openLinksInNewTabs(document);
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) openLinksInNewTabs(node);
+        });
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  });
 
   $effect(() => {
     const width = innerWidth.current || 1920;
