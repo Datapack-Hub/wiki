@@ -12,13 +12,4 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  build: {
-    cssMinify: "lightningcss",
-  },
-  css: {
-    transformer: "lightningcss",
-  },
-  server: {
-    allowedHosts: ["fc7a-24-141-246-63.ngrok-free.app"],
-  },
 });

@@ -2,7 +2,7 @@
   "name": "datapack-wiki",
   "version": "1.0.0",
   "private": true,
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",

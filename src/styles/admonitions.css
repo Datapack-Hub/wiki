@@ -28,11 +28,11 @@
   @apply text-slate-400;
 }
 
-.markdown-alert-info {
+.markdown-alert-important {
   @apply bg-blue-500/25 border-blue-600 fill-blue-400;
 }
 
-.markdown-alert-info .markdown-alert-heading h5 {
+.markdown-alert-important .markdown-alert-heading h5 {
   @apply text-blue-400;
 }
 

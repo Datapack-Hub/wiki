@@ -6,7 +6,7 @@
       "files": "*.svx",
       "options": {
         "parser": "markdown",
-        "printWidth": 80
+        "printWidth": 100
       }
     }
   ],
