@@ -25,6 +25,9 @@
   export async function showModal() {
     if (!dialog.open) dialog.showModal();
 
+    diagInput.focus();
+    diagInput.select();
+
     if (searchState === "waiting") {
       searchState = "loading";
       try {
@@ -66,6 +69,7 @@
       aria-label="Search pages"
       autocomplete="off"
       spellcheck="false"
+      autofocus
       placeholder="Search for a page..."
       bind:this={diagInput}
       bind:value={searchTerm} />

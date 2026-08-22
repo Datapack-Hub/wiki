@@ -106,11 +106,11 @@
 :root[data-theme="light"] {
     color-scheme: light;
 
-    --canvas: #ebece6;
-    --chrome: #dfe1d9;
-    --surface: #f0f1eb;
-    --surface-raised: #f7f7f1;
-    --surface-hover: #d5d8ce;
+    --canvas: #f5f0e7;
+    --chrome: #e9e1d5;
+    --surface: #f7f2e9;
+    --surface-raised: #fcf9f1;
+    --surface-hover: #e1d8ca;
     --border: rgb(52 58 48 / 18%);
     --border-strong: rgb(52 58 48 / 30%);
     --text-primary: #252923;
@@ -139,9 +139,9 @@
     --subtle-fill: rgb(52 58 48 / 5%);
     --subtle-fill-hover: rgb(52 58 48 / 10%);
     --table-stripe: rgb(52 58 48 / 4%);
-    --topbar-bg: rgb(223 225 217 / 94%);
-    --scrollbar: #afb5a8;
-    --scrollbar-hover: #939b8d;
+    --topbar-bg: rgb(233 225 213 / 94%);
+    --scrollbar: #bdb2a2;
+    --scrollbar-hover: #a49a89;
     --mark-bg: rgb(52 58 48 / 11%);
     --mark-text: var(--text-primary);
     --inline-code-bg: rgb(200 75 18 / 11%);

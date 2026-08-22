@@ -30,44 +30,14 @@
   position: absolute;
   inset: 1px;
   z-index: 0;
-  background:
-    repeating-linear-gradient(
-      30deg,
-      transparent 0 11px,
-      color-mix(in srgb, var(--accent) 13%, transparent) 11px 12px,
-      transparent 12px 24px
-    ),
-    repeating-linear-gradient(
-      150deg,
-      transparent 0 11px,
-      color-mix(in srgb, var(--accent) 13%, transparent) 11px 12px,
-      transparent 12px 24px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 20px,
-      color-mix(in srgb, var(--accent) 10%, transparent) 20px 21px,
-      transparent 21px 40px
-    );
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.35' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.35'/%3E%3C/svg%3E");
   content: "";
-  opacity: 0.1;
+  opacity: 0.09;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(
-    to top,
-    #000 0%,
-    rgb(0 0 0 / 72%) 38%,
-    transparent 76%
-  );
-  mask-image: linear-gradient(
-    to top,
-    #000 0%,
-    rgb(0 0 0 / 72%) 38%,
-    transparent 76%
-  );
 }
 
 :root[data-theme="light"] .home-hero::before {
-  opacity: 0.07;
+  opacity: 0.06;
 }
 
 .home-hero::after,
@@ -219,6 +189,13 @@
   background: var(--code-bg);
   box-shadow: var(--pixel-shadow);
   clip-path: var(--pixel-corners);
+}
+
+:root[data-theme="light"] .home-code-card {
+  --code-bg: #f5eee3;
+  --code-title-bg: #eee1d2;
+  --code-border: rgb(91 72 52 / 22%);
+  --code-fg: #39332c;
 }
 
 .home-code-card__bar {
