@@ -44,7 +44,7 @@
   import IconCat from "~icons/tabler/cat";
   import IconBaguette from "~icons/tabler/baguette";
   import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
-  import IconPick from '~icons/tabler/IconPick';
+  import IconPick from '~icons/tabler/pick';
 </script>
 
 <!-- ADD PAGES AND CATEGORIES BELOW -->
@@ -86,7 +86,7 @@
   <SidebarPage label="Player ID System" icon={IconID} page="/guide/nbt-and-scores/player-id-system" />
   <SidebarPage label="Floating Point Division" icon={IconDivide} page="/guide/nbt-and-scores/division" />
   <SidebarPage label="Array Iteration" icon={IconList} page="/guide/nbt-and-scores/array-iteration" />
-  <SidebarPage label="Get Default Item Components" icon={IconPick} page="/guide/nbt-and-scores/get-default-item-components" />
+  <SidebarPage label="Default Item Components" icon={IconPick} page="/guide/nbt-and-scores/get-default-item-components" />
 </SidebarCategory>
 
 <SidebarCategory name="Performance" icon={IconBrandSpeedtest}>
