@@ -63,7 +63,7 @@ You must also provide a position but this is unsed in our loot table so it can b
 
 ### Read any slot
 
-To make this work for any slot, we need to summon an armor stand (which has a mainhand slot) and copy the desired item to said slot.
+The problem with reading from any slot is that there is no slot other than the mainhand which we could use to provide the "tool" context. To solve this issue, we need to summon an armor stand and copy the desired item to it. This works because the armor stand has a mainhand slot and thus allows it to provide the "tool" context.
 
 ```mcfunction:get_default_components/init.mcfunction
 # Tag the player here so we can find it without the execution context
