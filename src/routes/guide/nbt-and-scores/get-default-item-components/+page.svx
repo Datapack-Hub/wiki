@@ -1,0 +1,107 @@
+---
+title: Right Click Detection Summary
+description:
+  This section explains how you would collect the default data components from an item using a
+  Minecraft datapack.
+version: 26.2
+---
+
+# Get default item components
+This method will explain how to get the default **data components** from an item. 
+
+:::info
+
+Not to confuse with [item components](https://minecraft.wiki/w/Item_components) which are a bedrock feature
+
+:::
+
+The method is centered around the ``minecraft:copy_components`` loot table function which will copy the components from a source to the item. This **includes** the default components. This is not only really cool but also pretty optimized too.
+
+## Method
+
+To start, we make a loot table that drops a dummy item and applies this loot function.
+
+```json:copy_default_components.json
+{
+	"pools": [{
+		"rolls": 1,
+		"entries": [{
+			"type": "minecraft:item",
+			"name": "minecraft:poisonous_potato",
+			"functions": [{
+				"function": "minecraft:copy_components",
+				"source": "???"
+			}]
+		}]
+	}]
+}
+```
+
+The source here is a bit of a problem since it can only refrence a ``block_entity``, an entity from context or a ``tool``. 
+
+We'll use ``tool`` here since that's the only way to pass an **item** to the function. This means we need to provide said context to the loot table. This is best done using the ``minecraft:fishing`` loot context.
+
+```json:copy_default_components.json
+{
+    "type": "minecraft:fishing",
+	"pools": [{
+		"rolls": 1,
+		"entries": [{
+			"type": "minecraft:item",
+			"name": "minecraft:poisonous_potato",
+			"functions": [{
+				"function": "minecraft:copy_components",
+				"source": "tool"
+			}]
+		}]
+	}]
+}
+```
+
+Now we can use the command ``loot ... fish example:copy_default_components ~ ~ ~ mainhand`` Which will provide the mainhand slot as context for the tool.
+
+### Read any slot
+
+To make this work for any slot, we need to summon an armor stand (which has a mainhand slot) and copy the desired item to said slot.
+
+```mcfunction:get_default_components/init.mcfunction
+# Tag the player here so we can find it without the execution context
+tag @s add target_player 
+execute summon minecraft:armor_stand run function example:get_default_components/summon 
+tag @s remove target_player
+```
+
+```mcfunction:get_default_components/summon.mcfunction
+# Move the item from the desired player slot onto the armor stand
+$item replace entity @s weapon.mainhand from entity @a[tag=target_player] armor.head
+
+# Copy the components to a default item
+loot replace entity @s weapon.offhand fish example:get_default_components ~ ~ ~ mainhand
+
+# Copy the components to a result storage
+data remove storage example:temp default_components
+data modify storage example:temp default_components set from entity @s equipment.offhand.components
+
+# Kill the armor stand
+kill @s
+```
+
+Voila, now we only need to run the function ``example:get_default_components/init`` to get the components from the chosen slot (in this case the head slot).
+
+In addition, you can also filter for any components using the ``include`` and ``exclude`` fields ```json
+{
+  "function": "minecraft:copy_components",
+  "source": "tool",
+  "include": [
+    "minecraft:max_stack_size"
+  ]
+}
+```
+
+I assume this might be a little more performant than copying all components and then only selecting a single one using data get.
+
+:::info
+
+This method was originally discovered by [baphomet42](https://discord.com/channels/154777837382008833/157097006500806656/1418032607215620096) and finalized by [Arkiitekk](https://discord.com/channels/935560260725379143/1435909929754955796/1538472517558083624) who informed me about this method. Hence I decided to make a guide about this awesome datapack quirk.
+
+:::
