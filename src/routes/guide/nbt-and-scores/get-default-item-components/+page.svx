@@ -7,7 +7,7 @@ version: 26.2
 ---
 
 # Get default item components
-This method will explain how to get the default **data components** (sometimes referred to as `item components`) from an item. 
+This method will explain how to get the default **data components** (commonly referred to as item components) from an item. 
 Not to confuse with the bedrock [item components](https://minecraft.wiki/w/Item_components)
 
 The method is centered around the `minecraft:copy_components` loot table function which will copy the components from a source to the item. This **includes** the default components. This is not only really cool but also pretty optimized too.
