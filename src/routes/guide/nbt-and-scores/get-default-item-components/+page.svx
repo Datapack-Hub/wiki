@@ -7,9 +7,9 @@ version: 26.2
 ---
 
 # Get default item components
-This method will explain how to get the default **data components** (commonly referred to as item components) from an item. These default components are usually hidden from a datapack but aquiring them can be really useful. We could for example use this to read the `max_stack_size` from any item.
+This method will explain how to get the default **data components** (commonly referred to as item components) from an item. These default components are usually hidden from a datapack but aquiring them can be really useful. We could, for example, use this to read the `max_stack_size` from any item.
 
-The method relies on the `minecraft:copy_components` loot table function which will copy the components from a source to the item. This also **includes** the (hidden) default components, allowing us to "reveal" them. This is not only really cool but also pretty optimized too.
+The method relies on the `minecraft:copy_components` loot table function which copies item components from a source item, but also **includes** the (hidden) default components. We can use this functionality in a datapack to easily access the default components of any item.
 
 ## Method
 
@@ -39,9 +39,9 @@ The fishing loot context allows us to use the `mainhand` slot as a `tool`. This 
 loot replace entity @s weapon.offhand fish namespace:copy_default_components ~ ~ ~ mainhand
 ```
 
-This command will place a dummy item (from the loot table) into the player's offhand slot.  (Since we don't want to replace the offhand slot or any other inventory slot, we'll have to summon a temporary entity to store the dummy item. More on that later.)
+This command will place a dummy item (from the loot table) into the player's offhand slot. (Since we don't want to replace the offhand slot or any other inventory slot, we'll have to summon a temporary entity to store the dummy item. More on that later.) Then, the loot table will also copy all components from the item in the `mainhand` to the dummy item in the offhand slot, even the default (hidden) components.
 
-Next, the loot table will also copy all components from the item in the `mainhand` to the dummy item in the offhand slot, even the default (hidden) components.
+To check this worked, you can access the item components data manually using the command `/data get entity @s equipment.offhand.components` - you should see all the default components that are usually hidden.
 
 :::info
 
@@ -58,19 +58,17 @@ To solve both this issue and the slot issue, we can summon a temporary armor sta
 ```mcfunction:get_default_components/init.mcfunction
 # Tag the player here so we can find it without the execution context
 tag @s add target_player 
-execute summon minecraft:armor_stand run function namespace:get_default_components/summon 
+execute summon minecraft:armor_stand run function namespace:get_default_components/process 
 tag @s remove target_player
 ```
 
-Next we copy the desired item to it's mainhand. After that, we can use this mainhand slot to provide the "tool" context and copy the dummy item to it's offhand.
-
-Now the only thing we need to do is read the data from the armorstand and kill it.
+Next we copy the desired item to its mainhand. After that, we can use this mainhand slot to provide the "tool" context and copy the dummy item to it's offhand. Then the only thing we need to do is store the data from the armor stand and kill it.
 
 ```mcfunction:get_default_components/process.mcfunction
 # Move the item from the desired player slot onto the armor stand
-item replace entity @s weapon.mainhand from entity @a[tag=target_player] armor.head
+item replace entity @s weapon.mainhand from entity @a[tag=target_player,limit=1] armor.head
 
-# Copy the components to a default item
+# Run the loot table
 loot replace entity @s weapon.offhand fish namespace:get_default_components ~ ~ ~ mainhand
 
 # Copy the components to a result storage
@@ -81,15 +79,11 @@ data modify storage namespace:temp default_components set from entity @s equipme
 kill @s
 ```
 
-Voila, now we can run the function `namespace:get_default_components/init` to get the components from the chosen slot (in this case the head slot).
+Now we can run the function `namespace:get_default_components/init` as a player to get the components from the chosen slot (in this case the head slot). The source slot can be changed by modifying `armor.head` on line 2. The item data components will be stored to the `namespace:default_components` storage, and from here you can access them in your datapack.
 
 :::tip
 
-The source slot can be changed by modifying `armor.head` on line 2. The data components will be stored to the `namespace:default_components` storage in NBT format
-
-:::
-
-In addition, you can also filter for any components using the `include` and `exclude` fields in your loot table. 
+In addition, you can also filter for or filter out any components using the `include` and `exclude` fields in your loot table function. 
 ```json
 {
   "function": "minecraft:copy_components",
@@ -100,6 +94,10 @@ In addition, you can also filter for any components using the `include` and `exc
 }
 ```
 
+:::
+
+
+
 ## Credits
 
-This method was originally discovered by [baphomet42 on the Minecraft Commands discord server](https://discord.com/channels/154777837382008833/157097006500806656/1418032607215620096) and finalized by [Arkiitekk](https://discord.com/channels/935560260725379143/1435909929754955796/1538472517558083624) who informed me about it. Hence I decided to make a guide for this awesome datapack quirk.
+This method was originally discovered by [baphomet42 on the Minecraft Commands discord server](https://discord.com/channels/154777837382008833/157097006500806656/1418032607215620096) and finalized by [Arkiitekk](https://discord.com/channels/935560260725379143/1435909929754955796/1538472517558083624). 
