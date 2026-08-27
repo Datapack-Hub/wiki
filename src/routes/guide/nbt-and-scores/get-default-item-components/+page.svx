@@ -7,13 +7,13 @@ version: 26.2
 ---
 
 # Get default item components
-This method will explain how to get the default **data components** (commonly referred to as item components) from an item. These default components are usually hidden from a datapack but aquiring them can be really useful. We could for namespace use this to read the `max_stack_size` from any item.
+This method will explain how to get the default **data components** (commonly referred to as item components) from an item. These default components are usually hidden from a datapack but aquiring them can be really useful. We could for example use this to read the `max_stack_size` from any item.
 
 The method relies on the `minecraft:copy_components` loot table function which will copy the components from a source to the item. This also **includes** the (hidden) default components, allowing us to "reveal" them. This is not only really cool but also pretty optimized too.
 
 ## Method
 
-To start, we make a loot table that drops a dummy item and applies the `copy_components` loot function. This function requires a source to copy the components from. This, unfortunatly, can only be one of `block_entity`, any entity from context (for namespace `this` or `attacker`) or a `tool`. The only source that can be an item is `tool` so we'll use that. 
+To start, we make a loot table that drops a dummy item and applies the `copy_components` loot function. This function requires a source to copy the components from. This, unfortunatly, can only be one of `block_entity`, any entity from context (for example `this` or `attacker`) or a `tool`. The only source that can be an item is `tool` so we'll use that. 
 
 Now we need to "tell" the loot table what the `tool` is. This can be done through [loot context](https://minecraft.wiki/w/Loot_context). In this case we'll use fishing loot context.
 
