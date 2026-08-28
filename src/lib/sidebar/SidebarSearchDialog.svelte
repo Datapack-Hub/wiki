@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { tick } from "svelte";
   import { windowInfo } from "$lib/stores.svelte";
   import { createSearchIndex, search } from "../search";
   import IconSearch from "~icons/tabler/search";
@@ -15,6 +16,15 @@
   let searchTerm = $state("");
   let searchState: "waiting" | "loading" | "done" | "error" = $state("waiting");
 
+  async function focusSearchInput() {
+    await tick();
+
+    if (!diagInput.disabled) {
+      diagInput.focus();
+      diagInput.select();
+    }
+  }
+
   export async function showModalWithEvent(e: KeyboardEvent) {
     if (!keyActivated) return;
 
@@ -24,9 +34,7 @@
 
   export async function showModal() {
     if (!dialog.open) dialog.showModal();
-
-    diagInput.focus();
-    diagInput.select();
+    await focusSearchInput();
 
     if (searchState === "waiting") {
       searchState = "loading";
@@ -42,8 +50,7 @@
       }
     }
 
-    diagInput.focus();
-    diagInput.select();
+    await focusSearchInput();
   }
 
   $effect(() => {
@@ -69,7 +76,6 @@
       aria-label="Search pages"
       autocomplete="off"
       spellcheck="false"
-      autofocus
       placeholder="Search for a page..."
       bind:this={diagInput}
       bind:value={searchTerm} />
