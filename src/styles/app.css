@@ -1304,7 +1304,7 @@ mark {
     align-items: center;
     gap: 0.5rem;
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: 0.72rem;
 }
 
 .sidebar__status-text {
@@ -1318,16 +1318,36 @@ mark {
 .sidebar__legal {
     margin-top: 0.5rem;
     color: var(--text-muted);
-    font-size: 0.68rem;
+    font-size: 0.55rem;
     line-height: 1.4;
     text-transform: uppercase;
 }
 
 .sidebar__collapse {
+    --pixel-frame-color: var(--border);
+    position: relative;
     display: none;
     width: 2rem;
     height: 2rem;
     padding: 0;
+}
+
+.sidebar__collapse::after {
+    position: absolute;
+    inset: 0;
+    background: var(--pixel-frame-outline);
+    color: var(--pixel-frame-color);
+    content: "";
+    pointer-events: none;
+}
+
+.sidebar__collapse:hover {
+    --pixel-frame-color: var(--border-strong);
+    border-color: transparent;
+}
+
+.sidebar__collapse:focus-visible {
+    --pixel-frame-color: var(--focus);
 }
 
 .sidebar__collapse svg {

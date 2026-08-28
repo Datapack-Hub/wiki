@@ -37,17 +37,11 @@ for await (const file of matchingFiles) {
     .replaceAll(/:::/g, "") // remove admonitions
     .replaceAll(/[^\S\r\n]{2,}/g, ""); // remove extra spaces
 
-  const tags = frontmatter.data.tags || "";
-
   posts.push({
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
     url: filePath ? "/" + filePath + "/" : "/",
-    tags: tags
-      .split(",")
-      .map(el => el.trim())
-      .filter(String),
   });
 }
 

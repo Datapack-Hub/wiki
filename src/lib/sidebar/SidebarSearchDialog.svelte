@@ -116,7 +116,7 @@
     <span aria-live="polite">
       {searchTerm.trim() && searchState === "done"
         ? `${results.length} ${results.length === 1 ? "result" : "results"}`
-        : "Tip: use tag:beginner to filter by tag"}
+        : "Search guides, concepts, commands, and datapack files."}
     </span>
     <button class="search-dialog__close" onclick={() => dialog.close()}>Close</button>
   </div>
