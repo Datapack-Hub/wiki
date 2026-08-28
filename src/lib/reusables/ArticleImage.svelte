@@ -10,24 +10,21 @@
 
 <style>
   .article-image-frame {
-    --pixel-frame-color: var(--border);
-
     position: relative;
     display: block;
     width: fit-content;
     max-width: 100%;
     margin-block: 1.5rem;
-    border: 1px solid transparent;
+    border: 1px solid var(--border);
     line-height: 0;
-    clip-path: var(--pixel-corners);
+    clip-path: none;
   }
 
   .article-image-frame::after {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: var(--pixel-frame-outline);
-    color: var(--pixel-frame-color);
+    background: none;
     content: "";
     pointer-events: none;
   }

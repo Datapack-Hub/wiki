@@ -124,14 +124,26 @@
 }
 
 .md :where(blockquote):not(:where(.not-prose *)) {
+  position: relative;
   margin-block: 1.5rem;
-  border-left: 3px solid var(--accent);
+  border-left: 0;
   border-radius: 0 0.65rem 0.65rem 0;
   background: var(--accent-soft);
   padding: 0.85rem 1rem;
   color: var(--text-secondary);
   font-style: normal;
   font-weight: 400;
+  clip-path: var(--pixel-corners);
+}
+
+.md :where(blockquote):not(:where(.not-prose *))::before {
+  position: absolute;
+  top: 0.7rem;
+  bottom: 0.7rem;
+  left: 0;
+  width: 3px;
+  background: var(--accent);
+  content: "";
 }
 
 .md :where(hr):not(:where(.not-prose *)) {
