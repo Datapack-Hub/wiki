@@ -31,6 +31,7 @@ const contributors = [
   { name: 'Kraggle09' },
   { name: 'Amandin' },
   { name: 'Subzeroditto' },
+  { name: 'theblackswitch'}
 ];
 </script>
 
@@ -113,7 +114,7 @@ const contributors = [
         </div>
       </header>
       <p class="credits-group__description">
-        Review contributions and help plan, write, and improve documentation.
+        Reviews contributions and improves docs.
       </p>
       <ul class="credits-members">
         {#each editors as member}
