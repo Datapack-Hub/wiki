@@ -21,8 +21,5 @@
   title={windowInfo.isNavOpen ? undefined : label}
   class="nav-item {wikiPage === page.route.id ? 'nav-item--active' : ''}">
   <Icon />
-
-  {#if windowInfo.isNavOpen}
-    <span>{label}</span>
-  {/if}
+  <span>{label}</span>
 </a>

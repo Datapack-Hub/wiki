@@ -37,7 +37,7 @@
   }
 </script>
 
-<details bind:open={isOpen} class="nav-category">
+<details bind:open={isOpen} class="nav-category" name="sidebar-category">
   <summary
     class="nav-item"
     class:nav-item--active={isActive && !windowInfo.isNavOpen}
@@ -45,10 +45,8 @@
     title={windowInfo.isNavOpen ? undefined : name}
     onclick={handleSummaryClick}>
     <Icon />
-    {#if windowInfo.isNavOpen}
-      <span class="nav-category__label">{name}</span>
-      <IconExpand class="nav-category__chevron" />
-    {/if}
+    <span class="nav-category__label">{name}</span>
+    <IconExpand class="nav-category__chevron" />
   </summary>
   {#if windowInfo.isNavOpen}
     <div class="nav-category__children">
