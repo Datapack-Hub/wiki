@@ -442,6 +442,12 @@ mark {
     background: var(--accent);
 }
 
+.edit-notice__continue:hover {
+    border-color: var(--accent-hover);
+    background: var(--accent-hover);
+    color: var(--on-accent);
+}
+
 .edit-notice__continue::after {
     background: none;
 }
