@@ -24,7 +24,11 @@ for await (const file of matchingFiles) {
 
   const frontmatter = matter(rawContent); // parse markdown front matter
 
-  const filePath = file.slice(0, -9).slice(2); // remove the file name and extension and leading slash
+  const filePath = file
+    .replaceAll("\\\\", "/")
+    .replace(/^\.\/?/, "")
+    .replace(/^src\/routes\/?/, "")
+    .replace(/\/?\+page\.svx$/, "");
 
   // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
@@ -39,7 +43,7 @@ for await (const file of matchingFiles) {
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
-    url: "/" + filePath,
+    url: filePath ? "/" + filePath + "/" : "/",
     tags: tags
       .split(",")
       .map((el) => el.trim())
