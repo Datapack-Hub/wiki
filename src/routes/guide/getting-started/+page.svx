@@ -392,6 +392,4 @@ to join our Discord server for extra support from our team of helpers. We're
 more than happy to help you on your journey to creating awesome Minecraft
 datapacks!
 
-<div class="not-prose">
-  <Discord />
-</div>
+<Discord />

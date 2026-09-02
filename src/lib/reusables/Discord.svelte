@@ -14,4 +14,4 @@
       <a href="https://discord.gg/xHTHbZqXr6">Discord</a> to ask questions and share what you’re building.
     </p>
   </div>
-</aside>
+</div>

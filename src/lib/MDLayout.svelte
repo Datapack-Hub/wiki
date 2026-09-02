@@ -37,7 +37,7 @@
     "https://instagram.com/datapackhub",
   ]} />
 
-<main class="md article-shell" class:home-page={page.url.pathname === "/"} id="main_content">
+<main class="md px-4 md:px-8 lg:px-16 prose-headings:text-stone-200" id="main_content">
   {#if version}
     <Version {version} />
   {/if}

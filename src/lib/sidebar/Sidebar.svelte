@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { page as appPage } from "$app/state";
   import SearchBox from "./SearchBox.svelte";
 
   // ! IMPORTANT: If you want to add pages or categories, this is not the place to do it!
@@ -18,40 +16,13 @@
   import SidebarCategory from "./navigation/SidebarCategory.svelte";
   import VersionPicker from "./tabs/VersionPicker.svelte";
 
-  type ContentPage = "wiki" | "guides";
-
-  function contentPageFromPath(pathname: string): ContentPage | null {
-    if (pathname === "/guide" || pathname.startsWith("/guide/")) return "guides";
-    if (pathname === "/wiki" || pathname.startsWith("/wiki/")) return "wiki";
-    return null;
-  }
-
-  let page: ContentPage = $state(contentPageFromPath(appPage.url.pathname) || "wiki");
-  let mounted = $state(false);
-
-  onMount(() => {
-    mounted = true;
-  });
+  let page: "wiki" | "guides" = $state("wiki");
 
   $effect(() => {
-    const routePage = contentPageFromPath(appPage.url.pathname);
-
-    if (routePage) {
-      page = routePage;
-      sessionStorage.setItem("page", routePage);
-    } else {
-      page = (sessionStorage.getItem("page") as ContentPage) || "wiki";
-    }
+    page = (sessionStorage.getItem("page") as "wiki" | "guides") || "wiki";
   });
 
-  $effect(() => {
-    const shouldLock = windowInfo.width < 768 && windowInfo.isNavOpen;
-    document.body.classList.toggle("nav-open", shouldLock);
-
-    return () => document.body.classList.remove("nav-open");
-  });
-
-  export function handleKeyInput(
+  export async function handleKeyInput(
     e: KeyboardEvent & {
       currentTarget: EventTarget & Window;
     }
@@ -72,14 +43,7 @@
   }
 </script>
 
-<svelte:window onkeydown={handleKeyInput} />
-
-{#if windowInfo.isNavOpen}
-  <button
-    class="sidebar-backdrop md:hidden"
-    aria-label="Close navigation"
-    onclick={() => (windowInfo.isNavOpen = false)}></button>
-{/if}
+<svelte:window on:keydown={handleKeyInput} />
 
 <aside
   aria-label="Documentation navigation"
@@ -130,8 +94,21 @@
         <IconCollapse />
       </button>
     </div>
-    {#if windowInfo.isNavOpen}
-      <p class="sidebar__legal">Not affiliated with or endorsed by Mojang Studios.</p>
-    {/if}
   </div>
+  <div class="flex text-sm text-stone-400 p-3 items-center w-full">
+    {#if windowInfo.isNavOpen}
+      <span class="grow flex flex-col">pack_format: {latestMCData.packFormat} ({latestMCData.gameVersion})</span>
+    {/if}
+    <button
+      aria-label="{windowInfo.isNavOpen ? 'Collapse' : 'Expand'} Sidebar"
+      class="hidden sm:block rounded-lg cursor-pointer text-stone-200 text-lg hover:bg-stone-700 hover:text-white motion-safe:transition-all focus-visible:outline-2 focus-visible:outline-dph-orange {windowInfo.isNavOpen
+        ? 'rotate-0'
+        : 'rotate-180'}"
+      onclick={() => (windowInfo.isNavOpen = !windowInfo.isNavOpen)}>
+      <IconCollapse />
+    </button>
+  </div>
+  {#if windowInfo.isNavOpen}
+    <span class="text-xs px-3 pb-3 text-stone-400">DATAPACK WIKI IS NOT AFFILIATED OR ENDORSED BY MOJANG STUDIOS</span>
+  {/if}
 </aside>

@@ -5,7 +5,7 @@
   import "../styles/fonts.css";
 
   import Sidebar from "$lib/sidebar/Sidebar.svelte";
-  import Topbar from "../lib/Topbar.svelte";
+  import Navbar from "../lib/Topbar.svelte";
 
   import { windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
@@ -75,11 +75,11 @@
   });
 </script>
 
-<div class="app-shell">
-  <Topbar />
-  <div class="app-frame">
+<div class="font-lexend h-full min-h-dvh flex flex-col text-stone-200">
+  <Navbar />
+  <div class="flex w-full h-[93%]">
     <Sidebar />
-    <div id="content" class="content-shell">
+    <div id="content" class="py-12 w-full min-h-dvh text-stone-200 bg-stone-900">
       {@render children()}
     </div>
   </div>

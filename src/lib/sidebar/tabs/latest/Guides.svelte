@@ -5,7 +5,7 @@
   import SidebarHeading from "$lib/sidebar/navigation/SidebarHeading.svelte";
 
   // Icon imports
-  // https://tabler-icons.io
+  // https://tabler.io
   // import Icon<whatever name> from "~icons/tabler/<icon ID>"
   import IconHome from "~icons/tabler/home";
   import IconPennant from "~icons/tabler/pennant";
@@ -44,6 +44,7 @@
   import IconCat from "~icons/tabler/cat";
   import IconBaguette from "~icons/tabler/baguette";
   import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
+  import IconPick from '~icons/tabler/pick';
 </script>
 
 <!-- ADD PAGES AND CATEGORIES BELOW -->
@@ -68,10 +69,7 @@
   <SidebarHeading label="Custom Items" />
   <SidebarPage label="Introduction" icon={IconItem} page="/guide/adding-new-features/custom-items/intro" />
   <SidebarPage label="Custom Item Recipes" icon={IconGrid} page="/guide/adding-new-features/custom-items/crafting" />
-  <SidebarPage
-    label="Custom Item Models and Textures"
-    icon={IconPhotoPlus}
-    page="/guide/adding-new-features/custom-items/models" />
+  <SidebarPage label="Custom Item Models and Textures" icon={IconPhotoPlus} page="/guide/adding-new-features/custom-items/models" />
 </SidebarCategory>
 
 <SidebarCategory name="Right Click Detection" icon={IconMouse} activePath="/guide/right-click">
@@ -90,6 +88,7 @@
   <SidebarPage label="Player ID System" icon={IconID} page="/guide/nbt-and-scores/player-id-system" />
   <SidebarPage label="Floating Point Division" icon={IconDivide} page="/guide/nbt-and-scores/division" />
   <SidebarPage label="Array Iteration" icon={IconList} page="/guide/nbt-and-scores/array-iteration" />
+  <SidebarPage label="Default Item Components" icon={IconPick} page="/guide/nbt-and-scores/get-default-item-components" />
 </SidebarCategory>
 
 <SidebarCategory name="Performance" icon={IconBrandSpeedtest} activePath="/guide/performance">

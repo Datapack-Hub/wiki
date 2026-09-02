@@ -1,8 +1,9 @@
 ---
 title: Home
 description:
-  "Learn how to build Minecraft datapacks with practical guides, clear command
-  references, and community-maintained documentation."
+  "Welcome to the Datapack Wiki, a resource for everything related to Minecraft
+  Datapacks. We've got guides, tutorials, and documentation to help you build
+  your knowledge about data packs."
 ---
 
 <script lang="ts">
