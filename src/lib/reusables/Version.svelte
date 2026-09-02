@@ -26,5 +26,6 @@
         changes. There is a chance it still works, but try it at your own risk!
       {/if}
     </span>
+  {/if}
   </div>
 </div>

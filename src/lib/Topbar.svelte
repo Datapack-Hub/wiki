@@ -280,7 +280,7 @@
       </button>
     </div>
   </div>
-</header>
+</div>
 
 {#if editNoticeOpen && editNoticePath === page.url.pathname}
   <div class="edit-notice-backdrop" role="presentation" onclick={closeEditNotice}></div>
