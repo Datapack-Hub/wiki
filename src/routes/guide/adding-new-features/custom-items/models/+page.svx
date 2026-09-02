@@ -15,14 +15,14 @@ goes over
 
 :::warning
 
-Before Minecraft version 1.21., `CustomModelData` was used to change the look of
-items. It was replaced with item models in Minecraft version 1.21.4, so it won't
-work in later versions. Item Models use a **completely different method**
+Before Minecraft version 1.21.4, `CustomModelData` was used to change the look of
+items. The addition of `item_model` in Minecraft version 1.21.4 made it easier to modify
+and ensure compatibility with other resourcepacks. Item Models use a **completely different method**
 compared to Custom Model Data.
 
 :::
 
-To add custom models or textures to the game, you will need a resouce pack. If
+To add custom models or textures to the game, you will need a resource pack. If
 you already have a resource pack or know how to create one, you can skip to
 [Adding custom items](#adding-custom-items). If not, just continue reading.
 

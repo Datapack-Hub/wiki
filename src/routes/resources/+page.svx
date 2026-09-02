@@ -118,7 +118,7 @@ Datapacks.
   <a href="https://www.youtube.com/@Cl0udWolf">Cloud Wolf</a> - Datapack
   tutorials, especially advanced concepts.
 - <Highlight color="#FF0000">YouTube</Highlight>
-  <a href="https://www.youtube.com/@slicedlime">Slicedlime</a> - Covers all the
+  <a href="https://www.youtube.com/@MinecraftPackNews">Slicedlime's Minecraft Pack News</a> - Covers all the
   technical changes in recent snapshots.
 - <Highlight color="#FF0000">YouTube</Highlight>
   <a href="https://www.youtube.com/@conure512">Conure</a> - Small, but

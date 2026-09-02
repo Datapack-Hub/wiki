@@ -30,7 +30,7 @@ the [Getting Started](/guide/getting-started) guide.
 Firstly, we are going to create the actual jukebox song file in the directory
 `data/<datapack namespace>/jukebox_song/`. The file can be named whatever, but
 it has to be in the `.json` file format. For the purposes of this tutorial,
-we're gonna call it `example_jukebox_song.json`. Inside, we will put and
+we're going to call it `example_jukebox_song.json`. Inside, we will put and
 configure this:
 
 ```json:example_jukebox_song.json

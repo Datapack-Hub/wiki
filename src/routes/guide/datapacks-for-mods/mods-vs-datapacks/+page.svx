@@ -30,12 +30,12 @@ datapacks make an excellent addition for a vanilla server or even some modded se
 who don't want to worry about incompatibilities or dealing with broken plugins/mods.
 
 Datapacks can be used to define custom world generation,
-[advancements](/wiki/files/advancements), enchantments, loot tables,
+[advancements](/wiki/files/advancements), enchantments, [loot tables](/wiki/files/loot-tables),
 [recipes](/wiki/files/recipes) and many contain
 [command functions](/wiki/files/functions); small scripts which run Minecraft
 commands (with some small caveats). Datapacks use these functions to create
 unique mod-like features or add interactivity in maps. Many impressive datapacks
-can be so well made *they are confused for mods*, which is where some of the
+can be so well-made *they are confused for mods*, which is where some of the
 confusion between them and mods stem from.
 
 Due to how they work, datapacks can be more limited compared to mods. New
@@ -92,7 +92,7 @@ into a handy-dandy list!
 | Can contain datapacks in the form of data folders                                                                   | May contain command functions along with system modifications such as recipes or world generation        |
 | Full control over everything in game/server and out of game (could be a security risk)                              | Limited to server-side changes of game mechanics, malicious datapacks are much safer than malicious mods |
 | Generally faster and can improve game and server performance due to high level of control                           | Generally slower but more lightweight and less resource hungry                                           |
-| Ideal for modifying the game in ways datapacks cannot (e.g custom blocks, new mobs) or adding new mechanics/systems | Ideal for small mods that modify existing systems, "vanilla" looking mods and map making                 |
+| Ideal for modifying the game in ways datapacks cannot (e.g. custom blocks, new mobs) or adding new mechanics/systems | Ideal for small mods that modify existing systems, "vanilla" looking mods and map making                 |
 | Server owners must verify mod compatibility between clients                                                         | Any client can use datapacks, making them easy to manage                                                 |
 | May require some knowledge of Java to use and debug effectively                                                     | In most cases, easier to debug                                                                           |
 

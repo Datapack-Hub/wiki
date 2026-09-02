@@ -30,7 +30,7 @@ which exists, a new world.
 5. Rejoin the world and run /reload.
    ![Reload command in chat](https://dph.tixte.co/r/install_guide_5.png)
 
-## Installing a datapack to an new world
+## Installing a datapack to a new world
 
 1. Go to the Create New World screen. Make sure that you enable cheats.
    ![Create new world screen](https://dph.tixte.co/r/install_guide_6.png)

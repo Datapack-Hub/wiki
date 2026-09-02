@@ -20,8 +20,11 @@ block per set of coordinates. Block coordinates are whole numbers, for example
 you can have a block at `123 86 94` but not `123.7 86.2 94.6`. Entities are not
 locked to the grid - they can be at decimal positions (and usually are).
 
-`x.0 y.0 z.0` represents the bottom left corner of a block, not the centre. The
-centre of a block would be represented by the coordinates `x.5 y.5 z.5`.
+`x.0 y.0 z.0` represents the bottom left corner of a block, not the centrer. The
+centrer of a block would be represented by the coordinates `x.5 y.5 z.5`.
+
+When using integer coordinates it will not be `x.0 y.0 z.0` but `x.5 y.0 z.5Of
+For example, the command `summon creeper 0 0 0` will spawn the creeper at `0.5 0.0 0.5`
 
 :::info
 
@@ -55,7 +58,7 @@ position. For example, `~ ~12 ~` would represent the current position offset by
 10 blocks on the y-axis (or in simpler terms: the position 10 blocks above the
 current position). This can also be a negative number.
 
-Similarly `^` represents a relative position, taking into account the current
+Similarly, `^` represents a relative position, taking into account the current
 rotation too. The most common use for this is to get a position in front of the
 direction of rotation. For example, you can use `^ ^ ^5` to get the position 5
 blocks in front of the current position in whatever direction the command or

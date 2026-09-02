@@ -6,7 +6,7 @@ version: 26.2
 
 # List of breaking changes
 
-This is a list of all breaking changes to datapacks (excluding resource packs). Special thanks to [Conure's How To Upgrade Your Datapacks Series](https://www.youtube.com/playlist?list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l), [Misode's Technical Changelog](https:/misode.github.io/changelog/) and the [Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
+This is a list of all breaking changes to datapacks (excluding resource packs). Special thanks to [Conure's How To Upgrade Your Datapacks Series](https://www.youtube.com/playlist?list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l), [Misode's Technical Changelog](<https:/misode.github.io/changelog/>) and the [Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
 
 ## [26.1](https://minecraft.wiki/w/Java_Edition_26.1)
 

@@ -10,7 +10,7 @@ version: 26.2
 
 This guide is split into three parts, adding a custom smithing trim pattern,
 adding a custom smithing trim color palette and adding a custom trimmable item.
-These parts can be seperately without following each other.
+These parts can be separately without following each other.
 
 :::info
 
@@ -180,7 +180,7 @@ the Minecraft namespace is required here!
 
 As of 1.21.5, every item you want to work as a trim material, needs to have the
 [`provides_trim_material`](https://minecraft.wiki/w/Data_component_format#provides_trim_material)
-item component. So to give ourselfs a barrier which provides our custom trim
+item component. So to give ourselves a barrier which provides our custom trim
 material, we can use this `/give` command:
 
 ```mcfunction
@@ -279,7 +279,7 @@ saved in `assets/<namespace>/textures/trims/color_palettes/` as
 
 <img src="https://i.postimg.cc/Yqyvq7vt/pallete.png" alt="Example color palette" width="300" style="image-rendering: pixelated; image-rendering: crisp-edges;">
 
-Now comes the last and also hardest part, adding the item models and their
+Now comes the last and also the hardest part, adding the item models and their
 definition for all the armor pieces. I will only show this on the diamond
 chestplate but **you will have to create a file for every single armor pieces!**
 
@@ -530,7 +530,7 @@ definition. This is located inside of `assets/minecraft/items/`.
 
 Next we will need to **create the following file for every single material
 listed in the file above**. All of the files need to be located inside
-`assets/minecraft/models/item/` directory. For the purpose of this guide, i will
+`assets/minecraft/models/item/` directory. For the purpose of this guide, I will
 only create one for the resin material.
 
 ```json:diamond_pickaxe_resin_trim.json

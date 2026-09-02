@@ -20,9 +20,9 @@ function is a function that runs itself over and over again.
 
 :::
 
-This method works due to a special behaviour of Minecraft functions - functions
+This method works due to a special behavior of Minecraft functions - functions
 are always run at a position and rotation. This means that we can run a function
-at a postition, move it forward in the direction, and run it again, over and
+at a position, move it forward in the direction, and run it again, over and
 over again. This is how we can make a raycast.
 
 ## Method
@@ -107,4 +107,10 @@ execute positioned ~-.99 ~-.99 ~-.99 as @e[dx=0,tag=!raycaster] positioned ~.99 
 
 # If the raycast has not hit a wall, and the limit has not been reached, move the raycast forward and run the function again
 execute if block ~ ~ ~ #minecraft:replaceable if score .raycastLimit raycast matches 1.. positioned ^ ^ ^0.1 run function <namespace>:raycast
+```
+
+To detect if the ray hit a block (and stop the raycast) you can use `execute if block`.
+
+```mcfunction:raycast.mcfunction
+execute if block ~ ~ ~ stone run return run function <namespace>:hit_block
 ```
