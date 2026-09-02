@@ -27,5 +27,4 @@
       {/if}
     </span>
   {/if}
-  </div>
 </div>
