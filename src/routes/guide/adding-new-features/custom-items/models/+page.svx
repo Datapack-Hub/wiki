@@ -17,7 +17,7 @@ goes over
 
 Before Minecraft version 1.21.4, `CustomModelData` was used to change the look of
 items. The addition of `item_model` in Minecraft version 1.21.4 made it easier to modify
-and ensure compatibility with other resourcepacks. Item Models use a **completely different method**
+and ensure compatibility with other resource packs. Item Models use a **completely different method**
 compared to Custom Model Data.
 
 :::

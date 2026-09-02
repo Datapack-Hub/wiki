@@ -49,10 +49,10 @@ tick) the TPS is good. The server is able to process all logic in time. Otherwis
 if max is above 50 and the lines high enough to cross over the border, the TPS is
 suffering.
 
-You can create a profiling report with `F3+L` on singleplayer or `/perf` on multiplayer
-which provides information about how long it took to execute every command.
-You can find the file in `.minecraft/debug/profiling/`
-You can view the performance report on [this website](https://misode.github.io/report/)
+You can also create a profiling report with `F3+L` in singleplayer or `/perf` on multiplayer servers,
+which provides information about how long it took to execute each command.
+You can then find the file in `.minecraft/debug/profiling/`
+and upload the file to view an interactive performance report on [misode.github.io](https://misode.github.io/report/).
 
 ## Benchmarking
 

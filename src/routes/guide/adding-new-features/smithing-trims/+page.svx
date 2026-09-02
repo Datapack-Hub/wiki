@@ -10,7 +10,7 @@ version: 26.2
 
 This guide is split into three parts, adding a custom smithing trim pattern,
 adding a custom smithing trim color palette and adding a custom trimmable item.
-These parts can be separately without following each other.
+These parts can be done separately without following each other.
 
 :::info
 

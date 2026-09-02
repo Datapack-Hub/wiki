@@ -155,14 +155,17 @@ Avoid the following:
   iteration over a long array.
 :::
 
-## Slow down commands
+## Reduce Commands Rate
 
-Not every command needs to run each tick, if you have commands running every 2 ticks instead
-you halve the performance impact since you are running half of the commands on the same amount of time.
-For example, checking if the player is on an area does not need to run every tick since it's very unlikely
+Not every command needs to run every tick. If you have commands running every 2 ticks instead
+you halve the performance impact since you are running half of the commands in the same amount of time.
+For example, checking if the player is in an area does not need to be done every tick since it's very unlikely
 that the player enters the area for a single tick.
 
-You can use scheduled functions in order to run commands every desired amount of time.
+You can use scheduled functions in order to run commands on a delayed interval.
+
+In this example, the function `example:2_tick` is ran every 2 ticks. This uses the `schedule` command,
+which allows to run a function after a specific number of ticks. On on the load function we schedule this function to run after 2 ticks, and on the `2_tick` function we schedule the same function again, making it loop every 2 game ticks.
 
 ```mcfunction:load.mcfunction
 schedule function example:2_tick 2t

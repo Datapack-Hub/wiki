@@ -5,7 +5,7 @@ version: "26.2"
 
 # List of all commands
 
-This is a list of all commands along with what they do basically, organized by
+This is a list of all commands along with what they do basically, organised by
 permission level.
 
 ## Syntax
@@ -77,7 +77,7 @@ These commands require a permission level same or bigger than 2 to run them.
   Enables, disables or creates a datapack
 - `/defaultgamemode <survival|adventure|creative|spectator>` - Sets the default
   gamemode of a world
-- `/dialog <show <targets> <dialog>|clear <targets>` - Shows and hides
+- `/dialog <show|clear> <targets>` - Shows and hides
   [dialog](/wiki/files/dialogs) screens from players
 - `/difficulty [peaceful|easy|normal|hard]` - Sets or gets the difficulty of a
   world
@@ -88,9 +88,9 @@ These commands require a permission level same or bigger than 2 to run them.
   possible in survival)
 - `/execute ...` - Executes a different command (See more here:
   [/execute](/wiki/command/execute))
-- `/experience <add|set|query <targets> ...` - Adds, removes or gets the
+- `/experience <add|set|query> <targets> ...` - Adds, removes or gets the
   players experience points. (ALIAS: `/xp`)
-- `/fetchprofile <name <player_name>|id <player_uuid>|entity <player_entity>` - Fetches the profile of the target. It works asynchronously as the operation might take some time.
+- `/fetchprofile <name <player_name>|id <player_uuid>|entity <player_entity>>` - Fetches the profile of the target. It works asynchronously as the operation might take some time.
   After successful completion, a message will be printed that lets users copy the contents of a fully resolved minecraft:profile component or /give @s minecraft:player_head with said component.
   For the entity subcommand, the player must be online, and will fail if they are not.
 - `/fill <from-XYZ> <to-XYZ> <block> [destroy|hollow|keep|outline|replace [filter]]` -
@@ -99,18 +99,18 @@ These commands require a permission level same or bigger than 2 to run them.
   defined region with a specific biome
 - `/forceload add <from> [<to>] <remove all|query [pos]>` - Forces chunks to be
   loaded constantly
-- `/function <name> <arguments>|with <block <sourcePos>|entity <source>|storage <source> [<path>]` -
+- `/function <name> <arguments>|with <block <sourcePos>|entity <source>|storage <source>> [<path>]` -
   Triggers a [function](/wiki/files/functions)
 - `/gamemode <gamemode> [<target>]` - Changes or checks the player's gamemode
 - `/gamerule <rule name> [<value>]` - Changes or checks a gamerule
 - `/give <target> <item> [<count>]` - Gives an item to the player
-- `/item <modify|replace> <block <pos>|entity <targets> <slot> ...` - Modifies
+- `/item <modify|replace> <block <pos>|entity <targets>> <slot> ...` - Modifies
   or copies items from inventories of entities/blocks
 - `/kill [<targets>]` - Kills selected entities
 - `/locate <structure|biome|poi> <id>` - Displays the coordinates or returns the
   distance of the nearest biome, structure or point of interest.
-- `/loot <give <players>|insert <target_pos>|spawn <target_pos>|replace <block|entity> <fish ...|loot <loot_table>|kill <target>|mine ...> ...` -
-  Spawns or inserts the selected [loot table](/wiki/files/loot-tables) into an inventory or the world
+- `/loot <give <players>|insert <target_pos>|spawn <target_pos>|replace <block|entity>> <fish ...|loot <loot_table>|kill <target>|mine ...> ...` -
+  Spawns or inserts the selected loot table into an inventory or the world
 - `/particle <name> [<pos>] <delta> <speed> <count> [force|normal] [<viewers>]` -
   Spawns a selected particle with specified parameters
 - `/place <feature|jigsaw|structure|template> ...` - Places a structure, a
@@ -126,11 +126,11 @@ These commands require a permission level same or bigger than 2 to run them.
   also stopping it
 - `/ride <target> <mount <vehicle>|dismount>` - Make an entity ride or dismount
   a different entity
-- `/rotate <target> <rotation|facing <location|entity <facingTarget> [<facingAnchor>]` -
+- `/rotate <target> <rotation|facing <location|entity <facingTarget> [<facingAnchor>]>>` -
   Used to rotate an entity, works similarly to /teleport but doesn't dismount
   the entity it's riding.
 - `/say <message>` - Sends a message into chat to all players
-- `/schedule <function <function> <time> [append|replace]|clear <function>` -
+- `/schedule <function <function> <time> [append|replace]|clear <function>>` -
   Schedules a function or clears it. Note that this will not transfer over
   selectors
 - `/scoreboard <objectives|players> ...` - Manages
@@ -146,7 +146,7 @@ These commands require a permission level same or bigger than 2 to run them.
 - `/spreadplayers <center> <spreadDistance> <maxRange> [under <maxHeight>] <respectTeams> <targets>` -
   Teleport entities randomly across a specified area
 - `/stopsound <targets> [<source>] [<sound>]` - Stops any playing sound
-- `/stopwatch <create <id>|query <id> <scale>|restart <id>|remove <id>` - Keeps track of real time (not game time), and is not affected by game tick rates or speeds. 
+- `/stopwatch <create <id>|query <id> <scale>|restart <id>|remove <id>>` - Keeps track of real time (not game time), and is not affected by game tick rates or speeds. 
   Time is calculated to millisecond precision
 - `/summon <entity> [<pos>] [<nbt>]` - Summons an entity
 - `/swing <entity_selector> <mainhand|offhand>` - Swings (animation only) the hand of an entity, mostly used for [mannequins](https://minecraft.wiki/w/Mannequin)
@@ -155,7 +155,7 @@ These commands require a permission level same or bigger than 2 to run them.
 - `/team <list|add|remove|empty|join|leave|modify> ...` - Modifies and creates teams
 - `/teleport [<targets>] <destination|location [<rotation>|facing <location|entity <facingTarget> [<facingAnchor>]>]> ...` - Teleport entities to a specified location. (ALIAS: `/tp`)
 - `/tellraw <targets> <message>` - Sends a JSON message to players
-- `/time <add <time>|query <daytime|gametime|day>|set <daytime|gametime|day|time>` - Controls or checks the time
+- `/time <add <time>|query <daytime|gametime|day>|set <daytime|gametime|day|time>>` - Controls or checks the time
 - `/title <targets> (times <fadeIn> <stay> <fadeOut>clear|reset|title <title>|subtitle <title>|actionbar <title>)` -
   Displays text on the player's screen
 - `/weather weather <clear|rain|thunder> [<duration>]` - Changes the weather
