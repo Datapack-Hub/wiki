@@ -172,13 +172,13 @@
     );
   }
 
-  function copyUrl() {
+  async function copyUrl() {
     // the windows share menu looks ugly, so only show it on mobile which looks nice
     if (navigator.maxTouchPoints > 0 && navigator.share) {
       // checks for mobile
-      navigator.share({ url: window.location.href });
+      await navigator.share({ url: window.location.href });
     } else {
-      navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(window.location.href);
       shareText = "Copied!";
       setTimeout(() => {
         shareText = "Share";
@@ -219,26 +219,23 @@
 
 <svelte:window onkeydown={e => handleKeyInput(e)} />
 
-<div class="bg-stone-800 flex w-full items-center justify-between p-2 h-12 sticky top-0 border-b border-stone-700 z-20">
-  <a
-    class="absolute -translate-y-30 -translate-x-1/2 left-1/2 focus-visible:outline-2 outline-blue-500 focus-visible:translate-y-0"
-    href="#nav_side">Go To Nav</a>
-  <a
-    class="absolute -translate-y-30 -translate-x-1/2 left-1/2 focus-visible:outline-2 outline-blue-500 focus-visible:translate-y-0"
-    href="#main_content">Go To Content</a>
-  <div class="flex items-center grow">
+<header class="topbar">
+  <a class="skip-link" href="#main_content">Skip to content</a>
+  <a class="skip-link" href="#nav_side" onclick={() => (windowInfo.isNavOpen = true)}>Skip to navigation</a>
+
+  <div class="topbar__inner">
     <button
-      class="px-2 pr-3 sm:hidden focus-visible:outline-2 focus-visible:outline-dph-orange"
+      class="icon-button topbar__menu"
       aria-label="{windowInfo.isNavOpen ? 'Collapse' : 'Expand'} Sidebar"
       onclick={() => (windowInfo.isNavOpen = !windowInfo.isNavOpen)}><IconMenu /></button>
-    <a class="flex items-center hover:text-white p-1 focus-visible:outline-2 focus-visible:outline-dph-orange" href="/">
+    <a class="brand-link" href="/">
       <img
         alt="Datapack Hub Logo"
         src="/logos/dph.svg"
-        class="h-8 mr-2 {logoFlipped ? 'rotate-180' : ''} {logoBonked ? 'scale-y-50' : ''} transition-transform"
+        class="brand-link__logo {logoFlipped ? 'rotate-180' : ''} {logoBonked ? 'scale-y-50' : ''}"
         width="32"
         height="32" />
-      <h1 class="font-bold hidden text-lg lg:text-xl sm:block">Datapack Wiki</h1>
+      <span class="brand-link__name">Datapack Wiki</span>
     </a>
 
     <div class="topbar__actions">
@@ -280,7 +277,7 @@
       </button>
     </div>
   </div>
-</div>
+</header>
 
 {#if editNoticeOpen && editNoticePath === page.url.pathname}
   <div class="edit-notice-backdrop" role="presentation" onclick={closeEditNotice}></div>

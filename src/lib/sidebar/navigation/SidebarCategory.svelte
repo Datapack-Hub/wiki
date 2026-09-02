@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import { windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
   import IconExpand from "~icons/tabler/chevron-right";
@@ -10,7 +11,7 @@
     activePath?: string | string[];
   };
 
-  const { children, name, icon }: Props = $props();
+  const { children, name, icon, activePath }: Props = $props();
 
   const Icon = $derived(icon);
 
@@ -48,7 +49,7 @@
     <IconExpand class="nav-category__chevron" />
   </summary>
   {#if windowInfo.isNavOpen}
-    <div class="flex flex-col ml-4 pb-2">
+    <div class="nav-category__children">
       {@render children()}
     </div>
   {/if}

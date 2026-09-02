@@ -155,7 +155,7 @@
 
 {#if page == "wiki"}
   {#await import(`./${version}/WikiPages.svelte`)}
-    <div class="cursor-not-allowed py-1 rounded-lg flex gap-2 pl-1 items-center text-stone-500">
+    <div class="nav-item nav-item--placeholder">
       <IconLoader class="animate-spin" />
 
       {#if windowInfo.isNavOpen}
@@ -169,7 +169,7 @@
   {/await}
 {:else if page == "guides"}
   {#await import(`./${version}/Guides.svelte`)}
-    <div class="cursor-not-allowed py-1 rounded-lg flex gap-2 pl-1 items-center text-stone-500">
+    <div class="nav-item nav-item--placeholder">
       <IconLoader class="animate-spin" />
 
       {#if windowInfo.isNavOpen}

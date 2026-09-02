@@ -1,5 +1,25 @@
 @plugin "@tailwindcss/typography";
 
+.article-shell {
+  width: 100%;
+  max-width: 68rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 3vw, 3rem) var(--page-gutter) 4rem;
+}
+
+.article-shell.home-page {
+  max-width: 78rem;
+  padding-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+.md.article-shell {
+  max-width: 68rem;
+}
+
+.md.article-shell.home-page {
+  max-width: 78rem;
+}
+
 .md {
   @apply prose max-w-none;
   --tw-prose-body: var(--text-secondary);

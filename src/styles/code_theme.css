@@ -23,9 +23,8 @@ pre.shiki > code {
   -ms-hyphens: none;
   hyphens: none;
   white-space: pre;
-  white-space: pre-wrap;
-  word-break: break-all;
-  word-wrap: break-word;
+  word-break: normal;
+  word-wrap: normal;
 }
 
 pre.shiki > code {

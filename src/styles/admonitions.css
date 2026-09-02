@@ -1,23 +1,47 @@
-/* Admonition styles */
-@import "tailwindcss";
-
 .admonition {
-  @apply w-fit min-w-[25%] border-l-4 p-3 my-2;
+  --pixel-frame-color: var(--border);
+  position: relative;
+  width: 100%;
+  margin-block: 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 0.9rem 1rem;
+  clip-path: var(--pixel-corners);
+}
+
+.admonition::after {
+  position: absolute;
+  inset: 0;
+  background: var(--pixel-frame-outline);
+  color: var(--pixel-frame-color, var(--border));
+  content: "";
+  pointer-events: none;
 }
 
 .admonition-heading h5 {
-  @apply flex text-sm gap-2 items-center mb-1 uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 680;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
 }
-.admonition-heading h5 a[aria-hidden="true"] {
-  @apply hidden;
+
+.admonition-heading h5 a[aria-hidden="true"],
+.admonition-heading h5 > a[title="Copy Link"] {
+  display: none;
 }
 
 .admonition-content p {
-  @apply m-0;
+  margin: 0;
 }
 
 .admonition-icon {
-  @apply w-4 h-4 inline-block;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
 }
 
 .admonition-note {
