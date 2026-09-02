@@ -675,6 +675,18 @@ mark {
     background: var(--canvas);
 }
 
+.search-trigger--sidebar .search-trigger__prompt {
+    gap: 0.45rem;
+}
+
+.search-trigger--sidebar .search-trigger__label {
+    font-size: 0.82rem;
+}
+
+.search-trigger--sidebar kbd {
+    margin-right: 0.2rem;
+}
+
 .search-trigger--hero {
     --pixel-frame-color: var(--hero-search-frame);
     min-height: 3.65rem;
@@ -1338,14 +1350,15 @@ mark {
     display: none;
     width: 2rem;
     height: 2rem;
+    border-radius: 0;
     padding: 0;
+    clip-path: none;
 }
 
 .sidebar__collapse::after {
     position: absolute;
     inset: 0;
-    background: var(--pixel-frame-outline);
-    color: var(--pixel-frame-color);
+    border: 1px solid var(--pixel-frame-color);
     content: "";
     pointer-events: none;
 }
@@ -1426,6 +1439,7 @@ mark {
 
     .sidebar--collapsed .nav-item {
         justify-content: center;
+        gap: 0;
         padding-inline: 0.45rem;
     }
 
