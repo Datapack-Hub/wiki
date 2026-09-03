@@ -12,7 +12,7 @@ up in the creative inventory.
 
 This will only work in 1.21+, as custom painting variants were added in the snapshot 24w18a.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This guide requires you to have at least a small understanding of datapacks. If you don't
 > understand this guide, you can read the [Getting Started guide](/guide/getting-started).
 

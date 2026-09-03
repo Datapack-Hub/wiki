@@ -1,8 +1,8 @@
 ---
 title: "Page Structure & Formatting"
 description:
-  "How to create, structure, format, illustrate, and add a Datapack Wiki page
-  to the site navigation."
+  "How to create, structure, format, illustrate, and add a Datapack Wiki page to the site
+  navigation."
 tags: contribution, writing, formatting, images
 ---
 
@@ -12,31 +12,27 @@ tags: contribution, writing, formatting, images
 
 # Page Structure & Formatting
 
-This guide explains how to structure a wiki page, add its metadata, include
-images and links, format its content, and place it in the sidebar.
+This guide explains how to structure a wiki page, add its metadata, include images and links, format
+its content, and place it in the sidebar.
 
-If you are new to Git or pull requests, read [Git Practices](/contribute/git-practices)
-alongside this page.
+If you are new to Git or pull requests, read [Git Practices](/contribute/git-practices) alongside
+this page.
 
-:::note
-
-You do not need to understand Svelte to write most pages. Markdown and a small
-amount of MDsveX syntax are enough for almost all contributions.
-
-:::
+> [!NOTE]  
+> You do not need to understand Svelte to write most pages. Markdown and a small amount of MDsveX
+> syntax are enough for almost all contributions.
 
 ## Where Pages Live
 
-Every page is a `+page.svx` file inside `src/routes`. Its folders become the
-page's URL:
+Every page is a `+page.svx` file inside `src/routes`. Its folders become the page's URL:
 
-| Page type   | File                                                      | URL                            |
-| ----------- | --------------------------------------------------------- | ------------------------------ |
-| Wiki        | `src/routes/wiki/<category>/<page-slug>/+page.svx`        | `/wiki/<category>/<page-slug>` |
-| Guide       | `src/routes/guide/<category>/<page-slug>/+page.svx`       | `/guide/<category>/<page-slug>` |
+| Page type | File                                                | URL                             |
+| --------- | --------------------------------------------------- | ------------------------------- |
+| Wiki      | `src/routes/wiki/<category>/<page-slug>/+page.svx`  | `/wiki/<category>/<page-slug>`  |
+| Guide     | `src/routes/guide/<category>/<page-slug>/+page.svx` | `/guide/<category>/<page-slug>` |
 
-Use lowercase, descriptive, kebab-case folder names such as
-`custom-worldgen` or `installing-a-datapack`.
+Use lowercase, descriptive, kebab-case folder names such as `custom-worldgen` or
+`installing-a-datapack`.
 
 For example:
 
@@ -63,8 +59,7 @@ Use this as a starting point:
 ```md
 ---
 title: "Example Page"
-description:
-  "A short, plain-language summary of what readers will learn on this page."
+description: "A short, plain-language summary of what readers will learn on this page."
 tags: guide, example
 version: "26.2"
 ---
@@ -89,40 +84,39 @@ Frontmatter sits between the two `---` lines at the very top of the file.
 
 - `title` is required and is used in browser and search metadata.
 - `description` is required and should briefly explain what the page covers.
-- `version` is optional. Use the latest Minecraft Java version against which
-  the page was checked, and quote it as a string, such as `"26.2"`.
+- `version` is optional. Use the latest Minecraft Java version against which the page was checked,
+  and quote it as a string, such as `"26.2"`.
 - `tags` is optional. Write it as one comma-separated line, not a YAML list.
 
-The frontmatter title, page `# Heading`, and sidebar label should closely match.
-Do not import or add the `Version` component yourself. When `version` is
-present, the site automatically adds the version notice above the article.
+The frontmatter title, page `# Heading`, and sidebar label should closely match. Do not import or
+add the `Version` component yourself. When `version` is present, the site automatically adds the
+version notice above the article.
 
 ### Page Content
 
-Start with one `#` heading and a short introduction. Organise longer content
-with `##` sections and `###` subsections. Use components only when Markdown is
-not enough, and import only the components the page actually uses.
+Start with one `#` heading and a short introduction. Organise longer content with `##` sections and
+`###` subsections. Use components only when Markdown is not enough, and import only the components
+the page actually uses.
 
 ## Linking to Pages and Sections
 
 Use site-root-relative URLs. Link to the public page URL, not its `.svx` file:
 
 ```md
-[Functions](/wiki/files/functions)
-[Macro functions](/wiki/files/functions#macro-functions)
+[Functions](/wiki/files/functions) [Macro functions](/wiki/files/functions#macro-functions)
 [The images section](#images)
 ```
 
-Headings automatically receive IDs. A heading such as `## Adding the Page to
-Navigation` can be linked as `#adding-the-page-to-navigation`.
+Headings automatically receive IDs. A heading such as `## Adding the Page to Navigation` can be
+linked as `#adding-the-page-to-navigation`.
 
-Use normal external URLs when linking to another website. External destinations
-are fine; externally hosted article images are not the preferred approach.
+Use normal external URLs when linking to another website. External destinations are fine; externally
+hosted article images are not the preferred approach.
 
 ## Images
 
-Store images used by an article in `static/images`, grouped by the part of the
-site and the page that owns them:
+Store images used by an article in `static/images`, grouped by the part of the site and the page
+that owns them:
 
 ```
 static/images/guides/<page-slug>/<filename>.png
@@ -135,24 +129,22 @@ Add another route folder when it helps avoid ambiguous names. For example:
 static/images/guides/smithing-trims/example-template.png
 ```
 
-Files inside `static` are served from the root of the website. The file above
-is therefore referenced as `/images/guides/smithing-trims/example-template.png`.
-Do not include `static` in the URL, use `../` paths, or link to a path on your
-computer.
+Files inside `static` are served from the root of the website. The file above is therefore
+referenced as `/images/guides/smithing-trims/example-template.png`. Do not include `static` in the
+URL, use `../` paths, or link to a path on your computer.
 
 ### File Names and Formats
 
 - Use descriptive, lowercase, kebab-case names such as `datapack-enabled.png`.
 - Avoid names such as `image.png`, spaces, and opaque upload IDs.
 - Use lowercase file extensions.
-- Keep screenshots at a useful resolution, but compress unnecessarily large
-  files before committing them.
+- Keep screenshots at a useful resolution, but compress unnecessarily large files before committing
+  them.
 - Only commit an image when the project is allowed to redistribute it.
 
-Do not hotlink embedded article images from Imgur, Postimages, or similar
-services. Download an image the project is allowed to use, place it in the
-appropriate `static/images` folder, and commit it with the page. If its licence
-is unclear, link to the original source instead of copying it.
+Do not hotlink embedded article images from Imgur, Postimages, or similar services. Download an
+image the project is allowed to use, place it in the appropriate `static/images` folder, and commit
+it with the page. If its licence is unclear, link to the original source instead of copying it.
 
 ### Adding a Normal Image
 
@@ -162,17 +154,16 @@ For screenshots and ordinary illustrations, use Markdown:
 ![The Data Packs screen with the new pack enabled](/images/guides/installing-a-datapack/datapack-enabled.png)
 ```
 
-Markdown images automatically receive the site's responsive sizing, cut-out
-corners, and frame. You do not need to import an image component for them.
+Markdown images automatically receive the site's responsive sizing, cut-out corners, and frame. You
+do not need to import an image component for them.
 
-Write alt text that explains the useful information visible in context. Avoid
-phrases such as “image of” and do not use the filename as alt text. Use empty
-alt text (`![](...)`) only when an image is genuinely decorative.
+Write alt text that explains the useful information visible in context. Avoid phrases such as “image
+of” and do not use the filename as alt text. Use empty alt text (`![](...)`) only when an image is
+genuinely decorative.
 
 ### Images With a Custom Width
 
-Import `ArticleImage` only when an image needs additional properties, such as a
-controlled width:
+Import `ArticleImage` only when an image needs additional properties, such as a controlled width:
 
 ```md
 <script lang="ts">
@@ -186,9 +177,8 @@ controlled width:
 />
 ```
 
-Omit `width` for normal screenshots so they can use the available article
-width. Do not set a fixed height; the shared component preserves the image's
-aspect ratio.
+Omit `width` for normal screenshots so they can use the available article width. Do not set a fixed
+height; the shared component preserves the image's aspect ratio.
 
 For genuine Minecraft pixel art, add pixelated rendering:
 
@@ -201,14 +191,13 @@ For genuine Minecraft pixel art, add pixelated rendering:
 />
 ```
 
-Do not apply pixelated rendering to screenshots, diagrams, or photographs, and
-avoid raw `<img>` elements in article content because they bypass the shared
-image treatment.
+Do not apply pixelated rendering to screenshots, diagrams, or photographs, and avoid raw `<img>`
+elements in article content because they bypass the shared image treatment.
 
 ## Adding the Page to Navigation
 
-Creating a route does not automatically add it to the sidebar. Wiki and guide
-navigation is versioned, so edit the appropriate files:
+Creating a route does not automatically add it to the sidebar. Wiki and guide navigation is
+versioned, so edit the appropriate files:
 
 ```
 src/lib/sidebar/tabs/latest/WikiPages.svelte
@@ -217,85 +206,77 @@ src/lib/sidebar/tabs/pre-1_21_11/WikiPages.svelte
 src/lib/sidebar/tabs/pre-1_21_11/Guides.svelte
 ```
 
-Add a page to both version trees when it applies to both. If a feature only
-exists in the latest version, add it only to the latest tree. Contribution
-pages are shared and are added directly in `src/lib/sidebar/Sidebar.svelte`.
+Add a page to both version trees when it applies to both. If a feature only exists in the latest
+version, add it only to the latest tree. Contribution pages are shared and are added directly in
+`src/lib/sidebar/Sidebar.svelte`.
 
-Import an icon from [Tabler Icons](https://tabler.io/icons), then add a
-`SidebarPage` to the appropriate category:
+Import an icon from [Tabler Icons](https://tabler.io/icons), then add a `SidebarPage` to the
+appropriate category:
 
 ```md
 import IconExample from "~icons/tabler/file-description";
 
-<SidebarCategory
-  name="Concepts"
-  icon={IconConcepts}
-  activePath="/wiki/concepts"
+<SidebarCategory name="Concepts" icon={IconConcepts} activePath="/wiki/concepts"
+
 >
-  <SidebarPage
+
+<SidebarPage
     label="Example Page"
     icon={IconExample}
     page="/wiki/concepts/example-page"
-  />
-</SidebarCategory>
+  /> </SidebarCategory>
 ```
 
-The category's `activePath` keeps it open while one of its pages is selected
-and highlights its icon when the sidebar is collapsed. It can be one route
-prefix or an array when a category contains unrelated routes:
+The category's `activePath` keeps it open while one of its pages is selected and highlights its icon
+when the sidebar is collapsed. It can be one route prefix or an array when a category contains
+unrelated routes:
 
 ```md
 activePath={["/guide/installing-a-datapack", "/guide/choosing-a-server"]}
 ```
 
-If you are not sure where a page belongs, mention that in your pull request and
-a maintainer can place it.
+If you are not sure where a page belongs, mention that in your pull request and a maintainer can
+place it.
 
 ## Writing Guidelines
 
-Write for readers who may be new to datapacking or who may not speak English as
-their first language.
+Write for readers who may be new to datapacking or who may not speak English as their first
+language.
 
 - Define unfamiliar terms or link to a page that explains them.
 - Use concrete examples rather than describing a concept only in the abstract.
-- Make pages easy to scan with headings, short paragraphs, lists, and useful
-  whitespace.
-- Prefer active voice. For example, write “The command teleports the pig”
-  instead of “The pig is teleported by the command.”
+- Make pages easy to scan with headings, short paragraphs, lists, and useful whitespace.
+- Prefer active voice. For example, write “The command teleports the pig” instead of “The pig is
+  teleported by the command.”
 - Explicitly name the subject instead of relying on vague words such as “it”.
-- Avoid words such as _obvious_, _simple_, _basic_, _easy_, and _just_ when
-  they could dismiss a reader's difficulty.
+- Avoid words such as _obvious_, _simple_, _basic_, _easy_, and _just_ when they could dismiss a
+  reader's difficulty.
 - Use the [Oxford comma](https://simple.wikipedia.org/wiki/Serial_comma).
 - Check spelling and grammar before submitting the page.
 
-Use bold and italics sparingly. Put commands, identifiers, file paths, and
-short code values in inline code. Use tables only for genuinely tabular data.
+Use bold and italics sparingly. Put commands, identifiers, file paths, and short code values in
+inline code. Use tables only for genuinely tabular data.
 
 ## Formatting Reference
 
-The site uses MDsveX, which combines Markdown with Svelte components. Most
-pages need only the following features.
+The site uses MDsveX, which combines Markdown with Svelte components. Most pages need only the
+following features.
 
 ### Admonitions
 
-Use an admonition for supporting information that should stand apart from the
-main explanation. Available types are `note`, `tip`, `warning`, and `info`.
+Use an admonition for supporting information that should stand apart from the main explanation.
+Available types are `note`, `tip`, `warning`, and `info`.
 
-````md
-:::info
+```md
+> [!INFO] Supporting information goes here.
+```
 
-Supporting information goes here.
-
-:::
-````
-
-Do not use an admonition for every paragraph; it should remain a meaningful
-visual interruption.
+Do not use an admonition for every paragraph; it should remain a meaningful visual interruption.
 
 ### Code Blocks and Titles
 
-Fenced code blocks support syntax highlighting for `mcfunction`, `json`, `md`,
-and `javascript`. Add a filename after the language to give the block a title:
+Fenced code blocks support syntax highlighting for `mcfunction`, `json`, `md`, and `javascript`. Add
+a filename after the language to give the block a title:
 
 ````md
 ```json:pack.mcmeta
@@ -308,13 +289,13 @@ and `javascript`. Add a filename after the language to give the block a title:
 ```
 ````
 
-Use an unlabelled code fence if the language is not supported. Keep examples
-focused and explain the important lines in the surrounding text.
+Use an unlabelled code fence if the language is not supported. Keep examples focused and explain the
+important lines in the surrounding text.
 
 ### Highlighted Text
 
-The `Highlight` component can associate a short label with a colour when the
-colour itself carries meaning:
+The `Highlight` component can associate a short label with a colour when the colour itself carries
+meaning:
 
 <Highlight color="#DC2626">Website</Highlight>
 
@@ -328,8 +309,7 @@ colour itself carries meaning:
 
 Use it sparingly and never rely on colour alone to communicate information.
 
-For standard command notation, follow the examples on the
-[Commands page](/wiki/concepts/commands).
+For standard command notation, follow the examples on the [Commands page](/wiki/concepts/commands).
 
 ## Before Opening a Pull Request
 
@@ -351,9 +331,8 @@ Before submitting, confirm that:
 - code blocks do not overflow or hide important content; and
 - the page is readable on both desktop and mobile.
 
-Do not manually edit generated search files. If the search index needs to be
-regenerated, leave that step to the current maintainer workflow.
+Do not manually edit generated search files. If the search index needs to be regenerated, leave that
+step to the current maintainer workflow.
 
 Need help with Markdown, images, or deciding where a page belongs? Ask in the
-[Datapack Hub Discord](https://discord.datapackhub.net) or describe the issue in
-your pull request.
+[Datapack Hub Discord](https://discord.datapackhub.net) or describe the issue in your pull request.

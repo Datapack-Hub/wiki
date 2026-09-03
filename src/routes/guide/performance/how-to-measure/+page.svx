@@ -60,7 +60,7 @@ different implementations.
 
 ### How Benchmarking Works
 
-> [!IMPORTANT]  
+> [!TIP]  
 > A recursive function is a function that runs itself repeatedly. A single recursive function call
 > is called an iteration.
 

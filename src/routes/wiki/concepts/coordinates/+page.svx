@@ -24,7 +24,7 @@ but not `123.7 86.2 94.6`. Entities are not locked to the grid - they can be at 
 
 The center of a block would be represented by the coordinates `x.5 y.5 z.5`.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Every command and function in Minecraft is always executed at a position. This is usually the
 > world spawn. You can change this using the commands "execute at" or "execute positioned".
 

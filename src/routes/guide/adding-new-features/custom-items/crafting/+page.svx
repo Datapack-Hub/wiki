@@ -17,7 +17,7 @@ version you are developing for. The first one is for the Minecraft version 1.20.
 This is the easier method of the two, only requiring you to put the item id and components into the
 recipe output.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Note that there is currently no way to specify item components in the recipe's input items, only
 > in the result. Meaning your custom item can't (easily) be crafted out of different custom items.
 

@@ -53,7 +53,7 @@ The chat output would look like this:
 
 ## Subcommands
 
-> [!IMPORTANT]  
+> [!TIP]  
 > In this documentation, `...` represents another required subcommand, and `[...]` denotes that
 > another subcommand is optional.
 
@@ -188,7 +188,7 @@ entity.
 
 Runs the specified command with the current context. Takes no further subcommands.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This is useless by itself, and should always be preceded by other subcommands.
 
 #### Examples:

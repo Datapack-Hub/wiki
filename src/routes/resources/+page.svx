@@ -1,8 +1,7 @@
 ---
 title: Resources
 description:
-  "Listed here are links to credible and reliable places to aid in command
-  support and creation."
+  "Listed here are links to credible and reliable places to aid in command support and creation."
 ---
 
 <script lang="ts">
@@ -298,14 +297,13 @@ const resources = {
 
 # Resources
 
-Listed here are links to credible and reliable places and libraries to aid in
-command/datapack support and creation.
+Listed here are links to credible and reliable places and libraries to aid in command/datapack
+support and creation.
 
-> [!NOTE]
-> This wiki is run by Datapack Hub. We aren't responsible for the content on
-> external sites or Discord Servers, so proceed with caution. However, they're all
-> safe to use and have amazingly useful content and tools for creating Minecraft
-> Datapacks.
+> [!NOTE]  
+> This wiki is run by Datapack Hub. We aren't responsible for the content on external sites
+> or Discord Servers, so proceed with caution. However, they're all safe to use and have amazingly
+> useful content and tools for creating Minecraft Datapacks.
 
 ## Communities
 

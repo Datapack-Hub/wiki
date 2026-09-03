@@ -86,7 +86,7 @@ files using [Misode’s generators](https://misode.github.io/). Furthermore, fre
 respective subcategories will likely be necessary, if only to determine what type of data some
 fields are expecting, when Misode or this guide do not specify.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Some popular VSCode extensions may falsely inform you that certain files you reference don’t exist
 > or are in the wrong folder, when in fact they are, depending on the version you are working in.
 > This is most common for `configured_features`, but be on the lookout for this behavior elsewhere.
@@ -518,7 +518,7 @@ fields are accounted for. It also has useful tools for selecting colors, where a
 Called “Spawners” (not confusing at all), this is what decides what mobs will spawn in this biome,
 at what rarities and in what quantities.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This does not dictate those mobs’ spawning conditions–for the most part, we can’t change that.
 > Passive Mobs will always need Grass Blocks and light to spawn, and Hostile Mobs will still need a
 > low enough light level as defined in the Dimension Type. Some mobs, like Sniffers and Camels,

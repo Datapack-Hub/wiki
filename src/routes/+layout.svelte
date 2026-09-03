@@ -26,11 +26,10 @@
         ...root.querySelectorAll<HTMLAnchorElement>("a[href]"),
       ];
 
-      links.forEach((link) => {
+      links.forEach(link => {
         const url = new URL(link.href, window.location.href);
         const isExternal =
-          (url.protocol === "http:" || url.protocol === "https:") &&
-          url.origin !== window.location.origin;
+          (url.protocol === "http:" || url.protocol === "https:") && url.origin !== window.location.origin;
 
         if (isExternal) {
           link.target = "_blank";
@@ -44,9 +43,9 @@
 
     openLinksInNewTabs(document);
 
-    const observer = new MutationObserver((mutations) => {
+    const observer = new MutationObserver(mutations => {
       for (const mutation of mutations) {
-        mutation.addedNodes.forEach((node) => {
+        mutation.addedNodes.forEach(node => {
           if (node instanceof HTMLElement) openLinksInNewTabs(node);
         });
       }

@@ -56,7 +56,7 @@ for much more complex interactions with some minor caveats.
 > Always download from a reputable distributor such as [Modrinth](https://modrinth.com/mods) or
 > [CurseForge](https://www.curseforge.com/minecraft/)!
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Mods can include data and asset files alongside code. This includes shipping model/texture files
 > in the resource pack format, recipe files in the datapack format, etc.
 >

@@ -34,7 +34,7 @@ First we need to create a give function. This can also be done with a recipe or 
 wish to use one of these I would recommend converting your item component with
 [Misode's converter](https://misode.github.io/convert/) to maintain the same values.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > [Misode's converter](https://misode.github.io/convert/) is a tool used to convert /give commands
 > into loot tables and recipes or vise versa
 

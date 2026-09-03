@@ -12,7 +12,7 @@ yourself a custom music disc item and implement custom sounds!
 
 This will only work in 1.21+, as custom jukebox songs were added in the snapshot 24w21a.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This guide requires you to have at least a small understanding of datapacks, if you don't
 > understand this guide, you can read the [Getting Started guide](/guide/getting-started).
 
@@ -59,7 +59,7 @@ the datapack to the sounds ID. (for example: `"sound_id": "minecraft:music_disc.
 If you don't want to use a default Minecraft sound, then a resource pack is required to add the
 custom sound (in this case, the music on the disc) to Minecraft, so that the datapack can read it.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Minecraft handles sound in `.ogg` files. There are many different converters you can use to
 > convert an MP3, WAV, or other audio file to .ogg.
 

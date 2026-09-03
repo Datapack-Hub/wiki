@@ -17,7 +17,7 @@ with faster variations. Below - we will identify and address every major perform
 
 ## Forking
 
-> [!IMPORTANT]  
+> [!TIP]  
 > The concept of forking is explained on [the execute page](/wiki/command/execute#forking) itself.
 
 Forking is the _biggest_ performance bottleneck. Some execute subcommands like `execute as` fork the
@@ -124,7 +124,7 @@ unlike scoreboards.
 
 ## Recursion
 
-> [!IMPORTANT]  
+> [!TIP]  
 > A recursive function is a function that runs itself repeatedly.
 
 Any recursive functions, whether a [loop](/guide/mcf-vs-code#q-how-do-you-loop-in-mcfunction),

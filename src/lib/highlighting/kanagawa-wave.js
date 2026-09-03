@@ -746,7 +746,7 @@ const darkCodePalette = {
 };
 
 /** @param {any} value */
-const retintTheme = (value) => {
+const retintTheme = value => {
   if (typeof value === "string") return darkCodePalette[value] ?? value;
   if (!value || typeof value !== "object") return value;
 

@@ -12,7 +12,7 @@ instance, you can create a predicate to check if a player is walking, if an enti
 specific Y level, or if a player is holding an item. They are extremely versatile and, in many
 cases, more optimised than `execute if` commands.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Although this page covers predicate files, predicates are also used within advancements and loot
 > table files. The structure of these predicates is the same as described here, although some fields
 > may not be used in certain contexts.

@@ -133,38 +133,40 @@
     const isTouchDevice = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
     const origin = getThemeTransitionOrigin(event);
 
-    transition.ready.then(() => {
-      if (isTouchDevice) {
+    transition.ready
+      .then(() => {
+        if (isTouchDevice) {
+          document.documentElement.animate(
+            { opacity: [0, 1] },
+            {
+              duration: 500,
+              easing: "ease-in-out",
+              pseudoElement: "::view-transition-new(root)",
+            }
+          );
+          return;
+        }
+
+        const endRadius = Math.hypot(
+          Math.max(origin.x, origin.width - origin.x),
+          Math.max(origin.y, origin.height - origin.y)
+        );
+        const clipPath = [
+          `circle(0px at ${origin.x}px ${origin.y}px)`,
+          `circle(${endRadius}px at ${origin.x}px ${origin.y}px)`,
+        ];
         document.documentElement.animate(
-          { opacity: [0, 1] },
+          {
+            clipPath,
+          },
           {
             duration: 500,
             easing: "ease-in-out",
             pseudoElement: "::view-transition-new(root)",
           }
         );
-        return;
-      }
-
-      const endRadius = Math.hypot(
-        Math.max(origin.x, origin.width - origin.x),
-        Math.max(origin.y, origin.height - origin.y)
-      );
-      const clipPath = [
-        `circle(0px at ${origin.x}px ${origin.y}px)`,
-        `circle(${endRadius}px at ${origin.x}px ${origin.y}px)`,
-      ];
-      document.documentElement.animate(
-        {
-          clipPath,
-        },
-        {
-          duration: 500,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
-    }).catch(() => {});
+      })
+      .catch(() => {});
 
     transition.finished.then(
       () => (themeTransitionActive = false),
@@ -292,7 +294,8 @@
         <p class="edit-notice__eyebrow">Before you contribute</p>
         <h2 id="edit-notice-title">Ready to edit this page?</h2>
       </div>
-      <button class="icon-button edit-notice__close" type="button" aria-label="Close" onclick={closeEditNotice}>×</button>
+      <button class="icon-button edit-notice__close" type="button" aria-label="Close" onclick={closeEditNotice}
+        >×</button>
     </div>
     <p id="edit-notice-description">
       These two short guides explain the page structure and the Git workflow used by the wiki.

@@ -61,7 +61,7 @@ Combining all of these together, we can create a give command for our custom ite
 /give @s stick[tool={default_mining_speed:1.5,damage_per_block:0,rules:[{speed:100,blocks:"sand"}]},food={nutrition:3,saturation:1,can_always_eat:true},consumable={on_consume_effects:[{type:"minecraft:apply_effects",effects:[{id:"minecraft:glowing",amplifier:1,duration:100}]}]},item_name='"Sandy McDesertface"'] 1
 ```
 
-> [!IMPORTANT]  
+> [!TIP]  
 > `minecraft:stick` can be any item you want. All custom items need to be based on an existing item.
 > We do not yet have the functionality to create our own item IDs. However, we can make use of the
 > `item_model` component to change the model or texture of an item as explained in

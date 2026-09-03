@@ -47,10 +47,10 @@ not come with mod or plugin support. Beyond datapacks, it is not customizable at
 | Designed with exclusively datapacks in mind     | Limited customizations  |
 | No additional bug fixes                         | No additional bug fixes |
 
-> [!IMPORTANT]  
+> [!TIP]  
 > For some, a lack of bug fixes can be both positive and negative. Mileage may vary!
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Even though the list mentions bad performace, the vanilla server still performs well. For small
 > servers on decent hardware, it doesn't really matter what you choose.
 

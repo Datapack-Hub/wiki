@@ -12,7 +12,7 @@ This guide is split into three parts, adding a custom smithing trim pattern, add
 smithing trim color palette and adding a custom trimmable item. These parts can be seperately
 without following each other.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This guide requires you to have at least a small understanding of datapacks. If you don't
 > understand this guide, you can read the [Getting Started guide](/guide/getting-started).
 

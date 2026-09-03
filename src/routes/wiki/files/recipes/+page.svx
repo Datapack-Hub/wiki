@@ -73,7 +73,7 @@ These fields are present in shaped crafting recipes.
 | `key`     | An object                           | A map of characters to ingredients. Determines what the characters in `pattern` represent. Each key is the character which represents it, and the value being an [ingredient](#ingredient).                                              |
 | `result`  | A [counted result](#counted-result) | The result of the recipe                                                                                                                                                                                                                 |
 
-> [!IMPORTANT]  
+> [!TIP]  
 > If the rows are less than three characters long, or there are fewer than three rows, the recipe
 > can be moved around the crafting grid. Recipes with two or fewer rows and columns can be crafting
 > in the 2x2 crafting grid in the inventory.
@@ -161,7 +161,7 @@ Represents possible ingredients for a recipe. Can be an item's
 [resource location](/wiki/concepts/resource-locations), the hash-prefixed resource location of an
 item tag (e.g. `#minecraft:logs`), or an array of valid item resource locations.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > Unfortunately, components cannot be detected for recipe ingredients (yet?)
 
 #### Single result
@@ -185,7 +185,7 @@ This file adds a shaped crafting recipe to craft bedrock out of beds and rock (s
 
 This file should be placed in the `data/<namespace>/recipe` folder.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > `minecraft:beds` is an [item tag](/wiki/files/tags) provided by Minecraft containing all colors of
 > beds.
 

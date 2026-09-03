@@ -1,37 +1,45 @@
----
-title: Home
-description:
-  "Learn how to build Minecraft datapacks with practical guides, clear command
-  references, and community-maintained documentation."
----
-
 <script lang="ts">
-import { page } from '$app/state';
-import SearchBox from '$lib/sidebar/SearchBox.svelte';
-import IconArrowDown from '~icons/tabler/arrow-down';
-import IconArrowRight from '~icons/tabler/arrow-right';
-import IconBraces from '~icons/tabler/braces';
-import IconCode from '~icons/tabler/code';
-import IconFiles from '~icons/tabler/folders';
-import IconBrandDiscord from '~icons/tabler/brand-discord';
-import IconGithub from '~icons/tabler/brand-github';
-import IconSparkles from '~icons/tabler/sparkles';
-
+  import { page } from "$app/state";
+  import SearchBox from "$lib/sidebar/SearchBox.svelte";
+  import IconArrowDown from "~icons/tabler/arrow-down";
+  import IconArrowRight from "~icons/tabler/arrow-right";
+  import IconBraces from "~icons/tabler/braces";
+  import IconCode from "~icons/tabler/code";
+  import IconFiles from "~icons/tabler/folders";
+  import IconBrandDiscord from "~icons/tabler/brand-discord";
+  import IconGithub from "~icons/tabler/brand-github";
+  import IconSparkles from "~icons/tabler/sparkles";
+  import Seo from "sk-seo";
 </script>
 
-<div class="home-landing not-prose">
+<Seo
+  title="Home - Datapack Wiki"
+  description="Learn how to build Minecraft datapacks with practical guides, clear command references, and community-maintained documentation."
+  author="Datapack Wiki"
+  siteName="Datapack Wiki"
+  keywords="datapacks, datapack wiki, datapack docs, minecraft datapacks, datapack help, datapack creation, dph"
+  name="Datapack Wiki"
+  schemaOrg={true}
+  canonical="https://datapack.wiki{page.url.pathname}"
+  socials={[
+    "https://discord.datapackhub.net",
+    "https://planetminecraft.com/group/datapack_hub/",
+    "https://github.com/Datapack-Hub",
+    "https://x.com/DatapackHub",
+    "https://instagram.com/datapackhub",
+  ]} />
+
+<div class="home-landing not-prose article-shell">
   <section class="home-hero" aria-labelledby="home-title">
     <header class="home-hero__heading">
-      <p class="home-eyebrow">
-        Minecraft Java · Community wiki
-      </p>
+      <p class="home-eyebrow">Minecraft Java · Community wiki</p>
       <h1 id="home-title">Datapacking Explained</h1>
     </header>
 
     <div class="home-hero__intro">
       <p class="home-hero__lede">
-        Guides, examples, and references for Minecraft Java data packs. Find
-        the information you need, troubleshoot problems, and get back to building.
+        Guides, examples, and references for Minecraft Java data packs. Find the information you need, troubleshoot
+        problems, and get back to building.
       </p>
 
       <div class="home-hero__search">
@@ -44,25 +52,22 @@ import IconSparkles from '~icons/tabler/sparkles';
         <span class="home-code-card__language">mcfunction</span>
         <span class="home-code-card__path">data/wiki/function/tick.mcfunction</span>
       </div>
-      <pre><code><span class="code-comment"># Run once every game tick</span>
-<span class="code-command">execute</span> <span class="code-keyword">as</span> @a <span class="code-keyword">run function</span> wiki:tick
-
+      <pre><code
+          ><span class="code-comment"># Run once every game tick</span>
+<span class="code-command">execute</span> <span class="code-keyword">as</span> @a <span class="code-keyword"
+            >run function</span> wiki:tick
 <span class="code-command">scoreboard</span> players add @s play_time <span class="code-number">1</span></code></pre>
       <div class="home-code-card__status">
         <span>
           <i></i>
           <span class="code-keyword">Data Pack Format:</span>
-          <span class="code-number">{page.data.packFormat}</span>
-          <span aria-hidden="true"> · </span>
+          <span class="code-number">{page.data.packFormat}</span> <span aria-hidden="true"> · </span>
           <span class="code-keyword">Resource Pack Format:</span>
           <span class="code-number">{page.data.resourcePackFormat}</span>
         </span>
-        <span class="home-code-card__version">
-          <span>Minecraft Java {page.data.gameVersion}</span>
-        </span>
+        <span class="home-code-card__version"> <span>Minecraft Java {page.data.gameVersion}</span> </span>
       </div>
     </div>
-
   </section>
 
   <a class="home-scroll-cue" href="#quick-links">
@@ -107,8 +112,8 @@ import IconSparkles from '~icons/tabler/sparkles';
       <p class="home-kicker">Open source, always</p>
       <h2 id="community-heading">Built by the people who use it.</h2>
       <p>
-        Every page is written and reviewed by datapackers. Ask a question on
-        Discord, fix a mistake, or add the guide you wish you’d had.
+        Every page is written and reviewed by datapackers. Ask a question on Discord, fix a mistake, or add the guide
+        you wish you'd had.
       </p>
     </div>
     <div class="home-community__actions">
@@ -120,5 +125,4 @@ import IconSparkles from '~icons/tabler/sparkles';
       </a>
     </div>
   </section>
-
 </div>

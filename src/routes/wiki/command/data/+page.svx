@@ -29,6 +29,7 @@ After fetching the NBT at the path, if it exists, it prints the data in
 [SNBT](/wiki/nbt-scoreboards/nbt#snbt-format) format in the chat. Therefore, its main use is
 manually inspecting NBT data. However, it also returns the integer representation
 <!-- TODO: we probably want to explain ths somewhere --> of the fetched data, so it can be used in
+
 combination with `execute store` or `return run` to convert NBT into an integer.
 
 #### Examples

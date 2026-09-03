@@ -68,7 +68,7 @@
   <SidebarPage label="Introduction" icon={IconItem} page="/guide/adding-new-features/custom-items/intro" />
   <SidebarPage label="Custom Item Recipes" icon={IconGrid} page="/guide/adding-new-features/custom-items/crafting" />
   <SidebarPage
-    label="Custom Item Models and Textures"
+    label="Item Models and Textures"
     icon={IconPhotoPlus}
     page="/guide/adding-new-features/custom-items/models" />
 </SidebarCategory>

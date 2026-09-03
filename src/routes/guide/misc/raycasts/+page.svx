@@ -12,7 +12,7 @@ version: 26.2
 Raycasting is when we shoot a line from the player's eyes in the direction they are looking. We use
 this to get what the player is looking at and do something to it, such as spawning an explosion.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This tutorial uses a neat thing called a **_recursive function_**. A recursive function is a
 > function that runs itself over and over again.
 

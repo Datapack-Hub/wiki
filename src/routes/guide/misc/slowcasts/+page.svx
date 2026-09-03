@@ -17,7 +17,7 @@ this could result in skipping over entities or blocks you might want to detect.
 A slowcast solves this problem by teleporting multiple times within a single tick to travel faster
 but still checking if it hits something on its way.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This tutorial uses a thing called a **_recursive function_**. A recursive function is a function
 > that runs itself over and over again.
 

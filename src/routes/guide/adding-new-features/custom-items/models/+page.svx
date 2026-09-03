@@ -75,11 +75,19 @@ When you have your model and texture file, you will have to place your model in 
 `assets/namespace/textures/item/your_item.json`. You can use any name, but it makes sense to keep it
 lowercase and with underscores (**\_**) instead of spaces.
 
-- Textures
-
 Your model file will now probably look like this:
 
-![JSON of the model file](/images/guides/models/model-file-json.png)
+```json
+{
+  "format_version": "1.21.11",
+  "credit": "Made with Blockbench",
+  "texture_size": [16, 16],
+  "textures": {
+    "0": "texture",
+    "particle": "texture"
+  }
+}
+```
 
 Replace all the values inside the `textures` bracket with `namespace:item/your_texture`.
 
@@ -108,7 +116,7 @@ You can now add your texture to any item using this command:
 /give @s <any_item> [item_model="namespace:your_item"]
 ```
 
-> [!IMPORTANT]  
+> [!TIP]  
 > This command can also be used to change the texture of any item to another vanilla item texture
 > without a resource pack nor a data pack using a command like this:
 >
@@ -127,6 +135,6 @@ your custom model/texture like this:
 /summon item_display ~ ~ ~ {item:{id:"minecraft:paper",count:1,components:{"minecraft:item_model":"namespace:your_item"}}}
 ```
 
-> [!IMPORTANT]  
+> [!TIP]  
 > In Minecraft: Java Edition, there is no good or simple way to animate your models. The best you
 > can do is using multiple item displays and teleporting them/changing their `transformation` data.

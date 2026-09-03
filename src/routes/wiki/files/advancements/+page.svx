@@ -72,7 +72,7 @@ criteria have been achieved.
 Each criteria object contains a `trigger` and `conditions` fields. There are many different
 `trigger`s that can be used, the contents of `conditions` depends on which `trigger` is used.
 
-> [!IMPORTANT]  
+> [!TIP]  
 > The `player` condition can exist with any advancement trigger (except `minecraft:impossible`).
 > This condition can either be an object (an `entity_properties` predicate) or a list of other
 > predicates (any predicate type) to further match the player.

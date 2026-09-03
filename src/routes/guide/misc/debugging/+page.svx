@@ -38,10 +38,9 @@ Syntax errors will show up in **red text** when you `/reload` your datapack. But
 errors can also show in **yellow text** instead.
 
 Lets take this image as an example:
-![Output log with an error.](/images/guides/debugging/output-log-error.png) Here, the
-error tells you exactly where the error is - in this case it's in the function
-"be:give" at line 1 after ".... give @s". And indeed I did spell "loot" as
-"lot", which caused the error.
+![Output log with an error.](/images/guides/debugging/output-log-error.png) Here, the error tells
+you exactly where the error is - in this case it's in the function "be:give" at line 1 after "....
+give @s". And indeed I did spell "loot" as "lot", which caused the error.
 ![Code with a syntax error](/images/guides/debugging/code-syntax-error.png)
 
 ## Finding logic errors

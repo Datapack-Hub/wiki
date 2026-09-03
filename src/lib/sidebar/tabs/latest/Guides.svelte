@@ -43,7 +43,7 @@
   import IconMathMaxMin from "~icons/tabler/math-max-min";
   import IconCat from "~icons/tabler/cat";
   import IconBaguette from "~icons/tabler/baguette";
-  import IconPick from '~icons/tabler/pick';
+  import IconPick from "~icons/tabler/pick";
   import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -70,7 +70,7 @@
   <SidebarPage label="Introduction" icon={IconItem} page="/guide/adding-new-features/custom-items/intro" />
   <SidebarPage label="Custom Item Recipes" icon={IconGrid} page="/guide/adding-new-features/custom-items/crafting" />
   <SidebarPage
-    label="Custom Item Models and Textures"
+    label="Custom Item Models & Textures"
     icon={IconPhotoPlus}
     page="/guide/adding-new-features/custom-items/models" />
 </SidebarCategory>
@@ -91,7 +91,10 @@
   <SidebarPage label="Player ID System" icon={IconID} page="/guide/nbt-and-scores/player-id-system" />
   <SidebarPage label="Floating Point Division" icon={IconDivide} page="/guide/nbt-and-scores/division" />
   <SidebarPage label="Array Iteration" icon={IconList} page="/guide/nbt-and-scores/array-iteration" />
-  <SidebarPage label="Default Item Components" icon={IconPick} page="/guide/nbt-and-scores/get-default-item-components" />
+  <SidebarPage
+    label="Default Item Components"
+    icon={IconPick}
+    page="/guide/nbt-and-scores/get-default-item-components" />
 </SidebarCategory>
 
 <SidebarCategory name="Performance" icon={IconBrandSpeedtest} activePath="/guide/performance">
