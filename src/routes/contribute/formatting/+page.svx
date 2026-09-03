@@ -1,162 +1,359 @@
 ---
-title: "Page Formatting"
+title: "Page Structure & Formatting"
 description:
-  "This page is an introduction to formatting page content, and details about
-  how the wiki handles formatting."
+  "How to create, structure, format, illustrate, and add a Datapack Wiki page
+  to the site navigation."
+tags: contribution, writing, formatting, images
 ---
 
 <script lang="ts">
-import {Version, TreeRoot, TreeEntry, Highlight} from '$lib/reusables';
+  import { Highlight } from "$lib/reusables";
 </script>
 
-# Page Formatting
+# Page Structure & Formatting
 
-**Last Updated:** 05-26-2026
+This guide explains how to structure a wiki page, add its metadata, include
+images and links, format its content, and place it in the sidebar.
 
-This section goes over how we format wiki pages. We like to be consistent, so
-please read through this section carefully and use these features to your
-advantage:
+If you are new to Git or pull requests, read [Git Practices](/contribute/git-practices)
+alongside this page.
 
-## Basic Writing Guidelines
+:::note
 
-When writing for the wiki, write in a way that is easy to understand and easy
-for _beginners_ to understand. Put yourself in the viewer's shoes. _What
-confused you when you first learned about the topic? What new terms did you
-learn?_ Avoid using technical terms without explaining them or point to a
-resource that explains them.
+You do not need to understand Svelte to write most pages. Markdown and a small
+amount of MDsveX syntax are enough for almost all contributions.
 
-Documentation and tutorials are a great way to learn, but sometimes you don't
-need to read every part of a page to understand it. When writing for the wiki,
-write in a way that makes it easy to scan and understand quickly. Some
-recommendations are using white space to your advantage to break your page into
-easily digestible chunks.
+:::
 
-When learning a concept, it is helpful to have concrete examples that people can
-refer to instead of just using a concept. This will help wiki-goers understand
-the concept better and make it easier to remember.
+## Where Pages Live
 
-### Writing Style
+Every page is a `+page.svx` file inside `src/routes`. Its folders become the
+page's URL:
 
-The datapacking community is a diverse group of people with different
-backgrounds; many people don't speak English as their first language or may feel
-intimidated!
+| Page type   | File                                                      | URL                            |
+| ----------- | --------------------------------------------------------- | ------------------------------ |
+| Wiki        | `src/routes/wiki/<category>/<page-slug>/+page.svx`        | `/wiki/<category>/<page-slug>` |
+| Guide       | `src/routes/guide/<category>/<page-slug>/+page.svx`       | `/guide/<category>/<page-slug>` |
 
-When writing, **try** to follow these guidelines:
+Use lowercase, descriptive, kebab-case folder names such as
+`custom-worldgen` or `installing-a-datapack`.
 
-1. Use the active voice. For example, instead of
-   `The pig is teleported by the command`, write
-   `The command teleported the pig`.
-2. Don't use unnecessary adverbs or adjectives
-3. Try not to use the words: _obvious, simple, basic, easy, actual, just,
-   clear,_ and _however_, as these can come off as intimidating; our goal is to
-   teach, not degrade
-4. Explicitly reference what you are explaining (don't do: "it says", do: "the
-   player says")
-5. Use `'s` for indicating possession
-6. Use the ["Oxford comma"](https://simple.wikipedia.org/wiki/Serial_comma)
+For example:
 
-## Technical information
+```
+src/
+└── routes/
+    └── guide/
+        └── getting-started/
+            └── +page.svx
+```
 
-All content on the website (except a few small exceptions) are made using a
-technology called `mdsvex`. This technology enables people like you to insert
-Markdown with [svelte components](https://svelte.dev). For most wiki writers,
-this detail is not important and can be ignored
+That file is served at `/guide/getting-started`.
 
-It is recommended to know what the proper way to format Markdown is in order to
-stay consistent and prevent confusion.
+## Starting a Page
 
-- The front matter title is the same as the title in the sidebar and the title
-  on the page (heading 1 or single `#`)
-- Use bold and italics sparingly and only when emphasis is needed
-- Use headings to break up the page into sections
-- Code blocks are used to show code snippets or commands
-- [Admonitions](#custom-elements) are used to show important information
-  unrelated to the content of the page
-- Tables are used to show large amounts of data
+A page has three parts:
 
-Each page is made of 3 parts:
+1. **Frontmatter** containing metadata such as its title and description.
+2. **Content** written primarily in Markdown.
+3. **Optional components** for features Markdown cannot provide by itself.
 
-- front matter (metadata about the page such as title, description, tags,
-  version, etc.)
-- content (the actual content of the page)
-- components (custom components that allow for interactivity or other features
-  not able to be reproduced with markdown)
+Use this as a starting point:
 
-Each is crucial to making the page look and feel how it does.
+```md
+---
+title: "Example Page"
+description:
+  "A short, plain-language summary of what readers will learn on this page."
+tags: guide, example
+version: "26.2"
+---
+
+<script lang="ts">
+  // Import only components used by this page.
+  import { Discord, Highlight } from "$lib/reusables";
+</script>
+
+# Example Page
+
+Introduce the topic and explain what the reader will learn.
+
+## First Section
+
+Start the page content here.
+```
 
 ### Frontmatter
 
-We try to keep the front matter as minimal as possible, but it is still
-required. Without it, the page will not display correctly on search engines or
-other sites. The front matter for this page looks like this:
+Frontmatter sits between the two `---` lines at the very top of the file.
+
+- `title` is required and is used in browser and search metadata.
+- `description` is required and should briefly explain what the page covers.
+- `version` is optional. Use the latest Minecraft Java version against which
+  the page was checked, and quote it as a string, such as `"26.2"`.
+- `tags` is optional. Write it as one comma-separated line, not a YAML list.
+
+The frontmatter title, page `# Heading`, and sidebar label should closely match.
+Do not import or add the `Version` component yourself. When `version` is
+present, the site automatically adds the version notice above the article.
+
+### Page Content
+
+Start with one `#` heading and a short introduction. Organise longer content
+with `##` sections and `###` subsections. Use components only when Markdown is
+not enough, and import only the components the page actually uses.
+
+## Linking to Pages and Sections
+
+Use site-root-relative URLs. Link to the public page URL, not its `.svx` file:
 
 ```md
-title: "Site Development" description: "This page is meant to be an introduction
-to formatting a page for the wiki. In it is multiple examples which you can
-examine raw in the [site source code](https://github.com/Datapack-Hub/wiki)."
-version: 26.2
+[Functions](/wiki/files/functions)
+[Macro functions](/wiki/files/functions#macro-functions)
+[The images section](#images)
 ```
 
-Front matter is denoted with triple hyphens (`---`) at the top of the page and
-the end of the front matter.
+Headings automatically receive IDs. A heading such as `## Adding the Page to
+Navigation` can be linked as `#adding-the-page-to-navigation`.
 
-- The `title` should be the same as the title in the sidebar in order to reduce
-  confusion.
-- The `description` should be a short summary of the content of the page in
-  order to show people what all is covered in the article.
-- The `version` should be set to the latest version that the page has been and
-  works in. If the page works in 1.21.4 but not in 1.21.5 or later, this should
-  be set to 1.21.4.
+Use normal external URLs when linking to another website. External destinations
+are fine; externally hosted article images are not the preferred approach.
 
-### Custom Elements
+## Images
 
-Our markdown system adds unlimited customizability to the way we format our
-pages. As of the time of writing, we have the following features:
+Store images used by an article in `static/images`, grouped by the part of the
+site and the page that owns them:
 
-- Admonitions
-- Code Titles
-- MCFunction Formatting _(Thanks Snave!)_
-- Highlighting
+```
+static/images/guides/<page-slug>/<filename>.png
+static/images/wiki/<page-slug>/<filename>.png
+```
 
-Admonitions are a way to warnings, info or tips, or other important information
-to your page.
+Add another route folder when it helps avoid ambiguous names. For example:
 
-:::info
+```
+static/images/guides/smithing-trims/example-template.png
+```
 
-This is an example of an info box.
+Files inside `static` are served from the root of the website. The file above
+is therefore referenced as `/images/guides/smithing-trims/example-template.png`.
+Do not include `static` in the URL, use `../` paths, or link to a path on your
+computer.
 
-:::
+### File Names and Formats
+
+- Use descriptive, lowercase, kebab-case names such as `datapack-enabled.png`.
+- Avoid names such as `image.png`, spaces, and opaque upload IDs.
+- Use lowercase file extensions.
+- Keep screenshots at a useful resolution, but compress unnecessarily large
+  files before committing them.
+- Only commit an image when the project is allowed to redistribute it.
+
+Do not hotlink embedded article images from Imgur, Postimages, or similar
+services. Download an image the project is allowed to use, place it in the
+appropriate `static/images` folder, and commit it with the page. If its licence
+is unclear, link to the original source instead of copying it.
+
+### Adding a Normal Image
+
+For screenshots and ordinary illustrations, use Markdown:
 
 ```md
-:::info
-
-This is an example of an info box.
-
-:::
+![The Data Packs screen with the new pack enabled](/images/guides/installing-a-datapack/datapack-enabled.png)
 ```
 
-Code blocks are a way to format code in your page. These code blocks come with
-the option to add a title to the code block for clarity. The Datapack Wiki
-supports syntax highlighting for MCFunction which should be used for code
-samples whenever possible.
+Markdown images automatically receive the site's responsive sizing, cut-out
+corners, and frame. You do not need to import an image component for them.
 
-```js:example.js
-function example() {
-  console.log("Hello World!");
+Write alt text that explains the useful information visible in context. Avoid
+phrases such as “image of” and do not use the filename as alt text. Use empty
+alt text (`![](...)`) only when an image is genuinely decorative.
+
+### Images With a Custom Width
+
+Import `ArticleImage` only when an image needs additional properties, such as a
+controlled width:
+
+```md
+<script lang="ts">
+  import ArticleImage from "$lib/reusables/ArticleImage.svelte";
+</script>
+
+<ArticleImage
+  src="/images/guides/smithing-trims/example-template.png"
+  alt="Grayscale example texture for a humanoid smithing trim"
+  width="300"
+/>
+```
+
+Omit `width` for normal screenshots so they can use the available article
+width. Do not set a fixed height; the shared component preserves the image's
+aspect ratio.
+
+For genuine Minecraft pixel art, add pixelated rendering:
+
+```md
+<ArticleImage
+  src="/images/guides/smithing-trims/example-template.png"
+  alt="Grayscale example texture for a humanoid smithing trim"
+  width="300"
+  style="image-rendering: pixelated; image-rendering: crisp-edges;"
+/>
+```
+
+Do not apply pixelated rendering to screenshots, diagrams, or photographs, and
+avoid raw `<img>` elements in article content because they bypass the shared
+image treatment.
+
+## Adding the Page to Navigation
+
+Creating a route does not automatically add it to the sidebar. Wiki and guide
+navigation is versioned, so edit the appropriate files:
+
+```
+src/lib/sidebar/tabs/latest/WikiPages.svelte
+src/lib/sidebar/tabs/latest/Guides.svelte
+src/lib/sidebar/tabs/pre-1_21_11/WikiPages.svelte
+src/lib/sidebar/tabs/pre-1_21_11/Guides.svelte
+```
+
+Add a page to both version trees when it applies to both. If a feature only
+exists in the latest version, add it only to the latest tree. Contribution
+pages are shared and are added directly in `src/lib/sidebar/Sidebar.svelte`.
+
+Import an icon from [Tabler Icons](https://tabler.io/icons), then add a
+`SidebarPage` to the appropriate category:
+
+```md
+import IconExample from "~icons/tabler/file-description";
+
+<SidebarCategory
+  name="Concepts"
+  icon={IconConcepts}
+  activePath="/wiki/concepts"
+>
+  <SidebarPage
+    label="Example Page"
+    icon={IconExample}
+    page="/wiki/concepts/example-page"
+  />
+</SidebarCategory>
+```
+
+The category's `activePath` keeps it open while one of its pages is selected
+and highlights its icon when the sidebar is collapsed. It can be one route
+prefix or an array when a category contains unrelated routes:
+
+```md
+activePath={["/guide/installing-a-datapack", "/guide/choosing-a-server"]}
+```
+
+If you are not sure where a page belongs, mention that in your pull request and
+a maintainer can place it.
+
+## Writing Guidelines
+
+Write for readers who may be new to datapacking or who may not speak English as
+their first language.
+
+- Define unfamiliar terms or link to a page that explains them.
+- Use concrete examples rather than describing a concept only in the abstract.
+- Make pages easy to scan with headings, short paragraphs, lists, and useful
+  whitespace.
+- Prefer active voice. For example, write “The command teleports the pig”
+  instead of “The pig is teleported by the command.”
+- Explicitly name the subject instead of relying on vague words such as “it”.
+- Avoid words such as _obvious_, _simple_, _basic_, _easy_, and _just_ when
+  they could dismiss a reader's difficulty.
+- Use the [Oxford comma](https://simple.wikipedia.org/wiki/Serial_comma).
+- Check spelling and grammar before submitting the page.
+
+Use bold and italics sparingly. Put commands, identifiers, file paths, and
+short code values in inline code. Use tables only for genuinely tabular data.
+
+## Formatting Reference
+
+The site uses MDsveX, which combines Markdown with Svelte components. Most
+pages need only the following features.
+
+### Admonitions
+
+Use an admonition for supporting information that should stand apart from the
+main explanation. Available types are `note`, `tip`, `warning`, and `info`.
+
+````md
+:::info
+
+Supporting information goes here.
+
+:::
+````
+
+Do not use an admonition for every paragraph; it should remain a meaningful
+visual interruption.
+
+### Code Blocks and Titles
+
+Fenced code blocks support syntax highlighting for `mcfunction`, `json`, `md`,
+and `javascript`. Add a filename after the language to give the block a title:
+
+````md
+```json:pack.mcmeta
+{
+  "pack": {
+    "pack_format": 107.1,
+    "description": "Example datapack"
+  }
 }
 ```
+````
 
-Highlighting is a way to highlight specific text. It isn't commonly used, but
-exists.
+Use an unlabelled code fence if the language is not supported. Keep examples
+focused and explain the important lines in the surrounding text.
 
-> <Highlight color="#DC2626">Highlighted Text</Highlight> like this.
+### Highlighted Text
 
-```js
-<Highlight color="#DC2626">Highlighted Text</Highlight>
+The `Highlight` component can associate a short label with a colour when the
+colour itself carries meaning:
+
+<Highlight color="#DC2626">Website</Highlight>
+
+```md
+<script lang="ts">
+  import { Highlight } from "$lib/reusables";
+</script>
+
+<Highlight color="#DC2626">Website</Highlight>
 ```
 
-## Standardized Elements
+Use it sparingly and never rely on colour alone to communicate information.
 
-The wiki uses a few elements that are standardized across the entire wiki. Right
-now this only consists of command syntax. You can find the command syntax we use
-in the [commands page](/wiki/command/all).
+For standard command notation, follow the examples on the
+[Commands page](/wiki/concepts/commands).
+
+## Before Opening a Pull Request
+
+Check the page in the site, including at a narrow screen width, then run:
+
+```
+npx prettier --write path/to/changed/files
+git diff --check
+npm run check
+npm run build
+```
+
+Before submitting, confirm that:
+
+- the route, title, heading, and sidebar label agree;
+- internal links and heading links work;
+- local image paths use the correct filename and letter case;
+- every informative image has useful alt text;
+- code blocks do not overflow or hide important content; and
+- the page is readable on both desktop and mobile.
+
+Do not manually edit generated search files. If the search index needs to be
+regenerated, leave that step to the current maintainer workflow.
+
+Need help with Markdown, images, or deciding where a page belongs? Ask in the
+[Datapack Hub Discord](https://discord.datapackhub.net) or describe the issue in
+your pull request.

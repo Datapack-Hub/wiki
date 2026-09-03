@@ -24,7 +24,11 @@ for await (const file of matchingFiles) {
   log.info("Transforming", file);
   const frontmatter = matter(rawContent); // parse markdown front matter
 
-  const filePath = file.slice(0, -9).slice(2); // remove the file name and extension and leading slash
+  const filePath = file
+    .replaceAll("\\\\", "/")
+    .replace(/^\.\/?/, "")
+    .replace(/^src\/routes\/?/, "")
+    .replace(/\/?\+page\.svx$/, "");
 
   // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
@@ -33,17 +37,11 @@ for await (const file of matchingFiles) {
     .replaceAll(/:::/g, "") // remove admonitions
     .replaceAll(/[^\S\r\n]{2,}/g, ""); // remove extra spaces
 
-  const tags = frontmatter.data.tags || "";
-
   posts.push({
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
-    url: "/" + filePath,
-    tags: tags
-      .split(",")
-      .map(el => el.trim())
-      .filter(String),
+    url: filePath ? "/" + filePath + "/" : "/",
   });
 }
 

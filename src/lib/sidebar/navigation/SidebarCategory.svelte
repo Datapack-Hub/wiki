@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { page } from "$app/state";
   import { windowInfo } from "$lib/stores.svelte";
   import type { Snippet } from "svelte";
   import IconExpand from "~icons/tabler/chevron-right";
@@ -7,24 +8,48 @@
     name: string;
     icon: any;
     children: Snippet;
+    activePath?: string | string[];
   };
 
-  const { children, name, icon }: Props = $props();
+  const { children, name, icon, activePath }: Props = $props();
 
   const Icon = $derived(icon);
+
+  function matchesActivePath(pathname: string) {
+    const paths = typeof activePath === "string" ? [activePath] : (activePath ?? []);
+
+    return paths.some(path => pathname === path || pathname.startsWith(`${path}/`));
+  }
+
+  const isActive = $derived(matchesActivePath(page.url.pathname));
+  let isOpen = $state(matchesActivePath(page.url.pathname));
+
+  $effect(() => {
+    if (isActive) isOpen = true;
+  });
+
+  function handleSummaryClick(event: MouseEvent) {
+    if (!windowInfo.isNavOpen) {
+      event.preventDefault();
+      windowInfo.isNavOpen = true;
+      isOpen = true;
+    }
+  }
 </script>
 
-<details ontoggle={() => (windowInfo.isNavOpen = true)} class="w-full group marker:hidden">
+<details bind:open={isOpen} class="nav-category" name="sidebar-category">
   <summary
-    class="rounded-lg cursor-pointer p-1 flex gap-2 items-center text-left hover:bg-stone-700 hover:text-white hover:font-medium marker:hidden focus-visible:outline-2 focus-visible:outline-dph-orange">
+    class="nav-item"
+    class:nav-item--active={isActive && !windowInfo.isNavOpen}
+    aria-label={windowInfo.isNavOpen ? undefined : name}
+    title={windowInfo.isNavOpen ? undefined : name}
+    onclick={handleSummaryClick}>
     <Icon />
-    {#if windowInfo.isNavOpen}
-      <p class="grow">{name}</p>
-      <IconExpand class="motion-safe:transition-all group-open:rotate-90 rotate-0 select-none" />
-    {/if}
+    <span class="nav-category__label">{name}</span>
+    <IconExpand class="nav-category__chevron" />
   </summary>
   {#if windowInfo.isNavOpen}
-    <div class="flex flex-col ml-4 pb-2">
+    <div class="nav-category__children">
       {@render children()}
     </div>
   {/if}
