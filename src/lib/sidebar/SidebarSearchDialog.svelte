@@ -79,7 +79,11 @@
       placeholder="Search for a page..."
       bind:this={diagInput}
       bind:value={searchTerm} />
-    <span class="search-dialog__escape" aria-hidden="true">ESC</span>
+    <button
+      type="button"
+      class="search-dialog__escape"
+      aria-label="Close search"
+      onclick={() => dialog.close()}>ESC</button>
   </div>
 
   <div class="search-dialog__results">

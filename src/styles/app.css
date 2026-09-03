@@ -777,7 +777,12 @@ mark {
     background: var(--surface-raised);
     padding: 0.2rem 0.4rem;
     color: var(--text-muted);
+    cursor: pointer;
     font-size: 0.68rem;
+}
+
+.search-dialog__escape:hover {
+    color: var(--text-primary);
 }
 
 .search-dialog__results {
