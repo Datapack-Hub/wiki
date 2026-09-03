@@ -29,7 +29,7 @@ down, this is all due to low TPS.
 
 You can toggle the [TPS graph](https://minecraft.wiki/w/Debug_screen#TPS_graph) using `F3 + 2`. 
 
-![TPS graph showcase](https://i.postimg.cc/L4Bx7N4M/Cn-P-05082025-214044.png)
+![TPS graph showcase](/images/guides/how-to-measure/tps-graph.png)
 
 Graph shows the last 240 ticks, each tick represented as a thin colored line.
 There are a total of 4 possible colors, stacked onto each other like layers.
@@ -129,7 +129,7 @@ the result.
 
 ### Reading Results
 
-![Benchmark Results](https://i.postimg.cc/1zMR54Fz/Cn-P-05082025-232103.png)
+![Benchmark Results](/images/guides/how-to-measure/benchmark-results.png)
 
 With the previously mentioned setup, and a total of 300 armor stands in the
 world, these are the results i ended up with. Yellow number is the amount of

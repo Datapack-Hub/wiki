@@ -5,7 +5,7 @@
   import SidebarHeading from "$lib/sidebar/navigation/SidebarHeading.svelte";
 
   // Icon imports
-  // https://tabler.io
+  // https://tabler-icons.io
   // import Icon<whatever name> from "~icons/tabler/<icon ID>"
   import IconHome from "~icons/tabler/home";
   import IconPennant from "~icons/tabler/pennant";
@@ -43,22 +43,24 @@
   import IconMathMaxMin from "~icons/tabler/math-max-min";
   import IconCat from "~icons/tabler/cat";
   import IconBaguette from "~icons/tabler/baguette";
-  import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
   import IconPick from '~icons/tabler/pick';
+  import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
 </script>
 
 <!-- ADD PAGES AND CATEGORIES BELOW -->
 
-<SidebarPage label="Home" icon={IconHome} page="/" />
 <SidebarPage label="Getting Started" icon={IconPennant} page="/guide/getting-started" />
 
-<SidebarCategory name="Datapack Meta" icon={IconZip}>
+<SidebarCategory
+  name="Datapack Meta"
+  icon={IconZip}
+  activePath={["/guide/installing-a-datapack", "/guide/choosing-a-server", "/guide/mcf-vs-code"]}>
   <SidebarPage label="Installing Datapacks" icon={IconDownload} page="/guide/installing-a-datapack" />
   <SidebarPage label="Choosing a Server" icon={IconServer} page="/guide/choosing-a-server" />
   <SidebarPage label="MCFunction vs Code" icon={IconDifference} page="/guide/mcf-vs-code" />
 </SidebarCategory>
 
-<SidebarCategory name="Adding new features" icon={IconNew}>
+<SidebarCategory name="Adding new features" icon={IconNew} activePath="/guide/adding-new-features">
   <SidebarPage label="Jukebox Songs" icon={IconMusic} page="/guide/adding-new-features/jukebox-songs" />
   <SidebarPage label="Painting Variants" icon={IconPainting} page="/guide/adding-new-features/painting-variants" />
   <SidebarPage label="Smithing Trims" icon={IconDiamond} page="/guide/adding-new-features/smithing-trims" />
@@ -67,10 +69,13 @@
   <SidebarHeading label="Custom Items" />
   <SidebarPage label="Introduction" icon={IconItem} page="/guide/adding-new-features/custom-items/intro" />
   <SidebarPage label="Custom Item Recipes" icon={IconGrid} page="/guide/adding-new-features/custom-items/crafting" />
-  <SidebarPage label="Custom Item Models and Textures" icon={IconPhotoPlus} page="/guide/adding-new-features/custom-items/models" />
+  <SidebarPage
+    label="Custom Item Models and Textures"
+    icon={IconPhotoPlus}
+    page="/guide/adding-new-features/custom-items/models" />
 </SidebarCategory>
 
-<SidebarCategory name="Right Click Detection" icon={IconMouse}>
+<SidebarCategory name="Right Click Detection" icon={IconMouse} activePath="/guide/right-click">
   <SidebarPage label="Summary" icon={IconPennant} page="/guide/right-click" />
 
   <SidebarHeading label="Techniques" />
@@ -81,7 +86,7 @@
   <SidebarPage label="Interaction Entity" icon={IconSelection} page="/guide/right-click/interaction" />
 </SidebarCategory>
 
-<SidebarCategory name="NBT and Scores" icon={IconScoreboard}>
+<SidebarCategory name="NBT and Scores" icon={IconScoreboard} activePath="/guide/nbt-and-scores">
   <SidebarPage label="Random Numbers" icon={IconDice} page="/guide/nbt-and-scores/random-numbers" />
   <SidebarPage label="Player ID System" icon={IconID} page="/guide/nbt-and-scores/player-id-system" />
   <SidebarPage label="Floating Point Division" icon={IconDivide} page="/guide/nbt-and-scores/division" />
@@ -89,19 +94,19 @@
   <SidebarPage label="Default Item Components" icon={IconPick} page="/guide/nbt-and-scores/get-default-item-components" />
 </SidebarCategory>
 
-<SidebarCategory name="Performance" icon={IconBrandSpeedtest}>
+<SidebarCategory name="Performance" icon={IconBrandSpeedtest} activePath="/guide/performance">
   <SidebarPage label="How to Measure Performance" icon={IconRuler2} page="/guide/performance/how-to-measure" />
   <SidebarPage label="Write Optimized Code" icon={IconMathMaxMin} page="/guide/performance/write-optimized-code" />
 </SidebarCategory>
 
-<SidebarCategory name="Datapacks for Mods" icon={IconCoffee}>
+<SidebarCategory name="Datapacks for Mods" icon={IconCoffee} activePath="/guide/datapacks-for-mods">
   <SidebarPage label="Mods vs Datapacks" icon={IconVersus} page="/guide/datapacks-for-mods/mods-vs-datapacks" />
   <SidebarPlaceholder label="Create" icon={IconBuilding} />
   <SidebarPlaceholder label="Farmer's Delight" icon={IconCottage} />
   <SidebarPlaceholder label="Twilight Forest" icon={IconTrees} />
 </SidebarCategory>
 
-<SidebarCategory name="Misc" icon={IconBrackets}>
+<SidebarCategory name="Misc" icon={IconBrackets} activePath="/guide/misc">
   <SidebarPage label="Debugging" icon={IconBug} page="/guide/misc/debugging" />
   <SidebarPage label="Raycasts" icon={IconArrow} page="/guide/misc/raycasts" />
   <SidebarPage label="Slowcasts" icon={IconArrow} page="/guide/misc/slowcasts" />

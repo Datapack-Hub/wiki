@@ -16,37 +16,37 @@ which exists, a new world.
 
 1. In your world menu, find the world which you want to install the datapack on.
    Click **Edit**.
-   ![The singleplayer menu](https://dph.tixte.co/r/install_guide_1.png)
+   ![The singleplayer menu](/images/guides/installing-a-datapack/singleplayer-menu.png)
 2. Open the world folder.
-   ![The edit menu](https://dph.tixte.co/r/install_guide_2.png)
+   ![The edit menu](/images/guides/installing-a-datapack/edit-world-menu.png)
 3. In the world folder, open the `datapacks` folder.
-   ![World folder with datapacks highlighted](https://dph.tixte.co/r/install_guide_3.png)
+   ![World folder with datapacks highlighted](/images/guides/installing-a-datapack/world-datapacks-folder.png)
 4. Put the datapack zip file into the folder.
-   ![zip folder in datapacks folder](https://dph.tixte.co/r/install_guide_4.png)
+   ![zip folder in datapacks folder](/images/guides/installing-a-datapack/datapack-zip-in-folder.png)
    > If the zip folder contains a folder which contains `data` and
    > `pack.mcmeta`, then put that folder in the datapacks folder instead of the
    > full zip. Putting the zip in the datapacks folder **only works** when
    > `data` and `pack.mcmeta` are directly in the root folder of the zip.
 5. Rejoin the world and run /reload.
-   ![Reload command in chat](https://dph.tixte.co/r/install_guide_5.png)
+   ![Reload command in chat](/images/guides/installing-a-datapack/reload-command-chat.png)
 
 ## Installing a datapack to a new world
 
 1. Go to the Create New World screen. Make sure that you enable cheats.
-   ![Create new world screen](https://dph.tixte.co/r/install_guide_6.png)
+   ![Create new world screen](/images/guides/installing-a-datapack/create-new-world-screen.png)
 2. Navigate to the Data Packs screen. This is under the "More" tab in the latest
    versions.
-   ![The Data Packs screen option](https://dph.tixte.co/r/install_guide_7.png)
+   ![The Data Packs screen option](/images/guides/installing-a-datapack/data-packs-option.png)
 3. Drag and drop the datapack zip into this screen.
-   ![The Data Packs screen after I dragged and dropped something in](https://dph.tixte.co/r/install_guide_8.png)
+   ![The Data Packs screen after I dragged and dropped something in](/images/guides/installing-a-datapack/datapack-dragged-into-screen.png)
    > If it doesn't show up, then it's likely that the zip file contains a folder
    > which contains the datapack, and not the zip file just containing the
    > datapack. You need to take the folder out of the datapack, and put it in
    > the datapacks folder (click the "Open Packs Folder" button to open it.)
 4. Click on the datapack icon to apply it to the world.
-   ![The Data Packs screen after I clicked the icon](https://dph.tixte.co/r/install_guide_9.png)
+   ![The Data Packs screen after I clicked the icon](/images/guides/installing-a-datapack/datapack-enabled.png)
 5. Create the world, and then run `/reload` in chat.
-   ![Reload command in chat](https://dph.tixte.co/r/install_guide_5.png)
+   ![Reload command in chat](/images/guides/installing-a-datapack/reload-command-chat.png)
 
 ## Installing a datapack to a realm
 

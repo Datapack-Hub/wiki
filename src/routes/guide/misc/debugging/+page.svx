@@ -37,7 +37,7 @@ check it. You can open the logs by opening the default Minecraft launcher and
 clicking "Settings", and then enabling "Open output log when Minecraft: Java
 Edition starts", then just starting the game.
 
-![A guide on how to open the Minecraft launchers output logs](https://i.postimg.cc/NFxkZV2g/image.png)
+![A guide on how to open the Minecraft launchers output logs](/images/guides/debugging/open-launcher-output-logs.png)
 
 Syntax errors will show up in **red text** when you `/reload` your datapack. But
 sometimes other errors can also show in **yellow text** instead.
@@ -47,7 +47,7 @@ Let's take this image as an example:
 error tells you exactly where the error is - in this case it's in the function
 "be:give" at line 1 after ".... give @s". And indeed I did spell "loot" as
 "lot", which caused the error.
-![Code with a syntax error](https://i.postimg.cc/fL9HqBvL/image.png)
+![Code with a syntax error](/images/guides/debugging/code-syntax-error.png)
 
 ## Finding logic errors
 
@@ -107,7 +107,7 @@ only ones, you can use the `/scoreboard objectives setdisplay <objective>`
 command to show the values of a scoreboard on your screen in real-time, or you
 can use `/data get ...`, which will print the value of any NBT data in chat.
 
-![A scoreboard on screen](https://i.postimg.cc/HWQm72Vp/image.png)
+![A scoreboard on screen](/images/guides/debugging/scoreboard-display.png)
 
 You might also find that some other methods that suit you the best, for example
 you might find the [Data Reload](https://modrinth.com/mod/data-reload) mod
