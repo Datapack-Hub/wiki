@@ -14,8 +14,8 @@ export const load = (async () => {
   const filtered = data.filter(v => v.stable);
 
   return {
-    packFormat: "107.1",
-    resourcePackFormat: "88.0",
+    packFormat: filtered[0].data_pack_version,
+    resourcePackFormat: filtered[0].resource_pack_version,
     gameVersion: filtered[0].id,
   };
 }) satisfies LayoutServerLoad;
