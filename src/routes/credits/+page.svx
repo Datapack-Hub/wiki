@@ -1,50 +1,191 @@
 ---
 title: Credits
 description:
-  "The Datapack Wiki is brought to you by [Datapack
-  Hub](https://datapackhub.net) in collaboration with Aandeel."
+  "Meet the maintainers, editors, and community members who make the Datapack
+  Wiki possible."
 ---
 
-# Credits
+<script lang="ts">
+import IconArrowRight from '~icons/tabler/arrow-right';
+import IconArrowUpRight from '~icons/tabler/arrow-up-right';
+import IconBrandGithub from '~icons/tabler/brand-github';
+import IconPencil from '~icons/tabler/pencil';
+import IconShieldCheck from '~icons/tabler/shield-check';
+import IconUsers from '~icons/tabler/users';
 
-The Datapack Wiki is managed by [Datapack Hub](https://datapackhub.net), based
-on an original design and idea by [Aandeel](https://x.com/aandeel_). All of the
-content on this wiki is made possible thanks to the dedication of our awesome
-contributors! You can contribute to this wiki on our GitHub - click the `Edit`
-button on any page.
+const administrators = [
+  { name: 'Silabear', href: 'https://silabear.carrd.co' },
+  { name: 'Cobblestone', href: 'https://madefrom.rocks' },
+  { name: 'Aandeel', href: 'https://x.com/aandeel_' },
+];
 
-### Administrators
+const editors = [
+  { name: 'Gears', href: 'https://gearsdatapacks.github.io/' },
+];
 
-These people run and develop the site, making any and all important decisions.
+const contributors = [
+  { name: 'Diamond' },
+  { name: 'HeDeAn' },
+  { name: 'SuperAnt_' },
+  { name: 'SwitchedCube' },
+  { name: 'Kraggle09' },
+  { name: 'Amandin' },
+  { name: 'Subzeroditto' },
+  { name: 'TheBlackSwitch' },
+  { name: 'Ericristian_bros' },
+];
+</script>
 
-- [Silabear](https://silabear.carrd.co)
-- [Cobblestone](https://madefrom.rocks)
-- [Aandeel](https://x.com/aandeel_)
+<div class="credits-page not-prose">
+  <header class="credits-hero" aria-labelledby="credits-title">
+    <div class="credits-hero__copy">
+      <p class="credits-kicker">Community credits</p>
+      <h1 id="credits-title">Credits</h1>
+      <p class="credits-hero__lede">
+        Every guide, correction, and example exists because someone took the
+        time to share what they know.
+      </p>
+      <p class="credits-hero__body">
+        Datapack Hub maintains the wiki, which continues to grow through the
+        knowledge shared by datapackers.
+      </p>
+    </div>
 
-### Editors
+    <dl class="credits-attribution" aria-label="Project origins">
+      <div class="credits-attribution__row">
+        <dt>Managed by</dt>
+        <dd>
+          <a href="https://datapackhub.net">
+            Datapack Hub <IconArrowUpRight aria-hidden="true" />
+          </a>
+        </dd>
+      </div>
+      <div class="credits-attribution__row">
+        <dt>Original idea &amp; design</dt>
+        <dd>
+          <a href="https://x.com/aandeel_">
+            Aandeel <IconArrowUpRight aria-hidden="true" />
+          </a>
+        </dd>
+      </div>
+    </dl>
+  </header>
 
-These people are in charge of what contributions are added to the site, as well
-as planning and writing new pages.
+  <div class="credits-role-grid">
+    <section
+      class="credits-group credits-group--administrators"
+      aria-labelledby="credits-administrators"
+    >
+      <header class="credits-group__header">
+        <span class="credits-group__icon">
+          <IconShieldCheck aria-hidden="true" />
+        </span>
+        <div>
+          <p class="credits-kicker">Project team</p>
+          <h2 id="credits-administrators">Administrators</h2>
+        </div>
+      </header>
+      <p class="credits-group__description">
+        Maintain the site, guide the project, and keep its information
+        accessible.
+      </p>
+      <ul class="credits-members">
+        {#each administrators as member}
+          <li>
+            <a class="credits-member credits-member--link" href={member.href}>
+              <span class="credits-member__name">{member.name}</span>
+              <IconArrowUpRight aria-hidden="true" />
+            </a>
+          </li>
+        {/each}
+      </ul>
+    </section>
 
-- [Gears](https://gearsdatapacks.github.io/)
+    <section
+      class="credits-group credits-group--editors"
+      aria-labelledby="credits-editors"
+    >
+      <header class="credits-group__header">
+        <span class="credits-group__icon">
+          <IconPencil aria-hidden="true" />
+        </span>
+        <div>
+          <p class="credits-kicker">Editorial team</p>
+          <h2 id="credits-editors">Editors</h2>
+        </div>
+      </header>
+      <p class="credits-group__description">
+        Reviews contributions and improves docs.
+      </p>
+      <ul class="credits-members">
+        {#each editors as member}
+          <li>
+            <a class="credits-member credits-member--link" href={member.href}>
+              <span class="credits-member__name">{member.name}</span>
+              <IconArrowUpRight aria-hidden="true" />
+            </a>
+          </li>
+        {/each}
+      </ul>
+    </section>
 
-### Contributors
+    <section
+      class="credits-group credits-group--contributors"
+      aria-labelledby="credits-contributors"
+    >
+      <header class="credits-group__header">
+        <span class="credits-group__icon">
+          <IconUsers aria-hidden="true" />
+        </span>
+        <div>
+          <p class="credits-kicker">Community acknowledgements</p>
+          <h2 id="credits-contributors">Contributors</h2>
+        </div>
+      </header>
+      <p class="credits-group__description">
+        These community members have written or edited pages across the wiki
+        and guides.
+      </p>
+      <ul class="credits-members credits-members--contributors">
+        {#each contributors as member}
+          <li>
+            <span class="credits-member">
+              <span class="credits-member__name">{member.name}</span>
+            </span>
+          </li>
+        {/each}
+      </ul>
+    </section>
+  </div>
 
-These people have written or edited pages for the wiki or guides.
-
-- Diamond
-- HeDeAn
-- SuperAnt\_
-- SwitchedCube
-- Kraggle09
-- Amandin
-- Subzeroditto
-- theblackswitch
-- Ericristian\_bros
-
-:::note
-
-If you're contributing, feel free to add your username to this page! You can
-contribute by clicking the Edit button on any page.
-
-:::
+  <section
+    class="credits-contribute"
+    aria-labelledby="credits-contribute-title"
+  >
+    <div class="credits-contribute__copy">
+      <p class="credits-kicker">Join the list</p>
+      <h2 id="credits-contribute-title">
+        Leave the next page better than you found it.
+      </h2>
+      <p>
+        Fix a typo, improve an example, review a change, or write something
+        new. Use the <strong>Edit</strong> button on any page to get started,
+        and add your name here when you contribute.
+      </p>
+    </div>
+    <div class="credits-contribute__actions">
+      <a
+        class="credits-action credits-action--primary"
+        href="/contribute/formatting"
+      >
+        Start contributing <IconArrowRight aria-hidden="true" />
+      </a>
+      <a
+        class="credits-action credits-action--secondary"
+        href="https://github.com/Datapack-Hub/wiki/graphs/contributors"
+      >
+        <IconBrandGithub aria-hidden="true" /> View GitHub contributors
+      </a>
+    </div>
+  </section>
+</div>
