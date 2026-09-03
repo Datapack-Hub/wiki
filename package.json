@@ -34,7 +34,6 @@
     "@formkit/auto-animate": "^0.10.0",
     "@iconify-json/tabler": "^1.2.38",
     "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/enhanced-img": "^0.11.0",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
     "flexsearch": "^0.8.212",

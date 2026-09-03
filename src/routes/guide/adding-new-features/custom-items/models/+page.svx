@@ -28,7 +28,7 @@ empty folder in your `minecraft/resourcepacks` directory. Create a new file in t
 ```json:minecraft/resourcepacks/my_pack/pack.mcmeta
 {
   "pack": {
-    "pack_format": 69,
+    "pack_format": 88,
     "description": "<Description of your pack (optional)>"
   }
 }
@@ -79,7 +79,7 @@ lowercase and with underscores (**\_**) instead of spaces.
 
 Your model file will now probably look like this:
 
-![JSON of the model file](https://i.imgur.com/O0YBPuU.png)
+![JSON of the model file](/images/guides/models/model-file-json.png)
 
 Replace all the values inside the `textures` bracket with `namespace:item/your_texture`.
 

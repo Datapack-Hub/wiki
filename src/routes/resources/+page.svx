@@ -1,89 +1,372 @@
 ---
-title: Using the on_consume advancement criteria for right click detection.
+title: Resources
 description:
-  "Using the on_consume advancement criteria to detect when a player right clicks in a datapack."
-version: 26.2
+  "Listed here are links to credible and reliable places to aid in command
+  support and creation."
 ---
 
-# On Consume Right Click Detection
+<script lang="ts">
+import ResourceCard from '$lib/reusables/ResourceCard.svelte';
 
-A second method for right-click detection using the consumable components is the
-`on_consume method`, which requires the player to actually consume the item before using it.
+const resourceColors = {
+  Discord: '#5865F2',
+  Website: '#DC2626',
+  Tool: '#C44500',
+  YouTube: '#FF0000',
+  'PMC Guide': '#11A488',
+  Library: '#307342',
+  Mod: '#832161',
+} as const;
 
-> [!WARNING]  
-> This method will work for any type of item. However, if the item type already has a default
-> rightclick functionality (such as placing a block), it will keep that functionality. This method
-> is best used for items that don't have a default rightclick functionality.
-
-Pros :
-
-- Can have visual cooldowns (akin to those of an ender pearl).
-- Doesn’t require a scoreboard value for a cooldown.
-- Doesn’t require a scoreboard to create a startup (a use time before activating the ability)
-  without a scoreboard.
-
-Cons :
-
-- If the player somehow picks up an item before the item is given back, the item can drop on the
-  floor.
-- If the item is in the offhand it will move to a different inventory slot once consumed.
-- If the player modifies any item NBT, it will not carry over.
-
-## Method
-
-First we need to create a give function, this can also be done with a recipe or a loot table, if you
-wish to use one of these I would recommend converting your item component with
-[Misode's converter](https://misode.github.io/convert/) to maintain the same values.
-
-> [!IMPORTANT]  
-> [Misode's converter](https://misode.github.io/convert/) is a tool used to convert /give commands
-> into loot tables and recipes or vise versa
-
-```mcfunction:give.mcfunction
-# Any item can be used here, it is recommended to not already have a right click function, the custom data is the value we will be using to separate our item, if you wish to give your item a windup time, change the consume seconds (it can be 0 for no windup), the cooldown group is the global group used for the item cooldown, any item in this group will go on cooldown for the value of seconds set after it is used.
-
-give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
-```
-
-Now that we have the item, we must write the right click detection This method uses the on_consume
-advancement criteria, which detects when an item is consumed, we then check if the item has the
-custom data value we assigned.
-
-```json:consume.json
-{
-  "criteria": {
-    "right_click": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "components": {
-            "minecraft:custom_data": {
-              "tutorial": "item"
-            }
-          }
-        }
-      }
-    }
-  },
-  "requirements": [
-    [
-      "right_click"
-    ]
+const resources = {
+  communities: [
+    {
+      title: 'Datapack Hub',
+      href: 'https://discord.datapackhub.net',
+      type: 'Discord',
+      description: 'Get help with Minecraft Datapacks, resource packs, commands and more.',
+    },
+    {
+      title: 'Smithed',
+      href: 'https://smithed.net/',
+      type: 'Website',
+      description: 'A general (but non-help) datapack community for sharing projects.',
+    },
+    {
+      title: 'Minecraft Commands',
+      href: 'https://discord.gg/QAFXFtZ',
+      type: 'Discord',
+      description: 'Get help with Java datapacks/commands or Bedrock addons.',
+    },
+    {
+      title: 'ShaderLABS',
+      href: 'https://discord.gg/Ayav9YPQra',
+      type: 'Discord',
+      description: 'Get help with vanilla shaders.',
+    },
+    {
+      title: 'Blockbench',
+      href: 'https://discord.gg/blockbench',
+      type: 'Discord',
+      description: 'Support for the Blockbench (3D model editor) app.',
+    },
+    {
+      title: 'FabricMC',
+      href: 'https://discord.gg/DtevV9NmaR',
+      type: 'Discord',
+      description: 'Get help with Fabric and Fabric mods.',
+    },
+    {
+      title: 'Minecraft',
+      href: 'https://discord.gg/minecraft',
+      type: 'Discord',
+      description: 'Discuss Minecraft generally with people from around the world.',
+    },
+    {
+      title: 'Animated Java',
+      href: 'https://animated-java.dev/discord',
+      type: 'Discord',
+      description: 'Support for the Animated Java Blockbench plugin.',
+    },
+    {
+      title: 'Dataworld (French)',
+      href: 'https://discord.gg/5y5FBz5',
+      type: 'Discord',
+      description: 'A French discord server for help with datapacks.',
+    },
+    {
+      title: 'Anthill (Russian)',
+      href: 'https://discord.gg/anthill-914772142300749854',
+      type: 'Discord',
+      description: 'A russian-speaking discord server for help with datapacks, resource packs and commands.',
+    },
   ],
-  "rewards": {
-    "function": "tutorial:right_click"
-  }
-}
-```
+  generators: [
+    {
+      title: 'MCStacker',
+      href: 'https://mcstacker.net',
+      type: 'Website',
+      description: 'Generate commands such as /summon, /give, and more.',
+    },
+    {
+      title: 'Misode',
+      href: 'https://misode.github.io/',
+      type: 'Website',
+      description: 'Generate files such as advancements, predicates, recipes, worldgen, and more.',
+    },
+    {
+      title: 'TheDestruc7i0n Recipe Generator',
+      href: 'https://crafting.thedestruc7i0n.ca/',
+      type: 'Website',
+      description: 'Generate simple recipes.',
+    },
+    {
+      title: 'Minecraft JSON',
+      href: 'https://minecraftjson.com/',
+      type: 'Website',
+      description: 'Generate JSON Text.',
+    },
+    {
+      title: 'Block Display Engine',
+      href: 'https://bdengine.app/',
+      type: 'Website',
+      description: 'Create models with display entities and export as commands.',
+    },
+    {
+      title: "haselkern's ArmorStand",
+      href: 'https://haselkern.com/Minecraft-ArmorStand/',
+      type: 'Website',
+      description: 'Generate summon commands for armor stands in any pose.',
+    },
+    {
+      title: "Datapack Hub's Text Editor",
+      href: 'https://text.datapackhub.net/',
+      type: 'Website',
+      description:
+        'Create /tellraw commands and text components (JSON text) for Minecraft Java Edition with our easy-to-use, modern online tool!',
+    },
+  ],
+  tools: [
+    {
+      title: 'Weld',
+      href: 'https://weld.smithed.dev/',
+      type: 'Tool',
+      description: 'The fastest data and resource pack merger in the west.',
+    },
+  ],
+  reference: [
+    {
+      title: 'Minecraft Wiki',
+      href: 'https://minecraft.wiki/',
+      type: 'Website',
+      description: 'A detailed technical wiki covering all Minecraft mechanics.',
+    },
+    {
+      title: "Misode's MCMeta",
+      href: 'https://github.com/misode/mcmeta/',
+      type: 'Website',
+      description: 'A GitHub repository with every vanilla file (compiled by Misode).',
+    },
+    {
+      title: "inventivetalent's Minecraft assets",
+      href: 'https://mcasset.cloud/',
+      type: 'Website',
+      description: 'Website with every vanilla file.',
+    },
+    {
+      title: "CCCode's version-diff",
+      href: 'https://cccode.pages.dev/version-diff/',
+      type: 'Website',
+      description: 'Shows all the differences in vanilla files between two versions.',
+    },
+    {
+      title: "Misode's Tick Order",
+      href: 'https://gist.github.com/misode/77ee37217a69a3c74032679d8084d6c6',
+      type: 'Website',
+      description: 'A detailed sequence of events that occur during a Minecraft server tick.',
+    },
+  ],
+  tutorials: [
+    {
+      title: 'Cloud Wolf',
+      href: 'https://www.youtube.com/@Cl0udWolf',
+      type: 'YouTube',
+      description: 'Datapack tutorials, especially advanced concepts.',
+    },
+    {
+      title: 'Slicedlime',
+      href: 'https://www.youtube.com/@slicedlime',
+      type: 'YouTube',
+      description: 'Covers all the technical changes in recent snapshots.',
+    },
+    {
+      title: 'Conure',
+      href: 'https://www.youtube.com/@conure512',
+      type: 'YouTube',
+      description: 'Small, but informative datapack tutorials.',
+    },
+    {
+      title: 'Legitimoose',
+      href: 'https://www.youtube.com/@Legitimoose',
+      type: 'YouTube',
+      description: 'Easy to understand datapack and command tutorials.',
+    },
+    {
+      title: 'Structure Generation Guide',
+      href: 'https://www.planetminecraft.com/blog/custom-structure-gen-documentation/',
+      type: 'PMC Guide',
+      description: '',
+    },
+    {
+      title: 'World Generation Guide',
+      href: 'https://www.planetminecraft.com/blog/custom-world-generation-documentation/',
+      type: 'PMC Guide',
+      description: '',
+    },
+    {
+      title: "MCC's FAQs",
+      href: 'https://minecraftcommands.github.io/wiki/questions',
+      type: 'Website',
+      description: 'A list of common questions along with tutorials for answers.',
+    },
+  ],
+  libraries: [
+    {
+      title: 'TagLib',
+      href: 'https://github.com/HeDeAnTheonlyone/Taglib/',
+      type: 'Library',
+      description: 'A curated list of useful tag files.',
+    },
+    {
+      title: 'Smithed (Libraries)',
+      href: 'https://docs.smithed.dev/libraries/',
+      type: 'Library',
+      description: 'A collection of useful technical and compatibility libraries.',
+    },
+    {
+      title: 'Player Motion',
+      href: 'https://github.com/MulverineX/player_motion',
+      type: 'Library',
+      description: "Allows manipulating player's motion.",
+    },
+    {
+      title: 'Blockstate',
+      href: 'https://github.com/Triton365/BlockState',
+      type: 'Library',
+      description: 'Extracts the BlockState data of any block at given position.',
+    },
+    {
+      title: 'Bookshelf',
+      href: 'https://bookshelf.docs.gunivers.net/en/latest/',
+      type: 'Library',
+      description: 'A user-friendly modular library datapack with lots of useful modules.',
+    },
+    {
+      title: 'Iris',
+      href: 'https://github.com/Aeldrion/Iris',
+      type: 'Library',
+      description: 'A raycasting library with micrometric precision and taking into account individual block geometries.',
+    },
+    {
+      title: 'AjjGUI',
+      href: 'https://github.com/AjjMC/ajjgui',
+      type: 'Library',
+      description: 'A Data-Driven GUI library.',
+    },
+    {
+      title: 'Mcfunction Logger',
+      href: 'https://github.com/MulverineX/mcfunction-logger',
+      type: 'Library',
+      description: 'A library for logging things to the server console.',
+    },
+    {
+      title: "Moxvallix's Library",
+      href: 'https://github.com/moxvallix/moxlib',
+      type: 'Library',
+      description: 'The ultimate Minecraft Datapack Library, constantly updated with new helpful functions.',
+    },
+  ],
+  mods: [
+    {
+      title: 'Datamancer',
+      href: 'https://modrinth.com/mod/datamancer',
+      type: 'Mod',
+      description:
+        'A tool for datapack devs with several features, such as function profiling & benchmarking, marker goggles, datapack autoreloading and more.',
+    },
+    {
+      title: 'Datapack debugger',
+      href: 'https://modrinth.com/mod/datapack-debugger',
+      type: 'Mod',
+      description: 'Set breakpoints in the functions to "freeze" the game when the breakpoint is reached.',
+    },
+    {
+      title: 'Better Suggestions',
+      href: 'https://modrinth.com/mod/better-suggestions',
+      type: 'Mod',
+      description: 'Provides more/better suggestions for Minecraft commands.',
+    },
+    {
+      title: 'NBT Autocomplete',
+      href: 'https://modrinth.com/mod/nbt-autocomplete',
+      type: 'Mod',
+      description: 'Adds suggestions for NBT tags in commands.',
+    },
+  ],
+} as const;
+</script>
 
-```mcfunction:consume.mcfunction
+# Resources
 
-# Custom logic
-say Right click detected.
+Listed here are links to credible and reliable places and libraries to aid in
+command/datapack support and creation.
 
-# Give back the item as it was consumed
-give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
+> [!NOTE]
+> This wiki is run by Datapack Hub. We aren't responsible for the content on
+> external sites or Discord Servers, so proceed with caution. However, they're all
+> safe to use and have amazingly useful content and tools for creating Minecraft
+> Datapacks.
 
-# Revoke the advancement
-advancement revoke @s only tutorial:consume
-```
+## Communities
+
+<div class="resource-grid not-prose">
+{#each resources.communities as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>
+
+## Generators
+
+<div class="resource-grid not-prose">
+{#each resources.generators as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>
+
+## Tools
+
+<!--
+Easy Map Updater (Tool) remains intentionally hidden until it is ready to be
+relisted: https://github.com/StickyPiston-Hosting/Easy-Map-Updater
+
+A toolset for automatically updating Minecraft maps (including datapacks) to
+the latest version.
+-->
+
+<div class="resource-grid not-prose">
+{#each resources.tools as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>
+
+## Templates/Reference
+
+<div class="resource-grid not-prose">
+{#each resources.reference as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>
+
+## Tutorials/Content Creation
+
+<div class="resource-grid not-prose">
+{#each resources.tutorials as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>
+
+## Libraries
+
+<div class="resource-grid not-prose">
+{#each resources.libraries as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>
+
+## Mods
+
+<div class="resource-grid not-prose">
+{#each resources.mods as resource}
+  <ResourceCard {...resource} color={resourceColors[resource.type]} />
+{/each}
+</div>

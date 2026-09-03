@@ -45,7 +45,15 @@ const config = {
       layout: import.meta.dirname + "/src/lib/MDLayout.svelte",
       highlight: {
         highlighter: (code, lang) => {
-          const generated = escapeSvelte(highlighter.codeToHtml(code, { lang, theme }));
+          const generated = escapeSvelte(
+            highlighter.codeToHtml(code, {
+              lang,
+              themes: {
+                dark: "kanagawa-wave",
+                light: "vitesse-light",
+              },
+            })
+          );
           return `{@html \`${generated}\` }`;
         },
       },

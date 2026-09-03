@@ -1,3 +1,9 @@
+<script module lang="ts">
+  export { default as ArticleImage } from "./reusables/ArticleImage.svelte";
+  export { default as img } from "./reusables/ArticleImage.svelte";
+  export { default as table } from "./reusables/ArticleTable.svelte";
+</script>
+
 <script lang="ts">
   import { page } from "$app/state";
   import Seo from "sk-seo";
@@ -7,19 +13,12 @@
   type Props = {
     title: string;
     description: string;
-    tags: string;
+    tags?: string;
     version: string;
     children: Snippet;
   };
 
-  const { children, title, description, version, tags = "" }: Props = $props();
-
-  let tagsArr = $derived(
-    tags
-      .split(",")
-      .map(el => el.trim())
-      .filter(String)
-  );
+  const { children, title, description, version }: Props = $props();
 </script>
 
 <Seo
@@ -39,17 +38,9 @@
     "https://instagram.com/datapackhub",
   ]} />
 
-<main class="md px-4 md:px-8 lg:px-16 prose-headings:text-stone-200" id="main_content">
+<main class="md article-shell" class:home-page={page.url.pathname === "/"} id="main_content">
   {#if version}
     <Version {version} />
   {/if}
   {@render children()}
-  {#if tags}
-    <div class="bg-stone-950/40 p-2 rounded-lg flex items-center flex-wrap gap-3 my-10">
-      <span class="uppercase text-sm text-stone-500">Tags:</span>
-      {#each tagsArr as tag}
-        <span class="border border-yellow-500 px-1 text-yellow-500 rounded-lg uppercase text-sm">{tag}</span>
-      {/each}
-    </div>
-  {/if}
 </main>

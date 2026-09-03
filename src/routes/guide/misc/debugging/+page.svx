@@ -32,16 +32,17 @@ open if you need to double check it. You can open the logs by opening the defaul
 and clicking "Settings", and then enabling "Open output log when Minecraft: Java Edition starts",
 then just starting the game.
 
-![A guide on how to open the Minecraft launchers output logs](https://i.postimg.cc/NFxkZV2g/image.png)
+![A guide on how to open the Minecraft launchers output logs](/images/guides/debugging/open-launcher-output-logs.png)
 
 Syntax errors will show up in **red text** when you `/reload` your datapack. But sometimes other
 errors can also show in **yellow text** instead.
 
 Lets take this image as an example:
-![Output log with an error.](https://i.postimg.cc/hjkYKHGT/image.png) Here, the error tells you
-exactly where the error is - in this case it's in the function "be:give" at line 1 after ".... give
-@s". And indeed I did spell "loot" as "lot", which caused the error.
-![Code with a syntax error](https://i.postimg.cc/fL9HqBvL/image.png)
+![Output log with an error.](/images/guides/debugging/output-log-error.png) Here, the
+error tells you exactly where the error is - in this case it's in the function
+"be:give" at line 1 after ".... give @s". And indeed I did spell "loot" as
+"lot", which caused the error.
+![Code with a syntax error](/images/guides/debugging/code-syntax-error.png)
 
 ## Finding logic errors
 
@@ -94,7 +95,7 @@ those are not the only ones, you can use the `/scoreboard objectives setdisplay 
 to show the values of a scoreboard on your screen in real-time, or you can use `/data get ...`,
 which will print the value of any NBT data in chat.
 
-![A scoreboard on screen](https://i.postimg.cc/HWQm72Vp/image.png)
+![A scoreboard on screen](/images/guides/debugging/scoreboard-display.png)
 
 You might also find that some other methods that suit you the best, for example you might find the
 [Data Reload](https://modrinth.com/mod/data-reload) mod useful for displaying errors in chat, or a

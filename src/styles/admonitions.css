@@ -1,53 +1,86 @@
-/* markdown-alert styles */
-@import "tailwindcss";
-
-.markdown-alert {
-  @apply w-fit min-w-[25%] border-l-4 p-3 my-2;
+.admonition {
+  --pixel-frame-color: var(--border);
+  position: relative;
+  width: 100%;
+  margin-block: 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  padding: 0.9rem 1rem;
+  clip-path: var(--pixel-corners);
 }
 
-.markdown-alert-title p {
-  @apply flex text-sm gap-2 items-center mb-1 uppercase;
-}
-.markdown-alert-title p a[aria-hidden="true"] {
-  @apply hidden;
-}
-
-.markdown-alert-content p {
-  @apply m-0;
+.admonition::after {
+  position: absolute;
+  inset: 0;
+  background: var(--pixel-frame-outline);
+  color: var(--pixel-frame-color, var(--border));
+  content: "";
+  pointer-events: none;
 }
 
-.markdown-alert-icon {
-  @apply w-4 h-4 inline-block;
+.admonition-heading h5 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 680;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
 }
 
-.markdown-alert-note {
-  @apply bg-slate-500/25 border-slate-600 fill-slate-400;
+.admonition-heading h5 a[aria-hidden="true"],
+.admonition-heading h5 > a[title="Copy Link"] {
+  display: none;
 }
 
-.markdown-alert-note .markdown-alert-heading h5 {
-  @apply text-slate-400;
+.admonition-content p {
+  margin: 0;
 }
 
-.markdown-alert-important {
-  @apply bg-blue-500/25 border-blue-600 fill-blue-400;
+.admonition-icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
 }
 
-.markdown-alert-important .markdown-alert-heading h5 {
-  @apply text-blue-400;
+.admonition-note {
+  --admonition-color: var(--text-muted);
+  --pixel-frame-color: color-mix(in srgb, var(--admonition-color) 42%, var(--surface));
+  background: color-mix(in srgb, var(--admonition-color) 10%, transparent);
+  fill: var(--admonition-color);
 }
 
-.markdown-alert-tip {
-  @apply bg-yellow-400/25 border-yellow-500 fill-yellow-300;
+.admonition-note .admonition-heading h5 {
+  color: color-mix(in srgb, var(--admonition-color) 72%, var(--text-primary));
 }
 
-.markdown-alert-tip .markdown-alert-heading h5 {
-  @apply text-yellow-300;
+.admonition-info {
+  --pixel-frame-color: color-mix(in srgb, var(--info) 48%, var(--surface));
+  background: color-mix(in srgb, var(--info) 10%, transparent);
+  fill: var(--info);
 }
 
-.markdown-alert-warning {
-  @apply bg-red-500/25 border-red-600 fill-red-400;
+.admonition-info .admonition-heading h5 {
+  color: color-mix(in srgb, var(--info) 78%, var(--text-primary));
 }
 
-.markdown-alert-warning .markdown-alert-heading h5 {
-  @apply text-red-400;
+.admonition-tip {
+  --pixel-frame-color: color-mix(in srgb, var(--warning) 48%, var(--surface));
+  background: color-mix(in srgb, var(--warning) 10%, transparent);
+  fill: var(--warning);
+}
+
+.admonition-tip .admonition-heading h5 {
+  color: color-mix(in srgb, var(--warning) 78%, var(--text-primary));
+}
+
+.admonition-warning {
+  --pixel-frame-color: color-mix(in srgb, var(--danger) 48%, var(--surface));
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  fill: var(--danger);
+}
+
+.admonition-warning .admonition-heading h5 {
+  color: color-mix(in srgb, var(--danger) 78%, var(--text-primary));
 }

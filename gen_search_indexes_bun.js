@@ -22,24 +22,31 @@ for await (const file of matchingFiles) {
   log.info("Transforming", file);
   const rawContent = await defineFile(`./src/routes/${file}`).text();
   const frontmatter = matter(rawContent); // parse markdown front matter
-  const filePath = file.slice(0, -9).slice(2); // remove the file name and extension and leading slash
+
+  const filePath = file
+    .replaceAll("\\\\", "/")
+    .replace(/^\.\/?/, "")
+    .replace(/^src\/routes\/?/, "")
+    .replace(/\/?\+page\.svx$/, "");
 
   // add to posts
   const contentNoHtml = stripHtml(frontmatter.content).result;
   const strippedMarkdown = markdown.render(contentNoHtml, {})
     .replaceAll(/[^\S\r\n]{2,}/g, ""); // remove extra spaces
 
-  const tags = frontmatter.data.tags || "";
-
   posts.push({
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
+<<<<<<< HEAD:gen_search_indexes_bun.js
     url: "/" + filePath,
     tags: tags
       .split(",")
       .map((el) => el.trim())
       .filter(String),
+=======
+    url: filePath ? "/" + filePath + "/" : "/",
+>>>>>>> 353e511b5a5e1371c6326fc5c3ff100aa93091ae:gen_search_indexes_node.js
   });
 }
 

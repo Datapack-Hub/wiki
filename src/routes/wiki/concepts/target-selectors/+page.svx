@@ -22,8 +22,6 @@ and optionally any other criteria which will narrow down the selection further.
 
 In Java Edition, there are 6 base target selectors:
 
-<div class="overflow-x-auto">
-
 | Target Selector | Description                                                                                                                                                                |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | @**e**          | **All Entities** - By itself, this selector will select every single entity which is currently loaded in the world                                                         |
@@ -33,11 +31,12 @@ In Java Edition, there are 6 base target selectors:
 | @**p**          | **Nearest Player** - This selects the nearest player to the position this command is ran from.                                                                             |
 | @**n**          | **Nearest Entity** - This selects the nearest entity (player or non-player) to the position this command is ran from.                                                      |
 
-</div>
+:::warning
 
-> [!WARNING]  
-> @e only selects entities in a loaded chunk. If an entity exists but is not currently being loaded,
-> it will not select that entity.
+@e only selects entities in a loaded chunk. If an entity exists but is not
+currently being loaded, it will not select that entity.
+
+:::
 
 ## Additional arguments
 
@@ -53,8 +52,6 @@ specify that we only want to target entities which are less than 10 blocks away.
 > Most target selectors can be inverted by using =! meaning it will only select entities who do not
 > match the argument. (E.g. @e[type=!minecraft:creeper] will select every entity that is NOT a
 > creeper)
-
-<div class="overflow-x-auto">
 
 | Argument           | Example                                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------ | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -72,8 +69,6 @@ specify that we only want to target entities which are less than 10 blocks away.
 | `gamemode`         | `@a[gamemode=creative]`                                    | Selects players in a specific game mode.                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `advancements`     | `@a[advancements={minecraft:story/follow_ender_eye=true}]` | Selects players based on whether they have unlocked a specific advancement.                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `level`            | `@a[level=10]`                                             | Selects players based on their current XP level (not amount of points).                                                                                                                                                                                                                                                                                                                                                                                                                       |
-
-</div>
 
 More information about the arguments:
 

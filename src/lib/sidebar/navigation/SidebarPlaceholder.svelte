@@ -11,7 +11,7 @@
   const Icon = $derived(icon);
 </script>
 
-<div class="cursor-not-allowed py-1 rounded-lg flex gap-2 pl-1 items-center text-stone-500">
+<div class="nav-item nav-item--placeholder" aria-disabled="true" title={windowInfo.isNavOpen ? undefined : label}>
   <Icon />
 
   {#if windowInfo.isNavOpen}

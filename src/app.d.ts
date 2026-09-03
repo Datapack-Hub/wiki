@@ -14,7 +14,6 @@ declare global {
     title: string;
     content: string;
     url: string;
-    tags: string[] | undefined;
   };
 }
 

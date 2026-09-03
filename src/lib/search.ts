@@ -30,26 +30,6 @@ export function search(query: string): SearchReturnType {
   const htmlStripped = stripHtml(query).result;
   const match = htmlStripped.replaceAll(/[\\^$*+?.()|[\]{}]/g, "\\$&");
 
-  // TODO: Possibly replace this with the tag feature from FlexSearch
-  if (match.includes("tag:")) {
-    const words = match.split(" ");
-    for (const w of words) {
-      if (!w.includes("tag:")) {
-        continue;
-      }
-
-      const tags = w.substring(4).split(",");
-      const taggedPosts = posts
-        .filter(p => p.tags?.some(t => tags.includes(t)))
-        .map(({ title, url }) => {
-          return { content: [""], title, url };
-        });
-
-      if (taggedPosts.length == 0) return [];
-      return taggedPosts;
-    }
-  }
-
   const results = index.search(match);
 
   return results

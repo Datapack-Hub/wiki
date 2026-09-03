@@ -6,10 +6,56 @@ version: 26.2
 
 # List of breaking changes
 
-This is a list of all breaking changes to datapacks (excluding resource packs). Special thanks to
-[Conure's How To Upgrade Your Datapacks Series](https://www.youtube.com/playlist?list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l),
-[Misode's Technical Changelog](https:/misode.github.io/changelog/) and the
-[Minecraft Wiki](https://minecraft.wiki/) for the source of many of these.
+This is a list of breaking changes to datapacks. Resource-pack changes are
+included when they affect a pack's format or data files. Special thanks to [Conure's How To
+Upgrade Your Datapacks Series](https://www.youtube.com/playlist?list=PLgbPk8f9bw9rtYmnIpcd0__q9cjVqmx1l),
+[Misode's Technical Changelog](https://misode.github.io/changelog/) and the
+[Minecraft Wiki](https://minecraft.wiki/) for the source of earlier sections.
+
+## 26.2
+
+The data pack format is now `107.1`, and the resource pack format is now `88.0`.
+
+**Commands**
+
+- Team colour arguments for `/team modify <team> color` and
+  `/waypoint modify <waypoint> color` now accept only lowercase names with underscores, such as
+  `dark_purple`.
+- `/execute on owner` now treats Vexes as owned by their Evoker.
+
+**Entity and block entity data**
+
+- The `HurtByTimestamp` tag was removed from living entities. Use
+  `ticks_since_last_hurt_by_mob` instead.
+- The `minecraft:bed` block entity was removed.
+
+**Entity predicates**
+
+- Predicate keys now use namespaced IDs. The `type` field was renamed to
+  `minecraft:entity_type`.
+- Type-specific predicates moved to namespaced top-level keys:
+  `type_specific/player` became `minecraft:type_specific/player`, with similar
+  changes for `lightning`, `fishing_hook`, `raider`, `sheep`, and `cube_mob`.
+- The slime predicate became `minecraft:cube_mob` because it now also covers
+  Magma Cubes and Sulfur Cubes.
+- Unknown predicate components are now rejected instead of ignored.
+
+**World generation**
+
+- The configured feature types `pointed_dripstone` and `dripstone_cluster` were
+  renamed to `speleothem` and `speleothem_cluster`; their related fields were
+  renamed as well.
+- `minecraft:weird_scaled_sampler` was removed. Use
+  `minecraft:interval_select` instead.
+- `minecraft:multiface_growth` now requires its `block` field.
+- `large_dripstone.column_radius` is limited to 16 instead of 19.
+- The `#concrete_powder` block tag was renamed to `#concrete_powders`.
+
+**Resource packs**
+
+- Beds, signs, and hanging signs now use block models instead of built-in entity
+  models. The `minecraft:beds` and `minecraft:signs` texture atlases were
+  removed.
 
 ## [26.1](https://minecraft.wiki/w/Java_Edition_26.1)
 
