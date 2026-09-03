@@ -2,10 +2,10 @@
 // Use the Bun script if you are using Bun
 
 import { createConsola } from "consola";
-import fg from "fast-glob";
 import matter from "gray-matter";
 import { readFile, writeFile } from "node:fs/promises";
 import { stripHtml } from "string-strip-html";
+import { glob } from "node:fs/promises";
 import RemoveMarkdown from "remove-markdown";
 
 const log = createConsola({
@@ -14,11 +14,12 @@ const log = createConsola({
   },
 });
 
+performance.mark("start");
+
 const posts = [];
-const matchingFiles = fg.stream("**/+page.svx", { dot: true });
 
 // read all routes
-for await (const file of matchingFiles) {
+for await (const file of glob("./src/routes/**/*.svx")) {
   log.info("Transforming", file);
   const rawContent = await readFile(file);
   const frontmatter = matter(rawContent); // parse markdown front matter
@@ -46,4 +47,6 @@ for await (const file of matchingFiles) {
 log.start("Writing to file...");
 await writeFile("./src/routes/search.json/meta.json", JSON.stringify(posts));
 
-log.success("Done!");
+performance.mark("end");
+
+log.success("Done! Completed in " + (performance.measure("gen_search_indexes", "start", "end").duration / 1000).toFixed(2) + "s");
