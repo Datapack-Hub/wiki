@@ -1,7 +1,7 @@
-import { file as defineFile, Glob, write, markdown } from "bun";
 import matter from "@11ty/gray-matter";
-import { stripHtml } from "string-strip-html";
+import { Glob, markdown, write } from "bun";
 import { createConsola } from "consola";
+import { stripHtml } from "string-strip-html";
 
 const log = createConsola({
   formatOptions: {

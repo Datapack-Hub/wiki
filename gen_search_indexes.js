@@ -1,9 +1,8 @@
-import { createConsola } from "consola";
 import matter from "@11ty/gray-matter";
-import { readFile, writeFile } from "node:fs/promises";
-import { stripHtml } from "string-strip-html";
-import { glob } from "node:fs/promises";
+import { createConsola } from "consola";
+import { glob, writeFile } from "node:fs/promises";
 import RemoveMarkdown from "remove-markdown";
+import { stripHtml } from "string-strip-html";
 
 const log = createConsola({
   formatOptions: {

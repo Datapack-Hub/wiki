@@ -301,8 +301,8 @@ Listed here are links to credible and reliable places and libraries to aid in co
 support and creation.
 
 > [!NOTE]  
-> This wiki is run by Datapack Hub. We aren't responsible for the content on external sites
-> or Discord Servers, so proceed with caution. However, they're all safe to use and have amazingly
+> This wiki is run by Datapack Hub. We aren't responsible for the content on external sites or
+> Discord Servers, so proceed with caution. However, they're all safe to use and have amazingly
 > useful content and tools for creating Minecraft Datapacks.
 
 ## Communities
