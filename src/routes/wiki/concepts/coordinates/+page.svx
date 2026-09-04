@@ -20,9 +20,9 @@ block per set of coordinates. Block coordinates are whole numbers, for example
 you can have a block at `123 86 94` but not `123.7 86.2 94.6`. Entities are not
 locked to the grid - they can be at decimal positions (and usually are).
 
-`x.0 y.0 z.0` represents the bottom left corner of a block, not the centrer.
+`x.0 y.0 z.0` represents the bottom left corner of a block, not the center.
 
-The centrer of a block would be represented by the coordinates `x.5 y.5 z.5`.
+The center of a block would be represented by the coordinates `x.5 y.5 z.5`.
 
 When using integer coordinates it won't be `x.0 y.0 z.0` but rather `x.5 y.0 z.5`.
 For example, the command `summon creeper 0 0 0` will actually spawn the creeper at `0.5 0.0 0.5`.
