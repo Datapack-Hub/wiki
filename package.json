@@ -12,6 +12,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
+    "@11ty/gray-matter": "^3.0.0",
     "@sveltejs/kit": "^2.70.3",
     "@sveltejs/vite-plugin-svelte": "^7.3.0",
     "consola": "^3.4.2",
@@ -35,7 +36,6 @@
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.3",
     "flexsearch": "^0.8.212",
-    "gray-matter": "^4.0.3",
     "nbtify": "^2.2.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-github-alerts": "^4.2.0",

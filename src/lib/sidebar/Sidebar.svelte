@@ -132,6 +132,7 @@
     </div>
     {#if windowInfo.isNavOpen}
       <p class="sidebar__legal">Not affiliated with or endorsed by Mojang Studios.</p>
+      <p class="sidebar__legal">Made with love by humans.</p>
     {/if}
   </div>
 </aside>

@@ -1,8 +1,5 @@
-// Compatibility for Node.js
-// Use the Bun script if you are using Bun
-
 import { createConsola } from "consola";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import { readFile, writeFile } from "node:fs/promises";
 import { stripHtml } from "string-strip-html";
 import { glob } from "node:fs/promises";
@@ -21,11 +18,11 @@ const posts = [];
 // read all routes
 for await (const file of glob("./src/routes/**/*.svx")) {
   log.info("Transforming", file);
-  const rawContent = await readFile(file);
-  const frontmatter = matter(rawContent); // parse markdown front matter
+  
+  const frontmatter = matter.read(file); // parse markdown front matter
 
   const filePath = file
-    .replaceAll("\\\\", "/")
+    .replaceAll("\\", "/")
     .replace(/^\.\/?/, "")
     .replace(/^src\/routes\/?/, "")
     .replace(/\/?\+page\.svx$/, "");
@@ -39,7 +36,7 @@ for await (const file of glob("./src/routes/**/*.svx")) {
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
-    url: filePath ? "/" + filePath + "/" : "/",
+    url: filePath ? `/${filePath}/` : "/",
   });
 }
 
@@ -49,4 +46,4 @@ await writeFile("./src/routes/search.json/meta.json", JSON.stringify(posts));
 
 performance.mark("end");
 
-log.success("Done! Completed in " + (performance.measure("gen_search_indexes", "start", "end").duration / 1000).toFixed(2) + "s");
+log.success("Done! Completed in " + (performance.measure("gen_search_indexes", "start", "end").duration) + "ms");

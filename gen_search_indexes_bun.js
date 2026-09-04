@@ -1,5 +1,5 @@
 import { file as defineFile, Glob, write, markdown } from "bun";
-import matter from "gray-matter";
+import matter from "@11ty/gray-matter";
 import { stripHtml } from "string-strip-html";
 import { createConsola } from "consola";
 
@@ -9,9 +9,6 @@ const log = createConsola({
   },
 });
 
-// Requires Bun to be installed
-// Sorry!
-
 const posts = [];
 const fileGlob = new Glob("./**/+page.svx");
 const matchingFiles = fileGlob.scan("./src/routes");
@@ -20,11 +17,10 @@ const matchingFiles = fileGlob.scan("./src/routes");
 for await (const file of matchingFiles) {
 
   log.info("Transforming", file);
-  const rawContent = await defineFile(`./src/routes/${file}`).text();
-  const frontmatter = matter(rawContent); // parse markdown front matter
+  const frontmatter = matter.read(`./src/routes/${file}`); // parse markdown front matter
 
   const filePath = file
-    .replaceAll("\\\\", "/")
+    .replaceAll("\\", "/")
     .replace(/^\.\/?/, "")
     .replace(/^src\/routes\/?/, "")
     .replace(/\/?\+page\.svx$/, "");
@@ -38,15 +34,7 @@ for await (const file of matchingFiles) {
     title: frontmatter.data.title || "MissingNo.",
     content: strippedMarkdown,
     description: frontmatter.data.description || null,
-<<<<<<< HEAD:gen_search_indexes_bun.js
-    url: "/" + filePath,
-    tags: tags
-      .split(",")
-      .map((el) => el.trim())
-      .filter(String),
-=======
-    url: filePath ? "/" + filePath + "/" : "/",
->>>>>>> 353e511b5a5e1371c6326fc5c3ff100aa93091ae:gen_search_indexes_node.js
+    url: filePath ? `/${filePath}/` : "/",
   });
 }
 
