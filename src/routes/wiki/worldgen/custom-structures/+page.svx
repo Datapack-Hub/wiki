@@ -1,7 +1,7 @@
 ---
 title: "Custom Structures"
 description: "How to design, save, and dynamically assemble custom structures using Structure Blocks and Jigsaw Blocks in Minecraft 1.21.10."
-tags: wiki, worldgen, structures, jigsaw
+tags: wiki, worldgen, structures, jigsaw, processors
 version: "1.21.10"
 ---
 
@@ -47,7 +47,46 @@ Always make sure the little arrow on the Jigsaw Block face points **outward** fr
 
 ---
 
-## 3. Creating Template Pools
+## 3. Randomizing Blocks with Processors
+
+To stop your structure pieces from looking identical every time they spawn, you can apply **Structure Processors**. These rule-based configurations intercept the generation process to randomly replace specific blocks—for example, converting plain stone bricks into mossy or cracked variants.
+
+Create a processor list file inside your datapack at:
+`data/<namespace>/worldgen/processor_list/<processor_name>.json`
+
+### Example Processor Configuration
+The following file defines a rule that searches for `minecraft:stone_bricks` and swaps them out for `minecraft:mossy_stone_bricks` with a 20% random probability:
+
+```json:data/custom_namespace/worldgen/processor_list/ruin_decay.json
+{
+  "processors": [
+    {
+      "processor_type": "minecraft:rule",
+      "rules": [
+        {
+          "input_predicate": {
+            "predicate_type": "minecraft:block_match",
+            "block": "minecraft:stone_bricks"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:mossy_stone_bricks"
+          }
+          "output_probability": 0.2
+        }
+      ]
+    }
+  ]
+}
+```
+
+To apply this logic, swap out `"processors": "minecraft:empty"` with your newly created namespaced path (`"processors": "custom_namespace:ruin_decay"`) inside your template pool configurations!
+
+---
+
+## 4. Creating Template Pools
 
 Template pools dictate the logic of structural expansion. They are written in JSON format and define the initial starting elements alongside weighted random options for upcoming additions.
 
@@ -66,7 +105,7 @@ Create your pool file inside your datapack workspace at:
         "element_type": "minecraft:single_pool_element",
         "location": "custom_namespace:room_standard",
         "projection": "rigid",
-        "processors": "minecraft:empty"
+        "processors": "custom_namespace:ruin_decay"
       }
     },
     {
@@ -75,7 +114,7 @@ Create your pool file inside your datapack workspace at:
         "element_type": "minecraft:single_pool_element",
         "location": "custom_namespace:room_treasure",
         "projection": "rigid",
-        "processors": "minecraft:empty"
+        "processors": "custom_namespace:ruin_decay"
       }
     }
   ]
@@ -84,7 +123,7 @@ Create your pool file inside your datapack workspace at:
 
 ---
 
-## 4. Registering the Main Structure File
+## 5. Registering the Main Structure File
 
 To get the structure recognized by the world generation engine, create a top-level layout registration configuration path inside:
 `data/<namespace>/worldgen/structure/<structure_name>.json`
@@ -109,7 +148,7 @@ To get the structure recognized by the world generation engine, create a top-lev
 
 ---
 
-## 5. In-Game Testing Commands
+## 6. In-Game Testing Commands
 
 You can verify, force-load, or step-through your Jigsaw setups without creating brand new maps using target generation commands:
 
