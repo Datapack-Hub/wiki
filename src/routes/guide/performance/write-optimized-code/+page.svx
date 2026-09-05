@@ -102,7 +102,7 @@ All [NBT](/wiki/nbt-scoreboards/nbt) operations on **a block** or **an entity**
 whether a modifying, copying or using in a condition are slow. You should always
 avoid running block / entity NBT operations every tick.
 
-It is okay to perform those operations on rarely occuring events. That way, the
+It is okay to perform those operations on rarely occurring events. That way, the
 brief lag spike does not ruin user experience.
 
 If a slow operation is unavoidable, you can put it behind a condition. That way,
@@ -121,7 +121,7 @@ tag @s add disabled_ai
 
 In this example, to avoid mindlessly modifying NBT of every pig, we tag all pigs
 with modified NBT. Then we add a condition to only modify NBT of pigs without
-the tag, so that we dont run the NBT operations twice on the same pig.
+the tag, so that we don't run the NBT operations twice on the same pig.
 
 ## Scoreboard Event Detection
 
@@ -149,8 +149,29 @@ Avoid the following:
 
 - Recursive functions within recursive functions (Nested recursion).
 
-- Running recursive functions every tick or upon often occuring events
+- Running recursive functions every tick or upon often occurring events
 
 - Too many recursion calls. For example a long distance raycast, large loop, or
   iteration over a long array.
 :::
+
+## Reduce Commands Rate
+
+Not every command needs to run every tick. If you have commands running every 2 ticks instead
+you halve the performance impact since you are running half of the commands in the same amount of time.
+For example, checking if the player is in an area does not need to be done every tick since it's very unlikely
+that the player enters the area for a single tick.
+
+You can use scheduled functions in order to run commands on a delayed interval.
+
+In this example, the function `example:2_tick` is ran every 2 ticks. This uses the `schedule` command,
+which allows to run a function after a specific number of ticks. On on the load function we schedule this function to run after 2 ticks, and on the `2_tick` function we schedule the same function again, making it loop every 2 game ticks.
+
+```mcfunction:load.mcfunction
+schedule function example:2_tick 2t
+```
+
+```mcfunction:2_tick.mcfunction
+schedule function example:2_tick 2t
+say This function runs every 2 ticks
+```

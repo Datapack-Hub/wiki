@@ -77,7 +77,7 @@ These commands require a permission level same or bigger than 2 to run them.
   Enables, disables or creates a datapack
 - `/defaultgamemode <survival|adventure|creative|spectator>` - Sets the default
   gamemode of a world
-- `/dialog <show <targets> <dialog>|clear <targets>>` - Shows and hides
+- `/dialog <show|clear> <targets>` - Shows and hides
   [dialog](/wiki/files/dialogs) screens from players
 - `/difficulty [peaceful|easy|normal|hard]` - Sets or gets the difficulty of a
   world
@@ -88,7 +88,7 @@ These commands require a permission level same or bigger than 2 to run them.
   possible in survival)
 - `/execute ...` - Executes a different command (See more here:
   [/execute](/wiki/command/execute))
-- `/experience <add|set|query <targets>> ...` - Adds, removes or gets the
+- `/experience <add|set|query> <targets> ...` - Adds, removes or gets the
   players experience points. (ALIAS: `/xp`)
 - `/fetchprofile <name <player_name>|id <player_uuid>|entity <player_entity>>` - Fetches the profile of the target. It works asynchronously as the operation might take some time.
   After successful completion, a message will be printed that lets users copy the contents of a fully resolved minecraft:profile component or /give @s minecraft:player_head with said component.

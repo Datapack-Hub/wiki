@@ -148,7 +148,7 @@ Possible values for `<relation>` are:
   seconds.
 - `controller` - The entity which is riding and in control of the current
   entity.
-- `leasher` - The entity holding the the current entity on a lead.
+- `leasher` - The entity holding the current entity on a lead.
 - `origin` - The entity the current entity originated from, such as the player
   that shot an arrow.
 - `passengers` - All entities riding the current entity (not including entities

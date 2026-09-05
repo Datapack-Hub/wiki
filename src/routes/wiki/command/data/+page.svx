@@ -48,7 +48,7 @@ fetched data, so it can be used in combination with `execute store` or
 [SNBT compound](/wiki/nbt-scoreboards/nbt#snbt-format).  
 This command fails if the given entity or block does exist, or if the block is
 not a block entity and cannot hold NBT data. However, if the data source is a
-storage, and that storage does no exist yet, the storage is automatically
+storage, and that storage does not exist yet, the storage is automatically
 created.
 
 #### Examples
@@ -98,7 +98,7 @@ merging from more than just hardcoded NBT values.
 Prepends an NBT value to a
 [list or a typed array](/wiki/nbt-scoreboards/nbt#listsarrays), making the value
 the first element.  
-Lists are created in the same wat as `append`.  
+Lists are created in the same way as `append`.  
 This is equivalent to `data modify ... insert -1 ...`.
 
 #### `set`

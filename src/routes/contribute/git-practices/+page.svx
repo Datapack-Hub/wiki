@@ -87,4 +87,4 @@ bun ./gen_search_indexes.js
 - Make a description of your changes in your PR.
 - Reviewers: Proofread changes before approving them.
 - Reviewers: It's not required, but it's recommended the changes follow American
-  English for consistency sake.
+  English for consistency's sake.

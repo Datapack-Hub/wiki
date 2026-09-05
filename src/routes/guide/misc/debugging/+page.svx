@@ -32,7 +32,7 @@ types of bugs:
 
 Syntax errors are pretty easy to spot and fix, due to Minecraft's output logs,
 which literally tell you if your code is incorrect. When you're coding
-datapacks, its a good idea to always have the logs open if you need to double
+datapacks, it's a good idea to always have the logs open if you need to double
 check it. You can open the logs by opening the default Minecraft launcher and
 clicking "Settings", and then enabling "Open output log when Minecraft: Java
 Edition starts", then just starting the game.
@@ -42,7 +42,7 @@ Edition starts", then just starting the game.
 Syntax errors will show up in **red text** when you `/reload` your datapack. But
 sometimes other errors can also show in **yellow text** instead.
 
-Lets take this image as an example:
+Let's take this image as an example:
 ![Output log with an error.](/images/guides/debugging/output-log-error.png) Here, the
 error tells you exactly where the error is - in this case it's in the function
 "be:give" at line 1 after ".... give @s". And indeed I did spell "loot" as
@@ -79,7 +79,7 @@ error, otherwise it can get annoying).
 
 You may want to keep the debug messages in the datapack, but you don't want it
 to be sent to every player. Fortunately for us, with the `tellraw` command, you
-can specify to who the message will be sent. This means you could only send the
+can specify to whom the message will be sent. This means you could only send the
 debug messages to those who have the tag `debug`:
 
 ```mcfunction

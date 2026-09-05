@@ -174,8 +174,8 @@ const resources = {
       description: 'Datapack tutorials, especially advanced concepts.',
     },
     {
-      title: 'Slicedlime',
-      href: 'https://www.youtube.com/@slicedlime',
+      title: 'Slicedlime\'s Minecraft Pack News',
+      href: 'https://www.youtube.com/@MinecraftPackNews',
       type: 'YouTube',
       description: 'Covers all the technical changes in recent snapshots.',
     },

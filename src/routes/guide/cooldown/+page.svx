@@ -1,7 +1,7 @@
 ---
 title: Cooldown checks
 description: Learn how to create and check cooldown timers using several common methods.
-version: 26.1
+version: 26.2
 ---
 
 # Cooldown checks
@@ -26,5 +26,5 @@ There are two main ways to implement a cooldown mechanic in your project:
 
 - [Scoreboard-based cooldown](/guide/cooldown/scoreboard) - Uses a scoreboard objective to store how 
 much time remaining until the cooldown expires. This is the simplest and the easiest to understand version, 
-but if you're creating a larger datapack, or intend on using it with multiple players, you may prefer to use an alternative version to minimise system lag.
+but if you're creating a larger datapack, or intend on using it with multiple players, you may prefer to use an alternative version to minimize system lag.
 - [Worldclock-based cooldown](/guide/cooldown/worldclock) - Uses the time on a worldclock to measure the elapsed time since an action was last used. This is a non-ticking approach that works well for large datapacks, or any project that uses many cooldown timers.
