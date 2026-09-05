@@ -10,25 +10,24 @@
   ]);
 </script>
 
-{#if page.status === 404}
-  <div class="not-prose space-y-4 text-left">
-    <h1 class="text-6xl font-bold tracking-tight">404: Failed to load resources</h1>
-    <h2 class="text-2xl font-medium leading-snug">datapack_wiki:pages{page.url.pathname} not found.</h2>
-    <p>It might have been removed, or never existed in the first place. Try searching for the page you need, or if this page should exist, let us know in our <a href="https://discord.gg/xHTHbZqXr6">Discord</a></p>
-  </div>
+<div class="error-page">
+  {#if page.status === 404}
+    <div class="not-prose space-y-4 text-left">
+      <h1 class="text-5xl font-bold tracking-tight">404: Failed to load resources</h1>
+      <h2 class="text-2xl font-medium leading-snug">datapack_wiki:pages{page.url.pathname} <span class="text-1xl font-bold leading-snug">not found.</span></h2>
+      <p class="text-1xl max-w-prose">It might have been removed, or never existed in the first place.<br>Try searching for the page you need, or if this page should exist, let us know in our <a class="text-orange-500 hover:text-orange-600" href="https://discord.gg/xHTHbZqXr6">Discord</a>.</p>
+    </div>
+  {:else}
+    <div class="not-prose space-y-4 text-left">
+      <h1 class="text-5xl font-bold tracking-tight">Error {page.status}: {page.error?.message}</h1>
+    </div>
+  {/if}
 
-  {messages.get(page.status)}
+  {#if messages.get(page.status)}
+    <p class="not-prose mt-4 max-w-prose">{messages.get(page.status)}</p>
+  {/if}
 
   <div class="not-prose">
     <Discord />
   </div>
-
-{:else}
-  # Error {page.status}: {page.error?.message}
-
-{messages.get(page.status)}
-
-<div class="not-prose">
-  <Discord />
 </div>
-{/if}
