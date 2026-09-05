@@ -188,7 +188,7 @@ The following example gives a diamond if the condition succeeds, in this case, i
 }
 ```
 
-## Generating loot tables in-game
+## Using loot tables in-game
 
 Loot tables can be invoked in the following ways:
 - `/loot` command: `loot <give <players>|insert <target_pos>|spawn <target_pos>|replace <block|entity> <fish ...|loot <loot_table>|kill <target>|mine ...>`
