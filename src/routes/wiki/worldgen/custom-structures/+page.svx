@@ -155,3 +155,7 @@ You can verify, force-load, or step-through your Jigsaw setups without creating 
 * **Generate Entire Layouts:** `/place structure custom_namespace:my_dungeon ~ ~ ~`
 * **Test Local Pools & Jigsaws:** Stand directly next to an unresolved jigsaw connector block and call up individual steps manually with: 
   `/place jigsaw custom_namespace:room_pool custom_namespace:doorway 1`
+
+:::warning
+The standard `/reload` command does **not** reload custom structures, template pools, or any other worldgen files. To test any changes you make to your files, you must completely exit the world to the main menu and load it back up again.
+:::
