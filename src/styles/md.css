@@ -20,6 +20,23 @@
   max-width: 78rem;
 }
 
+.error-page {
+  --pixel-frame-color: var(--border-strong);
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  border: 1px solid transparent;
+  background: var(--surface);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  box-shadow: var(--pixel-shadow);
+  clip-path: var(--pixel-corners);
+}
+
+.error-page .discord-callout {
+  margin-top: 1.5rem;
+}
+
 .md {
   @apply prose max-w-none;
   --tw-prose-body: var(--text-secondary);
@@ -176,6 +193,7 @@
   box-shadow: var(--floating-shadow);
 }
 
+.error-page::after,
 .version-callout::after,
 .discord-callout::after {
   position: absolute;
