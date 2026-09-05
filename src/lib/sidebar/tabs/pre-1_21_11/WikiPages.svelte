@@ -80,5 +80,5 @@
 
 <SidebarCategory name="World Generation" icon={IconBackhoe} activePath="/wiki/worldgen">
   <SidebarPage label="Custom World Generation" icon={IconMountain} page="/wiki/worldgen/custom-worldgen"></SidebarPage>
-  <SidebarPlaceholder label="Custom Structures" icon={IconBuildingCastle}></SidebarPlaceholder>
+  <SidebarPage label="Custom Structures" icon={IconBuilding} page="/wiki/worldgen/custom-structures" />
 </SidebarCategory>
