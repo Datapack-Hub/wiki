@@ -108,7 +108,8 @@ import IconSparkles from '~icons/tabler/sparkles';
       <h2 id="community-heading">Built by the people who use it.</h2>
       <p>
         Every page is written and reviewed by datapackers. Ask a question on
-        Discord, fix a mistake, or add the guide you wish you’d had.
+        Discord, fix a mistake, or add the guide you wish you’d had. We're also
+        proud to be completely written and made by humans, not AI.
       </p>
     </div>
     <div class="home-community__actions">
