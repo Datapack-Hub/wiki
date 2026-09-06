@@ -31,7 +31,8 @@ const contributors = [
   { name: 'Kraggle09' },
   { name: 'Amandin' },
   { name: 'Subzeroditto' },
-  { name: 'TheBlackSwitch'}
+  { name: 'TheBlackSwitch' },
+  { name: 'Ericristian_bros' },
 ];
 </script>
 

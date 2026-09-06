@@ -85,7 +85,7 @@ bit more than for a normal recipe. This is because of the fact that you couldn't
 use NBT in recipes before 1.20.5 dropped, so that's why we need a small
 workaround.
 
-Lets create the recipe first:
+Let's create the recipe first:
 
 ```json:scuteaxe.json
 {

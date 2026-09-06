@@ -96,7 +96,8 @@ type) to further match the player.
 :::
 
 You can see all the advancement criteria using a generator such as
-[misode.github.io](https://misode.github.io/advancement).
+[misode.github.io](https://misode.github.io/advancement)
+or the [Minecraft Wiki](https://minecraft.wiki/w/Advancement_definition#Criteria) page article.
 
 <!-- I will add these all at a later date, I have some already but it's proving to take a while to add them all in - Silabear -->
 

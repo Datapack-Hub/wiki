@@ -1,7 +1,7 @@
 ---
 title: Scoreboard-based cooldown
 description: Learn how to create and check cooldown timers using a scoreboard objective.
-version: 26.1
+version: 26.2
 ---
 
 # Scoreboard-based cooldown
@@ -20,7 +20,7 @@ score to see if the player has an active cooldown or not.
 
 ## What you will create
 
-- A `my_cd` scoreboard objective (this tracks the actual cooldown for each plalyer)
+- A `my_cd` scoreboard objective (this tracks the actual cooldown for each player)
 - A `tick` function (this reduces each player's cooldown score)
 - A `check_cooldown` function (this will be used to check and reset the player's cooldown)
 
@@ -51,10 +51,10 @@ scoreboard players remove @a[scores={my_cd=1..}] my_cd 1
 
 :::note
 
-Alternatively, if optimisation is an concern, you can decrease the commands used, and use a `minecraft:tick` advancement so that 
+Alternatively, if optimization is a concern, you can decrease the commands used, and use a `minecraft:tick` advancement so that 
 it only runs the command when the player has an active cooldown. To do this, you would need a tick advancement which runs a function - 
 in that function, you would decrease the player's score and then revoke the advancement only if their score is 1 or more. This would replace 
-the commands in the tick function, and slightly help to minimise lag.
+the commands in the tick function, and slightly help to minimize lag.
 
 :::
 
@@ -65,7 +65,7 @@ if you have a special item which you only want the player to be able to use once
 you would run this function to check if the player is on cooldown or not.
 
 In this function, we check the executor's `my_cd` score to tell whether they have an active cooldown. 
-- If the score is 1 or higher (i.e. they haven't reached the end of the cooldown), then the function will return a **failure**..
+- If the score is 1 or higher (i.e. they haven't reached the end of the cooldown), then the function will return a **failure**.
 - If the score is 0 or doesn't exist yet (i.e. they do not have an active cooldown), then the function will return a **success**.
 
 ```mcfunction:check_cooldown.mcfunction

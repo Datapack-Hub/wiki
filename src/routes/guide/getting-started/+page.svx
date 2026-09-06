@@ -44,7 +44,7 @@ editor and a file explorer. However, if you are able to, we **highly suggest**
 downloading a code editor such as Visual Studio Code.
 
 With VS Code, you will be able to view errors in your datapack, autocomplete
-commands, and highlight syntax with different colours so that making datapacks
+commands, and highlight syntax with different colors so that making datapacks
 isn't as painful as using Notepad.
 
 - Download Visual Studio Code: https://code.visualstudio.com/download
@@ -64,7 +64,7 @@ or more difficult to work with. https://vscode.dev/
 <!-- <b style="color: #2563eb;">Learn:</b> How to set up an empty datapack to start working in -->
 
 The first step when creating a datapack is to **make a new world** to test it
-in. Go ahead and do that now - make sure that your world has **cheats enabled**
+in. Go ahead and do that now - make sure that your world has **commands enabled**
 and it is set to **creative mode**. In the world, you will need to run the
 `/datapack create` command - it will create your datapack folder as well as the
 necessary metadata for you, which saves you a bunch of time.
@@ -162,7 +162,7 @@ You should now have a folder structure that looks something like this:
 :::warning
 
 In versions earlier than 1.21, the function folder should be called `functions`,
-due to some pesky name changes Mojang introduced in a recent update.
+due to some pesky name changes Mojang introduced in that version.
 
 :::
 
@@ -284,7 +284,7 @@ command as the entity.
 We can use these to select all arrows which are in the ground, and then run a
 command to make them explode (and then remove themselves).
 
-As mentioned, to select an entity, we need to use a target selectors. I'm going
+As mentioned, to select an entity, we need to use a target selector. I'm going
 to teach you a bit about target selectors. You should pay attention here, but if
 you only want the code, scroll past this section.
 
@@ -302,7 +302,7 @@ world. They all start with an `@` symbol. There are 6 base target selectors:
 | `@p`            | **Nearest Player** - This selects the nearest player to the position this command is ran from.                                                                             |
 | `@n`            | **Nearest Entity** - This selects the nearest entity (player or non-player) to the position this command is ran from.                                                      |
 
-On it's own, a base target selector (like in the table) does not do much. We can
+On its own, a base target selector (like in the table) does not do much. We can
 narrow down the selection even more by using criteria. Criteria are put in
 square brackets after the base selector.
 
@@ -316,7 +316,7 @@ basic ones which you might see quite often:
 
 | Criteria                 | Description                                                                                                                                                                                                                                                      |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimisation, you should use this often.                                                                                                |
+| `[type=minecraft:arrow]` | **Entity Type** - This criteria will narrow down the selection to only include entities of a certain type. For good pack optimization, you should use this often.                                                                                                |
 | `[distance=..5]`         | **Distance to entity** - This criteria will only include entities based on their distance to their distance to the current position. `..` can be used to represent a greater/less than symbol - for example, `..5` means less than 5 blocks away.                |
 | `[limit=2]`              | **Limit selection** - Using the `limit` criteria, you can make specify a max amount of entities to be selected. This is often used in conjunction with the `sort` criteria. For example, `@e[sort=nearest,limit=1]` would select the nearest entity of any type. |
 | `[nbt={key:value}]`      | **Entity Data** - This criteria will select entities if their NBT (entity data) matches a pattern. (note: if you do this loads of times, it might start to be a bit laggy!)                                                                                      |
@@ -335,7 +335,7 @@ entity. Try putting this in your `loop.mcfunction`:
 execute as @e[type=arrow,nbt={inGround:1b}] run say I'm an arrow, I'm in the ground!
 ```
 
-`/reload` your datapack and fire an arrow at at a block. You should see that
+`/reload` your datapack and fire an arrow at a block. You should see that
 your chat is spammed with messages, meaning that we successfully selected arrows
 in the ground, and executed a command as them!
 
@@ -356,7 +356,7 @@ command, which tells the game that the `summon` command should be ran at the
 position of the entity, instead of at the world spawn (because all commands are
 run at a position in the world). This way, when we summon an entity at `~ ~ ~`,
 the game knows that it's referring to the position of the arrow. _This sounds
-complicated, but in reality, its a really easy and intuitive system when you
+complicated, but in reality, it's a really easy and intuitive system when you
 understand it :P_
 
 ```mcfunction
@@ -376,7 +376,7 @@ kill @e[type=arrow,nbt={inGround:1b}]
 
 In reality, this method might be a bit laggy if there are a lot of `arrow`s in
 the world. A better system would involve creating a function which referenced
-`@s` (the "current" entity) instead of `@e[...]`, and then runnning that
+`@s` (the "current" entity) instead of `@e[...]`, and then running that
 function as all `arrow`s in the ground. This way, we only use `@e[...]` once,
 which is a lot more efficient. However, for the purposes of this tutorial, it
 doesn't matter at all.

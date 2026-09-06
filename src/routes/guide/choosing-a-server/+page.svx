@@ -59,7 +59,7 @@ vary!
 :::
 
 :::info
-Even though the list mentions bad performace, the vanilla server still performs well. 
+Even though the list mentions bad performance, the vanilla server still performs well. 
 For small servers on decent hardware, it doesn't really matter what you choose.
 :::
 
@@ -115,7 +115,7 @@ is still updated to latest versions, however, newer loaders are recommended.
 
 :::note
 It's recommended to use [NeoForge](#neoforge) on the latest version when
-possible. This will offer the bestest of Datapack features and the most modern
+possible. This will offer the best of Datapack features and the most modern
 mods
 :::
 
@@ -148,10 +148,10 @@ due to how it injects its code.
 
 :::tip
 You may see people talk about Cardboard. It's a mod that can add the Paper API
-to your Fabric server, however the actual functionality is limited and its slow
+to your Fabric server, however the actual functionality is limited and it's slow
 to update.
 
-We do not recommend you use it! Instead, try find native Fabric alternatives!
+We do not recommend you use it! Instead, try to find native Fabric alternatives!
 :::
 
 ## SpongeVanilla
