@@ -3,7 +3,7 @@ title: Predicates
 description:
   Predicates are a type of file which can be called to check if a certain
   condition is true.
-version: 1.21.5
+version: 26.2
 ---
 
 # Predicates
@@ -184,10 +184,10 @@ with the `predicate=` selector argument, and `execute if predicate`.
   `attacking_player`.
 - `predicate`: An object containing all the entity properties to check. There
   are lots of these, and going into full detail would take a lot of space (use a
-  generator like [misode.github.io](https://misode.github.io) to create these
+  generator like [misode.github.io](https://misode.github.io/predicate) to create these
   more efficiently):
-  - `type`: The entity type to match. For instance, `minecraft:player`.
-  - `type_specific`: An object that contains properties which may only be
+  - `entity_type`: The entity type to match. For instance, `minecraft:player`.
+  - `type_specific/<mob>`: An object that contains properties which may only be
     specific to one type of entity.
   - `team`: The team that the entity is on.
   - `nbt`: An NBT object to match. This should be in a string. For instance,

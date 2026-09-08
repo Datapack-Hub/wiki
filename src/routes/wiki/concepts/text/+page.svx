@@ -2,18 +2,18 @@
 title: Styled Text
 description:
   Styled text in Minecraft commands is done through an NBT text format.
-version: 1.21.8
+version: 26.2
 ---
 
 # Styled Text
 
-Styled text (bold, underline, colours, etc) is represented as NBT based
+Styled text (bold, underline, colors, etc) is represented as NBT based
 structures, called "text components". A text component is a way to format styled
 text in Minecraft commands, and is used in many places such as `/tellraw`,
 `/title`, and more.
 
 Instead of just using standard text (for example `"Hello World"`), we can use
-text components to format the text in a variety of ways, including colours, text
+text components to format the text in a variety of ways, including colors, text
 effects, click events, hover events, language-based text, accessing NBT data,
 and more.
 
@@ -147,10 +147,9 @@ run the command `/say Hello`:
   should be a string value.
 
 ## Text component generators
-Writing text components manually is tedious - there are numerous generators which can be used to quickly create text components. We recommend [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy UI, cool features like gradient creators, and is updated for modern versions.
 
 Writing text components manually is tedious - there are numerous generators
-which can be used to quickly create text components. We reccomend
+which can be used to quickly create text components. We recommend
 [our Minecraft Text Generator](https://text.datapackhub.net) which has an easy
 UI, cool features like gradient creators, and is updated for modern versions.
 

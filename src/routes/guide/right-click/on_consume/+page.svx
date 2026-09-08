@@ -33,7 +33,7 @@ First we need to create a give function. This can also be done with a recipe or 
 
 :::info
 
-[Misode's converter](<https://misode.github.io/convert/>) is a tool used to convert /give commands into loot tables and recipes or vise versa
+[Misode's converter](<https://misode.github.io/convert/>) is a tool used to convert /give commands into loot tables and recipes or vice versa.
 
 :::
 

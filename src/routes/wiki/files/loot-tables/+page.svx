@@ -1,0 +1,197 @@
+---
+title: Loot tables
+description:
+  "Loot tables are used to randomly generate items, like mob drops, chest loot or fishing loot"
+version: 26.2
+---
+
+# Loot tables
+
+Loot tables are JSON files used to generate sets of items (i.e. loot). They are located in the `data/<namespace>/loot_table/` folder.
+In vanilla gameplay they are used for chest loot from structures, mob drops, block drops, archeology, fishing, among others things.
+In a datapack, we can use loot table files to override vanilla loot tables or create custom ones.
+
+## JSON format
+
+For information about the JSON format in general, see the [JSON](/wiki/info/json) page.
+
+The loot table JSON object can have the following keys:
+
+- `type`: used to ensure all parameters are valid, the most common values are `chest`, `entity`, `block`, and `generic`, but can be omitted.
+- `random_sequence`: name of random sequence used to make the loot seed deterministic.
+- `functions`: list of item modifiers that will affect all the generated items.
+- `pools`: a list of entries for the loot table.
+  - `rolls`: number of times this pool is rolled, having a value of 2 is equivalent to running a pool with a `rolls` value of 1, twice.
+  - `bonus_rolls`: number provider used to determine the amount of additional rolls, depending on the luck attribute of the player.
+  - `conditions`: list of predicates that must succeed, or no items will be generated.
+  - `functions`: list of item modifiers that will affect the generated items of this roll.
+  - `entries`: list of entries for the loot table, which determines the items that will be given to the player.
+    - `type`: specifies what will be given to the player, can be `item`, `alternatives`, `dynamic`, `loot_table`, `sequence`, `slots`, `empty`, and `tag`.
+      - `weight`: how likely it is to land this roll on this entry, higher values mean it's more likely. For example, having a loot table with a diamond of weight 1 and a dirt block with weight 99 means the chance of getting the diamond is 1% but getting the dirt block is 99%.
+      - `quality`: increases the weight based on luck.
+      - `conditions`: list of predicates that must succeed, or no items will be generated on this entry only.
+      - `functions`: list of item modifiers that will affect the generated items of this entry only.
+
+## `entries`
+
+`item`: has `name`, that is an item ID:
+
+```json:diamond.json
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`alternatives`: has `children`, this entry only returns the first child that succeeds, this is used in the vanilla datapack to drop stone if the pickaxe has silk touch, but drop cobblestone otherwise:
+
+```json:minecraft:blocks/stone.json
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "predicates": {
+                      "minecraft:enchantments": [
+                        {
+                          "enchantments": "minecraft:silk_touch",
+                          "levels": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "name": "minecraft:stone"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:survives_explosion"
+                }
+              ],
+              "name": "minecraft:cobblestone"
+            }
+          ]
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "minecraft:blocks/stone"
+}
+```
+`empty`: it drops nothing
+
+`group`: has `children` which are more grouped entries, this is convenient to apply the same condition predicate or item modifier to all.
+
+`loot_table`: has `value` which is a resource location of another loot table or a loot table object, for example, a loot table that rolls the witch loot table once:
+
+```json:namespace:witch.json
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:entities/witch"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`sequence`: returns all `children` until there is one whose condition isn't met.
+
+You can use [Misode's generator](https://misode.github.io/loot-table/) to generate your loot table.
+
+# More examples
+
+The following example has a 20% chance for a diamond, 40% chance for a gold ingot and 40% for an emerald and it's rolled 5 times.
+
+```json:random_minerals.json
+{
+  "pools": [
+    {
+      "rolls": 5,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "diamond",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "gold_ingot",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "emerald",
+          "weight": 40
+        }
+      ]
+    }
+  ]
+}
+```
+
+The following example gives a diamond if the condition succeeds, in this case, it's a `time_check` predicate, so it must be night.
+
+```json:diamond_at_night.json
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "diamond"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:time_check",
+          "clock": "minecraft:overworld",
+          "value": {
+            "min": 12000,
+            "max": 24000
+          },
+          "period": 24000
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Using loot tables in-game
+
+Loot tables can be invoked in the following ways:
+- `/loot` command: `loot <give <players>|insert <target_pos>|spawn <target_pos>|replace <block|entity> <fish ...|loot <loot_table>|kill <target>|mine ...>`
+- The advancement `rewards` object can specify a `loot` entry which is a list of loot table files
+- Overriding vanilla loot tables by placing the file at the same path as the vanilla file, for example, to override the zombie drops, you would create the file in `data/minecraft/entities/zombie.json`
+- `LootTable` NBT for container blocks or `DeathLootTable` for entities, for example `setblock ~ ~ ~ chest{LootTable:"namespace:loot_table"}`

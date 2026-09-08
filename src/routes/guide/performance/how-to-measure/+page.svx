@@ -1,7 +1,7 @@
 ---
 title: How to Measure Performance
 description: "Learn about the performance impact of a datapack."
-version: 1.21.8
+version: 26.2
 ---
 
 # How to Measure Performance
@@ -11,7 +11,7 @@ the world. It handles all the logic of the world.
 
 - Generating new chunks as players explore the world.
 - Validating player interactions such as mining blocks.
-- Mob behaviour. All mob AI, pathfinding, targeting, etc.
+- Mob behavior. All mob AI, pathfinding, targeting, etc.
 - And so on...
 
 Server performance is measured in [TPS](https://minecraft.wiki/w/Tick#Game_tick) - ticks per second.
@@ -22,7 +22,7 @@ other game logic.
 Server normally runs at 20 TPS. However, if the server is overloaded with
 computations - it makes the individual tick longer, to keep up with all the
 computations. That leads to lower TPS, which causes lag and delay for all
-players. Blocks disappearing, or breaking too slowly, mobs behaviour slowing
+players. Blocks disappearing, or breaking too slowly, mobs behavior slowing
 down, this is all due to low TPS.
 
 ## Measure Overall Performance
@@ -48,6 +48,11 @@ If the longest tick (max) on the graph took less than 50ms (length of a single
 tick) the TPS is good. The server is able to process all logic in time. Otherwise,
 if max is above 50 and the lines high enough to cross over the border, the TPS is
 suffering.
+
+You can also create a profiling report with `F3+L` in singleplayer or `/perf` on multiplayer servers,
+which provides information about how long it took to execute each command.
+You can then find the file in `.minecraft/debug/profiling/`
+and upload the file to view an interactive performance report on [misode.github.io](https://misode.github.io/report/).
 
 ## Benchmarking
 
