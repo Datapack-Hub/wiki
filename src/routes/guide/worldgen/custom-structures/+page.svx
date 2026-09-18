@@ -1,0 +1,157 @@
+---
+title: "Custom Structures Guide"
+description: "Learn how to build, save, and connect custom structures using Structure Blocks and Jigsaw Blocks in Minecraft 1.21.10."
+tags: guide, worldgen, structures, jigsaw, processors
+version: "1.21.10"
+---
+
+# Custom Structures Guide
+
+Custom structures let you add your own buildings into world generation. Instead of spawning a structure as one huge piece, Minecraft builds them piece by piece using **Structure Blocks** to save the rooms and **Jigsaw Blocks** to lock them together dynamically (like Villages or Trial Chambers).
+
+---
+
+## 1. Saving Pieces with Structure Blocks
+
+Before a structure can spawn in the world, you must build the pieces in-game and save them.
+
+1. Give yourself a structure block with this command: `/give @s structure_block`.
+2. Place the block next to your build. Switch the mode to **Save**.
+3. Change the box size to cover your building. Give it a name using your namespace (like `my_namespace:room_1`).
+4. Click the **Save** button.
+
+This creates an `.nbt` file in your world save. Move this file into your datapack folder at:
+`data/<namespace>/structure/<piece_name>.nbt`
+
+---
+
+## 2. Connecting Layouts with Jigsaw Blocks
+
+Jigsaw blocks work like puzzle pieces. They connect different saved structure files together face-to-face.
+
+### How to Configure a Jigsaw Block
+Right-click a Jigsaw Block inside your build to set up its connections:
+
+* **Name:** The ID of *this* connector point (e.g., `my_namespace:doorway`).
+* **Target Name:** The jigsaw name it wants to connect to on another piece (e.g., `my_namespace:doorway`).
+* **Pool:** The datapack path to the template pool file that holds the next pieces it can choose from (e.g., `my_namespace:room_pool`).
+* **Turn into:** The block that replaces the Jigsaw block when the structure finishes spawning (usually `minecraft:air` so the path stays open).
+
+:::tip
+Make sure the little arrow on the Jigsaw Block face points **outward** toward the empty space where the next piece should spawn!
+:::
+
+---
+
+## 3. Randomizing Blocks with Processors
+
+To stop your structures from looking exactly the same every time, use **Structure Processors**. These are simple lists of rules that randomly swap out blocks when spawning—like changing 20% of your plain Stone Bricks into Mossy Stone Bricks.
+
+Create your rule file in your datapack at:
+`data/<namespace>/worldgen/processor_list/<name>.json`
+
+### Example Processor Configuration
+```json:data/my_namespace/worldgen/processor_list/ruin_decay.json
+{
+  "processors": [
+    {
+      "processor_type": "minecraft:rule",
+      "rules": [
+        {
+          "input_predicate": {
+            "predicate_type": "minecraft:block_match",
+            "block": "minecraft:stone_bricks"
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:mossy_stone_bricks"
+          },
+          "output_probability": 0.2
+        }
+      ]
+    }
+  ]
+}
+```
+
+To use this logic, change `"processors": "minecraft:empty"` to your path (`"processors": "my_namespace:ruin_decay"`) inside your template pool configurations.
+
+---
+
+## 4. Creating Template Pools
+
+Template pools are JSON lists that hold the pieces your structure can use. They tell the generation engine which rooms are allowed to connect and set the chance (weight) for each room to appear.
+
+Create your pool file at:
+`data/<namespace>/worldgen/template_pool/<name>.json`
+
+### Example Pool Configuration
+```json:data/my_namespace/worldgen/template_pool/room_pool.json
+{
+  "name": "my_namespace:room_pool",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 3,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "my_namespace:room_standard",
+        "projection": "rigid",
+        "processors": "my_namespace:ruin_decay"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "my_namespace:room_treasure",
+        "projection": "rigid",
+        "processors": "my_namespace:ruin_decay"
+      }
+    }
+  ]
+}
+```
+
+---
+
+## 5. Registering the Main Structure File
+
+To tell the game to start spawning your layout, register the base structure settings file here:
+`data/<namespace>/worldgen/structure/<name>.json`
+
+```json:data/my_namespace/worldgen/structure/my_dungeon.json
+{
+  "type": "minecraft:jigsaw",
+  "start_pool": "my_namespace:room_pool",
+  "size": 7,
+  "max_distance_from_center": 80,
+  "biomes": "#minecraft:has_structure/mineshaft",
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "start_height": {
+    "absolute": 64
+  },
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "use_expansion_hack": false,
+  "spawn_overrides": {}
+}
+```
+
+---
+
+## 6. In-Game Testing Commands
+
+You can test your Jigsaw structures using standard commands:
+
+* **Spawn the Whole Structure:** `/place structure my_namespace:my_dungeon ~ ~ ~`
+* **Test Just One Pool Connection:** Stand right next to an empty jigsaw connector block and type: 
+  `/place jigsaw my_namespace:room_pool my_namespace:doorway 1`
+
+:::warning
+
+The standard /reload command does not reload worldgen files like structures or template pools. To see updates to your files, you must leave the world to the main menu and  open it back up again.
+
+:::
