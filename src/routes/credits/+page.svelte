@@ -16,16 +16,17 @@
 
   const editors = [{ name: "Gears", href: "https://gearsdatapacks.github.io/" }];
 
-  const contributors = [
-    { name: "Diamond" },
-    { name: "HeDeAn" },
-    { name: "SuperAnt_" },
-    { name: "SwitchedCube" },
-    { name: "Kraggle09" },
-    { name: "Amandin" },
-    { name: "Subzeroditto" },
-    { name: "TheBlackSwitch" },
-  ];
+const contributors = [
+  { name: 'Diamond' },
+  { name: 'HeDeAn' },
+  { name: 'SuperAnt_' },
+  { name: 'SwitchedCube' },
+  { name: 'Kraggle09' },
+  { name: 'Amandin' },
+  { name: 'Subzeroditto' },
+  { name: 'TheBlackSwitch' },
+  { name: 'Ericristian_bros' },
+];
 </script>
 
 <Seo

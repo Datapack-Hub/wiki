@@ -1,8 +1,8 @@
 ---
 title: Using an Eye of Ender for RC detection
 description:
-  "An intresting right click detection method for sure, due to the fact that it can only be used in
-  worlds without strongholds!"
+  "An interesting right click detection method for sure, due to the fact that it
+  can only be used in worlds without strongholds!"
 version: 26.2
 ---
 
@@ -12,10 +12,6 @@ version: 26.2
 > This only works in world without strongholds, if you don't want that, you can either use a
 > similiar method that works everywhere (using the Food Component method) or do some changes to
 > these functions, as specified at the end of this guide.
-
-Eye of ender items can be used to detect right clicks in Minecraft. Similarly to the Carrot on a
-Stick method, we can detect when an eye of ender item is being used by the player as a result of
-right clicking it.
 
 Unlike the Carrot on a Stick method, this method will be trigger every tick that right click is
 being held, instead of just once when right click is pressed.

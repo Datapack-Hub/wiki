@@ -1,7 +1,8 @@
 ---
 title: Adding Paintings
 description:
-  "Learn how to add custom paitings to Minecraft just with a datapack and a resourcepack!"
+  "Learn how to add custom paintings to Minecraft just with a datapack and a
+  resourcepack!"
 version: 26.2
 ---
 

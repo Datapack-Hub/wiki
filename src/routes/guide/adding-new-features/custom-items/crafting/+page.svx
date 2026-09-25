@@ -77,7 +77,7 @@ To create a crafting recipe for one of your custom items, you need just a little
 normal recipe. This is because of the fact that you couldn't use NBT in recipes before 1.20.5
 dropped, so that's why we need a small workaround.
 
-Lets create the recipe first:
+Let's create the recipe first:
 
 ```json:scuteaxe.json
 {

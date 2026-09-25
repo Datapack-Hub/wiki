@@ -1,6 +1,8 @@
 ---
 title: Array Iteration
-description: This guide explains how to loop through an array's items in a Minecraft datapack
+description:
+  This guide explains how to loop through an array's items in a Minecraft
+  datapack
 version: 26.2
 ---
 

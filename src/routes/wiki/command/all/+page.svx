@@ -69,27 +69,29 @@ These commands require a permission level same or bigger than 2 to run them.
   [dedicated page](/wiki/command/data).
 - `/datapack disable <name>|enable <name> <first|last|before|after>|list [available|enabled]|create <id> <name>` -
   Enables, disables or creates a datapack
-- `/defaultgamemode <survival|adventure|creative|spectator>` - Sets the default gamemode of a world
-- `/dialog <show <targets> <dialog>|clear <targets>>` - Shows and hides
+- `/defaultgamemode <survival|adventure|creative|spectator>` - Sets the default
+  gamemode of a world
+- `/dialog <show|clear> <targets>` - Shows and hides
   [dialog](/wiki/files/dialogs) screens from players
 - `/difficulty [peaceful|easy|normal|hard]` - Sets or gets the difficulty of a world
 - `/effect <clear [<targets>] [<effect>]|give <targets> <effect> [<seconds>|infinite] [<amplifier>] [<hideParticles>]>` -
   Changes the entity's active effects
-- `/enchant <targets> <enchantment> [<level>]` - Adds enchantments onto held item. (Note that you
-  can't enchant items with a level higher than what is possible in survival)
-- `/execute ...` - Executes a different command (See more here: [/execute](/wiki/command/execute))
-- `/experience <add|set|query <targets>> ...` - Adds, removes or gets the players experience points.
-  (ALIAS: `/xp`)
-- `/fetchprofile <name <player_name>|id <player_uuid>|entity <player_entity>>` - Fetches the profile
-  of the target. It works asynchronously as the operation might take some time. After successful
-  completion, a message will be printed that lets users copy the contents of a fully resolved
-  minecraft:profile component or /give @s minecraft:player_head with said component. For the entity
-  subcommand, the player must be online, and will fail if they are not.
-- `/fill <from-XYZ> <to-XYZ> <block> [destroy|hollow|keep|outline|replace [filter]]` - Fills the
-  defined region with selected blocks
-- `/fillbiome <from-XYZ> <to-XYZ> <biome> [replace [filter]]` - Fills the defined region with a
-  specific biome
-- `/forceload add <from> [<to>] <remove all|query [pos]>` - Forces chunks to be loaded constantly
+- `/enchant <targets> <enchantment> [<level>]` - Adds enchantments onto held
+  item. (Note that you can't enchant items with a level higher than what is
+  possible in survival)
+- `/execute ...` - Executes a different command (See more here:
+  [/execute](/wiki/command/execute))
+- `/experience <add|set|query> <targets> ...` - Adds, removes or gets the
+  players experience points. (ALIAS: `/xp`)
+- `/fetchprofile <name <player_name>|id <player_uuid>|entity <player_entity>>` - Fetches the profile of the target. It works asynchronously as the operation might take some time.
+  After successful completion, a message will be printed that lets users copy the contents of a fully resolved minecraft:profile component or /give @s minecraft:player_head with said component.
+  For the entity subcommand, the player must be online, and will fail if they are not.
+- `/fill <from-XYZ> <to-XYZ> <block> [destroy|hollow|keep|outline|replace [filter]]` -
+  Fills the defined region with selected blocks
+- `/fillbiome <from-XYZ> <to-XYZ> <biome> [replace [filter]]` - Fills the
+  defined region with a specific biome
+- `/forceload add <from> [<to>] <remove all|query [pos]>` - Forces chunks to be
+  loaded constantly
 - `/function <name> <arguments>|with <block <sourcePos>|entity <source>|storage <source>> [<path>]` -
   Triggers a [function](/wiki/files/functions)
 - `/gamemode <gamemode> [<target>]` - Changes or checks the player's gamemode
@@ -212,5 +214,5 @@ These commands can only be run only on a server.
 
 This command can only be run in singleplayer, not on a server.
 
-- `/publish [<allowCommands>] [<gamemode>] [<port>]` - Opens a singleplayer world to your local
-  network
+- `/publish [<allowCommands>] [<gamemode>] [<port>]` - Opens a singleplayer
+  world to your local network

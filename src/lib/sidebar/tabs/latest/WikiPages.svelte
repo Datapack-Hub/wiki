@@ -57,7 +57,7 @@
   <SidebarPage label="Functions" icon={IconPennant} page="/wiki/files/functions" />
   <SidebarPage label="Predicates" icon={IconPredicate} page="/wiki/files/predicates" />
   <SidebarPage label="Advancements" icon={IconStar} page="/wiki/files/advancements" />
-  <SidebarPlaceholder label="Loot Tables" icon={IconChest} />
+  <SidebarPage label="Loot Tables" icon={IconChest} page="/wiki/files/loot-tables" />
   <SidebarPage label="Recipes" icon={IconGrid} page="/wiki/files/recipes" />
   <SidebarPage label="Dialogs" icon={IconDialog} page="/wiki/files/dialogs" />
   <SidebarPage label="Tags" icon={IconFilters} page="/wiki/files/tags" />

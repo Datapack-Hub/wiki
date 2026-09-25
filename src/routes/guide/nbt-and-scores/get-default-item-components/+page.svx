@@ -20,7 +20,7 @@ this functionality in a datapack to easily access the default components of any 
 ## Method
 
 To start, we make a loot table that drops a dummy item and applies the `copy_components` loot
-function. This function requires a source to copy the components from. This, unfortunatly, can only
+function. This function requires a source to copy the components from. This, unfortunately, can only
 be one of `block_entity`, any entity from context (for example `this` or `attacker`) or a `tool`.
 The only source that can be an item is `tool` so we'll use that.
 

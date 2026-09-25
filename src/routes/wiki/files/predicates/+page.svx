@@ -1,7 +1,8 @@
 ---
 title: Predicates
 description:
-  Predicates are a type of file which can be called to check if a certain condition is true.
+  Predicates are a type of file which can be called to check if a certain
+  condition is true.
 version: 26.2
 ---
 
@@ -159,14 +160,16 @@ and `execute if predicate`.
 
 **Fields**:
 
-- `entity`: Who to check. Can be `this` (equivalent of `@s`), `attacker` (the entity that attacked),
-  `direct_entity` (the entity that caused the damage), or `attacking_player`.
-- `predicate`: An object containing all the entity properties to check. There are lots of these, and
-  going into full detail would take a lot of space (use a generator like
-  [misode.github.io](https://misode.github.io) to create these more efficiently):
-  - `type`: The entity type to match. For instance, `minecraft:player`.
-  - `type_specific`: An object that contains properties which may only be specific to one type of
-    entity.
+- `entity`: Who to check. Can be `this` (equivalent of `@s`), `attacker` (the
+  entity that attacked), `direct_entity` (the entity that caused the damage), or
+  `attacking_player`.
+- `predicate`: An object containing all the entity properties to check. There
+  are lots of these, and going into full detail would take a lot of space (use a
+  generator like [misode.github.io](https://misode.github.io/predicate) to create these
+  more efficiently):
+  - `entity_type`: The entity type to match. For instance, `minecraft:player`.
+  - `type_specific/<mob>`: An object that contains properties which may only be
+    specific to one type of entity.
   - `team`: The team that the entity is on.
   - `nbt`: An NBT object to match. This should be in a string. For instance, `"{Health:20}"`.
   - `location`: A `location_check` predicate to match the entity's location.

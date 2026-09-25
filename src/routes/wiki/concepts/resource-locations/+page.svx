@@ -25,8 +25,8 @@ specify the `function` folder in the resource location, as it is implied by the 
 
 ## Resource locations for tags
 
-To reference a tag (ie the function tag `#minecraft:load`), you can use the `#` symbol before the
-tag name. For example:
+To reference a tag (e.g. the function tag `#minecraft:load`), you can use the `#`
+symbol before the tag name. For example:
 
 ```mcfunction
 /function #minecraft:load

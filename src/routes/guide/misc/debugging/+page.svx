@@ -26,21 +26,23 @@ Bugs are a fancy programmer term for an error in your code. There are two main t
 
 ## Finding and debugging syntax errors
 
-Syntax errors are pretty easy to spot and fix, due to Minecraft's output logs, which literally tell
-you if your code is incorrect. When you're coding datapacks, its a good idea to always have the logs
-open if you need to double check it. You can open the logs by opening the default Minecraft launcher
-and clicking "Settings", and then enabling "Open output log when Minecraft: Java Edition starts",
-then just starting the game.
+Syntax errors are pretty easy to spot and fix, due to Minecraft's output logs,
+which literally tell you if your code is incorrect. When you're coding
+datapacks, it's a good idea to always have the logs open if you need to double
+check it. You can open the logs by opening the default Minecraft launcher and
+clicking "Settings", and then enabling "Open output log when Minecraft: Java
+Edition starts", then just starting the game.
 
 ![A guide on how to open the Minecraft launchers output logs](/images/guides/debugging/open-launcher-output-logs.png)
 
 Syntax errors will show up in **red text** when you `/reload` your datapack. But sometimes other
 errors can also show in **yellow text** instead.
 
-Lets take this image as an example:
-![Output log with an error.](/images/guides/debugging/output-log-error.png) Here, the error tells
-you exactly where the error is - in this case it's in the function "be:give" at line 1 after "....
-give @s". And indeed I did spell "loot" as "lot", which caused the error.
+Let's take this image as an example:
+![Output log with an error.](/images/guides/debugging/output-log-error.png) Here, the
+error tells you exactly where the error is - in this case it's in the function
+"be:give" at line 1 after ".... give @s". And indeed I did spell "loot" as
+"lot", which caused the error.
 ![Code with a syntax error](/images/guides/debugging/code-syntax-error.png)
 
 ## Finding logic errors
@@ -67,9 +69,10 @@ tellraw @a {"score":{"name":"@s","objective":"some_scoreboard_objective"}}
 Based on the output of these commands in chat, you can use this to tell where your code goes wrong.
 (Just make sure to remove them after you've found the error, otherwise it can get annoying).
 
-You may want to keep the debug messages in the datapack, but you don't want it to be sent to every
-player. Fortunately for us, with the `tellraw` command, you can specify to who the message will be
-sent. This means you could only send the debug messages to those who have the tag `debug`:
+You may want to keep the debug messages in the datapack, but you don't want it
+to be sent to every player. Fortunately for us, with the `tellraw` command, you
+can specify to whom the message will be sent. This means you could only send the
+debug messages to those who have the tag `debug`:
 
 ```mcfunction
 tellraw @a[tag=debug] {"text":"Debug message sent only to people with the debug tag!"}

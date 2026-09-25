@@ -50,9 +50,16 @@ not come with mod or plugin support. Beyond datapacks, it is not customizable at
 > [!TIP]  
 > For some, a lack of bug fixes can be both positive and negative. Mileage may vary!
 
+<<<<<<< HEAD
 > [!TIP]  
 > Even though the list mentions bad performace, the vanilla server still performs well. For small
 > servers on decent hardware, it doesn't really matter what you choose.
+=======
+:::info
+Even though the list mentions bad performance, the vanilla server still performs well. 
+For small servers on decent hardware, it doesn't really matter what you choose.
+:::
+>>>>>>> 6407ca758054d02e3e60569d82b7196d91a6f21d
 
 ## Spigot
 
@@ -101,9 +108,17 @@ recommended.
 | Large mod catalog spanning many years | Different mod loaders are recommended and used nowadays       |
 | Many mods do not affect DP features   |                                                               |
 
+<<<<<<< HEAD
 > [!NOTE]  
 > It's recommended to use [NeoForge](#neoforge) on the latest version when possible. This will offer
 > the bestest of Datapack features and the most modern mods
+=======
+:::note
+It's recommended to use [NeoForge](#neoforge) on the latest version when
+possible. This will offer the best of Datapack features and the most modern
+mods
+:::
+>>>>>>> 6407ca758054d02e3e60569d82b7196d91a6f21d
 
 ## NeoForge
 
@@ -130,11 +145,12 @@ best _modded_ server for use with datapacks due to how it injects its code.
 | Mods rarely affect datapacks       | Hard to troubleshoot mod errors sometimes       |
 | Great for newer Minecraft versions | Support for older Minecraft versions is limited |
 
-> [!TIP]  
-> You may see people talk about Cardboard. It's a mod that can add the Paper API to your Fabric
-> server, however the actual functionality is limited and its slow to update.
->
-> We do not recommend you use it! Instead, try find native Fabric alternatives!
+> [!TIP]
+> You may see people talk about Cardboard. It's a mod that can add the Paper API
+> to your Fabric server, however the actual functionality is limited and it's slow
+> to update.
+> 
+> We do not recommend you use it! Instead, try to find native Fabric alternatives!
 
 ## SpongeVanilla
 

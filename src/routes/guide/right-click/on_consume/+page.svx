@@ -36,9 +36,9 @@ wish to use one of these I would recommend converting your item component with
 
 > [!TIP]  
 > [Misode's converter](https://misode.github.io/convert/) is a tool used to convert /give commands
-> into loot tables and recipes or vise versa
+> into loot tables and recipes or vice versa
 
-```mcfunction:give.mcfunction
+``` mcfunction:give.mcfunction
 give @s echo_shard[consumable={consume_seconds:1,animation:"eat"},custom_data={tutorial:"item"},use_cooldown={seconds:5,cooldown_group:"tutorial_item"}] 1
 ```
 
