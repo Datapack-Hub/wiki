@@ -32,9 +32,9 @@ The loot table JSON object can have the following keys:
       - `conditions`: list of predicates that must succeed, or no items will be generated on this entry only.
       - `functions`: list of item modifiers that will affect the generated items of this entry only.
 
-## `entries`
+### `entries`
 
-`item`: has `name`, that is an item ID:
+Type `item`: has `name`, that is an item ID:
 
 ```json:diamond.json
 {
@@ -52,7 +52,7 @@ The loot table JSON object can have the following keys:
 }
 ```
 
-`alternatives`: has `children`, this entry only returns the first child that succeeds, this is used in the vanilla datapack to drop stone if the pickaxe has silk touch, but drop cobblestone otherwise:
+Type `alternatives`: has `children`, this entry only returns the first child that succeeds, this is used in the vanilla datapack to drop stone if the pickaxe has silk touch, but drop cobblestone otherwise:
 
 ```json:minecraft:blocks/stone.json
 {
@@ -102,11 +102,11 @@ The loot table JSON object can have the following keys:
   "random_sequence": "minecraft:blocks/stone"
 }
 ```
-`empty`: it drops nothing
+Type `empty`: drops nothing
 
-`group`: has `children` which are more grouped entries, this is convenient to apply the same condition predicate or item modifier to all.
+Type `group`: has `children` which are more grouped entries, this is convenient to apply the same condition predicate or item modifier to all.
 
-`loot_table`: has `value` which is a resource location of another loot table or a loot table object, for example, a loot table that rolls the witch loot table once:
+Type `loot_table`: has `value` which is a resource location of another loot table or a loot table object, for example, a loot table that rolls the witch loot table once:
 
 ```json:namespace:witch.json
 {
@@ -124,11 +124,11 @@ The loot table JSON object can have the following keys:
 }
 ```
 
-`sequence`: returns all `children` until there is one whose condition isn't met.
+Type `sequence`: returns all `children` until there is one whose condition isn't met.
 
 You can use [Misode's generator](https://misode.github.io/loot-table/) to generate your loot table.
 
-# More examples
+## More examples
 
 The following example has a 20% chance for a diamond, 40% chance for a gold ingot and 40% for an emerald and it's rolled 5 times.
 
