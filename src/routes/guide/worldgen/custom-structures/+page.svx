@@ -5,34 +5,27 @@ tags: guide, worldgen, structures, jigsaw, processors
 version: "1.21.10"
 ---
 
-# Custom Structures Guide
+# How to make custom structures
 
-Custom structures allow you to add your own buildings into the world using custom generation. instead of spawning the structure as one big thing minecraft breaks them into small pieces that allow for random generation. To save the building pieces they use **Strucure Blocks** and load them using **Jigsaw Blocks**. (This is how trail chambers and villages load for example)
-
----
+Custom structures allow you to add your own complex buildings into the world using custom world generation. Instead of spawning the structure as one thing, Minecraft allows you to break them into smaller pieces that allow for random generation (e.g. random village layouts, trial chambers). To save the "pieces", you use **Strucure Blocks**, and then you can load them using **Jigsaw Blocks**. 
 
 ## 1. Saving Pieces with Structure Blocks
 
+To make a structure spawn in-game, you will need to first build and save one using a **Structure Block**.
 
-To make a structure spawn ingame you will need to first build and safe one using a **Structure Block**.
+1. Get a structure block: `/give @s structure_block`.
+2. Place the structure block at the corner of your build and put it in **Save Mode**.
+3. Give it a name using your namespace (e.g. `my_namespace:room_1`).
+4. Go to the opposite corner of your build and place a second structure block. Put it in **Corner Mode** and give it the same name as you gave the first structure block.
+5. Go back to the first structure block (the one in save mode) and click on "Detect". This will automatically detect the size (using the opposite corner block).
+6. Verify the structure boundary is correct, then finally click the Save button.
 
-1. Get started by giving yourself a structure block using the command  `/give @s structure_block`.
-2. Place the structure block at the cornor of your build and put it in **Safe Mode**.
-3. Give it a name using your namespace (like `my_namespace:room_1`).
-4. Go to the opposite cornor of your build and place a second structure block and put it in corner mode and give it the same name (like `my_namespace:room_1`).
-5. Go back to the **Safe Structure Block** and click on detect this will automaticly detect the size then finally click the safe button.
-
-:::tip
-This creates an `.nbt` file in your world save. Move this file into your datapack folder at:
-`data/<namespace>/structure/<piece_name>.nbt`
-:::
----
+This creates an `.nbt` file in your world save file. You will need to move this file into your datapack folder at `data/<namespace>/structure/<piece_name>.nbt`
 
 ## 2. Connecting Layouts with Jigsaw Blocks
 
 Jigsaw blocks work like puzzle pieces. They connect different saved structure files together face-to-face.
 
-### How to Configure a Jigsaw Block
 Right-click a Jigsaw Block inside your build to set up its settings:
 
 * **Name:** The ID of *this* connector point (e.g., `my_namespace:doorway`).
@@ -40,24 +33,18 @@ Right-click a Jigsaw Block inside your build to set up its settings:
 * **Pool:** The datapack path to the template pool file that holds the next pieces it can choose from (e.g., `my_namespace:room_pool`).
 * **Turn into:** The block that replaces the Jigsaw block when the structure finishes spawning (usually `minecraft:air` so the path stays open).
 
-:::tip
-You can also keep the **Turn into** empty to keep the Jigsaw Blocks to see if it connects correctly.
-:::
+You could also keep the **Turn into** empty to keep the Jigsaw Blocks to see if it connects correctly.
 
 :::tip
 Make sure the little arrow on the Jigsaw Block face points **outward** toward the empty space where the next piece should spawn!
 :::
 
----
-
 ## 3. Randomizing Blocks with Processors
 
-To stop structures from look exactly the same every time we, use **Structure Processors**. These are simple lists of rules that randomly swap out blocks when spawning. (like changing 20% of your Stone Bricks into Mossy Stone Bricks.)
+To stop structures from look exactly the same every time we, use **Structure Processors**. These are simple lists of rules that randomly swap out blocks when spawning (like changing 20% of your Stone Bricks into Mossy Stone Bricks).
 
-Create your Processor file in your datapack at:
-`data/<namespace>/worldgen/processor_list/<name>.json`
+Create your Processor file in your datapack at `data/<namespace>/worldgen/processor_list/<name>.json`
 
-### Example Processor Configuration
 ```json:data/my_namespace/worldgen/processor_list/ruin_decay.json
 [
   {
@@ -96,16 +83,13 @@ Create your Processor file in your datapack at:
 
 To use this logic, change `"processors": "minecraft:empty"` to your path (`"processors": "my_namespace:ruin_decay"`) inside your template pool configurations.
 
----
-
 ## 4. Creating Template Pools
 
-Template pools are JSON lists that hold the pieces your structure can use. They tell the generation engine which rooms are allowed to connect and set the chance (weight) for each room to appear.
+Template pools are JSON lists that contain the pieces your structure can use. They tell the game which rooms are allowed to connect, and set the chance (weight - higher weight = more often) for each room to appear.
 
-Create your pool file at:
+Create your pool file at
 `data/<namespace>/worldgen/template_pool/<name>.json`
 
-### Example Pool Configuration
 ```json:data/my_namespace/worldgen/template_pool/room_pool.json
 {
   "name": "my_namespace:room_pool",
@@ -132,15 +116,10 @@ Create your pool file at:
   ]
 }
 ```
-:::tip
-The **weight** is how often it spawns how higher the weight how more often it generates.
-:::
-
----
 
 ## 5. Registering the Main Structure File
 
-To tell the game to start spawning your layout, register the base structure settings file here:
+To tell the game to start spawning your layout, register the structure settings file at
 `data/<namespace>/worldgen/structure/<name>.json`
 
 ```json:data/my_namespace/worldgen/structure/my_dungeon.json
@@ -162,20 +141,16 @@ To tell the game to start spawning your layout, register the base structure sett
 
 ```
 
----
-
 ## 6. In-Game Testing Commands
 
-You can test your Jigsaw structures using standard commands:
+You can test your Jigsaw structures using in-game commands:
 
-* **Spawn the Whole Structure:** `/place structure my_namespace:my_dungeon ~ ~ ~`
-* **Test Just One Pool Connection:** Stand right next to an empty jigsaw connector block and type: `/place jigsaw my_namespace:room_pool my_namespace:doorway 1`
+* Spawn the entire structure with `/place structure my_namespace:my_dungeon ~ ~ ~`
+* To test just one pool connection, stand right next to an empty jigsaw connector block and type: `/place jigsaw my_namespace:room_pool my_namespace:doorway 1`.
 
-:::tip
-You can also spawn it using a Jigsaw Block but you have to put in all the correct settings
-:::
+You can also spawn it using a jigsaw block, but you'll have to put in the correct settings yourself.
 
 
 :::warning
-The standard /reload command does not reload worldgen files like structures or template pools. To see updates to your files, you must leave the world to the main menu and  open it back up again.
+The /reload command does not reload worldgen files like structures or template pools. To see updates to your files, you must leave the world and rejoin it.
 :::
