@@ -148,6 +148,12 @@ const resources = {
       description: 'A GitHub repository with every vanilla file (compiled by Misode).',
     },
     {
+      title: 'Ewan Howell Texture Browser',
+      href: 'https://asset-browser.ewanhowell.com',
+      type: 'Website',
+      description: 'A website to view or download every vanilla asset.'
+    },
+    {
       title: "inventivetalent's Minecraft assets",
       href: 'https://mcasset.cloud/',
       type: 'Website',
