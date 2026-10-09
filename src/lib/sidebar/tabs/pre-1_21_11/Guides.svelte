@@ -42,6 +42,8 @@
   import IconRuler2 from "~icons/tabler/ruler-2";
   import IconMathMaxMin from "~icons/tabler/math-max-min";
   import IconCat from "~icons/tabler/cat";
+  import IconBackhoe from "~icons/tabler/backhoe";
+  import IconBuildingCastle from "~icons/tabler/building-castle";
   import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -106,4 +108,8 @@
   <SidebarPage label="Debugging" icon={IconBug} page="/guide/misc/debugging" />
   <SidebarPage label="Raycasts" icon={IconArrow} page="/guide/misc/raycasts" />
   <SidebarPage label="Slowcasts" icon={IconArrow} page="/guide/misc/slowcasts" />
+</SidebarCategory>
+
+<SidebarCategory name="Worldgen Guides" icon={IconBackhoe} activePath="/guide/worldgen">
+  <SidebarPage label="Custom Structures Guide" icon={IconBuildingCastle} page="/guide/worldgen/custom-structures" />
 </SidebarCategory>
