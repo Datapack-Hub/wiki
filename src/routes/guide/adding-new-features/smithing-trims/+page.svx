@@ -6,6 +6,10 @@ description:
 version: 26.2
 ---
 
+<script lang="ts">
+  import ArticleImage from "$lib/reusables/ArticleImage.svelte";
+</script>
+
 # How to add custom Smithing Trims
 
 This guide is split into three parts, adding a custom smithing trim pattern,
