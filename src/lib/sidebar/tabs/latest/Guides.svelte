@@ -44,6 +44,8 @@
   import IconCat from "~icons/tabler/cat";
   import IconBaguette from "~icons/tabler/baguette";
   import IconPick from '~icons/tabler/pick';
+  import IconBackhoe from "~icons/tabler/backhoe";
+  import IconBuildingCastle from "~icons/tabler/building-castle";
   import SidebarPlaceholder from "../../navigation/SidebarPlaceholder.svelte";
 </script>
 
@@ -110,4 +112,8 @@
   <SidebarPage label="Debugging" icon={IconBug} page="/guide/misc/debugging" />
   <SidebarPage label="Raycasts" icon={IconArrow} page="/guide/misc/raycasts" />
   <SidebarPage label="Slowcasts" icon={IconArrow} page="/guide/misc/slowcasts" />
+</SidebarCategory>
+
+<SidebarCategory name="Worldgen Guides" icon={IconBackhoe} activePath="/guide/worldgen">
+  <SidebarPage label="Custom Structures Guide" icon={IconBuildingCastle} page="/guide/worldgen/custom-structures" />
 </SidebarCategory>
