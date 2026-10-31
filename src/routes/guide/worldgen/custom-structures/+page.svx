@@ -1,6 +1,6 @@
 ---
 title: "Custom Structures Guide"
-description: "Learn how to make and generate custom structures for 1.21.10"
+description: "Learn how to make and generate custom structures for "26.3"
 tags: guide, worldgen, structures, jigsaw, processors
 version: "26.3"
 ---
